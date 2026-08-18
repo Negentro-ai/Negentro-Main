@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="negentro-logo.png" alt="Negentro" width="400" />
+<img src="piyapi.png" alt="Negentro" width="400" />
 
 **Enterprise-grade cognitive memory engine for AI-native applications, intelligent agents, and enterprise workflows.**
 
