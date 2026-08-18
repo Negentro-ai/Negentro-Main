@@ -1,0 +1,25 @@
+{
+  "name": "@piyapi/connectors",
+  "version": "0.1.0",
+  "private": true,
+  "description": "12 data connectors with real-time CDC auto-sync",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "check-types": "tsc --noEmit",
+    "lint": "biome check .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@piyapi/lib": "workspace:*",
+    "@piyapi/validation": "workspace:*",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "5.8.3",
+    "vitest": "^3.2.0"
+  }
+}
