@@ -1,0 +1,33 @@
+{
+  "name": "@piyapi/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for PiyAPI — the cognitive memory engine for AI",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "check-types": "tsc --noEmit",
+    "lint": "biome check .",
+    "test": "vitest run"
+  },
+  "keywords": ["piyapi", "memory", "ai", "rag", "knowledge-graph", "cognitive", "negentro"],
+  "author": "Negentro",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "5.8.3",
+    "vitest": "^3.2.0"
+  }
+}
