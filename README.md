@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="apps/web/public/piyapi-logo.svg" alt="PiyAPI" width="400" />
+<img src="Assets/negentro-logo.png" alt="Negentro" width="400" />
 
 **Enterprise-grade cognitive memory engine for AI-native applications, intelligent agents, and enterprise workflows.**
 
 [Docs](https://piyapi.cloud/docs) · [Quickstart](https://piyapi.cloud/docs/quickstart) · [Self-host](https://piyapi.cloud/docs/self-hosting) · [Dashboard](https://piyapi.cloud/login) · [Discord](https://discord.gg/negentro)
 
-[![npm](https://img.shields.io/npm/v/@piyapi/sdk?style=flat-square&color=blue)](https://www.npmjs.com/package/@piyapi/sdk) [![pypi](https://img.shields.io/pypi/v/piyapi-memory?style=flat-square&color=blue)](https://pypi.org/project/piyapi-memory/) [![docs](https://img.shields.io/badge/docs-piyapi.cloud-blue?style=flat-square)](https://piyapi.cloud/docs) [![license](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/negentro/piyapi/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/v/@piyapi/sdk?style=flat-square&color=blue)](https://www.npmjs.com/package/@piyapi/sdk) [![pypi](https://img.shields.io/pypi/v/piyapi-memory?style=flat-square&color=blue)](https://pypi.org/project/piyapi-memory/) [![docs](https://img.shields.io/badge/docs-piyapi.cloud-blue?style=flat-square)](https://piyapi.cloud/docs) [![license](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)](https://github.com/negentro/piyapi/blob/main/LICENSE)
 
 </div>
 
