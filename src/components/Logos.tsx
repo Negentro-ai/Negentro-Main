@@ -12,42 +12,48 @@ export const NegentroLogo: React.FC<{ className?: string }> = ({
   )
 }
 
-export const AwsLogo: React.FC<{ className?: string }> = ({ className = 'h-10 sm:h-12' }) => {
+export const NotionLogo: React.FC<{ className?: string }> = ({ className = 'h-7 sm:h-8 md:h-9' }) => {
   return (
     <img
-      src="/logos/aws.svg"
-      alt="AWS"
+      src="/logos/notion.svg"
+      alt="Notion"
       className={`select-none object-contain transition-transform duration-300 hover:scale-105 ${className}`}
     />
   )
 }
 
-export const NvidiaLogo: React.FC<{ className?: string }> = ({ className = 'h-8 sm:h-10' }) => {
+export const ClaudeLogo: React.FC<{ className?: string }> = ({ className = 'h-6 sm:h-7 md:h-8' }) => {
   return (
     <img
-      src="/logos/nvidia.svg"
-      alt="NVIDIA"
+      src="/logos/claude.svg"
+      alt="Claude"
       className={`select-none object-contain transition-transform duration-300 hover:scale-105 ${className}`}
     />
   )
 }
 
-export const MicrosoftLogo: React.FC<{ className?: string }> = ({ className = 'h-8 sm:h-9' }) => {
+export const ModalLogo: React.FC<{ className?: string }> = ({ className = 'h-5 sm:h-6 md:h-7' }) => {
   return (
     <img
-      src="/logos/microsoft.svg"
-      alt="Microsoft"
+      src="/logos/modal.svg"
+      alt="Modal"
       className={`select-none object-contain transition-transform duration-300 hover:scale-105 ${className}`}
     />
   )
 }
 
-export const GoogleLogo: React.FC<{ className?: string }> = ({ className = 'h-9 sm:h-11' }) => {
+export const MongoDbLogo: React.FC<{ className?: string }> = ({ className = 'h-7 sm:h-8 md:h-9' }) => {
   return (
     <img
-      src="/logos/google.svg"
-      alt="Google"
+      src="/logos/mongoDB.svg"
+      alt="MongoDB"
       className={`select-none object-contain transition-transform duration-300 hover:scale-105 ${className}`}
     />
   )
 }
+
+// Aliases for backwards compatibility
+export const AwsLogo = NotionLogo
+export const NvidiaLogo = ClaudeLogo
+export const MicrosoftLogo = ModalLogo
+export const GoogleLogo = MongoDbLogo
