@@ -1,96 +1,347 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-@theme {
-  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+@theme inline {
+	--font-sans:
+		"DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-mono: "JetBrains Mono", monospace;
+	--color-background: #ffffff;
+	--color-foreground: #09090b;
+	--color-muted-foreground: #71717a;
+	--color-secondary: #f4f4f5;
+	--color-secondary-foreground: #18181b;
+	--color-border: #e4e4e7;
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes marquee-vertical {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-100%);
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-up {
+	0% {
+		opacity: 0;
+		transform: translateY(40px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes signalMove {
+	0% {
+		left: 0%;
+		opacity: 0;
+		transform: scale(0.6);
+	}
+	20% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+	80% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		left: 100%;
+		opacity: 0;
+		transform: scale(0.6);
+	}
+}
+
+.animate-fade-in {
+	animation: fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-up {
+	animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-marquee {
+	animation: marquee var(--duration, 25s) linear infinite;
+}
+
+.animate-marquee-vertical {
+	animation: marquee-vertical var(--duration, 30s) linear infinite;
+}
+
+.animate-fade-in-up {
+	animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @layer base {
-  :root {
-    --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
+	:root {
+		--font-sans:
+			"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+			Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+		--font-mono: "JetBrains Mono", monospace;
+	}
 
-  * {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
+	* {
+		font-family:
+			"DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+			sans-serif;
+	}
 
-  body {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #ffffff;
-    color: #111827;
-  }
+	body {
+		font-family:
+			"DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+			sans-serif;
+		background-color: #ffffff;
+		color: #111827;
+	}
 
-  code, pre, kbd {
-    font-family: var(--font-mono);
-  }
+	code,
+	pre,
+	kbd {
+		font-family: var(--font-mono);
+	}
 }
 
 /* Minimalist scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+	width: 6px;
+	height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fafafa;
+	background: #fafafa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 3px;
+	background: #e5e7eb;
+	border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d1d5db;
+	background: #d1d5db;
+}
+
+/* Universal Responsive Container System */
+.container-universal {
+	width: 100%;
+	max-width: 1456px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+	.container-universal {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.container-universal {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.container-universal {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	.container-universal {
+		padding-left: 4rem;
+		padding-right: 4rem;
+	}
+}
+
+@media (min-width: 1536px) {
+	.container-universal {
+		padding-left: 4.5rem;
+		padding-right: 4.5rem;
+	}
 }
 
 /* Navigation Pill Container */
 .nav-pill-container {
-  background: rgba(243, 244, 246, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 231, 235, 0.8);
+	background: rgba(243, 244, 246, 0.75);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid rgba(229, 231, 235, 0.8);
 }
 
 /* Smooth fade-in animation */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Infinite Marquee Animation (Right to Left) */
 @keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
 }
 
 .animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
+	display: flex;
+	width: max-content;
+	animation: marquee 25s linear infinite;
 }
 
 .animate-marquee:hover {
-  animation-play-state: paused;
+	animation-play-state: paused;
 }
 
 /* Horizontal Gradient Mask for smooth fade-in/out on edges */
 .mask-gradient-x {
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+	mask-image: linear-gradient(
+		to right,
+		transparent,
+		black 12%,
+		black 88%,
+		transparent
+	);
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent,
+		black 12%,
+		black 88%,
+		transparent
+	);
+}
+.animated-gradient {
+	position: relative;
+	isolation: isolate;
+	background:
+		radial-gradient(
+			circle at 18% 18%,
+			rgba(150, 178, 213, 0.651) 0,
+			transparent 24%
+		),
+		radial-gradient(
+			circle at 82% 24%,
+			rgba(89, 64, 215, 0.28) 0,
+			transparent 26%
+		),
+		linear-gradient(
+			90deg,
+			#35355e 0%,
+			#252855 18%,
+			#4c4f96 50%,
+			#475182 82%,
+			#414188 100%
+		);
+	background-size: 180% 180%;
+	animation: gradientFlow 38s ease-in-out infinite alternate;
+	overflow: hidden;
+}
+
+.animated-gradient::after {
+	position: absolute;
+	inset: -20%;
+	z-index: -1;
+	background:
+		radial-gradient(
+			circle at 32% 30%,
+			rgba(236, 241, 244, 0.22),
+			transparent 15%
+		),
+		radial-gradient(
+			circle at 70% 38%,
+			rgba(241, 242, 244, 0.18),
+			transparent 14%
+		);
+	content: "";
+	animation: gradientGlow 34s ease-in-out infinite alternate;
+}
+
+.logo-glow {
+	animation: logoPulse 14s ease-in-out infinite alternate;
+}
+
+@keyframes gradientFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
+}
+
+@keyframes gradientGlow {
+	0% {
+		transform: translate3d(-2%, 2%, 0) scale(0.98);
+		opacity: 0.2;
+	}
+	100% {
+		transform: translate3d(3%, -2%, 0) scale(1.02);
+		opacity: 0.42;
+	}
+}
+
+@keyframes logoPulse {
+	0% {
+		transform: scale(0.99);
+		opacity: 0.92;
+	}
+	100% {
+		transform: scale(1.01);
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animated-gradient,
+	.animated-gradient::after,
+	.logo-glow {
+		animation: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animated-gradient,
+	.animated-gradient::before,
+	.animated-gradient::after,
+	.logo-glow {
+		animation: none;
+	}
 }
