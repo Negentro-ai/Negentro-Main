@@ -1,8 +1,9 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { type ReactNode, useEffect, useRef } from "react"
+import { type ReactNode, useEffect, useRef, useState } from "react"
 import Velaris from "@/components/ui/velaris"
+import { CalendlyModal } from "@/components/CalendlyModal"
 
 interface VerticalMarqueeProps {
 	children: ReactNode
@@ -80,6 +81,7 @@ export interface CTAWithVerticalMarqueeProps {
 export default function CTAWithVerticalMarquee({
 	onOpenConsole: _onOpenConsole,
 }: CTAWithVerticalMarqueeProps = {}) {
+	const [isCalendlyOpen, setIsCalendlyOpen] = useState(false)
 	const marqueeRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
@@ -116,9 +118,6 @@ export default function CTAWithVerticalMarquee({
 	}, [])
 
 	return (
-		/* ═══════════════════════════════════════════════════════════════════════
-		   CTA SECTION WITH VELARIS ANIMATED WEBGL BACKGROUND & USE CASE MARQUEE
-		   ═══════════════════════════════════════════════════════════════════════ */
 		<section className="w-full relative overflow-hidden bg-[#0e0728] min-h-[400px] lg:min-h-[450px] flex items-center justify-center font-['DM_Sans',sans-serif] border-t border-white/10 select-none">
 			{/* Velaris Living WebGL Shader Background */}
 			<div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -163,7 +162,7 @@ export default function CTAWithVerticalMarquee({
 						<div className="pt-2">
 							<button
 								type="button"
-								onClick={(e) => e.preventDefault()}
+								onClick={() => setIsCalendlyOpen(true)}
 								className="px-6 py-2.5 rounded-[6px] bg-white text-[#3B368C] font-semibold text-[14.5px] tracking-normal shadow-md hover:bg-neutral-50 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer inline-flex items-center justify-center"
 							>
 								Talk to the Team
@@ -200,6 +199,12 @@ export default function CTAWithVerticalMarquee({
 					</div>
 				</div>
 			</div>
+
+			{/* Calendly Scheduling Modal */}
+			<CalendlyModal
+				isOpen={isCalendlyOpen}
+				onClose={() => setIsCalendlyOpen(false)}
+			/>
 		</section>
 	)
 }
