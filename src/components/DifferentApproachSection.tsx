@@ -1,13 +1,5 @@
 import type React from "react"
-import {
-	RefreshCw,
-	Target,
-	Link,
-	Clock,
-	Shield,
-	Box,
-	ChevronRight,
-} from "lucide-react"
+import { RefreshCw, Target, Link, Clock, Shield, Box, ChevronRight } from "lucide-react"
 import WavyBackground from "@/components/ui/blue-meshy-background"
 import { useLanguage } from "@/lib/i18n"
 
@@ -16,25 +8,25 @@ export const DifferentApproachSection: React.FC = () => {
 
 	const comparisonRows = [
 		{
-			feature: t.differentApproach.row1Name,
+			feature: t.differentApproach.tableRow1,
 			contextStuffing: false,
 			memoryWrapper: "partial",
 			nativeMemory: false,
 		},
 		{
-			feature: t.differentApproach.row2Name,
+			feature: t.differentApproach.tableRow2,
 			contextStuffing: true,
 			memoryWrapper: true,
 			nativeMemory: false,
 		},
 		{
-			feature: t.differentApproach.row3Name,
+			feature: t.differentApproach.tableRow3,
 			contextStuffing: false,
 			memoryWrapper: true,
 			nativeMemory: false,
 		},
 		{
-			feature: t.differentApproach.row4Name,
+			feature: t.differentApproach.tableRow4,
 			contextStuffing: false,
 			memoryWrapper: "partial",
 			nativeMemory: false,
@@ -44,54 +36,54 @@ export const DifferentApproachSection: React.FC = () => {
 	const features = [
 		{
 			icon: <RefreshCw className="w-5 h-5" />,
-			title: t.differentApproach.card1Title,
-			desc: t.differentApproach.card1Desc,
+			title: t.differentApproach.feat1Title,
+			desc: t.differentApproach.feat1Desc,
 		},
 		{
 			icon: <Target className="w-5 h-5" />,
-			title: t.differentApproach.card2Title,
-			desc: t.differentApproach.card2Desc,
+			title: t.differentApproach.feat2Title,
+			desc: t.differentApproach.feat2Desc,
 		},
 		{
 			icon: <Link className="w-5 h-5" />,
-			title: t.differentApproach.card3Title,
-			desc: t.differentApproach.card3Desc,
+			title: t.differentApproach.feat3Title,
+			desc: t.differentApproach.feat3Desc,
 		},
 		{
 			icon: <Clock className="w-5 h-5" />,
-			title: "Persistence",
-			desc: "Long-term historical continuity across sessions and models.",
+			title: t.differentApproach.feat4Title,
+			desc: t.differentApproach.feat4Desc,
 		},
 		{
 			icon: <Shield className="w-5 h-5" />,
-			title: "Ownership",
-			desc: "Full user control and sovereignty over private memory data.",
+			title: t.differentApproach.feat5Title,
+			desc: t.differentApproach.feat5Desc,
 		},
 		{
 			icon: <Box className="w-5 h-5" />,
-			title: "Portability",
-			desc: "Model agnostic interoperability for seamless infrastructure migration.",
+			title: t.differentApproach.feat6Title,
+			desc: t.differentApproach.feat6Desc,
 		},
 	]
 
 	const metrics = [
 		{
-			value: t.differentApproach.sotaMetric1Value,
-			line1: "SUPERIOR AI",
-			line2: "EXPERIENCE",
-			sublabel: t.differentApproach.sotaMetric1Label,
+			value: t.differentApproach.metric1Value,
+			line1: t.differentApproach.metric1Line1,
+			line2: t.differentApproach.metric1Line2,
+			sublabel: t.differentApproach.metric1Sublabel,
 		},
 		{
-			value: t.differentApproach.sotaMetric2Value,
-			line1: "REAL-TIME",
-			line2: "MEMORY",
-			sublabel: t.differentApproach.sotaMetric2Label,
+			value: t.differentApproach.metric2Value,
+			line1: t.differentApproach.metric2Line1,
+			line2: t.differentApproach.metric2Line2,
+			sublabel: t.differentApproach.metric2Sublabel,
 		},
 		{
-			value: t.differentApproach.sotaMetric3Value,
-			line1: "ENTERPRISE",
-			line2: "SCALE AI",
-			sublabel: t.differentApproach.sotaMetric3Label,
+			value: t.differentApproach.metric3Value,
+			line1: t.differentApproach.metric3Line1,
+			line2: t.differentApproach.metric3Line2,
+			sublabel: t.differentApproach.metric3Sublabel,
 		},
 	]
 
@@ -102,23 +94,21 @@ export const DifferentApproachSection: React.FC = () => {
 				<div className="w-full flex items-center justify-start">
 					<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase select-none">
 						<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
-						<span>{t.differentApproach.sectionTag}</span>
+						<span>{t.differentApproach.tag}</span>
 					</div>
 				</div>
 
 				{/* Section Header */}
 				<div className="text-center max-w-5xl lg:max-w-6xl mx-auto space-y-4 sm:space-y-6">
-					<h2 className="text-[32px] sm:text-[44px] lg:text-[56px] font-semibold text-[#0F1123] tracking-[-0.03em] leading-[1.12] font-['DM_Sans',sans-serif]">
-						{t.differentApproach.headlinePre}
-						<span className="text-[#765DFB]">{t.differentApproach.headlineHighlight}</span>
+					<h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F1123] tracking-[-0.03em] leading-[1.15] font-['DM_Sans',sans-serif]">
+						{t.differentApproach.titlePre}
+						<span className="text-[#765DFB]">{t.differentApproach.titleHighlight}</span>
 					</h2>
 
 					<p className="text-[18px] sm:text-[28px] lg:text-[40px] font-normal text-[#0F1123] leading-[1.25] tracking-[-0.02em] font-['DM_Sans',sans-serif]">
-						Purpose built for production AI,{" "}
-						<span className="font-semibold text-[#765DFB]">Piyapi</span>{" "}
-						preserves exact knowledge with
-						<br className="hidden md:inline" /> predictable retrieval and
-						verifiable provenance.
+						{t.differentApproach.sublinePre}
+						<span className="font-semibold text-[#765DFB]">{t.differentApproach.sublineHighlight}</span>
+						{t.differentApproach.sublinePost}
 					</p>
 				</div>
 
@@ -139,29 +129,36 @@ export const DifferentApproachSection: React.FC = () => {
 					</WavyBackground>
 				</div>
 
-				{/* Key Architecture Features */}
-				<div className="w-full max-w-[1258px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5">
-					{features.map((feature) => (
+				{/* Key Architecture Features (Component 28 - 6 Animated Cards) */}
+				<div className="w-full max-w-[1258px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+					{features.map((feature, idx) => (
 						<div
 							key={feature.title}
-							className="relative overflow-hidden min-h-[220px] p-6 sm:p-8 pl-7 sm:pl-9 rounded-lg bg-white border border-[#C9C3F4] shadow-[0_2px_12px_rgba(35,25,105,0.06)] transition-all duration-300 hover:shadow-lg hover:border-[#765DFB]/60 hover:-translate-y-1 group flex flex-col justify-center"
+							className="relative overflow-hidden min-h-[200px] sm:min-h-[210px] p-6 sm:p-7 pl-7 sm:pl-8 rounded-xl bg-white border border-[#D1D0E4] shadow-[0_2px_12px_rgba(35,25,105,0.04)] transition-all duration-300 hover:shadow-xl hover:border-[#765DFB]/60 hover:-translate-y-1.5 group cursor-default flex flex-col justify-center"
 						>
-							<div className="opacity-0 group-hover:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-[#F2EFFE] to-transparent pointer-events-none" />
+							{/* Top row gets gradient from bottom, bottom row gets gradient from top */}
+							{idx < 3 ? (
+								<div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-0 h-full w-full bg-gradient-to-t from-[#F2EFFE] via-[#F2EFFE]/40 to-transparent pointer-events-none" />
+							) : (
+								<div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-0 h-full w-full bg-gradient-to-b from-[#F2EFFE] via-[#F2EFFE]/40 to-transparent pointer-events-none" />
+							)}
 
-							{/* Left indicator pill */}
-							<div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-12 group-hover:h-16 rounded-r-[4px] bg-neutral-300 group-hover:bg-[#5146B8] transition-all duration-200 origin-center" />
+							{/* Left indicator pill with expansion and color morph */}
+							<div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-10 group-hover:h-16 rounded-r-[4px] bg-neutral-300 group-hover:bg-[#4846AC] transition-all duration-300 origin-center" />
 
-							<div className="relative z-10 w-9 h-9 rounded-md bg-[#5146B8] text-white flex items-center justify-center mb-4 transition-all duration-200 group-hover:bg-[#6320EE] group-hover:text-[#F0D7FF] group-hover:scale-105">
+							{/* Icon Container with scale and purple glow */}
+							<div className="relative z-10 w-9 h-9 rounded-md bg-[#4846AC] text-white flex items-center justify-center mb-3.5 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#6320EE] group-hover:shadow-[0_0_15px_rgba(118,93,251,0.4)]">
 								<div className="w-5 h-5 flex items-center justify-center [&>svg]:w-5 [&>svg]:h-5 [&>svg]:stroke-[2.2]">
 									{feature.icon}
 								</div>
 							</div>
-							<h3 className="text-[20px] sm:text-[22px] md:text-[24px] font-bold text-[#0F1123] mb-2 tracking-tight relative z-10 font-['DM_Sans',sans-serif]">
-								<span className="group-hover:translate-x-1.5 transition-transform duration-200 inline-block">
+
+							<h3 className="text-[20px] sm:text-[22px] md:text-[23px] font-bold text-[#0F1123] mb-1.5 tracking-tight relative z-10 font-['DM_Sans',sans-serif]">
+								<span className="group-hover:translate-x-2 transition-transform duration-300 inline-block">
 									{feature.title}
 								</span>
 							</h3>
-							<p className="text-[13.5px] sm:text-[14.5px] text-[#0F1123] leading-[1.38] font-normal max-w-[310px] relative z-10 font-['DM_Sans',sans-serif]">
+							<p className="text-[13.5px] sm:text-[14px] text-[#0F1123]/90 leading-[1.4] font-normal max-w-[320px] relative z-10 font-['DM_Sans',sans-serif]">
 								{feature.desc}
 							</p>
 						</div>
@@ -191,14 +188,16 @@ export const DifferentApproachSection: React.FC = () => {
 							</h3>
 						</div>
 						<p className="text-[13px] text-[#000410] leading-[1.46] font-['DM_Sans',sans-serif] font-normal pt-4 sm:pt-6">
-							<span className="block whitespace-nowrap">
-								{t.differentApproach.sotaLine1}
+							<span className="block">
+								Leading performance across{" "}
+								<span className="text-[#765DFB]">LongMemEval</span>,
 							</span>
-							<span className="block whitespace-nowrap">
-								{t.differentApproach.sotaLine2}
+							<span className="block">
+								<span className="text-[#765DFB]">LoCoMo</span>,{" "}
+								<span className="text-[#765DFB]">ConvoMem</span> with fast recall and
 							</span>
-							<span className="block whitespace-nowrap">
-								{t.differentApproach.sotaLine3}
+							<span className="block">
+								dramatically lower token usage.
 							</span>
 						</p>
 					</div>
@@ -218,7 +217,7 @@ export const DifferentApproachSection: React.FC = () => {
 										{metric.sublabel}
 									</div>
 								</div>
-								<div className="text-[14.5px] sm:text-[15px] font-medium uppercase text-[#000410] tracking-[-0.01em] leading-[1.2] font-['DM_Sans',sans-serif] pt-4 sm:pt-6">
+								<div className="text-[14.5px] sm:text-[15px] font-bold uppercase text-[#000410] tracking-[-0.01em] leading-[1.2] font-['DM_Sans',sans-serif] pt-4 sm:pt-6">
 									<div>{metric.line1}</div>
 									<div>{metric.line2}</div>
 								</div>

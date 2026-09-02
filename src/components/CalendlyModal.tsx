@@ -53,7 +53,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 					<div className="flex items-center gap-2.5">
 						<span className="w-2.5 h-2.5 rounded-full bg-[#765DFB] animate-pulse" />
 						<span className="font-semibold text-sm sm:text-base text-[#0F1123] font-['DM_Sans',sans-serif]">
-							{t.calendly.modalTitle}
+							{t.calendly.title}
 						</span>
 					</div>
 
@@ -64,7 +64,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 							target="_blank"
 							rel="noopener noreferrer"
 							className="p-1.5 text-neutral-400 hover:text-neutral-700 rounded-lg hover:bg-neutral-100 transition-colors"
-							title={t.calendly.openNewTab}
+							title={t.calendly.title}
 						>
 							<ExternalLink className="w-4 h-4" />
 						</a>

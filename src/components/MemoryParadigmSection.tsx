@@ -18,23 +18,23 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 	const tabData: Record<TabType, { id: TabType; label: string; cardTitle: string; cardDescription: string; imageSrc: string }> = {
 		context: {
 			id: "context",
-			label: t.paradigm.problem1Title,
-			cardTitle: t.paradigm.problem1Title,
-			cardDescription: t.paradigm.problem1Desc,
+			label: t.problem.tab1Label,
+			cardTitle: t.problem.tab1CardTitle,
+			cardDescription: t.problem.tab1CardDesc,
 			imageSrc: "/assets/context-problem.svg",
 		},
 		wrappers: {
 			id: "wrappers",
-			label: t.paradigm.problem2Title,
-			cardTitle: t.paradigm.problem2Title,
-			cardDescription: t.paradigm.problem2Desc,
+			label: t.problem.tab2Label,
+			cardTitle: t.problem.tab2CardTitle,
+			cardDescription: t.problem.tab2CardDesc,
 			imageSrc: "/assets/wrappers-problem.svg",
 		},
 		native: {
 			id: "native",
-			label: t.paradigm.problem3Title,
-			cardTitle: t.paradigm.problem3Title,
-			cardDescription: t.paradigm.problem3Desc,
+			label: t.problem.tab3Label,
+			cardTitle: t.problem.tab3CardTitle,
+			cardDescription: t.problem.tab3CardDesc,
 			imageSrc: "/assets/native-problem.svg",
 		},
 	}
@@ -44,10 +44,10 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 	return (
 		<section className="w-full bg-white pt-8 sm:pt-10 lg:pt-10 pb-12 sm:pb-16 lg:pb-20 font-['DM_Sans',sans-serif]">
 			<div className="container-universal">
-				{/* Category Tag */}
+				{/* Top Eyebrow: > PROBLEM label */}
 				<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase mb-6 sm:mb-8 select-none">
 					<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
-					<span>{t.paradigm.tag}</span>
+					<span>{t.problem.tag}</span>
 				</div>
 
 				{/* Main Content Grid */}
@@ -55,16 +55,17 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 					{/* Left Column: Headline, Subtitle & Interactive Selector */}
 					<div className="lg:col-span-6 flex flex-col justify-between space-y-7 sm:space-y-8">
 						<div className="space-y-4 sm:space-y-5">
-							<h2 className="text-[34px] sm:text-[48px] lg:text-[60px] font-bold text-black tracking-[-0.03em] leading-[1.08] font-['DM_Sans',sans-serif]">
-								{t.paradigm.titlePre}
-								<br />
+							{/* Headline: DM Sans Bold size 64 with #4846AC & #765DFB for Memory */}
+							<h2 className="text-[34px] sm:text-[48px] lg:text-[60px] font-bold text-black tracking-[-0.03em] leading-[1.08] font-['DM_Sans',sans-serif] whitespace-pre-line">
+								{t.problem.headlinePre}
 								<span className="bg-gradient-to-r from-[#4846AC] to-[#765DFB] bg-clip-text text-transparent">
-									{t.paradigm.titleHighlight}
+									{t.problem.headlineMemory}
 								</span>
 							</h2>
 
+							{/* Subtitle: DM Sans Regular size 32 */}
 							<p className="text-[18px] sm:text-[22px] lg:text-[28px] font-normal text-black leading-[1.25] tracking-[-0.02em] max-w-[620px] font-['DM_Sans',sans-serif]">
-								{t.paradigm.subline}
+								{t.problem.subline}
 							</p>
 						</div>
 
@@ -81,7 +82,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 											: "text-[#0B1015] py-3.5 px-4 hover:bg-black/[0.04]"
 									}`}
 								>
-									{t.paradigm.problem1Title}
+									{t.problem.tab1Label}
 								</button>
 							</div>
 
@@ -96,7 +97,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 											: "text-[#0B1015] py-3.5 px-4 hover:bg-black/[0.04]"
 									}`}
 								>
-									{t.paradigm.problem2Title}
+									{t.problem.tab2Label}
 								</button>
 							</div>
 
@@ -111,7 +112,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 											: "text-[#0B1015] py-3.5 px-4 hover:bg-black/[0.04]"
 									}`}
 								>
-									{t.paradigm.problem3Title}
+									{t.problem.tab3Label}
 								</button>
 							</div>
 						</div>
