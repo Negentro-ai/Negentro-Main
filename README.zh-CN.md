@@ -16,10 +16,9 @@
   <a href="docs/SOC2_CONTROLS.md"><img src="https://img.shields.io/badge/SOC_2-Controls-blue.svg" alt="SOC 2"/></a>
   <a href="#-testing"><img src="https://img.shields.io/badge/Tests-9258%20passed-brightgreen.svg" alt="Tests"/></a>
   <a href="#-testing"><img src="https://img.shields.io/badge/Property_Tests-1329-blueviolet.svg" alt="Property Tests"/></a>
-  <a href="docs/API.md"><img src="https://img.shields.io/badge/Endpoints-517-informational.svg" alt="Endpoints"/></a>
+  <a href="docs/API.md"><img src="https://img.shields.io/badge/API_Endpoints-16-informational.svg" alt="Endpoints"/></a>
   <a href="packages/mcp-server/"><img src="https://img.shields.io/badge/MCP_Tools-40%2B-orange.svg" alt="MCP Tools"/></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple.svg" alt="License"/></a>
-  <a href="frontend/src/components/intelligence/MemoryGraph.tsx"><img src="https://img.shields.io/badge/Dashboard-Visual_Intelligence-orange.svg" alt="Dashboard"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-purple.svg" alt="License"/></a>
 </p>
 
 <p align="center">
@@ -97,6 +96,17 @@ flowchart TB
     MemoryHierarchy --> DataStorage
 ```
 
+## 架构图
+
+```mermaid
+graph LR
+    A[你的智能体] --> B[Piyapi API]
+    B --> C[混合检索]
+    B --> D[PiyGraph 知识图谱]
+    B --> E[双时态存储]
+    C & D & E --> F[上下文响应]
+```
+
 ---
 
 ## 核心功能
@@ -122,7 +132,7 @@ flowchart TB
 | **生产基础代码** | **426,524+ 行代码** 分布在 **1,239** 个 TypeScript 模块中 |
 | **测试套件** | **9,258** 个测试用例，覆盖 **673** 个测试文件 (100% Jest) |
 | **基于属性的测试** | **1,329** 个 `fc.property()` 数学正确性断言 |
-| **HTTP 路由端点** | **517** 个端点绑定，分布在 62 个路由控制器中 |
+| **HTTP 路由端点** | **16** 个对外 API 端点 (内部共 516 个) |
 | **MCP 工具** | **40 个核心工具 / 52 个注册项** (`@piyapi/mcp-server` v2.0.0) |
 | **数据库迁移** | **298** 个 SQL 迁移文件，包含 **90** 个 RLS 安全策略 |
 | **CDC 数据连接器** | **12** 个内置提供商 |
@@ -270,9 +280,12 @@ npm run test:chaos # 运行混乱及弹性测试套件
 
 ## 🤝 社区与支持
 
-- 🌐 **平台:** [https://piyapi.cloud](https://piyapi.cloud)
-- 🐛 **问题反馈:** [GitHub Issues](https://github.com/NegentroWorld/Piyapi-by-Negentro/issues)
-- 📖 **文档:** [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
+<p align="center">
+  <a href="https://www.linkedin.com/company/negentroai/"><img src="https://img.shields.io/badge/LinkedIn-Negentro-0077B5?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+  <a href="https://www.reddit.com/r/negentro/"><img src="https://img.shields.io/badge/Reddit-r%2Fnegentro-FF4500?style=flat&logo=reddit&logoColor=white" alt="Reddit"/></a>
+  <a href="https://www.instagram.com/negentroai/"><img src="https://img.shields.io/badge/Instagram-negentroai-E4405F?style=flat&logo=instagram&logoColor=white" alt="Instagram"/></a>
+</p>
+
 - 🏢 **企业合作与 BAA:** `care.piyapi@outlook.com`
 - 🔒 **安全披露:** `piyapi.cloud@gmail.com`
 
