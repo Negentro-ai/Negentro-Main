@@ -1,9 +1,13 @@
-"use client"
-
 import { cn } from "@/lib/utils"
-import { type ReactNode, useEffect, useRef, useState } from "react"
+import { type ReactNode, useEffect, useRef, useState, lazy, Suspense } from "react"
 import Velaris from "@/components/ui/velaris"
-import { CalendlyModal } from "@/components/CalendlyModal"
+import { useLanguage } from "@/lib/i18n"
+
+const CalendlyModal = lazy(() =>
+	import("@/components/CalendlyModal").then((m) => ({
+		default: m.CalendlyModal,
+	})),
+)
 
 interface VerticalMarqueeProps {
 	children: ReactNode
@@ -66,14 +70,6 @@ function VerticalMarquee({
 	)
 }
 
-const marqueeItems = [
-	"Conversational AI",
-	"Personal AI Memory",
-	"Enterprise Knowledge",
-	"Multi-Agent Systems",
-	"Healthcare AI",
-]
-
 export interface CTAWithVerticalMarqueeProps {
 	onOpenConsole?: () => void
 }
@@ -81,8 +77,10 @@ export interface CTAWithVerticalMarqueeProps {
 export default function CTAWithVerticalMarquee({
 	onOpenConsole: _onOpenConsole,
 }: CTAWithVerticalMarqueeProps = {}) {
+	const { t } = useLanguage()
 	const [isCalendlyOpen, setIsCalendlyOpen] = useState(false)
 	const marqueeRef = useRef<HTMLDivElement>(null)
+	const marqueeItems = t.cta.marqueeItems
 
 	useEffect(() => {
 		const marqueeContainer = marqueeRef.current
@@ -135,6 +133,8 @@ export default function CTAWithVerticalMarquee({
 			<img
 				src="/assets/cta-bg-frame88.jpg"
 				alt="Cosmic Nebula Background"
+				loading="lazy"
+				decoding="async"
 				className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none mix-blend-overlay opacity-60"
 			/>
 
@@ -148,14 +148,12 @@ export default function CTAWithVerticalMarquee({
 					<div className="lg:col-span-6 space-y-5 sm:space-y-6 text-left">
 						{/* Headline: Build With Piyapi */}
 						<h2 className="text-[36px] sm:text-[46px] lg:text-[52px] font-bold leading-[1.06] tracking-[-0.03em] text-white font-['DM_Sans',sans-serif]">
-							Build With Piyapi
+							{t.cta.headline}
 						</h2>
 
 						{/* Subheading */}
 						<p className="text-[14.5px] sm:text-[16px] lg:text-[17px] text-white/90 font-normal leading-relaxed max-w-[480px] font-['DM_Sans',sans-serif]">
-							Have a use case in mind? Talk to our team and explore
-							<br className="hidden sm:inline" />
-							{" "}where deterministic memory can fit into your AI stack.
+							{t.cta.subline}
 						</p>
 
 						{/* Action Button: Talk to the Team */}
@@ -165,7 +163,7 @@ export default function CTAWithVerticalMarquee({
 								onClick={() => setIsCalendlyOpen(true)}
 								className="px-6 py-2.5 rounded-[6px] bg-white text-[#3B368C] font-semibold text-[14.5px] tracking-normal shadow-md hover:bg-neutral-50 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer inline-flex items-center justify-center"
 							>
-								Talk to the Team
+								{t.cta.talkButton}
 							</button>
 						</div>
 					</div>
@@ -201,10 +199,14 @@ export default function CTAWithVerticalMarquee({
 			</div>
 
 			{/* Calendly Scheduling Modal */}
-			<CalendlyModal
-				isOpen={isCalendlyOpen}
-				onClose={() => setIsCalendlyOpen(false)}
-			/>
+			{isCalendlyOpen && (
+				<Suspense fallback={null}>
+					<CalendlyModal
+						isOpen={isCalendlyOpen}
+						onClose={() => setIsCalendlyOpen(false)}
+					/>
+				</Suspense>
+			)}
 		</section>
 	)
 }

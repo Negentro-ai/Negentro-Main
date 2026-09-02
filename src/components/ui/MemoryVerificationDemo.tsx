@@ -1,11 +1,10 @@
-"use client"
-
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 const FULL_QUERY = "what is the SSO requirement for enterprise customers?"
 const FULL_ANSWER = "Enterprise Customers require SSO"
 
 export const MemoryVerificationDemo: React.FC = () => {
+	const containerRef = useRef<HTMLDivElement | null>(null)
 	const [typedQuery, setTypedQuery] = useState("")
 	const [step, setStep] = useState<
 		"typing" | "signal1" | "verified" | "signal2" | "answer" | "hold"
@@ -13,10 +12,28 @@ export const MemoryVerificationDemo: React.FC = () => {
 
 	useEffect(() => {
 		let isMounted = true
+		let isVisible = true
 		let timer: NodeJS.Timeout
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				isVisible = entries[0]?.isIntersecting ?? true
+			},
+			{ threshold: 0.1 },
+		)
+		if (containerRef.current) {
+			observer.observe(containerRef.current)
+		}
+
+		const waitWhileHidden = async () => {
+			while (isMounted && (!isVisible || document.hidden)) {
+				await new Promise((r) => setTimeout(r, 200))
+			}
+		}
 
 		const runSequence = async () => {
 			if (!isMounted) return
+			await waitWhileHidden()
 
 			// Reset
 			setTypedQuery("")
@@ -25,6 +42,7 @@ export const MemoryVerificationDemo: React.FC = () => {
 			// 1. Type query
 			for (let i = 1; i <= FULL_QUERY.length; i++) {
 				if (!isMounted) return
+				await waitWhileHidden()
 				await new Promise((resolve) => {
 					timer = setTimeout(resolve, 38 + Math.random() * 20)
 				})
@@ -74,6 +92,7 @@ export const MemoryVerificationDemo: React.FC = () => {
 
 		return () => {
 			isMounted = false
+			observer.disconnect()
 			clearTimeout(timer)
 		}
 	}, [])
@@ -85,7 +104,10 @@ export const MemoryVerificationDemo: React.FC = () => {
 	const isSignal2Active = step === "signal2"
 
 	return (
-		<div className="w-full rounded-[20px] bg-gradient-to-r from-[#9A89F4] via-[#B8A3FA] to-[#8E7BF0] border border-[#BFBFBF]/60 p-6 sm:p-10 lg:p-12 shadow-[0_14px_36px_rgba(118,93,251,0.12)] overflow-hidden font-['DM_Sans',sans-serif]">
+		<div
+			ref={containerRef}
+			className="w-full rounded-[20px] bg-gradient-to-r from-[#9A89F4] via-[#B8A3FA] to-[#8E7BF0] border border-[#BFBFBF]/60 p-6 sm:p-10 lg:p-12 shadow-[0_14px_36px_rgba(118,93,251,0.12)] overflow-hidden font-['DM_Sans',sans-serif]"
+		>
 			<div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
 				{/* 1. Left: User Query Card */}
 				<div className="w-full lg:w-[260px] shrink-0">

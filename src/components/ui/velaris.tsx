@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
@@ -171,23 +169,35 @@ export const Velaris = ({
 		const ro = new ResizeObserver(resize)
 		ro.observe(container)
 
+		let isVisible = true
+		const io = new IntersectionObserver(
+			(entries) => {
+				isVisible = entries[0]?.isIntersecting ?? true
+			},
+			{ threshold: 0.05 },
+		)
+		io.observe(container)
+
 		let raf: number
 		const render = (t: number) => {
-			gl.uniform2f(locs.res, canvas.width, canvas.height)
-			gl.uniform1f(locs.time, t * 0.001 * speed)
-			gl.uniform1f(locs.grain, grain)
-			gl.uniform3f(locs.bg, ...hexToRgb(bg))
+			if (isVisible && !document.hidden) {
+				gl.uniform2f(locs.res, canvas.width, canvas.height)
+				gl.uniform1f(locs.time, t * 0.001 * speed)
+				gl.uniform1f(locs.grain, grain)
+				gl.uniform3f(locs.bg, ...hexToRgb(bg))
 
-			const flat = new Float32Array(colors.slice(0, 4).flatMap(hexToRgb))
-			gl.uniform3fv(locs.colors, flat)
+				const flat = new Float32Array(colors.slice(0, 4).flatMap(hexToRgb))
+				gl.uniform3fv(locs.colors, flat)
 
-			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+				gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+			}
 			raf = requestAnimationFrame(render)
 		}
 
 		raf = requestAnimationFrame(render)
 		return () => {
 			ro.disconnect()
+			io.disconnect()
 			cancelAnimationFrame(raf)
 		}
 	}, [bg, colors, speed, grain])

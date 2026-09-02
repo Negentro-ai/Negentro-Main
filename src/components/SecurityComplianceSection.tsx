@@ -1,40 +1,31 @@
 import type React from "react"
-import {
-	Shield,
-	ListOrdered,
-	FileEdit,
-	Layers,
-	Sliders,
-	ChevronRight,
-} from "lucide-react"
+import { Shield, ListOrdered, Layers, Sliders, ChevronRight } from "lucide-react"
 import { MemoryVerificationDemo } from "@/components/ui/MemoryVerificationDemo"
+import { useLanguage } from "@/lib/i18n"
 
 export const SecurityComplianceSection: React.FC = () => {
+	const { t } = useLanguage()
+
 	const securityPillars = [
 		{
 			icon: <Shield className="w-4.5 h-4.5 text-white" />,
-			title: "Private by design",
-			desc: "Sensitive knowledge stays encrypted and isolated throughout its lifecycle.",
+			title: t.security.card1Title,
+			desc: t.security.card1Desc,
 		},
 		{
 			icon: <ListOrdered className="w-4.5 h-4.5 text-white" />,
-			title: "Explicit Memory",
-			desc: "Every memory is addressable and respectible not hidden inside model parameters or opaque state.",
-		},
-		{
-			icon: <FileEdit className="w-4.5 h-4.5 text-white" />,
-			title: "Editable by Design",
-			desc: "Correct, update, or delete individual memories without changing the underlying model.",
+			title: t.security.card2Title,
+			desc: t.security.card2Desc,
 		},
 		{
 			icon: <Layers className="w-4.5 h-4.5 text-white" />,
-			title: "Full Transparency",
-			desc: "See what AI remembers, where it came from, and how it has changed.",
+			title: t.security.card3Title,
+			desc: t.security.card3Desc,
 		},
 		{
 			icon: <Sliders className="w-4.5 h-4.5 text-white" />,
-			title: "User-controlled memory",
-			desc: "Control who can create, read, update, export, or delete memory.",
+			title: t.security.card4Title,
+			desc: t.security.card4Desc,
 		},
 	]
 
@@ -63,18 +54,12 @@ export const SecurityComplianceSection: React.FC = () => {
 				{/* Centered Main Title & Subtitle */}
 				<div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
 					<h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#000410] tracking-[-0.03em] leading-[1.12]">
-						Your <span className="text-[#765DFB]">Data.</span> Your{" "}
-						<span className="text-[#765DFB]">Memory.</span> Your{" "}
-						<span className="text-[#765DFB]">Control.</span>
+						{t.security.headlinePre}
+						<span className="text-[#765DFB]">{t.security.headlineHighlight}</span>
 					</h2>
 
 					<p className="text-base sm:text-[17px] text-[#000410] leading-relaxed font-normal max-w-2xl mx-auto">
-						<span className="block sm:whitespace-nowrap">
-							PiyAPI keeps AI memory private, explicit, and editable so you control what your AI
-						</span>
-						<span className="block">
-							remembers, changes, and forgets.
-						</span>
+						{t.security.subline}
 					</p>
 				</div>
 

@@ -1,10 +1,9 @@
-import { useState } from "react"
+import { useState, lazy, Suspense } from "react"
+import { LanguageProvider } from "./lib/i18n"
 import { Navbar } from "./components/Navbar"
 import { Hero } from "./components/Hero"
 import { FluidBackground } from "./components/FluidBackground"
-import { WaitPage } from "./components/WaitPage"
 import { PartnerLogos } from "./components/PartnerLogos"
-import { TryPiyApiModal } from "./components/TryPiyApiModal"
 import { MemoryParadigmSection } from "./components/MemoryParadigmSection"
 import { DifferentApproachSection } from "./components/DifferentApproachSection"
 import { WorkflowsSection } from "./components/WorkflowsSection"
@@ -14,13 +13,23 @@ import { ResearchPapersSection } from "./components/ResearchPapersSection"
 import { CtaSection } from "./components/CtaSection"
 import { Footer } from "./components/Footer"
 
+// Lazy loaded non-initial route and interactive modal
+const WaitPage = lazy(() =>
+	import("./components/WaitPage").then((m) => ({ default: m.WaitPage })),
+)
+const TryPiyApiModal = lazy(() =>
+	import("./components/TryPiyApiModal").then((m) => ({
+		default: m.TryPiyApiModal,
+	})),
+)
+
 export function App() {
 	const [activeTab, setActiveTab] = useState<string>("overview")
 	const [isConsoleOpen, setIsConsoleOpen] = useState<boolean>(false)
 	const isOverview = activeTab === "overview"
 
 	return (
-		<>
+		<LanguageProvider>
 			{isOverview ? (
 				<div className="w-full bg-[#04050c] font-sans antialiased selection:bg-[#6320EE] selection:text-white">
 					{/* Hero Section with Interactive Fluid Simulation */}
@@ -64,17 +73,29 @@ export function App() {
 					/>
 
 					<main className="flex-1 flex flex-col items-center justify-center">
-						<WaitPage pageName={activeTab} />
+						<Suspense
+							fallback={
+								<div className="flex items-center justify-center min-h-[50vh]">
+									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
+								</div>
+							}
+						>
+							<WaitPage pageName={activeTab} />
+						</Suspense>
 					</main>
 				</div>
 			)}
 
 			{/* Interactive Live Console Modal */}
-			<TryPiyApiModal
-				isOpen={isConsoleOpen}
-				onClose={() => setIsConsoleOpen(false)}
-			/>
-		</>
+			{isConsoleOpen && (
+				<Suspense fallback={null}>
+					<TryPiyApiModal
+						isOpen={isConsoleOpen}
+						onClose={() => setIsConsoleOpen(false)}
+					/>
+				</Suspense>
+			)}
+		</LanguageProvider>
 	)
 }
 

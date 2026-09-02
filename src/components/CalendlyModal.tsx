@@ -1,6 +1,7 @@
 import type React from "react"
 import { useEffect, useState } from "react"
 import { X, ExternalLink, Loader2 } from "lucide-react"
+import { useLanguage } from "@/lib/i18n"
 
 export interface CalendlyModalProps {
 	isOpen: boolean
@@ -13,6 +14,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 	onClose,
 	calendlyUrl = import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/negentro/30min",
 }) => {
+	const { t } = useLanguage()
 	const [isLoading, setIsLoading] = useState(true)
 
 	// Close on Escape key
@@ -51,7 +53,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 					<div className="flex items-center gap-2.5">
 						<span className="w-2.5 h-2.5 rounded-full bg-[#765DFB] animate-pulse" />
 						<span className="font-semibold text-sm sm:text-base text-[#0F1123] font-['DM_Sans',sans-serif]">
-							Schedule a Call with Negentro Team
+							{t.calendly.modalTitle}
 						</span>
 					</div>
 
@@ -62,7 +64,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 							target="_blank"
 							rel="noopener noreferrer"
 							className="p-1.5 text-neutral-400 hover:text-neutral-700 rounded-lg hover:bg-neutral-100 transition-colors"
-							title="Open in new tab"
+							title={t.calendly.openNewTab}
 						>
 							<ExternalLink className="w-4 h-4" />
 						</a>
@@ -85,7 +87,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 						<div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white z-10">
 							<Loader2 className="w-8 h-8 text-[#765DFB] animate-spin" />
 							<span className="text-sm font-medium text-neutral-500 font-['DM_Sans',sans-serif]">
-								Loading Calendly scheduling...
+								{t.calendly.loading}
 							</span>
 						</div>
 					)}

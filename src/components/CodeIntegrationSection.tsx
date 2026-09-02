@@ -1210,11 +1210,9 @@ console.log(agentContext);`,
 					</h2>
 				</div>
 
-				{/* Outer Container with distinct borders */}
+				{/* Outer Container */}
 				<div className="w-full max-w-[1366px] rounded-[18px] bg-white border border-[#2D2A54]/30 shadow-[0_12px_40px_rgba(15,46,92,0.04)] overflow-hidden flex flex-col lg:flex-row min-h-[634px] mx-auto">
-					{/* ════════════════════════════════════════════════════════════
-				   LEFT SIDEBAR: 4 Category Navigation Items with Dividing Borders
-				   ════════════════════════════════════════════════════════════ */}
+					{/* Category Sidebar */}
 					<div className="w-full lg:w-[320px] shrink-0 border-b lg:border-b-0 lg:border-r border-[#2D2A54]/30 bg-white flex flex-col justify-start">
 						{categoryKeys.map((catKey, index) => {
 							const cat = CATEGORIES[catKey]
@@ -1255,14 +1253,11 @@ console.log(agentContext);`,
 							)
 						})}
 
-						{/* Remaining bottom space in sidebar to maintain full-height border */}
 						<div className="flex-1 bg-white" />
 					</div>
 
-					{/* ════════════════════════════════════════════════════════════
-				   RIGHT CODE WINDOW: Direct on White Landing Page Background
-				   ════════════════════════════════════════════════════════════ */}
-					<div className="flex-1 bg-white p-5 sm:p-8 lg:p-10 flex items-center justify-center">
+					{/* Code Window */}
+					<div className="flex-1 min-w-0 w-full bg-white p-3.5 sm:p-8 lg:p-10 flex items-center justify-center">
 						<div className="w-full max-w-[940px] rounded-[16px] bg-white border border-[#2D2A54]/30 shadow-[0_12px_36px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col transition-all duration-200">
 							{/* Window Top Header Bar with Border Divider */}
 							<div className="h-[48px] px-5 sm:px-6 bg-white border-b border-[#2D2A54]/30 flex items-center justify-between">

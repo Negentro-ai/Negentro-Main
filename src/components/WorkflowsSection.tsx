@@ -1,41 +1,44 @@
 import type React from "react"
+import { useLanguage } from "@/lib/i18n"
 
 export const WorkflowsSection: React.FC = () => {
+	const { t } = useLanguage()
+
 	const workflows = [
 		{
 			id: "01",
-			title: "AI Agents",
-			desc: "Persistent memory for autonomous, multi-step decision making.",
+			title: t.workflows.card1Title,
+			desc: t.workflows.card1Desc,
 			image: "/assets/AI Agents.svg",
 		},
 		{
 			id: "02",
-			title: "Conversational AI",
-			desc: "Maintain long-term context across customer support, sales, and personal assistants.",
+			title: t.workflows.card2Title,
+			desc: t.workflows.card2Desc,
 			image: "/assets/Conversational AI.svg",
 		},
 		{
 			id: "03",
-			title: "RAG Systems",
-			desc: "Retrieve exact knowledge with deterministic provenance instead of semantic similarity.",
+			title: t.workflows.card3Title,
+			desc: t.workflows.card3Desc,
 			image: "/assets/RAG Systems.svg",
 		},
 		{
 			id: "04",
-			title: "Enterprise Knowledge",
-			desc: "Preserve organizational knowledge across teams, documents, and workflows.",
+			title: t.workflows.card4Title,
+			desc: t.workflows.card4Desc,
 			image: "/assets/Enterprise Knowledge.svg",
 		},
 		{
 			id: "05",
-			title: "High-Stakes AI",
-			desc: "Power legal, financial, healthcare, and regulated systems where exact recall matters.",
+			title: t.workflows.card5Title,
+			desc: t.workflows.card5Desc,
 			image: "/assets/High-Stakes.svg",
 		},
 		{
 			id: "06",
-			title: "Multi-Agent Systems",
-			desc: "Provide a shared, persistent memory layer across collaborating AI agents.",
+			title: t.workflows.card6Title,
+			desc: t.workflows.card6Desc,
 			image: "/assets/Multi-Agents.svg",
 		},
 	]
@@ -46,17 +49,11 @@ export const WorkflowsSection: React.FC = () => {
 				{/* Section Header */}
 				<div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
 					<h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F1123] tracking-[-0.03em] leading-[1.15]">
-						Built for Every{" "}
-						<span className="text-[#765DFB]">AI Workflow.</span>
+						{t.workflows.headline}
 					</h2>
 
 					<p className="text-base sm:text-lg text-[#5A5D7A] leading-relaxed font-normal max-w-2xl mx-auto">
-						<span className="block sm:whitespace-nowrap">
-							Empower your specialized infrastructure with deterministic memory
-						</span>
-						<span className="block">
-							management optimized for high-scale, context-aware production models.
-						</span>
+						{t.workflows.subline}
 					</p>
 				</div>
 
@@ -89,6 +86,10 @@ export const WorkflowsSection: React.FC = () => {
 								<img
 									src={wf.image}
 									alt={wf.title}
+									loading="lazy"
+									decoding="async"
+									width={446}
+									height={276}
 									className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
 								/>
 							</div>

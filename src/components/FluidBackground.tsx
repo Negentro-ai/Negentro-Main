@@ -29,7 +29,7 @@ export const FluidBackground: React.FC = () => {
 
 			const config = {
 				SIM_RESOLUTION: 200,
-				DYE_RESOLUTION: 1024, // ↑ doubled for crisper ink trails
+				DYE_RESOLUTION: 1024,
 				DENSITY_DISSIPATION: 0.958,
 				VELOCITY_DISSIPATION: 0.96,
 				PRESSURE_DISSIPATION: 0.8,
@@ -41,11 +41,11 @@ export const FluidBackground: React.FC = () => {
 				PAUSED: false,
 				BACK_COLOR: { r: 4, g: 5, b: 12 },
 				TRANSPARENT: false,
-				BLOOM: true, // ↑ enabled — soft glow on bright ink
+				BLOOM: true,
 				BLOOM_ITERATIONS: 8,
 				BLOOM_RESOLUTION: 256,
-				BLOOM_INTENSITY: 0.35, // ↓ very subtle, not blown-out
-				BLOOM_THRESHOLD: 0.55, // ↓ catches more color for gentle glow
+				BLOOM_INTENSITY: 0.35,
+				BLOOM_THRESHOLD: 0.55,
 				BLOOM_SOFT_KNEE: 0.7,
 			}
 
@@ -1020,11 +1020,10 @@ export const FluidBackground: React.FC = () => {
 			}
 
 			initFramebuffers()
-			// ── Entrance burst: spread splat waves across ~3s so ink never fades to black ──
 			multipleSplats(34)
 			for (let i = 0; i < 6; i++)
 				splatStack.push(8 + Number.parseInt(Math.random() * 8))
-			// Timed follow-up bursts keep the fluid alive until the orbit takes over
+
 			let burstCount = 0
 			const burstInterval = setInterval(() => {
 				multipleSplats(4 + Math.floor(Math.random() * 5))
@@ -1040,22 +1039,33 @@ export const FluidBackground: React.FC = () => {
 			let virtualColor = null
 			let lastVColorTime = 0
 			const engineStart = Date.now()
-			const ORBIT_RADIUS = 460 // px — bigger sweep for the auto-cursor
+			const ORBIT_RADIUS = 460
 			const ORBIT_SPEED = 0.026
-			const ORBIT_START_DELAY = 3000 // ms — burst plays for ~3s then orbit takes over
+			const ORBIT_START_DELAY = 3000
 
 			let rafHandle = 0
 			let destroyed = false
+			let isVisible = true
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					isVisible = entries[0]?.isIntersecting ?? true
+				},
+				{ threshold: 0.05 },
+			)
+			observer.observe(canvas)
 
 			update()
 
 			function update() {
 				if (destroyed) return
-				resizeCanvas()
-				driveVirtualPointer()
-				input()
-				if (!config.PAUSED) step(0.016)
-				render(null)
+				if (isVisible && !document.hidden) {
+					resizeCanvas()
+					driveVirtualPointer()
+					input()
+					if (!config.PAUSED) step(0.016)
+					render(null)
+				}
 				rafHandle = requestAnimationFrame(update)
 			}
 
@@ -1515,6 +1525,8 @@ export const FluidBackground: React.FC = () => {
 			return function destroy() {
 				destroyed = true
 				if (rafHandle) cancelAnimationFrame(rafHandle)
+				clearInterval(burstInterval)
+				observer.disconnect()
 				for (const off of teardown) off()
 			}
 
