@@ -112,6 +112,9 @@ export interface TranslationDictionary {
 	}
 	code: {
 		headline: string
+		headlinePre: string
+		headlineHighlight: string
+		headlinePost: string
 		subline: string
 		tag01: string
 		sdkTitle: string
@@ -346,6 +349,9 @@ export const translations: Record<Language, TranslationDictionary> = {
 		},
 		code: {
 			headline: "Integrate Piyapi where your AI already lives.",
+			headlinePre: "Integrate ",
+			headlineHighlight: "Piyapi",
+			headlinePost: " where your AI already lives.",
 			subline: "Memory that works with any model, framework, or agent stack.",
 			tag01: "//01",
 			sdkTitle: "SDK",
@@ -593,6 +599,9 @@ export const translations: Record<Language, TranslationDictionary> = {
 		},
 		code: {
 			headline: "Integra Piyapi donde tu IA ya vive.",
+			headlinePre: "Integra ",
+			headlineHighlight: "Piyapi",
+			headlinePost: " donde tu IA ya vive.",
 			subline: "Memoria que funciona con cualquier modelo, framework o stack de agentes.",
 			tag01: "//01",
 			sdkTitle: "SDK",
@@ -840,6 +849,9 @@ export const translations: Record<Language, TranslationDictionary> = {
 		},
 		code: {
 			headline: "Intégrez Piyapi là où votre IA évolue déjà.",
+			headlinePre: "Intégrez ",
+			headlineHighlight: "Piyapi",
+			headlinePost: " là où votre IA évolue déjà.",
 			subline: "Une mémoire qui fonctionne avec n'importe quel modèle, framework ou stack d'agents.",
 			tag01: "//01",
 			sdkTitle: "SDK",
@@ -1087,6 +1099,9 @@ export const translations: Record<Language, TranslationDictionary> = {
 		},
 		code: {
 			headline: "Integrieren Sie Piyapi dort, wo Ihre KI bereits arbeitet.",
+			headlinePre: "Integrieren Sie ",
+			headlineHighlight: "Piyapi",
+			headlinePost: " dort, wo Ihre KI bereits arbeitet.",
 			subline: "Gedächtnis, das mit jedem Modell, Framework oder Agenten-Stack funktioniert.",
 			tag01: "//01",
 			sdkTitle: "SDK",
@@ -1334,6 +1349,9 @@ export const translations: Record<Language, TranslationDictionary> = {
 		},
 		code: {
 			headline: "Интегрируйте Piyapi туда, где уже работает ваш ИИ.",
+			headlinePre: "Интегрируйте ",
+			headlineHighlight: "Piyapi",
+			headlinePost: " туда, где уже работает ваш ИИ.",
 			subline: "Память, работающая с любой моделью, фреймворком или стеком агентов.",
 			tag01: "//01",
 			sdkTitle: "SDK",

@@ -1206,7 +1206,9 @@ console.log(agentContext);`,
 				{/* Section Header - Perfectly centered between workflows above and sandbox below */}
 				<div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16 lg:mb-20">
 					<h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F1123] tracking-[-0.03em] leading-[1.15]">
-						Integrate <span className="text-[#765DFB]">Piyapi</span> where your AI already lives.
+						{t.code.headlinePre}
+						<span className="text-[#765DFB]">{t.code.headlineHighlight}</span>
+						{t.code.headlinePost}
 					</h2>
 				</div>
 
