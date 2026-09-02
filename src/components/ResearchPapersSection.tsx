@@ -1,12 +1,15 @@
 import type React from "react"
 import { ChevronRight } from "lucide-react"
+import { useLanguage } from "@/lib/i18n"
 
 export const ResearchPapersSection: React.FC = () => {
+	const { t } = useLanguage()
+
 	const articles = [
 		{
 			id: "01",
 			overlayTag: "Memory",
-			title: "Memory Is the Missing Layer of Intelligence",
+			title: t.research.paper1Title,
 			status: "Coming soon",
 			category: "Research Papers",
 			image: "/assets/research-butterfly.svg",
@@ -14,7 +17,7 @@ export const ResearchPapersSection: React.FC = () => {
 		{
 			id: "02",
 			overlayTag: "Memory",
-			title: "Deterministic Memory for Probabilistic AI",
+			title: t.research.paper2Title,
 			status: "Coming Soon",
 			category: "Experiments",
 			image: "/assets/research-image-2.svg",
@@ -22,7 +25,7 @@ export const ResearchPapersSection: React.FC = () => {
 		{
 			id: "03",
 			overlayTag: "Memory",
-			title: "Measuring Long-Term Memory in AI Systems",
+			title: t.research.paper3Title,
 			status: "Coming Soon",
 			category: "Engineering",
 			image: "/assets/research-image-3.svg",
@@ -43,7 +46,7 @@ export const ResearchPapersSection: React.FC = () => {
 				{/* Centered Main Title */}
 				<div className="text-center max-w-3xl mx-auto">
 					<h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#000410] tracking-[-0.03em] leading-[1.12]">
-						Research &amp; Insights
+						{t.research.headline}
 					</h2>
 				</div>
 
@@ -59,6 +62,10 @@ export const ResearchPapersSection: React.FC = () => {
 								<img
 									src={article.image}
 									alt={article.title}
+									loading="lazy"
+									decoding="async"
+									width={315}
+									height={169}
 									className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
 								/>
 								{/* Subtle overlay gradient to ensure white text readability */}

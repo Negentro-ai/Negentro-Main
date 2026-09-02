@@ -1,8 +1,9 @@
 import type React from "react"
 import { NotionLogo, ClaudeLogo, ModalLogo, MongoDbLogo } from "./Logos"
+import { useLanguage } from "@/lib/i18n"
 
 export const PartnerLogos: React.FC = () => {
-	// Define the set of 4 partner logos with optically balanced height and width proportions
+	const { t } = useLanguage()
 	const logoList = [
 		{
 			component: (
@@ -30,18 +31,15 @@ export const PartnerLogos: React.FC = () => {
 		},
 	]
 
-	// Duplicate the list 3 times for a smooth, seamless infinite loop
 	const marqueeItems = [...logoList, ...logoList, ...logoList]
 
 	return (
 		<div className="w-full py-0 overflow-hidden shrink-0">
 			<div className="container-universal text-center">
-				{/* Exact Figma specifications: DM Sans, Thin (100), 24px, 40px line-height, 0px letter spacing, #000000 */}
 				<p className="max-w-[1024px] mx-auto text-base sm:text-xl md:text-[24px] leading-[28px] sm:leading-[34px] md:leading-[40px] font-thin font-[100] tracking-[0px] text-black uppercase mb-2.5 sm:mb-3.5 select-none">
-					SUPPORTED BY GLOBAL STARTUP PROGRAMS
+					{t.partner.supportedBy}
 				</p>
 
-				{/* Animated Marquee Container with Horizontal Edge Fading Mask */}
 				<div className="relative w-full overflow-hidden mask-gradient-x pt-1 pb-0">
 					<div className="animate-marquee flex items-center">
 						{marqueeItems.map((item, idx) => (

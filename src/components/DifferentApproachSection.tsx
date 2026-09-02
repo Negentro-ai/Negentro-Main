@@ -9,29 +9,32 @@ import {
 	ChevronRight,
 } from "lucide-react"
 import WavyBackground from "@/components/ui/blue-meshy-background"
+import { useLanguage } from "@/lib/i18n"
 
 export const DifferentApproachSection: React.FC = () => {
+	const { t } = useLanguage()
+
 	const comparisonRows = [
 		{
-			feature: "Exact Preservation",
+			feature: t.differentApproach.row1Name,
 			contextStuffing: false,
 			memoryWrapper: "partial",
 			nativeMemory: false,
 		},
 		{
-			feature: "Model Independence",
+			feature: t.differentApproach.row2Name,
 			contextStuffing: true,
 			memoryWrapper: true,
 			nativeMemory: false,
 		},
 		{
-			feature: "Verifiable Provenance",
+			feature: t.differentApproach.row3Name,
 			contextStuffing: false,
 			memoryWrapper: true,
 			nativeMemory: false,
 		},
 		{
-			feature: "Enterprise Governance",
+			feature: t.differentApproach.row4Name,
 			contextStuffing: false,
 			memoryWrapper: "partial",
 			nativeMemory: false,
@@ -41,18 +44,18 @@ export const DifferentApproachSection: React.FC = () => {
 	const features = [
 		{
 			icon: <RefreshCw className="w-5 h-5" />,
-			title: "Determinism",
-			desc: "Predictable and repeatable memory retrieval for reliable AI systems.",
+			title: t.differentApproach.card1Title,
+			desc: t.differentApproach.card1Desc,
 		},
 		{
 			icon: <Target className="w-5 h-5" />,
-			title: "Fidelity",
-			desc: "Preserve the full context and nuance of data without loss or compression.",
+			title: t.differentApproach.card2Title,
+			desc: t.differentApproach.card2Desc,
 		},
 		{
 			icon: <Link className="w-5 h-5" />,
-			title: "Provenance",
-			desc: "Complete traceability for every piece of retrieved knowledge.",
+			title: t.differentApproach.card3Title,
+			desc: t.differentApproach.card3Desc,
 		},
 		{
 			icon: <Clock className="w-5 h-5" />,
@@ -73,41 +76,41 @@ export const DifferentApproachSection: React.FC = () => {
 
 	const metrics = [
 		{
-			value: "#1",
+			value: t.differentApproach.sotaMetric1Value,
 			line1: "SUPERIOR AI",
 			line2: "EXPERIENCE",
-			sublabel: "ON MEMBENCH",
+			sublabel: t.differentApproach.sotaMetric1Label,
 		},
 		{
-			value: "<500ms",
+			value: t.differentApproach.sotaMetric2Value,
 			line1: "REAL-TIME",
 			line2: "MEMORY",
-			sublabel: "RECALL LATENCY",
+			sublabel: t.differentApproach.sotaMetric2Label,
 		},
 		{
-			value: "50-90%",
+			value: t.differentApproach.sotaMetric3Value,
 			line1: "ENTERPRISE",
 			line2: "SCALE AI",
-			sublabel: "FEWER TOKENS USED",
+			sublabel: t.differentApproach.sotaMetric3Label,
 		},
 	]
 
 	return (
 		<section className="w-full bg-white pt-8 sm:pt-10 lg:pt-10 pb-12 sm:pb-16 lg:pb-20 font-['DM_Sans',sans-serif]">
 			<div className="container-universal space-y-12 sm:space-y-16">
-				{/* Top-Left Category Tag: > SOLUTION */}
+				{/* Top-Left Category Tag */}
 				<div className="w-full flex items-center justify-start">
 					<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase select-none">
 						<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
-						<span>SOLUTION</span>
+						<span>{t.differentApproach.sectionTag}</span>
 					</div>
 				</div>
 
 				{/* Section Header */}
 				<div className="text-center max-w-5xl lg:max-w-6xl mx-auto space-y-4 sm:space-y-6">
 					<h2 className="text-[32px] sm:text-[44px] lg:text-[56px] font-semibold text-[#0F1123] tracking-[-0.03em] leading-[1.12] font-['DM_Sans',sans-serif]">
-						A Different Approach to AI{" "}
-						<span className="text-[#765DFB]">Memory.</span>
+						{t.differentApproach.headlinePre}
+						<span className="text-[#765DFB]">{t.differentApproach.headlineHighlight}</span>
 					</h2>
 
 					<p className="text-[18px] sm:text-[28px] lg:text-[40px] font-normal text-[#0F1123] leading-[1.25] tracking-[-0.02em] font-['DM_Sans',sans-serif]">
@@ -126,6 +129,10 @@ export const DifferentApproachSection: React.FC = () => {
 							<img
 								src="/assets/piyapi-logo-exact.svg"
 								alt="PiyAPI"
+								loading="lazy"
+								decoding="async"
+								width={300}
+								height={64}
 								className="w-[24%] min-w-[170px] max-w-[300px] h-auto object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.8)] select-none"
 							/>
 						</div>
@@ -165,10 +172,10 @@ export const DifferentApproachSection: React.FC = () => {
 				<div className="w-full max-w-[1140px] mx-auto text-center pt-8 sm:pt-10 pb-8 sm:pb-10 px-4">
 					<p className="text-[20px] sm:text-[25px] md:text-[28px] lg:text-[30px] font-normal text-[#000410] tracking-[-0.02em] leading-[1.35] lg:leading-[40px] font-['DM_Sans',sans-serif]">
 						<span className="block">
-							"Retrieval is only half the problem. Production AI needs{" "}
-							<span className="text-[#765DFB]">memory</span> that can preserve and
+							"{t.differentApproach.quotePre}
+							<span className="text-[#765DFB]">{t.differentApproach.quoteHighlight}</span>
+							{t.differentApproach.quotePost}"
 						</span>
-						<span className="block">verify what it knows."</span>
 					</p>
 				</div>
 
@@ -185,15 +192,13 @@ export const DifferentApproachSection: React.FC = () => {
 						</div>
 						<p className="text-[13px] text-[#000410] leading-[1.46] font-['DM_Sans',sans-serif] font-normal pt-4 sm:pt-6">
 							<span className="block whitespace-nowrap">
-								Leading performance across{" "}
-								<span className="text-[#765DFB]">LongMemEval</span>,
+								{t.differentApproach.sotaLine1}
 							</span>
 							<span className="block whitespace-nowrap">
-								<span className="text-[#765DFB]">LoCoMo</span>,{" "}
-								<span className="text-[#765DFB]">ConvoMem</span> with fast recall and
+								{t.differentApproach.sotaLine2}
 							</span>
 							<span className="block whitespace-nowrap">
-								dramatically lower token usage.
+								{t.differentApproach.sotaLine3}
 							</span>
 						</p>
 					</div>
@@ -242,6 +247,10 @@ export const DifferentApproachSection: React.FC = () => {
 										<img
 											src="/assets/piyapi-logo-exact.svg"
 											alt="Piya.pi"
+											loading="lazy"
+											decoding="async"
+											width={120}
+											height={30}
 											className="h-[25px] sm:h-[28px] md:h-[30px] w-auto mx-auto object-contain select-none"
 										/>
 									</th>
@@ -300,6 +309,10 @@ export const DifferentApproachSection: React.FC = () => {
 												<img
 													src="/assets/piyapi-check-badge.svg"
 													alt="Checked"
+													loading="lazy"
+													decoding="async"
+													width={36}
+													height={36}
 													className="w-[36px] h-[36px] mx-auto select-none object-contain"
 												/>
 											</td>

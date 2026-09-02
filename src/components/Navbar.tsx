@@ -2,6 +2,7 @@ import { useState } from "react"
 import type React from "react"
 import { NegentroLogo } from "./Logos"
 import { Menu, X } from "lucide-react"
+import { useLanguage } from "@/lib/i18n"
 
 export interface NavbarProps {
 	activeTab: string
@@ -10,8 +11,14 @@ export interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
+	const { t } = useLanguage()
 	const [mobileOpen, setMobileOpen] = useState(false)
-	const navItems = ["Research", "Pricing", "Initiatives", "Resources"]
+	const navItems = [
+		{ key: "research", label: t.nav.research },
+		{ key: "pricing", label: t.nav.pricing },
+		{ key: "initiatives", label: t.nav.initiatives },
+		{ key: "resources", label: t.nav.resources },
+	]
 	const isOverview = activeTab === "overview"
 
 	return (
@@ -23,7 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 			}`}
 		>
 			<div className="container-universal h-[76px] flex items-center justify-between relative">
-				{/* Left: Negentro Brand Logo with smooth scale hover */}
+				{/* Left: Negentro Brand Logo */}
 				<div className="flex items-center z-10">
 					<button
 						onClick={() => setActiveTab("overview")}
@@ -38,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 					</button>
 				</div>
 
-				{/* Center: Soft Rounded Rectangle Nav Container with smooth interactive items (Center Aligned) */}
+				{/* Center: Soft Rounded Rectangle Nav Container */}
 				<div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
 					<nav
 						className={`flex items-center rounded-[10px] h-[46px] px-8 gap-7 sm:gap-8 transition-all duration-300 ${
@@ -48,12 +55,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 						}`}
 					>
 						{navItems.map((item) => {
-							const key = item.toLowerCase()
-							const isActive = activeTab === key
+							const isActive = activeTab === item.key
 							return (
 								<button
-									key={item}
-									onClick={() => setActiveTab(key)}
+									key={item.key}
+									onClick={() => setActiveTab(item.key)}
 									className={`relative py-1 text-[14px] transition-all duration-200 ease-out cursor-pointer select-none group active:scale-[0.96] ${
 										isOverview
 											? isActive
@@ -64,8 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 												: "text-[#666666] font-normal hover:text-neutral-950"
 									}`}
 								>
-									<span>{item}</span>
-									{/* Smooth Animated Indicator Bar */}
+									<span>{item.label}</span>
 									<span
 										className={`absolute -bottom-0.5 left-0 right-0 h-[2px] rounded-full transition-all duration-250 ease-out ${
 											isOverview ? "bg-white" : "bg-neutral-950"
@@ -81,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 					</nav>
 				</div>
 
-				{/* Right: Try PiyApi Button with smooth lift, shadow & sheen animations */}
+				{/* Right: Try PiyApi Button */}
 				<div className="hidden md:flex items-center z-10">
 					<a
 						href="https://piyapi.cloud"
@@ -93,8 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 								: "bg-[#232323] hover:bg-neutral-950 text-white"
 						}`}
 					>
-						<span className="relative z-10">Try Piyapi</span>
-						{/* Smooth Sheen Sweep Animation on Hover */}
+						<span className="relative z-10">{t.nav.tryPiyApi}</span>
 						<span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
 					</a>
 				</div>
@@ -134,16 +138,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 						}`}
 					>
 						{navItems.map((item) => {
-							const key = item.toLowerCase()
 							return (
 								<button
-									key={item}
+									key={item.key}
 									onClick={() => {
-										setActiveTab(key)
+										setActiveTab(item.key)
 										setMobileOpen(false)
 									}}
 									className={`block w-full text-left px-4 py-2.5 text-sm font-normal rounded-md transition-all duration-200 ease-out ${
-										activeTab === key
+										activeTab === item.key
 											? isOverview
 												? "bg-white/20 text-white font-semibold"
 												: "bg-white text-neutral-950 font-semibold shadow-xs"
@@ -152,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 												: "text-[#666666] hover:text-neutral-950 hover:bg-white/60"
 									}`}
 								>
-									{item}
+									{item.label}
 								</button>
 							)
 						})}
@@ -170,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 									: "bg-[#232323] hover:bg-neutral-950 text-white"
 							}`}
 						>
-							<span>Try Piyapi</span>
+							<span>{t.nav.tryPiyApi}</span>
 						</a>
 					</div>
 				</div>

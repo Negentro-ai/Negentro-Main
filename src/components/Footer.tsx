@@ -1,6 +1,7 @@
 import type React from "react"
 import { RuixenGradientFooter } from "@/components/ui/ruixen-gradient-footer"
 import { NegentroFooterLogo } from "@/components/ui/negentro-footer-logo"
+import { useLanguage, type Language } from "@/lib/i18n"
 
 export interface FooterProps {
 	onOpenConsole?: () => void
@@ -9,6 +10,16 @@ export interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({
 	onOpenConsole: _onOpenConsole,
 }) => {
+	const { language, setLanguage, t } = useLanguage()
+
+	const languagesList: { code: Language; label: string }[] = [
+		{ code: "en", label: "En" },
+		{ code: "es", label: "Es" },
+		{ code: "fr", label: "Fr" },
+		{ code: "de", label: "De" },
+		{ code: "ru", label: "Ru" },
+	]
+
 	return (
 		<RuixenGradientFooter
 			gradientHeight="340px"
@@ -23,14 +34,14 @@ export const Footer: React.FC<FooterProps> = ({
 							<NegentroFooterLogo className="h-8 w-auto text-white" />
 						</div>
 						<p className="text-xs sm:text-sm text-[#8F9FA3] leading-relaxed max-w-sm font-normal">
-							Infrastructure for reliable AI.
+							{t.footer.infrastructure}
 						</p>
 						<div>
 							<a
 								href="#more"
 								className="inline-flex items-center gap-2 text-xs font-medium text-white hover:text-white/80 transition-colors group"
 							>
-								<span>More about us</span>
+								<span>{t.footer.moreAboutUs}</span>
 								<span className="w-2 h-2 rounded-full bg-white group-hover:scale-125 transition-transform" />
 							</a>
 						</div>
@@ -38,14 +49,14 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 1: Developers */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">Developers</h4>
+						<h4 className="text-sm font-medium text-white">{t.footer.devTitle}</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
 									href="#docs"
 									className="hover:text-white transition-colors block"
 								>
-									Developer Docs
+									{t.footer.devDocs}
 								</a>
 							</li>
 							<li>
@@ -53,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({
 									href="#api"
 									className="hover:text-white transition-colors block"
 								>
-									API Reference
+									{t.footer.devApi}
 								</a>
 							</li>
 							<li>
@@ -61,7 +72,7 @@ export const Footer: React.FC<FooterProps> = ({
 									href="#mcp"
 									className="hover:text-white transition-colors block"
 								>
-									MCP Integration
+									{t.footer.devMcp}
 								</a>
 							</li>
 							<li>
@@ -69,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({
 									href="#cli"
 									className="hover:text-white transition-colors block"
 								>
-									CLI Reference
+									{t.footer.devCli}
 								</a>
 							</li>
 							<li>
@@ -77,7 +88,7 @@ export const Footer: React.FC<FooterProps> = ({
 									href="#trust"
 									className="hover:text-white transition-colors block"
 								>
-									Trust Center
+									{t.footer.devTrust}
 								</a>
 							</li>
 							<li>
@@ -85,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({
 									href="#status"
 									className="hover:text-white transition-colors block"
 								>
-									Status
+									{t.footer.devStatus}
 								</a>
 							</li>
 						</ul>
@@ -93,22 +104,38 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 2: Product */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">Product</h4>
+						<h4 className="text-sm font-medium text-white">{t.footer.prodTitle}</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
 									href="#research"
 									className="hover:text-white transition-colors block"
 								>
-									Research
+									{t.footer.prodPiyapi}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#blog"
+									href="#benchmarks"
 									className="hover:text-white transition-colors block"
 								>
-									Blog
+									{t.footer.prodBench}
+								</a>
+							</li>
+							<li>
+								<a
+									href="#playground"
+									className="hover:text-white transition-colors block"
+								>
+									{t.footer.prodPlayground}
+								</a>
+							</li>
+							<li>
+								<a
+									href="#connectors"
+									className="hover:text-white transition-colors block"
+								>
+									{t.footer.prodConnectors}
 								</a>
 							</li>
 							<li>
@@ -116,25 +143,7 @@ export const Footer: React.FC<FooterProps> = ({
 									href="#integrations"
 									className="hover:text-white transition-colors block"
 								>
-									Integrations
-								</a>
-							</li>
-							<li>
-								<a
-									href="#release-notes"
-									className="hover:text-white transition-colors block"
-								>
-									Release notes
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://github.com"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="hover:text-white transition-colors block"
-								>
-									GitHub
+									{t.footer.prodIntegrations}
 								</a>
 							</li>
 						</ul>
@@ -142,22 +151,22 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 3: Company */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">Company</h4>
+						<h4 className="text-sm font-medium text-white">{t.footer.compTitle}</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
 									href="#about"
 									className="hover:text-white transition-colors block"
 								>
-									About Us
+									{t.footer.compAbout}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#contact"
+									href="#research"
 									className="hover:text-white transition-colors block"
 								>
-									Contact Us
+									{t.footer.compResearch}
 								</a>
 							</li>
 							<li>
@@ -165,31 +174,23 @@ export const Footer: React.FC<FooterProps> = ({
 									href="#careers"
 									className="hover:text-white transition-colors block"
 								>
-									Careers
+									{t.footer.compCareers}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#startup"
+									href="#privacy"
 									className="hover:text-white transition-colors block"
 								>
-									Startup Program
+									{t.footer.compPrivacy}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#investors"
+									href="#terms"
 									className="hover:text-white transition-colors block"
 								>
-									Investors
-								</a>
-							</li>
-							<li>
-								<a
-									href="#pricing"
-									className="hover:text-white transition-colors block"
-								>
-									Pricing
+									{t.footer.compTerms}
 								</a>
 							</li>
 						</ul>
@@ -197,46 +198,46 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 4: Usecase */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">Usecase</h4>
+						<h4 className="text-sm font-medium text-white">{t.footer.useTitle}</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
-									href="#support"
+									href="#conv"
 									className="hover:text-white transition-colors block"
 								>
-									Customer Support
+									{t.footer.useConv}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#healthcare"
+									href="#agents"
 									className="hover:text-white transition-colors block"
 								>
-									Healthcare
+									{t.footer.useAgents}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#education"
+									href="#health"
 									className="hover:text-white transition-colors block"
 								>
-									Education
+									{t.footer.useHealth}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#sales"
+									href="#fin"
 									className="hover:text-white transition-colors block"
 								>
-									Sales & CRM
+									{t.footer.useFin}
 								</a>
 							</li>
 							<li>
 								<a
-									href="#ecommerce"
+									href="#enter"
 									className="hover:text-white transition-colors block"
 								>
-									E-Commerce
+									{t.footer.useEnter}
 								</a>
 							</li>
 						</ul>
@@ -247,7 +248,7 @@ export const Footer: React.FC<FooterProps> = ({
 				<div className="pt-8 pb-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
 					{/* Left: Contact Us */}
 					<div className="space-y-1.5">
-						<h4 className="text-sm font-medium text-white">Contact Us</h4>
+						<h4 className="text-sm font-medium text-white">{t.footer.contactTitle}</h4>
 						<a
 							href="mailto:ceo@negentro.tech"
 							className="text-xs sm:text-sm text-[#8F9FA3] hover:text-white transition-colors block"
@@ -266,7 +267,7 @@ export const Footer: React.FC<FooterProps> = ({
 									SOC
 								</div>
 								<span className="text-xs text-white/90">
-									SOC 2 Type I & Type II Ready
+									{t.footer.soc2}
 								</span>
 							</div>
 
@@ -275,7 +276,7 @@ export const Footer: React.FC<FooterProps> = ({
 								<div className="w-6 h-6 rounded-full bg-[#765DFB] border border-[#ECCDF5]/40 flex items-center justify-center text-[7px] font-bold text-white shadow-sm">
 									GDPR
 								</div>
-								<span className="text-xs text-white/90">GDPR Ready</span>
+								<span className="text-xs text-white/90">{t.footer.gdpr}</span>
 							</div>
 
 							{/* HIPAA Badge */}
@@ -283,7 +284,7 @@ export const Footer: React.FC<FooterProps> = ({
 								<div className="w-6 h-6 rounded-full bg-[#4846AC] border border-[#765DFB] flex items-center justify-center text-[7px] font-bold text-white shadow-sm">
 									HIPAA
 								</div>
-								<span className="text-xs text-white/90">HIPAA Ready</span>
+								<span className="text-xs text-white/90">{t.footer.hipaa}</span>
 							</div>
 						</div>
 					</div>
@@ -291,9 +292,9 @@ export const Footer: React.FC<FooterProps> = ({
 
 				{/* 3. Bottom Row: Clustered Social Badges from block.svg, Copyright, and Languages */}
 				<div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-					{/* Left: Clustered 5 White Social Badges & INFORAVIUM Copyright */}
+					{/* Left: Clustered 6 White Social Badges & INFORAVIUM Copyright */}
 					<div className="flex items-center gap-5">
-						{/* Clustered 5 White Badges from block.svg */}
+						{/* Clustered 6 White Badges from block.svg */}
 						<div className="grid grid-cols-2 gap-1.5 items-center">
 							{/* 1. Reddit Badge */}
 							<a
@@ -319,10 +320,29 @@ export const Footer: React.FC<FooterProps> = ({
 								</svg>
 							</a>
 
-							{/* Empty grid cell */}
-							<div className="col-span-1" />
+							{/* 2. TikTok Badge */}
+							<a
+								href="https://www.tiktok.com/@negentro_ai?_r=1&_t=ZS-99Ok7m0aXSa"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="col-span-1 block w-7 h-7 sm:w-8 sm:h-8 hover:scale-110 transition-transform cursor-pointer"
+								aria-label="TikTok"
+							>
+								<svg
+									viewBox="0 0 40 40"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									className="w-full h-full"
+								>
+									<rect width="40" height="40" rx="20" fill="white" />
+									<path
+										d="M26.65 15.69C25.43 15.62 24.3 15.04 23.45 14.08C23.45 19.34 23.45 19.5 23.45 20.25C23.41 23.95 20.35 26.94 16.65 26.9C12.98 26.86 10.03 23.85 10.07 20.18C10.11 16.51 13.12 13.56 16.79 13.6C17.27 13.61 17.74 13.7 18.19 13.86V16.89C17.75 16.68 17.27 16.57 16.79 16.57C14.78 16.57 13.15 18.2 13.15 20.21C13.15 22.22 14.78 23.85 16.79 23.85C18.78 23.85 20.4 22.25 20.43 20.27V10.1H23.45C23.45 11.23 23.93 12.3 24.77 13.06C25.32 13.55 26 13.88 26.65 14.02V15.69Z"
+										fill="black"
+									/>
+								</svg>
+							</a>
 
-							{/* 2. X (Twitter) Badge */}
+							{/* 3. X (Twitter) Badge */}
 							<a
 								href="https://x.com/negentroai?s=11"
 								target="_blank"
@@ -344,7 +364,7 @@ export const Footer: React.FC<FooterProps> = ({
 								</svg>
 							</a>
 
-							{/* 3. GitHub Badge */}
+							{/* 4. GitHub Badge */}
 							<a
 								href="https://github.com/Negentro-ai/Piyapi-by-Negentro"
 								target="_blank"
@@ -375,7 +395,7 @@ export const Footer: React.FC<FooterProps> = ({
 								</svg>
 							</a>
 
-							{/* 4. LinkedIn Badge */}
+							{/* 5. LinkedIn Badge */}
 							<a
 								href="https://www.linkedin.com/company/negentroai/"
 								target="_blank"
@@ -403,7 +423,7 @@ export const Footer: React.FC<FooterProps> = ({
 								</svg>
 							</a>
 
-							{/* 5. Instagram Badge */}
+							{/* 6. Instagram Badge */}
 							<a
 								href="https://www.instagram.com/negentro_ai?igsi=N3J2cWd6MWU0dTU3"
 								target="_blank"
@@ -443,32 +463,35 @@ export const Footer: React.FC<FooterProps> = ({
 
 						{/* Copyright text */}
 						<div className="text-[11px] sm:text-xs text-[#8F9FA3] leading-snug">
-							<div>© 2026 INFORAVIUM TECHNOLOGIES PRIVATE LIMITED</div>
-							<div>– Copyright All Rights reserved</div>
+							<div>{t.footer.copyright}</div>
+							<div>{t.footer.rightsReserved}</div>
 						</div>
 					</div>
 
-					{/* Right: Languages */}
+					{/* Right: Languages Switcher with active state */}
 					<div className="flex flex-col md:items-end gap-1.5">
-						<span className="text-[11px] text-[#8F9FA3] font-medium">
-							Languages
+						<span className="text-[11px] text-[#8F9FA3] font-medium select-none">
+							{t.footer.languagesLabel}
 						</span>
-						<div className="flex items-center gap-3 text-xs text-white/80">
-							<a href="#en" className="hover:text-white transition-colors">
-								En
-							</a>
-							<a href="#es" className="hover:text-white transition-colors">
-								Es
-							</a>
-							<a href="#fr" className="hover:text-white transition-colors">
-								Fr
-							</a>
-							<a href="#de" className="hover:text-white transition-colors">
-								De
-							</a>
-							<a href="#ru" className="hover:text-white transition-colors">
-								Ru
-							</a>
+						<div className="flex items-center gap-3 text-xs">
+							{languagesList.map((langItem) => {
+								const isActive = language === langItem.code
+								return (
+									<button
+										key={langItem.code}
+										type="button"
+										onClick={() => setLanguage(langItem.code)}
+										className={`transition-all duration-200 cursor-pointer ${
+											isActive
+												? "text-white font-bold underline underline-offset-4 decoration-[#765DFB] scale-110"
+												: "text-[#8F9FA3] hover:text-white"
+										}`}
+										title={langItem.label}
+									>
+										{langItem.label}
+									</button>
+								)
+							})}
 						</div>
 					</div>
 				</div>

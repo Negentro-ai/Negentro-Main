@@ -1,5 +1,3 @@
-"use client"
-
 import {
 	type CSSProperties,
 	type ReactNode,
@@ -11,9 +9,7 @@ import {
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
 
 export interface RuixenGradientFooterProps {
-	/** Footer content — links, wordmark, copyright — shown above the glow. */
 	children?: ReactNode
-	/** Height of the glow band reserved under the content. */
 	gradientHeight?: string
 	className?: string
 	style?: CSSProperties
@@ -41,7 +37,6 @@ export function RuixenGradientFooter({
 			const scrollRemaining =
 				doc.documentElement.scrollHeight - win.innerHeight - win.scrollY
 
-			// Reveal gracefully over the final 320px scroll stretch to the bottom
 			const revealDistance = 320
 			const t = clamp01((revealDistance - scrollRemaining) / revealDistance)
 
@@ -51,10 +46,9 @@ export function RuixenGradientFooter({
 				el.style.transform = "translate3d(0, 100%, 0)"
 			} else {
 				el.style.visibility = "visible"
-				// Smooth ease-out cubic curve
 				const eased = t * t * (3 - 2 * t)
 				el.style.opacity = `${Math.min(1, eased * 1.05)}`
-				const translateY = (1 - eased) * 45 // smooth 45px lift
+				const translateY = (1 - eased) * 45
 				el.style.transform = `translate3d(0, ${translateY}px, 0)`
 			}
 		}

@@ -1,6 +1,7 @@
 import type React from "react"
 import { useState } from "react"
 import { ChevronRight } from "lucide-react"
+import { useLanguage } from "@/lib/i18n"
 
 export interface MemoryParadigmSectionProps {
 	onOpenConsole?: () => void
@@ -8,56 +9,45 @@ export interface MemoryParadigmSectionProps {
 
 type TabType = "context" | "wrappers" | "native"
 
-interface TabContent {
-	id: TabType
-	label: string
-	cardTitle: string
-	cardDescription: string
-	imageSrc: string
-}
-
-const TAB_DATA: Record<TabType, TabContent> = {
-	context: {
-		id: "context",
-		label: "Context Stuffing",
-		cardTitle: "Context Stuffing",
-		cardDescription:
-			"More context doesn't mean better memory. As information grows, costs rise and relevant knowledge gets harder to retrieve.",
-		imageSrc: "/assets/context-problem.svg",
-	},
-	wrappers: {
-		id: "wrappers",
-		label: "AI Memory Wrappers",
-		cardTitle: "AI Memory Wrappers",
-		cardDescription:
-			"Summarizing conversations reduces context size but can lose exact facts, timestamps, and provenance.",
-		imageSrc: "/assets/wrappers-problem.svg",
-	},
-	native: {
-		id: "native",
-		label: "Native Model Memory",
-		cardTitle: "Native Model Memory",
-		cardDescription:
-			"Models can remember. But they still can't guarantee what they remember, why they remember it, or when it changed.",
-		imageSrc: "/assets/native-problem.svg",
-	},
-}
-
 export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 	onOpenConsole: _,
 }) => {
-	// Landing page starts with Context Stuffing as the default active container
+	const { t } = useLanguage()
 	const [activeTab, setActiveTab] = useState<TabType>("context")
-	const activeContent = TAB_DATA[activeTab]
+
+	const tabData: Record<TabType, { id: TabType; label: string; cardTitle: string; cardDescription: string; imageSrc: string }> = {
+		context: {
+			id: "context",
+			label: t.paradigm.problem1Title,
+			cardTitle: t.paradigm.problem1Title,
+			cardDescription: t.paradigm.problem1Desc,
+			imageSrc: "/assets/context-problem.svg",
+		},
+		wrappers: {
+			id: "wrappers",
+			label: t.paradigm.problem2Title,
+			cardTitle: t.paradigm.problem2Title,
+			cardDescription: t.paradigm.problem2Desc,
+			imageSrc: "/assets/wrappers-problem.svg",
+		},
+		native: {
+			id: "native",
+			label: t.paradigm.problem3Title,
+			cardTitle: t.paradigm.problem3Title,
+			cardDescription: t.paradigm.problem3Desc,
+			imageSrc: "/assets/native-problem.svg",
+		},
+	}
+
+	const activeContent = tabData[activeTab]
 
 	return (
 		<section className="w-full bg-white pt-8 sm:pt-10 lg:pt-10 pb-12 sm:pb-16 lg:pb-20 font-['DM_Sans',sans-serif]">
-			{/* Universal Margin Container */}
 			<div className="container-universal">
 				{/* Category Tag */}
 				<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase mb-6 sm:mb-8 select-none">
 					<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
-					<span>PROBLEM</span>
+					<span>{t.paradigm.tag}</span>
 				</div>
 
 				{/* Main Content Grid */}
@@ -66,17 +56,15 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 					<div className="lg:col-span-6 flex flex-col justify-between space-y-7 sm:space-y-8">
 						<div className="space-y-4 sm:space-y-5">
 							<h2 className="text-[34px] sm:text-[48px] lg:text-[60px] font-bold text-black tracking-[-0.03em] leading-[1.08] font-['DM_Sans',sans-serif]">
-								AI Can Reason.
+								{t.paradigm.titlePre}
 								<br />
-								It Still Needs{" "}
 								<span className="bg-gradient-to-r from-[#4846AC] to-[#765DFB] bg-clip-text text-transparent">
-									Memory.
+									{t.paradigm.titleHighlight}
 								</span>
 							</h2>
 
 							<p className="text-[18px] sm:text-[22px] lg:text-[28px] font-normal text-black leading-[1.25] tracking-[-0.02em] max-w-[620px] font-['DM_Sans',sans-serif]">
-								AI can reason in the moment. But without memory, it struggles to
-								carry knowledge, experience, and context forward.
+								{t.paradigm.subline}
 							</p>
 						</div>
 
@@ -93,7 +81,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 											: "text-[#0B1015] py-3.5 px-4 hover:bg-black/[0.04]"
 									}`}
 								>
-									Context Stuffing
+									{t.paradigm.problem1Title}
 								</button>
 							</div>
 
@@ -108,7 +96,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 											: "text-[#0B1015] py-3.5 px-4 hover:bg-black/[0.04]"
 									}`}
 								>
-									AI Memory Wrappers
+									{t.paradigm.problem2Title}
 								</button>
 							</div>
 
@@ -123,7 +111,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 											: "text-[#0B1015] py-3.5 px-4 hover:bg-black/[0.04]"
 									}`}
 								>
-									Native Model Memory
+									{t.paradigm.problem3Title}
 								</button>
 							</div>
 						</div>
@@ -138,6 +126,10 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 									key={activeContent.id}
 									src={activeContent.imageSrc}
 									alt={activeContent.cardTitle}
+									loading="lazy"
+									decoding="async"
+									width={420}
+									height={380}
 									className="w-full max-w-[420px] max-h-[380px] h-auto object-contain select-none drop-shadow-2xl transition-all duration-300 animate-fadeIn hover:scale-105"
 								/>
 							</div>

@@ -3,12 +3,14 @@ import { useState, useEffect, useRef } from "react"
 import gsap from "gsap"
 import { Loader2 } from "lucide-react"
 import { submitWaitlistEmail } from "@/lib/supabase"
+import { useLanguage } from "@/lib/i18n"
 
 export interface HeroProps {
 	onOpenConsole?: () => void
 }
 
 export const Hero: React.FC<HeroProps> = () => {
+	const { t } = useLanguage()
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const headingRef = useRef<HTMLHeadingElement | null>(null)
 	const sublineRef = useRef<HTMLParagraphElement | null>(null)
@@ -81,7 +83,10 @@ export const Hero: React.FC<HeroProps> = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		if (!email || !email.includes("@")) return
+		if (!email || !email.includes("@")) {
+			setErrorMessage(t.hero.invalidEmailMsg)
+			return
+		}
 		setIsSubmitting(true)
 		setErrorMessage("")
 
@@ -89,7 +94,7 @@ export const Hero: React.FC<HeroProps> = () => {
 		setIsSubmitting(false)
 
 		if (res.success) {
-			setStatusMessage(res.message)
+			setStatusMessage(res.isDuplicate ? t.hero.duplicateMsg : t.hero.successMsg)
 			setSubmitted(true)
 		} else {
 			setErrorMessage(res.message)
@@ -103,18 +108,17 @@ export const Hero: React.FC<HeroProps> = () => {
 		>
 			<h1
 				ref={headingRef}
-				className="text-4xl sm:text-6xl md:text-[68px] lg:text-[76px] font-bold tracking-[-0.035em] text-[#eef0f6] max-w-5xl mx-auto leading-[1.12] pointer-events-none select-none"
+				className="text-4xl sm:text-6xl md:text-[68px] lg:text-[76px] font-bold tracking-[-0.035em] text-[#eef0f6] max-w-5xl mx-auto leading-[1.12] pointer-events-none select-none whitespace-pre-line"
 			>
-				The Next Evolution Of
-				<br />
-				Intelligence Is <span className="text-[#765DFB]">Memory.</span>
+				{t.hero.headlinePre}
+				<span className="text-[#765DFB]">{t.hero.headlineMemory}</span>
 			</h1>
 
 			<p
 				ref={sublineRef}
 				className="text-base sm:text-xl md:text-[22px] text-[#b9becf] font-normal max-w-3xl mx-auto leading-relaxed mt-5 sm:mt-7 tracking-[-0.01em] pointer-events-none select-none"
 			>
-				Piyapi gives AI the ability to remember, learn, and evolve.
+				{t.hero.subline}
 			</p>
 
 			{/* Waitlist Form Container */}
@@ -124,7 +128,7 @@ export const Hero: React.FC<HeroProps> = () => {
 			>
 				{submitted ? (
 					<div className="flex items-center justify-center h-14 sm:h-16 px-8 rounded-full border border-white/20 bg-white/10 backdrop-blur-xl shadow-lg animate-fade-in text-[#eef0f6] text-base sm:text-lg font-medium">
-						<span>✨ {statusMessage || "You're on the waitlist! We'll be in touch soon."}</span>
+						<span>✨ {statusMessage || t.hero.successMsg}</span>
 					</div>
 				) : (
 					<form onSubmit={handleSubmit} className="w-full max-w-[590px]">
@@ -135,7 +139,7 @@ export const Hero: React.FC<HeroProps> = () => {
 								disabled={isSubmitting}
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
-								placeholder="Enter your email"
+								placeholder={t.hero.emailPlaceholder}
 								className="flex-1 min-w-0 h-full bg-transparent text-[#eef0f6] text-base sm:text-lg outline-none border-none placeholder:text-[#b9becf] font-normal font-sans disabled:opacity-50"
 							/>
 							<button
@@ -146,10 +150,10 @@ export const Hero: React.FC<HeroProps> = () => {
 								{isSubmitting ? (
 									<>
 										<Loader2 className="w-4 h-4 mr-2 animate-spin text-[#2f2f33]" />
-										<span>Joining...</span>
+										<span>{t.hero.joining}</span>
 									</>
 								) : (
-									"Join Waitlist"
+									t.hero.joinWaitlist
 								)}
 							</button>
 						</div>

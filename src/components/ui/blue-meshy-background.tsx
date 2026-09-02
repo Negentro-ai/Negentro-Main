@@ -1,63 +1,40 @@
-"use client"
-
 import type React from "react"
 import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
-// Zoom factor for the visual pattern.
 const ZOOM_FACTOR = 0.35
-
-// Base wave amplitude in domain warping.
 const BASE_WAVE_AMPLITUDE = 0.22
-
-// Additional factor for random amplitude variations.
 const RANDOM_WAVE_FACTOR = 0.15
-
-// Frequency multiplier for wave domain warp.
 const WAVE_FREQUENCY = 3.5
-
-// Time speed factor (overall speed of animation).
 const TIME_FACTOR = 0.22
-
-// Swirl strength near the center.
 const BASE_SWIRL_STRENGTH = 1.0
-
-// Finer swirl timing factor.
 const SWIRL_TIME_MULT = 4.0
-
-// Additional swirl effect modulated by noise.
 const NOISE_SWIRL_FACTOR = 0.18
-
-// Number of fractal noise octaves in fbm (must be integer).
 const FBM_OCTAVES = 8
 
-// 20-step gradient palette (Cosmic Indigo to Electric Violet to Luminous Lilac)
+// Violet & lilac gradient palette
 const rectangle3Colors = [
 	[0.08, 0.05, 0.22],
 	[0.12, 0.08, 0.3],
 	[0.16, 0.1, 0.38],
 	[0.21, 0.13, 0.46],
 	[0.26, 0.16, 0.54],
-	[0.32, 0.2, 0.62], // Deep Royal Violet
+	[0.32, 0.2, 0.62],
 	[0.38, 0.24, 0.7],
 	[0.44, 0.29, 0.78],
-	[0.48, 0.33, 0.85], // PiyAPI Electric Violet #765DFB
+	[0.48, 0.33, 0.85],
 	[0.54, 0.38, 0.9],
 	[0.6, 0.44, 0.94],
 	[0.66, 0.51, 0.96],
-	[0.72, 0.58, 0.97], // Radiant Lilac
+	[0.72, 0.58, 0.97],
 	[0.78, 0.66, 0.98],
 	[0.83, 0.74, 0.98],
 	[0.88, 0.81, 0.99],
-	[0.92, 0.87, 0.99], // Soft Lavender
+	[0.92, 0.87, 0.99],
 	[0.95, 0.91, 1.0],
-	[0.97, 0.94, 1.0], // Luminous Lilac Core #ECCDF5
-	[0.99, 0.97, 1.0], // Pure Lilac Highlight
+	[0.97, 0.94, 1.0],
+	[0.99, 0.97, 1.0],
 ]
-
-////////////////////////////////////////////////////////////////////////////////
-// DYNAMIC FRAGMENT SHADER BUILDER
-////////////////////////////////////////////////////////////////////////////////
 
 function buildFragmentShader(colors: number[][] = rectangle3Colors): string {
 	const fbmOctavesInt = Math.floor(FBM_OCTAVES)
@@ -191,9 +168,6 @@ void main() {
 `
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// STATIC VERTEX SHADER
-////////////////////////////////////////////////////////////////////////////////
 const vertexShaderSource = `#version 300 es
 precision mediump float;
 
@@ -203,9 +177,6 @@ void main() {
   gl_Position = vec4(aPosition, 0.0, 1.0);
 }`
 
-////////////////////////////////////////////////////////////////////////////////
-// SHADER COMPILATION UTIL
-////////////////////////////////////////////////////////////////////////////////
 function createShaderProgram(
 	gl: WebGL2RenderingContext,
 	vsSource: string,
@@ -262,9 +233,6 @@ function createShaderProgram(
 	return program
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MAIN REACT COMPONENT
-////////////////////////////////////////////////////////////////////////////////
 export interface WavyBackgroundProps {
 	children?: React.ReactNode
 	className?: string
@@ -331,23 +299,36 @@ export default function WavyBackground({
 
 		const startTime = performance.now()
 		let animId: number | null = null
+		let isVisible = true
+
+		const io = new IntersectionObserver(
+			(entries) => {
+				isVisible = entries[0]?.isIntersecting ?? true
+			},
+			{ threshold: 0.05 },
+		)
+		if (containerRef.current) {
+			io.observe(containerRef.current)
+		}
 
 		function render() {
-			const currentTime = performance.now()
-			const elapsed = (currentTime - startTime) * 0.001
+			if (isVisible && !document.hidden) {
+				const currentTime = performance.now()
+				const elapsed = (currentTime - startTime) * 0.001
 
-			updateSize()
+				updateSize()
 
-			gl?.viewport(0, 0, canvas?.width ?? 0, canvas?.height ?? 0)
-			gl?.clear(gl.COLOR_BUFFER_BIT)
+				gl?.viewport(0, 0, canvas?.width ?? 0, canvas?.height ?? 0)
+				gl?.clear(gl.COLOR_BUFFER_BIT)
 
-			gl?.useProgram(program)
-			gl?.bindVertexArray(vao)
+				gl?.useProgram(program)
+				gl?.bindVertexArray(vao)
 
-			gl?.uniform2f(uResolutionLoc, canvas?.width ?? 0, canvas?.height ?? 0)
-			gl?.uniform1f(uTimeLoc, elapsed)
+				gl?.uniform2f(uResolutionLoc, canvas?.width ?? 0, canvas?.height ?? 0)
+				gl?.uniform1f(uTimeLoc, elapsed)
 
-			gl?.drawArrays(gl.TRIANGLES, 0, 6)
+				gl?.drawArrays(gl.TRIANGLES, 0, 6)
+			}
 			animId = requestAnimationFrame(render)
 		}
 
@@ -366,6 +347,7 @@ export default function WavyBackground({
 			if (animId !== null) cancelAnimationFrame(animId)
 			window.removeEventListener("resize", updateSize)
 			if (ro) ro.disconnect()
+			io.disconnect()
 			gl.deleteProgram(program)
 			gl.deleteBuffer(vbo)
 			gl.deleteVertexArray(vao)
