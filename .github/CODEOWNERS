@@ -1,0 +1,9 @@
+# Default owners for all files
+* @NegentroWorld
+
+# SDK owners
+/packages/sdk-js/ @NegentroWorld
+/packages/sdk-python/ @NegentroWorld
+
+# GitHub configuration
+/.github/ @NegentroWorld
