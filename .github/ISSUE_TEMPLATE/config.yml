@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ask a question
+    url: https://github.com/NegentroWorld/Piyapi-by-Negentro/discussions
+    about: Use Discussions for questions, not Issues
+  - name: 🔐 Report a security issue
+    url: mailto:piyapi.cloud@gmail.com
+    about: Private disclosure for security vulnerabilities
+  - name: 📖 Check the docs
+    url: https://piyapi.cloud/docs
+    about: Most questions are answered in the docs
