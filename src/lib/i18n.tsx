@@ -1,5 +1,4 @@
-import type React from "react"
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
 
 export type Language = "en" | "es" | "fr" | "de" | "ru"
 
@@ -26,83 +25,114 @@ export interface TranslationDictionary {
 	partner: {
 		supportedBy: string
 	}
-	paradigm: {
+	problem: {
+		tag: string
+		headlinePre: string
+		headlineMemory: string
+		subline: string
+		tab1Label: string
+		tab1CardTitle: string
+		tab1CardDesc: string
+		tab2Label: string
+		tab2CardTitle: string
+		tab2CardDesc: string
+		tab3Label: string
+		tab3CardTitle: string
+		tab3CardDesc: string
+	}
+	differentApproach: {
 		tag: string
 		titlePre: string
 		titleHighlight: string
-		subline: string
-		problem1Title: string
-		problem1Desc: string
-		problem2Title: string
-		problem2Desc: string
-		problem3Title: string
-		problem3Desc: string
-	}
-	differentApproach: {
-		sectionTag: string
-		headlinePre: string
-		headlineHighlight: string
-		card1Title: string
-		card1Desc: string
-		card2Title: string
-		card2Desc: string
-		card3Title: string
-		card3Desc: string
+		sublinePre: string
+		sublineHighlight: string
+		sublinePost: string
+		feat1Title: string
+		feat1Desc: string
+		feat2Title: string
+		feat2Desc: string
+		feat3Title: string
+		feat3Desc: string
+		feat4Title: string
+		feat4Desc: string
+		feat5Title: string
+		feat5Desc: string
+		feat6Title: string
+		feat6Desc: string
 		quotePre: string
 		quoteHighlight: string
 		quotePost: string
-		sotaTitle: string
+		sotaHeading: string
 		sotaLine1: string
 		sotaLine2: string
 		sotaLine3: string
-		sotaMetric1Value: string
-		sotaMetric1Badge: string
-		sotaMetric1Label: string
-		sotaMetric2Value: string
-		sotaMetric2Badge: string
-		sotaMetric2Label: string
-		sotaMetric3Value: string
-		sotaMetric3Badge: string
-		sotaMetric3Label: string
-		tableHeaderDim: string
-		tableHeaderPiyapi: string
-		tableHeaderVector: string
-		tableHeaderRedis: string
-		tableHeaderCustom: string
-		row1Name: string
-		row1Piyapi: string
-		row1Vector: string
-		row1Redis: string
-		row1Custom: string
-		row2Name: string
-		row2Piyapi: string
-		row2Vector: string
-		row2Redis: string
-		row2Custom: string
-		row3Name: string
-		row3Piyapi: string
-		row3Vector: string
-		row3Redis: string
-		row3Custom: string
-		row4Name: string
-		row4Piyapi: string
-		row4Vector: string
-		row4Redis: string
-		row4Custom: string
-		row5Name: string
-		row5Piyapi: string
-		row5Vector: string
-		row5Redis: string
-		row5Custom: string
-		row6Name: string
-		row6Piyapi: string
-		row6Vector: string
-		row6Redis: string
-		row6Custom: string
+		metric1Value: string
+		metric1Sublabel: string
+		metric1Line1: string
+		metric1Line2: string
+		metric2Value: string
+		metric2Sublabel: string
+		metric2Line1: string
+		metric2Line2: string
+		metric3Value: string
+		metric3Sublabel: string
+		metric3Line1: string
+		metric3Line2: string
+		tableHeaderContext: string
+		tableHeaderWrapper: string
+		tableHeaderNative: string
+		tableRow1: string
+		tableRow2: string
+		tableRow3: string
+		tableRow4: string
 	}
 	workflows: {
+		headlinePre: string
+		headlineHighlight: string
+		sublineLine1: string
+		sublineLine2: string
+		card1Id: string
+		card1Title: string
+		card1Desc: string
+		card2Id: string
+		card2Title: string
+		card2Desc: string
+		card3Id: string
+		card3Title: string
+		card3Desc: string
+		card4Id: string
+		card4Title: string
+		card4Desc: string
+		card5Id: string
+		card5Title: string
+		card5Desc: string
+		card6Id: string
+		card6Title: string
+		card6Desc: string
+	}
+	code: {
 		headline: string
 		subline: string
+		tag01: string
+		sdkTitle: string
+		sdkSubtitle: string
+		tag02: string
+		agentsTitle: string
+		agentsSubtitle: string
+		tag03: string
+		connectorsTitle: string
+		connectorsSubtitle: string
+		tag04: string
+		mcpTitle: string
+		mcpSubtitle: string
+	}
+	security: {
+		tag: string
+		headlineData: string
+		headlineMemory: string
+		headlineControl: string
+		subline1: string
+		subline2: string
 		card1Title: string
 		card1Desc: string
 		card2Title: string
@@ -113,44 +143,22 @@ export interface TranslationDictionary {
 		card4Desc: string
 		card5Title: string
 		card5Desc: string
-		card6Title: string
-		card6Desc: string
-	}
-	code: {
-		headline: string
-		subline: string
-		installCmd: string
-		feature1Title: string
-		feature1Desc: string
-		feature2Title: string
-		feature2Desc: string
-		feature3Title: string
-		feature3Desc: string
-	}
-	security: {
-		headlinePre: string
-		headlineHighlight: string
-		headlinePost: string
-		subline: string
-		card1Title: string
-		card1Desc: string
-		card2Title: string
-		card2Desc: string
-		card3Title: string
-		card3Desc: string
-		card4Title: string
-		card4Desc: string
 	}
 	research: {
+		tag: string
 		headline: string
-		subline: string
-		readPaper: string
+		paper1Overlay: string
 		paper1Title: string
-		paper1Abstract: string
+		paper1Status: string
+		paper1Category: string
+		paper2Overlay: string
 		paper2Title: string
-		paper2Abstract: string
+		paper2Status: string
+		paper2Category: string
+		paper3Overlay: string
 		paper3Title: string
-		paper3Abstract: string
+		paper3Status: string
+		paper3Category: string
 	}
 	cta: {
 		headline: string
@@ -159,9 +167,9 @@ export interface TranslationDictionary {
 		marqueeItems: string[]
 	}
 	calendly: {
-		modalTitle: string
-		openNewTab: string
+		title: string
 		loading: string
+		close: string
 	}
 	footer: {
 		infrastructure: string
@@ -174,29 +182,30 @@ export interface TranslationDictionary {
 		devTrust: string
 		devStatus: string
 		prodTitle: string
-		prodPiyapi: string
-		prodBench: string
-		prodPlayground: string
-		prodConnectors: string
+		prodResearch: string
+		prodBlog: string
 		prodIntegrations: string
-		prodChangelog: string
+		prodReleaseNotes: string
+		prodGithub: string
 		compTitle: string
 		compAbout: string
-		compResearch: string
+		compContact: string
 		compCareers: string
-		compPrivacy: string
-		compTerms: string
-		compSecurity: string
-		useTitle: string
-		useConv: string
-		useAgents: string
+		compStartup: string
+		compInvestors: string
+		compPricing: string
+		usecasesTitle: string
+		useSupport: string
 		useHealth: string
-		useFin: string
-		useEnter: string
+		useEdu: string
+		useSales: string
+		useEcom: string
 		soc2: string
 		gdpr: string
 		hipaa: string
+		complianceTitle: string
 		contactTitle: string
+		contactEmail: string
 		copyright: string
 		rightsReserved: string
 		languagesLabel: string
@@ -205,22 +214,6 @@ export interface TranslationDictionary {
 		loading: string
 		sublinePre: string
 		sublineHighlight: string
-		comingSoon: string
-		exploreDocs: string
-		returnHome: string
-		notifyTitle: string
-		notifySub: string
-		placeholder: string
-		notifyBtn: string
-		joined: string
-		subpageResearchTitle: string
-		subpageResearchDesc: string
-		subpagePricingTitle: string
-		subpagePricingDesc: string
-		subpageInitiativesTitle: string
-		subpageInitiativesDesc: string
-		subpageResourcesTitle: string
-		subpageResourcesDesc: string
 	}
 }
 
@@ -232,7 +225,7 @@ export const translations: Record<Language, TranslationDictionary> = {
 			pricing: "Pricing",
 			initiatives: "Initiatives",
 			resources: "Resources",
-			tryPiyApi: "Try PiyAPI",
+			tryPiyApi: "Try Piyapi",
 		},
 		hero: {
 			headlinePre: "The Next Evolution Of\nIntelligence Is ",
@@ -242,157 +235,171 @@ export const translations: Record<Language, TranslationDictionary> = {
 			joinWaitlist: "Join Waitlist",
 			joining: "Joining...",
 			successMsg: "You're on the waitlist! We'll be in touch soon.",
-			duplicateMsg: "You are already on the waitlist!",
+			duplicateMsg: "You're already on the waitlist!",
 			invalidEmailMsg: "Please enter a valid email address.",
 		},
 		partner: {
-			supportedBy: "Supported by global startup programs",
+			supportedBy: "SUPPORTED BY GLOBAL STARTUP PROGRAMS",
 		},
-		paradigm: {
-			tag: "THE PROBLEM",
-			titlePre: "AI Can Reason. ",
-			titleHighlight: "It Still Needs Memory.",
+		problem: {
+			tag: "PROBLEM",
+			headlinePre: "AI Can Reason.\nIt Still Needs ",
+			headlineMemory: "Memory.",
 			subline:
-				"Current models treat every interaction as an isolated session. Without persistent cognitive memory, intelligence remains stateless, repetitive, and expensive.",
-			problem1Title: "Context Window Limits",
-			problem1Desc:
-				"Expanding context windows increases quadratic attention costs and latency, without providing true long-term knowledge retention.",
-			problem2Title: "Naïve RAG & Wrappers",
-			problem2Desc:
-				"Standard vector embeddings only retrieve shallow similarities, failing to model temporal relationships, causality, and changing facts.",
-			problem3Title: "Stateless Multi-Agents",
-			problem3Desc:
-				"Without deterministic shared state, agentic workflows suffer from memory drift, hallucinated states, and unrecoverable coordination failures.",
+				"AI can reason in the moment. But without memory, it struggles to carry knowledge, experience, and context forward.",
+			tab1Label: "Context Stuffing",
+			tab1CardTitle: "Context Stuffing",
+			tab1CardDesc:
+				"More context doesn't mean better memory. As information grows, costs rise and relevant knowledge gets harder to retrieve.",
+			tab2Label: "AI Memory Wrappers",
+			tab2CardTitle: "AI Memory Wrappers",
+			tab2CardDesc:
+				"Summarizing conversations reduces context size but can lose exact facts, timestamps, and provenance.",
+			tab3Label: "Native Model Memory",
+			tab3CardTitle: "Native Model Memory",
+			tab3CardDesc:
+				"Models can remember. But they still can't guarantee what they remember, why they remember it, or when it changed.",
 		},
 		differentApproach: {
-			sectionTag: "ARCHITECTURE",
-			headlinePre: "A Radically Different Approach to ",
-			headlineHighlight: "AI Memory",
-			card1Title: "Associative Neural Graph",
-			card1Desc:
-				"Combines semantic embeddings with dynamic knowledge graphs to form associative memory pathways that mirror human cognitive recall.",
-			card2Title: "Temporal State Engine",
-			card2Desc:
-				"Tracks evolving beliefs, preferences, and state changes over time with deterministic rollback and point-in-time state reconstruction.",
-			card3Title: "Zero-Latency Hybrid Retrieval",
-			card3Desc:
-				"Sub-millisecond hybrid indexing blending vector similarity with symbolic graph traversal for ultra-reliable factual recall.",
-			quotePre: "Retrieval is a crude approximation of ",
+			tag: "SOLUTION",
+			titlePre: "A Different Approach to AI ",
+			titleHighlight: "Memory.",
+			sublinePre: "Purpose built for production AI, ",
+			sublineHighlight: "Piyapi",
+			sublinePost:
+				" preserves exact knowledge with predictable retrieval and verifiable provenance.",
+			feat1Title: "Determinism",
+			feat1Desc:
+				"Predictable and repeatable memory retrieval for reliable AI systems.",
+			feat2Title: "Fidelity",
+			feat2Desc:
+				"Preserve the full context and nuance of data without loss or compression.",
+			feat3Title: "Provenance",
+			feat3Desc:
+				"Complete traceability for every piece of retrieved knowledge.",
+			feat4Title: "Persistence",
+			feat4Desc:
+				"Long-term historical continuity across sessions and models.",
+			feat5Title: "Ownership",
+			feat5Desc:
+				"Full user control and sovereignty over private memory data.",
+			feat6Title: "Portability",
+			feat6Desc:
+				"Model-agnostic interoperability for seamless infrastructure migration.",
+			quotePre: "Retrieval is only half the problem. Production AI needs ",
 			quoteHighlight: "memory",
-			quotePost:
-				" — True cognitive intelligence requires structured, evolving, and contextual state persistence.",
-			sotaTitle: "SOTA Performance Snapshot",
+			quotePost: " that can preserve and verify what it knows.",
+			sotaHeading: "SOTA memory,\nMeasured.",
 			sotaLine1: "Leading performance across LongMemEval,",
 			sotaLine2: "LoCoMo, ConvoMem with fast recall and",
 			sotaLine3: "dramatically lower token usage.",
-			sotaMetric1Value: "#1",
-			sotaMetric1Badge: "RANKING",
-			sotaMetric1Label: "LongMem Benchmark",
-			sotaMetric2Value: "<500ms",
-			sotaMetric2Badge: "LATENCY",
-			sotaMetric2Label: "Global Hybrid Recall",
-			sotaMetric3Value: "50-90%",
-			sotaMetric3Badge: "TOKEN SAVINGS",
-			sotaMetric3Label: "Context Window Reduction",
-			tableHeaderDim: "Capabilities & Architecture",
-			tableHeaderPiyapi: "Piyapi Cognitive",
-			tableHeaderVector: "Traditional Vector DBs",
-			tableHeaderRedis: "Redis / Key-Value",
-			tableHeaderCustom: "Custom RAG Pipelines",
-			row1Name: "Memory Architecture",
-			row1Piyapi: "Neural Graph + Temporal Memory",
-			row1Vector: "Flat Vector Index (HNSW)",
-			row1Redis: "Raw Key-Value Caching",
-			row1Custom: "Ad-hoc LangChain / LlamaIndex",
-			row2Name: "Temporal Tracking",
-			row2Piyapi: "Full timeline & belief evolution",
-			row2Vector: "No temporal awareness",
-			row2Redis: "Manual TTL timestamps",
-			row2Custom: "Fragile custom logic",
-			row3Name: "Recall Latency",
-			row3Piyapi: "< 500ms Sub-millisecond Recall",
-			row3Vector: "1.2s - 4.5s (Query Latency)",
-			row3Redis: "Fast key lookup (no semantics)",
-			row3Custom: "2.5s - 8.0s (High Overhead)",
-			row4Name: "Context Window Cost",
-			row4Piyapi: "50-90% Lower Token Consumption",
-			row4Vector: "Bloated raw prompt stuffing",
-			row4Redis: "No semantic context pruning",
-			row4Custom: "High token wastage",
-			row5Name: "Conflict Resolution",
-			row5Piyapi: "Deterministic truth arbitration",
-			row5Vector: "Conflicting chunks in top-k",
-			row5Redis: "Last-write-wins overwrite",
-			row5Custom: "Unpredictable hallucinations",
-			row6Name: "Multi-Agent Sync",
-			row6Piyapi: "Real-time shared state fabric",
-			row6Vector: "Stateless per agent query",
-			row6Redis: "Manual locking needed",
-			row6Custom: "Prone to state drift",
+			metric1Value: "#1",
+			metric1Sublabel: "ON MEMBENCH",
+			metric1Line1: "SUPERIOR AI",
+			metric1Line2: "EXPERIENCE",
+			metric2Value: "<500ms",
+			metric2Sublabel: "RECALL LATENCY",
+			metric2Line1: "REAL-TIME",
+			metric2Line2: "MEMORY",
+			metric3Value: "50-90%",
+			metric3Sublabel: "FEWER TOKENS USED",
+			metric3Line1: "ENTERPRISE",
+			metric3Line2: "SCALE AI",
+			tableHeaderContext: "Context Stuffing",
+			tableHeaderWrapper: "Memory Wrapper",
+			tableHeaderNative: "Native Memory",
+			tableRow1: "Exact Preservation",
+			tableRow2: "Model Independence",
+			tableRow3: "Verifiable Provenance",
+			tableRow4: "Enterprise Governance",
 		},
 		workflows: {
-			headline: "Transforming Workflows with Persistent Memory",
-			subline:
-				"Empower your agents, copilots, and autonomous pipelines with memory architectures designed for production.",
-			card1Title: "Personal AI Companions",
-			card1Desc:
-				"Retain user preferences, emotional nuance, and life context across months of conversation.",
-			card2Title: "Enterprise Knowledge Agents",
+			headlinePre: "Built for Every ",
+			headlineHighlight: "AI Workflow.",
+			sublineLine1:
+				"Empower your specialized infrastructure with deterministic memory",
+			sublineLine2:
+				"management optimized for high-scale, context-aware production models.",
+			card1Id: "01",
+			card1Title: "AI Agents",
+			card1Desc: "Persistent memory for autonomous, multi-step decision making.",
+			card2Id: "02",
+			card2Title: "Conversational AI",
 			card2Desc:
-				"Query thousands of internal documents, Slack threads, and tickets with precise versioning.",
-			card3Title: "Multi-Agent Coordination",
+				"Maintain long-term context across customer support, sales, and personal assistants.",
+			card3Id: "03",
+			card3Title: "RAG Systems",
 			card3Desc:
-				"Enable teams of specialized agents to read and write to a unified cognitive scratchpad.",
-			card4Title: "Healthcare & Patient History",
+				"Retrieve exact knowledge with deterministic provenance instead of semantic similarity.",
+			card4Id: "04",
+			card4Title: "Enterprise Knowledge",
 			card4Desc:
-				"Track longitudinal patient narratives, clinical visits, and diagnostic evolution safely.",
-			card5Title: "Financial Reasoning & Audit",
+				"Preserve organizational knowledge across teams, documents, and workflows.",
+			card5Id: "05",
+			card5Title: "High-Stakes AI",
 			card5Desc:
-				"Maintain verifiable audit trails for financial transactions, regulatory rules, and market context.",
-			card6Title: "Autonomous Code Refactoring",
+				"Power legal, financial, healthcare, and regulated systems where exact recall matters.",
+			card6Id: "06",
+			card6Title: "Multi-Agent Systems",
 			card6Desc:
-				"Allow developer copilots to remember repo-wide conventions, tech debt, and historical PRs.",
+				"Provide a shared, persistent memory layer across collaborating AI agents.",
 		},
 		code: {
-			headline: "Ship in 3 Lines of Code",
-			subline:
-				"Integrate cognitive memory into your existing LLM stack in minutes with our lightweight TypeScript, Python, and REST SDKs.",
-			installCmd: "npm install @piyapi/sdk",
-			feature1Title: "Zero Infrastructure Overhead",
-			feature1Desc: "Fully managed, globally distributed cloud API.",
-			feature2Title: "Universal LLM Compatibility",
-			feature2Desc: "Works seamlessly with OpenAI, Anthropic, Gemini, and local models.",
-			feature3Title: "Built-in CDC Connectors",
-			feature3Desc: "Automatic real-time sync with PostgreSQL, MongoDB, Notion, and Slack.",
+			headline: "Integrate Piyapi where your AI already lives.",
+			subline: "Memory that works with any model, framework, or agent stack.",
+			tag01: "//01",
+			sdkTitle: "SDK",
+			sdkSubtitle: "Native SDKs, REST APIs, and AI framework integrations",
+			tag02: "//02",
+			agentsTitle: "AI AGENTS",
+			agentsSubtitle:
+				"Enable AI agents to remember accurately across every interaction and workflow.",
+			tag03: "//03",
+			connectorsTitle: "CONNECTORS",
+			connectorsSubtitle: "One source of truth. Every application. Every model.",
+			tag04: "//04",
+			mcpTitle: "MCP",
+			mcpSubtitle:
+				"Enable coding assistants to remember projects, conversations, and decisions across sessions",
 		},
 		security: {
-			headlinePre: "Your Data. Your Memory. ",
-			headlineHighlight: "Your Control.",
-			headlinePost: "",
-			subline:
-				"Enterprise-grade security, deterministic governance, and granular privacy controls built into every layer.",
-			card1Title: "End-to-End Encryption",
-			card1Desc: "All memory graphs and vectors encrypted in transit (TLS 1.3) and at rest (AES-256).",
-			card2Title: "Zero Data Retention",
-			card2Desc: "Strict privacy boundaries. Your memory states are never used to train foundational models.",
-			card3Title: "SOC 2 & HIPAA Ready",
-			card3Desc: "Compliant with global privacy standards, enterprise audits, and healthcare requirements.",
-			card4Title: "On-Premises & VPC Deployments",
-			card4Desc: "Deploy PiyAPI within your dedicated AWS, GCP, Azure VPC or air-gapped sovereign cloud.",
+			tag: "PRIVACY & SECURITY",
+			headlineData: "Data.",
+			headlineMemory: "Memory.",
+			headlineControl: "Control.",
+			subline1:
+				"PiyAPI keeps AI memory private, explicit, and editable so you control what your AI",
+			subline2: "remembers, changes, and forgets.",
+			card1Title: "Private by design",
+			card1Desc:
+				"Sensitive knowledge stays encrypted and isolated throughout its lifecycle.",
+			card2Title: "Explicit Memory",
+			card2Desc:
+				"Every memory is addressable and respectible not hidden inside model parameters or opaque state.",
+			card3Title: "Editable by Design",
+			card3Desc:
+				"Correct, update, or delete individual memories without changing the underlying model.",
+			card4Title: "Full Transparency",
+			card4Desc:
+				"See what AI remembers, where it came from, and how it has changed.",
+			card5Title: "User-controlled memory",
+			card5Desc: "Control who can create, read, update, export, or delete memory.",
 		},
 		research: {
-			headline: "From Our Research Lab",
-			subline: "Pioneering deterministic cognitive memory and associative state architectures.",
-			readPaper: "Read Paper",
-			paper1Title: "Associative Neural State Space for Long-Term Dialogue",
-			paper1Abstract:
-				"We present a hybrid memory architecture combining temporal state spaces with sparse associative graph indices for unbounded conversational retention.",
-			paper2Title: "Deterministic Truth Arbitration in Dynamic Knowledge Graphs",
-			paper2Abstract:
-				"A formal framework for resolving temporal contradictions in LLM memory without retraining or full-context re-indexing.",
-			paper3Title: "Sub-Millisecond Semantic Graph Traversal for Real-Time Agents",
-			paper3Abstract:
-				"Benchmarking high-throughput multi-agent state fabrics against traditional vector search across 10M+ entity graphs.",
+			tag: "INSIGHTS AND BLOGS",
+			headline: "Research & Insights",
+			paper1Overlay: "Memory",
+			paper1Title: "Memory Is the Missing Layer of Intelligence",
+			paper1Status: "Coming soon",
+			paper1Category: "Research Papers",
+			paper2Overlay: "Memory",
+			paper2Title: "Deterministic Memory for Probabilistic AI",
+			paper2Status: "Coming Soon",
+			paper2Category: "Experiments",
+			paper3Overlay: "Memory",
+			paper3Title: "Measuring Long-Term Memory in AI Systems",
+			paper3Status: "Coming Soon",
+			paper3Category: "Engineering",
 		},
 		cta: {
 			headline: "Build With Piyapi",
@@ -408,9 +415,9 @@ export const translations: Record<Language, TranslationDictionary> = {
 			],
 		},
 		calendly: {
-			modalTitle: "Schedule a Call with Negentro Team",
-			openNewTab: "Open in new tab",
-			loading: "Loading Calendly scheduling...",
+			title: "Schedule a Demo with Piyapi",
+			loading: "Loading scheduling interface...",
+			close: "Close modal",
 		},
 		footer: {
 			infrastructure: "Infrastructure for reliable AI.",
@@ -423,29 +430,30 @@ export const translations: Record<Language, TranslationDictionary> = {
 			devTrust: "Trust Center",
 			devStatus: "Status",
 			prodTitle: "Product",
-			prodPiyapi: "PiyAPI Engine",
-			prodBench: "Benchmarks",
-			prodPlayground: "Playground",
-			prodConnectors: "Data Connectors",
+			prodResearch: "Research",
+			prodBlog: "Blog",
 			prodIntegrations: "Integrations",
-			prodChangelog: "Changelog",
+			prodReleaseNotes: "Release notes",
+			prodGithub: "GitHub",
 			compTitle: "Company",
 			compAbout: "About Us",
-			compResearch: "Research Lab",
+			compContact: "Contact Us",
 			compCareers: "Careers",
-			compPrivacy: "Privacy Policy",
-			compTerms: "Terms of Service",
-			compSecurity: "Security",
-			useTitle: "Usecase",
-			useConv: "Conversational AI",
-			useAgents: "Multi-Agent Fabrics",
-			useHealth: "Healthcare AI",
-			useFin: "Financial Reasoning",
-			useEnter: "Enterprise Knowledge",
-			soc2: "SOC 2 Type I & II Ready",
+			compStartup: "Startup Program",
+			compInvestors: "Investors",
+			compPricing: "Pricing",
+			usecasesTitle: "Usecase",
+			useSupport: "Customer Support",
+			useHealth: "Healthcare",
+			useEdu: "Education",
+			useSales: "Sales & CRM",
+			useEcom: "E-Commerce",
+			soc2: "SOC 2 Type I & Type II Ready",
 			gdpr: "GDPR Ready",
 			hipaa: "HIPAA Ready",
+			complianceTitle: "Compliance",
 			contactTitle: "Contact Us",
+			contactEmail: "ceo@negentro.tech",
 			copyright: "© 2026 INFORAVIUM TECHNOLOGIES PRIVATE LIMITED",
 			rightsReserved: "– Copyright All Rights reserved",
 			languagesLabel: "Languages",
@@ -454,32 +462,12 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "Memory is loading...",
 			sublinePre: "Our team is putting the finishing touches on",
 			sublineHighlight: "Negentro.",
-			comingSoon: "COMING SOON",
-			exploreDocs: "Explore Documentation",
-			returnHome: "Return to Home",
-			notifyTitle: "Get notified when we launch",
-			notifySub: "Be the first to get access to developer previews, research updates, and new features.",
-			placeholder: "Enter your work email",
-			notifyBtn: "Notify Me",
-			joined: "You're on the list! We'll notify you upon release.",
-			subpageResearchTitle: "Pioneering Cognitive AI Research",
-			subpageResearchDesc:
-				"Our research team is publishing foundational papers on associative neural graphs, deterministic truth arbitration, and memory architectures for artificial general intelligence.",
-			subpagePricingTitle: "Transparent & Scalable Pricing",
-			subpagePricingDesc:
-				"Flexible developer tiers and high-throughput enterprise infrastructure designed to scale memory from prototypes to hundreds of millions of daily queries.",
-			subpageInitiativesTitle: "Global AI Initiatives & Ecosystem",
-			subpageInitiativesDesc:
-				"Fostering open research partnerships, university grants, and open-source SDKs to democratize cognitive state persistence for the next generation of intelligent agents.",
-			subpageResourcesTitle: "Developer Resources & Knowledge Base",
-			subpageResourcesDesc:
-				"Comprehensive guides, architectural blueprints, integration recipes, and community MCP plugins to help you build reliable memory-enabled AI applications.",
 		},
 	},
 
 	es: {
 		nav: {
-			overview: "Descripción general",
+			overview: "Visión General",
 			research: "Investigación",
 			pricing: "Precios",
 			initiatives: "Iniciativas",
@@ -487,217 +475,232 @@ export const translations: Record<Language, TranslationDictionary> = {
 			tryPiyApi: "Probar PiyAPI",
 		},
 		hero: {
-			headlinePre: "La próxima evolución de\nla inteligencia es la ",
+			headlinePre: "La Próxima Evolución De La\nInteligencia Es La ",
 			headlineMemory: "Memoria.",
-			subline: "Piyapi otorga a la IA la capacidad de recordar, aprender y evolucionar.",
-			emailPlaceholder: "Ingresa tu correo electrónico",
-			joinWaitlist: "Unirse a la lista de espera",
+			subline: "Piyapi le da a la IA la capacidad de recordar, aprender y evolucionar.",
+			emailPlaceholder: "Introduce tu correo electrónico",
+			joinWaitlist: "Unirse a la Lista",
 			joining: "Uniéndose...",
 			successMsg: "¡Estás en la lista de espera! Nos pondremos en contacto pronto.",
 			duplicateMsg: "¡Ya estás en la lista de espera!",
-			invalidEmailMsg: "Por favor, ingresa un correo electrónico válido.",
+			invalidEmailMsg: "Por favor, introduce un correo electrónico válido.",
 		},
 		partner: {
-			supportedBy: "Con el respaldo de programas globales de startups",
+			supportedBy: "CON EL RESPALDO DE PROGRAMAS GLOBALES DE STARTUPS",
 		},
-		paradigm: {
-			tag: "EL PROBLEMA",
-			titlePre: "La IA puede razonar. ",
-			titleHighlight: "Aún necesita memoria.",
+		problem: {
+			tag: "PROBLEMA",
+			headlinePre: "La IA Puede Razonar.\nAún Necesita ",
+			headlineMemory: "Memoria.",
 			subline:
-				"Los modelos actuales tratan cada interacción como una sesión aislada. Sin memoria cognitiva persistente, la inteligencia sigue siendo sin estado, repetitiva y costosa.",
-			problem1Title: "Límites de la ventana de contexto",
-			problem1Desc:
-				"Ampliar las ventanas de contexto aumenta los costos cuadráticos de atención y la latencia, sin proporcionar una retención real a largo plazo.",
-			problem2Title: "RAG ingenuo y envoltorios",
-			problem2Desc:
-				"Las incrustaciones vectoriales estándar solo recuperan similitudes superficiales, sin modelar relaciones temporales ni hechos cambiantes.",
-			problem3Title: "Multi-Agentes sin estado",
-			problem3Desc:
-				"Sin un estado compartido determinista, los flujos de trabajo de agentes sufren de deriva de memoria y fallos de coordinación irrecuperables.",
+				"La IA puede razonar en el momento. Pero sin memoria, tiene dificultades para transmitir conocimiento, experiencia y contexto.",
+			tab1Label: "Relleno de Contexto",
+			tab1CardTitle: "Relleno de Contexto",
+			tab1CardDesc:
+				"Más contexto no significa mejor memoria. A medida que la información crece, los costos aumentan y el conocimiento relevante se vuelve más difícil de recuperar.",
+			tab2Label: "Envoltorios de Memoria IA",
+			tab2CardTitle: "Envoltorios de Memoria IA",
+			tab2CardDesc:
+				"Resumir conversaciones reduce el tamaño del contexto pero puede perder hechos exactos, marcas de tiempo y procedencia.",
+			tab3Label: "Memoria de Modelo Nativa",
+			tab3CardTitle: "Memoria de Modelo Nativa",
+			tab3CardDesc:
+				"Los modelos pueden recordar. Pero todavía no pueden garantizar qué recuerdan, por qué lo recuerdan o cuándo cambió.",
 		},
 		differentApproach: {
-			sectionTag: "ARQUITECTURA",
-			headlinePre: "Un enfoque radicalmente diferente para la ",
-			headlineHighlight: "Memoria de IA",
-			card1Title: "Grafo Neuronal Asociativo",
-			card1Desc:
-				"Combina incrustaciones semánticas con grafos de conocimiento dinámicos para formar vías de memoria asociativa que reflejan la cognición humana.",
-			card2Title: "Motor de Estado Temporal",
-			card2Desc:
-				"Rastrea la evolución de creencias, preferencias y estados a lo largo del tiempo con reversión determinista y reconstrucción de estado puntual.",
-			card3Title: "Recuperación Híbrida de Cero Latencia",
-			card3Desc:
-				"Indexación híbrida por debajo del milisegundo que combina similitud vectorial con recorrido simbólico de grafos para una precisión factual confiable.",
-			quotePre: "La recuperación es una burda aproximación de la ",
+			tag: "SOLUCIÓN",
+			titlePre: "Un Enfoque Diferente para la Memoria de ",
+			titleHighlight: "IA.",
+			sublinePre: "Diseñado para IA en producción, ",
+			sublineHighlight: "Piyapi",
+			sublinePost:
+				" preserva conocimiento exacto con recuperación predecible y procedencia verificable.",
+			feat1Title: "Determinismo",
+			feat1Desc:
+				"Recuperación de memoria predecible y repetible para sistemas de IA confiables.",
+			feat2Title: "Fidelidad",
+			feat2Desc:
+				"Preserve todo el contexto y matiz de los datos sin pérdidas ni compresión.",
+			feat3Title: "Procedencia",
+			feat3Desc:
+				"Trazabilidad completa para cada fragmento de conocimiento recuperado.",
+			feat4Title: "Persistencia",
+			feat4Desc:
+				"Continuidad histórica a largo plazo entre sesiones y modelos.",
+			feat5Title: "Propiedad",
+			feat5Desc:
+				"Control total del usuario y soberanía sobre los datos privados de memoria.",
+			feat6Title: "Portabilidad",
+			feat6Desc:
+				"Interoperabilidad agnóstica de modelos para una migración de infraestructura sin fricciones.",
+			quotePre: "La recuperación es solo la mitad del problema. La IA en producción necesita ",
 			quoteHighlight: "memoria",
-			quotePost:
-				" — La verdadera inteligencia cognitiva requiere una persistencia de estado estructurada, evolutiva y contextual.",
-			sotaTitle: "Rendimiento SOTA",
+			quotePost: " que pueda preservar y verificar lo que sabe.",
+			sotaHeading: "Memoria SOTA,\nMedida.",
 			sotaLine1: "Rendimiento líder en LongMemEval,",
 			sotaLine2: "LoCoMo, ConvoMem con recuperación rápida y",
-			sotaLine3: "un consumo de tokens drásticamente menor.",
-			sotaMetric1Value: "#1",
-			sotaMetric1Badge: "CLASIFICACIÓN",
-			sotaMetric1Label: "Benchmark LongMem",
-			sotaMetric2Value: "<500ms",
-			sotaMetric2Badge: "LATENCIA",
-			sotaMetric2Label: "Recuperación Híbrida Global",
-			sotaMetric3Value: "50-90%",
-			sotaMetric3Badge: "AHORRO DE TOKENS",
-			sotaMetric3Label: "Reducción de Ventana de Contexto",
-			tableHeaderDim: "Capacidades y Arquitectura",
-			tableHeaderPiyapi: "Piyapi Cognitivo",
-			tableHeaderVector: "Bases de Datos Vectoriales",
-			tableHeaderRedis: "Redis / Clave-Valor",
-			tableHeaderCustom: "Pipelines RAG Personalizados",
-			row1Name: "Arquitectura de Memoria",
-			row1Piyapi: "Grafo Neuronal + Memoria Temporal",
-			row1Vector: "Índice Vectorial Plano (HNSW)",
-			row1Redis: "Caché Clave-Valor Simple",
-			row1Custom: "LangChain / LlamaIndex Ad-hoc",
-			row2Name: "Seguimiento Temporal",
-			row2Piyapi: "Línea de tiempo completa y evolución",
-			row2Vector: "Sin conciencia temporal",
-			row2Redis: "Marcas de tiempo TTL manuales",
-			row2Custom: "Lógica personalizada frágil",
-			row3Name: "Latencia de Recuperación",
-			row3Piyapi: "< 500ms Recuperación Submilisegundo",
-			row3Vector: "1.2s - 4.5s (Latencia de Consulta)",
-			row3Redis: "Búsqueda rápida (sin semántica)",
-			row3Custom: "2.5s - 8.0s (Alto Overhead)",
-			row4Name: "Costo de Ventana de Contexto",
-			row4Piyapi: "50-90% Menor Consumo de Tokens",
-			row4Vector: "Relleno excesivo de prompts",
-			row4Redis: "Sin poda semántica de contexto",
-			row4Custom: "Alto desperdicio de tokens",
-			row5Name: "Resolución de Conflictos",
-			row5Piyapi: "Arbitraje determinista de la verdad",
-			row5Vector: "Fragmentos conflictivos en top-k",
-			row5Redis: "Sobrescritura por última escritura",
-			row5Custom: "Alucinaciones impredecibles",
-			row6Name: "Sincronización Multi-Agente",
-			row6Piyapi: "Estructura de estado compartido en tiempo real",
-			row6Vector: "Consulta sin estado por agente",
-			row6Redis: "Bloqueo manual requerido",
-			row6Custom: "Propenso a deriva de estado",
+			sotaLine3: "un uso de tokens drásticamente menor.",
+			metric1Value: "#1",
+			metric1Sublabel: "EN MEMBENCH",
+			metric1Line1: "EXPERIENCIA DE IA",
+			metric1Line2: "SUPERIOR",
+			metric2Value: "<500ms",
+			metric2Sublabel: "LATENCIA DE RECUPERACIÓN",
+			metric2Line1: "MEMORIA EN",
+			metric2Line2: "TIEMPO REAL",
+			metric3Value: "50-90%",
+			metric3Sublabel: "MENOS TOKENS USADOS",
+			metric3Line1: "IA A ESCALA",
+			metric3Line2: "EMPRESARIAL",
+			tableHeaderContext: "Relleno de Contexto",
+			tableHeaderWrapper: "Envoltorio de Memoria",
+			tableHeaderNative: "Memoria Nativa",
+			tableRow1: "Preservación Exacta",
+			tableRow2: "Independencia del Modelo",
+			tableRow3: "Procedencia Verificable",
+			tableRow4: "Gobernanza Empresarial",
 		},
 		workflows: {
-			headline: "Transformando Flujos de Trabajo con Memoria Persistente",
-			subline:
-				"Potencia tus agentes, copilotos y pipelines autónomos con arquitecturas de memoria diseñadas para producción.",
-			card1Title: "Compañeros de IA Personal",
-			card1Desc:
-				"Conserva preferencias de usuario, matices emocionales y contexto vital a lo largo de meses de conversación.",
-			card2Title: "Agentes de Conocimiento Empresarial",
+			headlinePre: "Diseñado para Cada ",
+			headlineHighlight: "Flujo de IA.",
+			sublineLine1:
+				"Potencie su infraestructura especializada con gestión de memoria determinista",
+			sublineLine2:
+				"optimizada para modelos de producción a gran escala y conscientes del contexto.",
+			card1Id: "01",
+			card1Title: "Agentes de IA",
+			card1Desc: "Memoria persistente para la toma de decisiones autónoma y en múltiples pasos.",
+			card2Id: "02",
+			card2Title: "IA Conversacional",
 			card2Desc:
-				"Consulta miles de documentos internos, hilos de Slack y tickets con versionado de máxima precisión.",
-			card3Title: "Coordinación Multi-Agente",
+				"Mantenga el contexto a largo plazo en soporte al cliente, ventas y asistentes personales.",
+			card3Id: "03",
+			card3Title: "Sistemas RAG",
 			card3Desc:
-				"Permite que equipos de agentes especializados lean y escriban en un bloc de notas cognitivo unificado.",
-			card4Title: "Salud e Historial del Paciente",
+				"Recupere conocimiento exacto con procedencia determinista en lugar de similitud semántica.",
+			card4Id: "04",
+			card4Title: "Conocimiento Empresarial",
 			card4Desc:
-				"Rastrea historias clínicas longitudinales, visitas y evolución diagnóstica de forma segura.",
-			card5Title: "Razonamiento Financiero y Auditoría",
+				"Preserve el conocimiento organizacional entre equipos, documentos y flujos de trabajo.",
+			card5Id: "05",
+			card5Title: "IA de Alto Riesgo",
 			card5Desc:
-				"Mantén registros de auditoría verificables para transacciones financieras, normativas y contexto de mercado.",
-			card6Title: "Refactorización Autónoma de Código",
+				"Potencie sistemas legales, financieros, de salud y regulados donde el recuerdo exacto importa.",
+			card6Id: "06",
+			card6Title: "Sistemas Multi-Agente",
 			card6Desc:
-				"Permite a los copilotos de desarrollo recordar convenciones de repositorios, deuda técnica y PRs históricos.",
+				"Proporcione una capa de memoria persistente y compartida entre agentes de IA colaboradores.",
 		},
 		code: {
-			headline: "Implementa en 3 Líneas de Código",
-			subline:
-				"Integra memoria cognitiva en tu stack de LLM en minutos con nuestros SDKs ligeros para TypeScript, Python y REST.",
-			installCmd: "npm install @piyapi/sdk",
-			feature1Title: "Cero Sobrecarga de Infraestructura",
-			feature1Desc: "API en la nube totalmente gestionada y distribuida globalmente.",
-			feature2Title: "Compatibilidad Universal con LLMs",
-			feature2Desc: "Funciona perfectamente con OpenAI, Anthropic, Gemini y modelos locales.",
-			feature3Title: "Conectores CDC Integrados",
-			feature3Desc: "Sincronización automática en tiempo real con PostgreSQL, MongoDB, Notion y Slack.",
+			headline: "Integra Piyapi donde tu IA ya vive.",
+			subline: "Memoria que funciona con cualquier modelo, framework o stack de agentes.",
+			tag01: "//01",
+			sdkTitle: "SDK",
+			sdkSubtitle: "SDKs nativos, APIs REST e integraciones con frameworks de IA",
+			tag02: "//02",
+			agentsTitle: "AGENTES DE IA",
+			agentsSubtitle:
+				"Permite que los agentes de IA recuerden con precisión en cada interacción y flujo.",
+			tag03: "//03",
+			connectorsTitle: "CONECTORES",
+			connectorsSubtitle: "Una sola fuente de verdad. Cada aplicación. Cada modelo.",
+			tag04: "//04",
+			mcpTitle: "MCP",
+			mcpSubtitle:
+				"Permite a los asistentes de código recordar proyectos, conversaciones y decisiones entre sesiones",
 		},
 		security: {
-			headlinePre: "Tus Datos. Tu Memoria. ",
-			headlineHighlight: "Tu Control.",
-			headlinePost: "",
-			subline:
-				"Seguridad de nivel empresarial, gobernanza determinista y controles de privacidad granulares integrados en cada capa.",
-			card1Title: "Cifrado de Extremo a Extremo",
-			card1Desc: "Todos los grafos y vectores de memoria cifrados en tránsito (TLS 1.3) y en reposo (AES-256).",
-			card2Title: "Cero Retención de Datos",
-			card2Desc: "Límites estrictos de privacidad. Tus estados de memoria nunca se utilizan para entrenar modelos base.",
-			card3Title: "Listo para SOC 2 y HIPAA",
-			card3Desc: "Cumple con los estándares globales de privacidad, auditorías empresariales y requisitos de salud.",
-			card4Title: "Despliegues On-Premises y VPC",
-			card4Desc: "Despliega PiyAPI en tu VPC dedicada de AWS, GCP, Azure o nube soberana aislada.",
+			tag: "PRIVACIDAD Y SEGURIDAD",
+			headlineData: "Datos.",
+			headlineMemory: "Memoria.",
+			headlineControl: "Control.",
+			subline1:
+				"PiyAPI mantiene la memoria de la IA privada, explícita y editable para que usted controle lo que su IA",
+			subline2: "recuerda, modifica y olvida.",
+			card1Title: "Privado por diseño",
+			card1Desc:
+				"El conocimiento sensible permanece cifrado y aislado durante todo su ciclo de vida.",
+			card2Title: "Memoria Explícita",
+			card2Desc:
+				"Cada memoria es direccionable y auditable, no oculta dentro de parámetros del modelo.",
+			card3Title: "Editable por Diseño",
+			card3Desc:
+				"Corrija, actualice o elimine memorias individuales sin alterar el modelo subyacente.",
+			card4Title: "Transparencia Total",
+			card4Desc:
+				"Vea qué recuerda la IA, de dónde provino y cómo ha cambiado.",
+			card5Title: "Memoria controlada por el usuario",
+			card5Desc: "Controle quién puede crear, leer, actualizar, exportar o eliminar memoria.",
 		},
 		research: {
-			headline: "Desde Nuestro Laboratorio de Investigación",
-			subline: "Pioneros en memoria cognitiva determinista y arquitecturas de estado asociativo.",
-			readPaper: "Leer Artículo",
-			paper1Title: "Espacio de Estado Neuronal Asociativo para Diálogo a Largo Plazo",
-			paper1Abstract:
-				"Presentamos una arquitectura de memoria híbrida que combina espacios de estado temporal con índices de grafos asociativos dispersos para una retención conversacional ilimitada.",
-			paper2Title: "Arbitraje Determinista de la Verdad en Grafos de Conocimiento Dinámicos",
-			paper2Abstract:
-				"Un marco formal para resolver contradicciones temporales en la memoria de LLM sin reentrenamiento ni reindexación de contexto completo.",
-			paper3Title: "Recorrido de Grafos Semánticos Submilisegundo para Agentes en Tiempo Real",
-			paper3Abstract:
-				"Evaluación comparativa de estructuras de estado multi-agente de alto rendimiento frente a búsquedas vectoriales tradicionales en grafos de más de 10 millones de entidades.",
+			tag: "INVESTIGACIÓN Y BLOGS",
+			headline: "Investigación e Insights",
+			paper1Overlay: "Memoria",
+			paper1Title: "La Memoria es la Capa Faltante de la Inteligencia",
+			paper1Status: "Próximamente",
+			paper1Category: "Publicaciones Científicas",
+			paper2Overlay: "Memoria",
+			paper2Title: "Memoria Determinista para IA Probabilística",
+			paper2Status: "Próximamente",
+			paper2Category: "Experimentos",
+			paper3Overlay: "Memoria",
+			paper3Title: "Midiendo la Memoria a Largo Plazo en Sistemas de IA",
+			paper3Status: "Próximamente",
+			paper3Category: "Ingeniería",
 		},
 		cta: {
-			headline: "Construye con Piyapi",
+			headline: "Construya Con Piyapi",
 			subline:
-				"¿Tienes un caso de uso en mente? Habla con nuestro equipo y descubre cómo la memoria determinista se adapta a tu stack de IA.",
-			talkButton: "Habla con el Equipo",
+				"¿Tiene un caso de uso en mente? Hable con nuestro equipo y explore dónde encaja la memoria determinista en su stack de IA.",
+			talkButton: "Hablar con el Equipo",
 			marqueeItems: [
 				"IA Conversacional",
 				"Memoria Personal de IA",
 				"Conocimiento Empresarial",
 				"Sistemas Multi-Agente",
-				"IA para Salud",
+				"IA para la Salud",
 			],
 		},
 		calendly: {
-			modalTitle: "Agendar una llamada con el equipo de Negentro",
-			openNewTab: "Abrir en nueva pestaña",
-			loading: "Cargando calendario de citas...",
+			title: "Agendar una Demostración con Piyapi",
+			loading: "Cargando interfaz de programación...",
+			close: "Cerrar modal",
 		},
 		footer: {
-			infrastructure: "Infraestructura para IA confiable.",
+			infrastructure: "Infraestructura para una IA confiable.",
 			moreAboutUs: "Más sobre nosotros",
 			devTitle: "Desarrolladores",
-			devDocs: "Documentación para Desarrolladores",
-			devApi: "Referencia de API",
+			devDocs: "Documentación",
+			devApi: "Referencia API",
 			devMcp: "Integración MCP",
 			devCli: "Referencia CLI",
 			devTrust: "Centro de Confianza",
-			devStatus: "Estado del Sistema",
+			devStatus: "Estado",
 			prodTitle: "Producto",
-			prodPiyapi: "Motor PiyAPI",
-			prodBench: "Benchmarks",
-			prodPlayground: "Playground",
-			prodConnectors: "Conectores de Datos",
+			prodResearch: "Investigación",
+			prodBlog: "Blog",
 			prodIntegrations: "Integraciones",
-			prodChangelog: "Registro de Cambios",
+			prodReleaseNotes: "Notas de la versión",
+			prodGithub: "GitHub",
 			compTitle: "Compañía",
-			compAbout: "Sobre Nosotros",
-			compResearch: "Laboratorio de Investigación",
+			compAbout: "Acerca de Nosotros",
+			compContact: "Contáctenos",
 			compCareers: "Carreras",
-			compPrivacy: "Política de Privacidad",
-			compTerms: "Términos de Servicio",
-			compSecurity: "Seguridad",
-			useTitle: "Casos de Uso",
-			useConv: "IA Conversacional",
-			useAgents: "Estructuras Multi-Agente",
-			useHealth: "IA para la Salud",
-			useFin: "Razonamiento Financiero",
-			useEnter: "Conocimiento Empresarial",
-			soc2: "Listo para SOC 2 Tipo I y II",
+			compStartup: "Programa Startups",
+			compInvestors: "Inversores",
+			compPricing: "Precios",
+			usecasesTitle: "Casos de Uso",
+			useSupport: "Atención al Cliente",
+			useHealth: "Salud",
+			useEdu: "Educación",
+			useSales: "Ventas y CRM",
+			useEcom: "Comercio Electrónico",
+			soc2: "SOC 2 Tipo I y Tipo II Listo",
 			gdpr: "Listo para GDPR",
 			hipaa: "Listo para HIPAA",
-			contactTitle: "Contacto",
+			complianceTitle: "Cumplimiento",
+			contactTitle: "Contáctenos",
+			contactEmail: "ceo@negentro.tech",
 			copyright: "© 2026 INFORAVIUM TECHNOLOGIES PRIVATE LIMITED",
 			rightsReserved: "– Todos los derechos reservados",
 			languagesLabel: "Idiomas",
@@ -706,26 +709,6 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "La memoria se está cargando...",
 			sublinePre: "Nuestro equipo está dando los toques finales a",
 			sublineHighlight: "Negentro.",
-			comingSoon: "PRÓXIMAMENTE",
-			exploreDocs: "Explorar Documentación",
-			returnHome: "Volver al Inicio",
-			notifyTitle: "Recibe una notificación cuando lancemos",
-			notifySub: "Sé el primero en acceder a vistas previas de desarrollador, investigaciones y nuevas funciones.",
-			placeholder: "Ingresa tu correo de trabajo",
-			notifyBtn: "Notificarme",
-			joined: "¡Estás en la lista! Te notificaremos al momento del lanzamiento.",
-			subpageResearchTitle: "Investigación Pionera en IA Cognitiva",
-			subpageResearchDesc:
-				"Nuestro equipo de investigación publica artículos fundamentales sobre grafos neuronales asociativos, arbitraje de la verdad y arquitecturas de memoria para la inteligencia artificial general.",
-			subpagePricingTitle: "Precios Transparentes y Escalables",
-			subpagePricingDesc:
-				"Niveles flexibles para desarrolladores e infraestructura empresarial de alto rendimiento diseñada para escalar la memoria desde prototipos hasta cientos de millones de consultas diarias.",
-			subpageInitiativesTitle: "Iniciativas Globales de IA y Ecosistema",
-			subpageInitiativesDesc:
-				"Fomentando alianzas de investigación abierta, becas universitarias y SDKs de código abierto para democratizar la persistencia de estado cognitivo.",
-			subpageResourcesTitle: "Recursos para Desarrolladores y Base de Conocimiento",
-			subpageResourcesDesc:
-				"Guías completas, planos arquitectónicos, recetas de integración y plugins MCP de la comunidad para ayudarte a crear aplicaciones de IA con memoria confiable.",
 		},
 	},
 
@@ -733,223 +716,238 @@ export const translations: Record<Language, TranslationDictionary> = {
 		nav: {
 			overview: "Aperçu",
 			research: "Recherche",
-			pricing: "Tarification",
+			pricing: "Tarifs",
 			initiatives: "Initiatives",
 			resources: "Ressources",
 			tryPiyApi: "Essayer PiyAPI",
 		},
 		hero: {
-			headlinePre: "La prochaine évolution de\nl'intelligence est la ",
+			headlinePre: "La Prochaine Évolution De\nL'Intelligence Est La ",
 			headlineMemory: "Mémoire.",
 			subline: "Piyapi donne à l'IA la capacité de se souvenir, d'apprendre et d'évoluer.",
 			emailPlaceholder: "Entrez votre email",
-			joinWaitlist: "Rejoindre la liste d'attente",
+			joinWaitlist: "Rejoindre la Liste",
 			joining: "Inscription...",
 			successMsg: "Vous êtes sur la liste d'attente ! Nous vous contacterons bientôt.",
 			duplicateMsg: "Vous êtes déjà sur la liste d'attente !",
 			invalidEmailMsg: "Veuillez entrer une adresse email valide.",
 		},
 		partner: {
-			supportedBy: "Soutenu par des programmes mondiaux de startups",
+			supportedBy: "SOUTENU PAR DES PROGRAMMES MONDIAUX DE STARTUPS",
 		},
-		paradigm: {
-			tag: "LE PROBLÈME",
-			titlePre: "L'IA sait raisonner. ",
-			titleHighlight: "Elle a encore besoin de mémoire.",
+		problem: {
+			tag: "PROBLÈME",
+			headlinePre: "L'IA Peut Raisonner.\nElle A Toujours Besoin De ",
+			headlineMemory: "Mémoire.",
 			subline:
-				"Les modèles actuels traitent chaque interaction comme une session isolée. Sans mémoire cognitive persistante, l'intelligence reste sans état, répétitive et coûteuse.",
-			problem1Title: "Limites de la fenêtre de contexte",
-			problem1Desc:
-				"L'augmentation des fenêtres de contexte accroît les coûts d'attention quadratiques et la latence, sans garantir une véritable rétention des connaissances à long terme.",
-			problem2Title: "RAG naïf et wrappers",
-			problem2Desc:
-				"Les plongements vectoriels standards ne récupèrent que des similarités superficielles, échouant à modéliser les relations temporelles et les faits changeants.",
-			problem3Title: "Multi-Agents sans état",
-			problem3Desc:
-				"Sans état partagé déterministe, les workflows d'agents souffrent de dérive de mémoire et d'échecs de coordination irrécupérables.",
+				"L'IA peut raisonner sur le moment. Mais sans mémoire, elle peine à transmettre les connaissances, l'expérience et le contexte.",
+			tab1Label: "Remplissage de Contexte",
+			tab1CardTitle: "Remplissage de Contexte",
+			tab1CardDesc:
+				"Plus de contexte ne signifie pas une meilleure mémoire. À mesure que l'information croît, les coûts augmentent et les connaissances pertinentes deviennent plus difficiles à retrouver.",
+			tab2Label: "Conteneurs de Mémoire IA",
+			tab2CardTitle: "Conteneurs de Mémoire IA",
+			tab2CardDesc:
+				"Résumer les conversations réduit la taille du contexte mais peut faire perdre des faits exacts, des horodatages et la provenance.",
+			tab3Label: "Mémoire Native du Modèle",
+			tab3CardTitle: "Mémoire Native du Modèle",
+			tab3CardDesc:
+				"Les modèles peuvent se souvenir. Mais ils ne peuvent toujours pas garantir ce dont ils se souviennent, pourquoi ils s'en souviennent ou quand cela a changé.",
 		},
 		differentApproach: {
-			sectionTag: "ARCHITECTURE",
-			headlinePre: "Une approche radicalement différente de la ",
-			headlineHighlight: "Mémoire IA",
-			card1Title: "Graphe Neuronal Associatif",
-			card1Desc:
-				"Combine des plongements sémantiques avec des graphes de connaissances dynamiques pour former des voies de mémoire associative inspirées de la cognition humaine.",
-			card2Title: "Moteur d'État Temporel",
-			card2Desc:
-				"Suit l'évolution des croyances, préférences et états au fil du temps avec retour arrière déterministe et reconstruction d'état ponctuelle.",
-			card3Title: "Récupération Hybride Zéro Latence",
-			card3Desc:
-				"Indexation hybride sous la milliseconde combinant similarité vectorielle et traversée de graphe symbolique pour un rappel factuel ultra-fiable.",
-			quotePre: "La recherche vectorielle est une approximation rudimentaire de la ",
+			tag: "SOLUTION",
+			titlePre: "Une Approche Différente de la Mémoire ",
+			titleHighlight: "IA.",
+			sublinePre: "Conçu pour l'IA en production, ",
+			sublineHighlight: "Piyapi",
+			sublinePost:
+				" préserve des connaissances exactes avec une récupération prévisible et une traçabilité vérifiable.",
+			feat1Title: "Déterminisme",
+			feat1Desc:
+				"Récupération de mémoire prévisible et répétable pour des systèmes IA fiables.",
+			feat2Title: "Fidélité",
+			feat2Desc:
+				"Préservez l'intégralité du contexte et des nuances sans perte ni compression.",
+			feat3Title: "Traçabilité",
+			feat3Desc:
+				"Traçabilité complète de chaque élément de connaissance récupéré.",
+			feat4Title: "Persistance",
+			feat4Desc:
+				"Continuité historique à long terme à travers les sessions et modèles.",
+			feat5Title: "Propriété",
+			feat5Desc:
+				"Contrôle total de l'utilisateur et souveraineté sur les données privées de mémoire.",
+			feat6Title: "Portabilité",
+			feat6Desc:
+				"Interopérabilité agnostique des modèles pour une migration d'infrastructure fluide.",
+			quotePre: "La récupération n'est que la moitié du problème. L'IA en production a besoin de ",
 			quoteHighlight: "mémoire",
-			quotePost:
-				" — La véritable intelligence cognitive exige une persistance d'état structurée, évolutive et contextuelle.",
-			sotaTitle: "Performances SOTA",
+			quotePost: " capable de préserver et de vérifier ce qu'elle sait.",
+			sotaHeading: "Mémoire SOTA,\nMesurée.",
 			sotaLine1: "Performances de pointe sur LongMemEval,",
-			sotaLine2: "LoCoMo, ConvoMem avec un rappel ultra-rapide et",
-			sotaLine3: "une réduction drastique de la consommation de jetons.",
-			sotaMetric1Value: "#1",
-			sotaMetric1Badge: "CLASSEMENT",
-			sotaMetric1Label: "Benchmark LongMem",
-			sotaMetric2Value: "<500ms",
-			sotaMetric2Badge: "LATENCE",
-			sotaMetric2Label: "Rappel Hybride Global",
-			sotaMetric3Value: "50-90%",
-			sotaMetric3Badge: "ÉCONOMIE DE JETONS",
-			sotaMetric3Label: "Réduction de Fenêtre de Contexte",
-			tableHeaderDim: "Capacités et Architecture",
-			tableHeaderPiyapi: "Piyapi Cognitif",
-			tableHeaderVector: "Bases Vectorielles Traditionnelles",
-			tableHeaderRedis: "Redis / Clé-Valeur",
-			tableHeaderCustom: "Pipelines RAG Personnalisés",
-			row1Name: "Architecture de Mémoire",
-			row1Piyapi: "Graphe Neuronal + Mémoire Temporelle",
-			row1Vector: "Index Vectoriel Plat (HNSW)",
-			row1Redis: "Cache Clé-Valeur Brut",
-			row1Custom: "LangChain / LlamaIndex Ad-hoc",
-			row2Name: "Suivi Temporel",
-			row2Piyapi: "Chronologie complète et évolution",
-			row2Vector: "Aucune conscience temporelle",
-			row2Redis: "Horodatages TTL manuels",
-			row2Custom: "Logique personnalisée fragile",
-			row3Name: "Latence de Rappel",
-			row3Piyapi: "< 500ms Rappel Sous-milliseconde",
-			row3Vector: "1.2s - 4.5s (Latence de Requête)",
-			row3Redis: "Recherche de clé rapide (sans sémantique)",
-			row3Custom: "2.5s - 8.0s (Surcharge Élevée)",
-			row4Name: "Coût de Fenêtre de Contexte",
-			row4Piyapi: "50-90% Moins de Jetons Consommés",
-			row4Vector: "Remplissage massif de prompts",
-			row4Redis: "Aucun élagage contextuel",
-			row4Custom: "Gaspillage élevé de jetons",
-			row5Name: "Résolution des Conflits",
-			row5Piyapi: "Arbitrage déterministe de la vérité",
-			row5Vector: "Fragments contradictoires dans top-k",
-			row5Redis: "Écrasement par dernière écriture",
-			row5Custom: "Hallucinations imprévisibles",
-			row6Name: "Synchronisation Multi-Agents",
-			row6Piyapi: "Tissu d'état partagé en temps réel",
-			row6Vector: "Requête sans état par agent",
-			row6Redis: "Verrouillage manuel nécessaire",
-			row6Custom: "Sujet à la dérive d'état",
+			sotaLine2: "LoCoMo, ConvoMem avec un rappel rapide et",
+			sotaLine3: "une utilisation de tokens considérablement réduite.",
+			metric1Value: "#1",
+			metric1Sublabel: "SUR MEMBENCH",
+			metric1Line1: "EXPÉRIENCE IA",
+			metric1Line2: "SUPÉRIEURE",
+			metric2Value: "<500ms",
+			metric2Sublabel: "LATENCE DE RAPPEL",
+			metric2Line1: "MÉMOIRE EN",
+			metric2Line2: "TEMPS RÉEL",
+			metric3Value: "50-90%",
+			metric3Sublabel: "DE TOKENS EN MOINS",
+			metric3Line1: "IA À L'ÉCHELLE",
+			metric3Line2: "DE L'ENTREPRISE",
+			tableHeaderContext: "Remplissage de Contexte",
+			tableHeaderWrapper: "Conteneur de Mémoire",
+			tableHeaderNative: "Mémoire Native",
+			tableRow1: "Préservation Exacte",
+			tableRow2: "Indépendance du Modèle",
+			tableRow3: "Traçabilité Vérifiable",
+			tableRow4: "Gouvernance d'Entreprise",
 		},
 		workflows: {
-			headline: "Transformer les Workflows avec une Mémoire Persistante",
-			subline:
-				"Donnez à vos agents, copilotes et pipelines autonomes des architectures de mémoire conçues pour la production.",
-			card1Title: "Compagnons IA Personnels",
-			card1Desc:
-				"Conservez les préférences utilisateur, les nuances émotionnelles et le contexte de vie sur des mois de conversation.",
-			card2Title: "Agents de Connaissances d'Entreprise",
+			headlinePre: "Conçu pour Chaque ",
+			headlineHighlight: "Flux IA.",
+			sublineLine1:
+				"Renforcez votre infrastructure spécialisée avec une gestion déterministe de la mémoire",
+			sublineLine2:
+				"optimisée pour les modèles de production à grande échelle et conscients du contexte.",
+			card1Id: "01",
+			card1Title: "Agents IA",
+			card1Desc: "Mémoire persistante pour la prise de décision autonome et multi-étapes.",
+			card2Id: "02",
+			card2Title: "IA Conversationnelle",
 			card2Desc:
-				"Interrogez des milliers de documents internes, fils Slack et tickets avec un versionnage ultra-précis.",
-			card3Title: "Coordination Multi-Agents",
+				"Maintenez le contexte à long terme dans le support client, les ventes et les assistants personnels.",
+			card3Id: "03",
+			card3Title: "Systèmes RAG",
 			card3Desc:
-				"Permettez à des équipes d'agents spécialisés de lire et d'écrire sur un bloc-notes cognitif unifié.",
-			card4Title: "Santé et Historique Patient",
+				"Récupérez des connaissances exactes avec une traçabilité déterministe plutôt qu'une simple similarité sémantique.",
+			card4Id: "04",
+			card4Title: "Connaissance d'Entreprise",
 			card4Desc:
-				"Suivez les parcours cliniques longitudinaux, les consultations et l'évolution diagnostique en toute sécurité.",
-			card5Title: "Raisonnement Financier et Audit",
+				"Préservez la mémoire organisationnelle entre les équipes, les documents et les flux de travail.",
+			card5Id: "05",
+			card5Title: "IA à Forts Enjeux",
 			card5Desc:
-				"Maintenez des pistes d'audit vérifiables pour les transactions financières, les réglementations et le contexte du marché.",
-			card6Title: "Refactorisation Autonome de Code",
+				"Alimentez les systèmes juridiques, financiers, médicaux et réglementés où l'exactitude du rappel est primordiale.",
+			card6Id: "06",
+			card6Title: "Systèmes Multi-Agents",
 			card6Desc:
-				"Permettez aux copilotes développeurs de mémoriser les conventions de code, la dette technique et l'historique des PRs.",
+				"Offrez une couche de mémoire persistante et partagée entre agents IA collaborateurs.",
 		},
 		code: {
-			headline: "Déployez en 3 Lignes de Code",
-			subline:
-				"Intégrez la mémoire cognitive dans votre infrastructure LLM existante en quelques minutes grâce à nos SDKs légers pour TypeScript, Python et REST.",
-			installCmd: "npm install @piyapi/sdk",
-			feature1Title: "Zéro Gestion d'Infrastructure",
-			feature1Desc: "API cloud entièrement gérée et distribuée à l'échelle mondiale.",
-			feature2Title: "Compatibilité Universelle LLM",
-			feature2Desc: "Fonctionne parfaitement avec OpenAI, Anthropic, Gemini et modèles locaux.",
-			feature3Title: "Connecteurs CDC Intégrés",
-			feature3Desc: "Synchronisation automatique en temps réel avec PostgreSQL, MongoDB, Notion et Slack.",
+			headline: "Intégrez Piyapi là où votre IA évolue déjà.",
+			subline: "Une mémoire qui fonctionne avec n'importe quel modèle, framework ou stack d'agents.",
+			tag01: "//01",
+			sdkTitle: "SDK",
+			sdkSubtitle: "SDKs natifs, APIs REST et intégrations aux frameworks IA",
+			tag02: "//02",
+			agentsTitle: "AGENTS IA",
+			agentsSubtitle:
+				"Permettez aux agents IA de se souvenir avec précision à travers chaque interaction et flux.",
+			tag03: "//03",
+			connectorsTitle: "CONNECTEURS",
+			connectorsSubtitle: "Une source unique de vérité. Chaque application. Chaque modèle.",
+			tag04: "//04",
+			mcpTitle: "MCP",
+			mcpSubtitle:
+				"Permettez aux assistants de programmation de se souvenir des projets, discussions et décisions entre les sessions",
 		},
 		security: {
-			headlinePre: "Vos Données. Votre Mémoire. ",
-			headlineHighlight: "Votre Contrôle.",
-			headlinePost: "",
-			subline:
-				"Sécurité de niveau entreprise, gouvernance déterministe et contrôles de confidentialité granulaires intégrés à chaque couche.",
-			card1Title: "Chiffrement de Bout en Bout",
-			card1Desc: "Tous les graphes et vecteurs de mémoire chiffrés en transit (TLS 1.3) et au repos (AES-256).",
-			card2Title: "Zéro Rétention de Données",
-			card2Desc: "Limites de confidentialité strictes. Vos états de mémoire ne sont jamais utilisés pour entraîner des modèles de base.",
-			card3Title: "Prêt pour SOC 2 et HIPAA",
-			card3Desc: "Conforme aux normes mondiales de confidentialité, aux audits d'entreprise et aux exigences de santé.",
-			card4Title: "Déploiements On-Premises et VPC",
-			card4Desc: "Déployez PiyAPI au sein de votre VPC dédié sur AWS, GCP, Azure ou dans un cloud souverain isolé.",
+			tag: "CONFIDENTIALITÉ ET SÉCURITÉ",
+			headlineData: "Données.",
+			headlineMemory: "Mémoire.",
+			headlineControl: "Contrôle.",
+			subline1:
+				"PiyAPI garde la mémoire IA privée, explicite et modifiable afin que vous contrôliez ce que votre IA",
+			subline2: "retient, modifie et oublie.",
+			card1Title: "Privé dès la conception",
+			card1Desc:
+				"Les connaissances sensibles restent chiffrées et isolées tout au long de leur cycle de vie.",
+			card2Title: "Mémoire Explicite",
+			card2Desc:
+				"Chaque souvenir est adressable et auditable, sans être dissimulé dans les paramètres opaques du modèle.",
+			card3Title: "Modifiable par Conception",
+			card3Desc:
+				"Corrigez, mettez à jour ou supprimez des souvenirs individuels sans altérer le modèle sous-jacent.",
+			card4Title: "Transparence Totale",
+			card4Desc:
+				"Voyez ce que l'IA retient, d'où provient l'information et comment elle a évolué.",
+			card5Title: "Mémoire contrôlée par l'utilisateur",
+			card5Desc: "Contrôlez qui peut créer, lire, modifier, exporter ou supprimer la mémoire.",
 		},
 		research: {
-			headline: "De Notre Laboratoire de Recherche",
-			subline: "Pionniers de la mémoire cognitive déterministe et des architectures d'état associatif.",
-			readPaper: "Lire l'Article",
-			paper1Title: "Espace d'État Neuronal Associatif pour Dialogue à Long Terme",
-			paper1Abstract:
-				"Nous présentons une architecture de mémoire hybride combinant des espaces d'état temporel avec des indices de graphes associatifs clairsemés pour une rétention conversationnelle sans limite.",
-			paper2Title: "Arbitrage Déterministe de la Vérité dans les Graphes Dynamiques",
-			paper2Abstract:
-				"Un cadre formel pour résoudre les contradictions temporelles dans la mémoire des LLM sans réentraînement ni réindexation complète du contexte.",
-			paper3Title: "Traversée de Graphe Sémantique Sous-milliseconde pour Agents en Temps Réel",
-			paper3Abstract:
-				"Évaluation comparative des tissus d'état multi-agents à haut débit par rapport à la recherche vectorielle traditionnelle sur des graphes de plus de 10 millions d'entités.",
+			tag: "RECHERCHE ET BLOGS",
+			headline: "Recherche & Perspectives",
+			paper1Overlay: "Mémoire",
+			paper1Title: "La Mémoire est la Couche Manquante de l'Intelligence",
+			paper1Status: "Bientôt disponible",
+			paper1Category: "Articles de Recherche",
+			paper2Overlay: "Mémoire",
+			paper2Title: "Mémoire Déterministe pour IA Probabiliste",
+			paper2Status: "Bientôt disponible",
+			paper2Category: "Expérimentations",
+			paper3Overlay: "Mémoire",
+			paper3Title: "Mesurer la Mémoire à Long Terme dans les Systèmes IA",
+			paper3Status: "Bientôt disponible",
+			paper3Category: "Ingénierie",
 		},
 		cta: {
-			headline: "Construisez avec Piyapi",
+			headline: "Bâtissez Avec Piyapi",
 			subline:
-				"Vous avez un cas d'usage en tête ? Échangez avec notre équipe et découvrez comment intégrer la mémoire déterministe dans votre stack IA.",
+				"Un cas d'usage en tête ? Échangez avec notre équipe et découvrez comment la mémoire déterministe s'intègre à votre stack IA.",
 			talkButton: "Parler à l'Équipe",
 			marqueeItems: [
 				"IA Conversationnelle",
 				"Mémoire IA Personnelle",
-				"Connaissances Entreprise",
+				"Connaissance d'Entreprise",
 				"Systèmes Multi-Agents",
-				"IA Médicale",
+				"IA pour la Santé",
 			],
 		},
 		calendly: {
-			modalTitle: "Planifier un appel avec l'équipe Negentro",
-			openNewTab: "Ouvrir dans un nouvel onglet",
+			title: "Planifier une Démo avec Piyapi",
 			loading: "Chargement du calendrier...",
+			close: "Fermer la modal",
 		},
 		footer: {
 			infrastructure: "Infrastructure pour une IA fiable.",
 			moreAboutUs: "En savoir plus sur nous",
 			devTitle: "Développeurs",
-			devDocs: "Documentation Développeur",
+			devDocs: "Documentation",
 			devApi: "Référence API",
 			devMcp: "Intégration MCP",
 			devCli: "Référence CLI",
 			devTrust: "Centre de Confiance",
-			devStatus: "Statut des Services",
+			devStatus: "Statut",
 			prodTitle: "Produit",
-			prodPiyapi: "Moteur PiyAPI",
-			prodBench: "Benchmarks",
-			prodPlayground: "Playground",
-			prodConnectors: "Connecteurs de Données",
+			prodResearch: "Recherche",
+			prodBlog: "Blog",
 			prodIntegrations: "Intégrations",
-			prodChangelog: "Journal des Modifications",
+			prodReleaseNotes: "Notes de version",
+			prodGithub: "GitHub",
 			compTitle: "Entreprise",
-			compAbout: "À Propos",
-			compResearch: "Laboratoire de Recherche",
+			compAbout: "À Propos de Nous",
+			compContact: "Contactez-nous",
 			compCareers: "Carrières",
-			compPrivacy: "Politique de Confidentialité",
-			compTerms: "Conditions d'Utilisation",
-			compSecurity: "Sécurité",
-			useTitle: "Cas d'Usage",
-			useConv: "IA Conversationnelle",
-			useAgents: "Tissus Multi-Agents",
-			useHealth: "IA de Santé",
-			useFin: "Raisonnement Financier",
-			useEnter: "Connaissances Entreprise",
-			soc2: "Prêt pour SOC 2 Type I & II",
-			gdpr: "Prêt pour le RGPD",
+			compStartup: "Programme Startups",
+			compInvestors: "Investisseurs",
+			compPricing: "Tarifs",
+			usecasesTitle: "Cas d'Usage",
+			useSupport: "Support Client",
+			useHealth: "Santé",
+			useEdu: "Éducation",
+			useSales: "Ventes & CRM",
+			useEcom: "E-Commerce",
+			soc2: "SOC 2 Type I & Type II Prêt",
+			gdpr: "Prêt pour RGPD",
 			hipaa: "Prêt pour HIPAA",
+			complianceTitle: "Conformité",
 			contactTitle: "Contactez-nous",
+			contactEmail: "ceo@negentro.tech",
 			copyright: "© 2026 INFORAVIUM TECHNOLOGIES PRIVATE LIMITED",
 			rightsReserved: "– Tous droits réservés",
 			languagesLabel: "Langues",
@@ -958,26 +956,6 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "La mémoire est en cours de chargement...",
 			sublinePre: "Notre équipe apporte les dernières touches à",
 			sublineHighlight: "Negentro.",
-			comingSoon: "BIENTÔT DISPONIBLE",
-			exploreDocs: "Explorer la Documentation",
-			returnHome: "Retour à l'Accueil",
-			notifyTitle: "Soyez notifié lors du lancement",
-			notifySub: "Soyez le premier informé des versions d'aperçu développeur, des publications de recherche et des nouveautés.",
-			placeholder: "Entrez votre email professionnel",
-			notifyBtn: "M'avertir",
-			joined: "Vous êtes inscrit ! Nous vous préviendrons dès la sortie.",
-			subpageResearchTitle: "Recherche Pionnière en IA Cognitive",
-			subpageResearchDesc:
-				"Notre équipe de recherche publie des articles fondamentaux sur les graphes neuronaux associatifs, l'arbitrage de vérité et les architectures de mémoire pour l'IA générale.",
-			subpagePricingTitle: "Tarifs Transparents et Évolutifs",
-			subpagePricingDesc:
-				"Des forfaits flexibles pour développeurs et une infrastructure d'entreprise conçue pour faire évoluer la mémoire des prototypes vers des centaines de millions de requêtes quotidiennes.",
-			subpageInitiativesTitle: "Initiatives Mondiales pour l'IA & Écosystème",
-			subpageInitiativesDesc:
-				"Favoriser les partenariats de recherche ouverte, les bourses universitaires et les SDKs open-source pour démocratiser la persistance d'état cognitif.",
-			subpageResourcesTitle: "Ressources Développeurs & Base de Connaissances",
-			subpageResourcesDesc:
-				"Guides exhaustifs, schémas d'architecture, recettes d'intégration et plugins communautaires MCP pour vous aider à créer des applications d'IA mémorielle fiables.",
 		},
 	},
 
@@ -988,185 +966,199 @@ export const translations: Record<Language, TranslationDictionary> = {
 			pricing: "Preise",
 			initiatives: "Initiativen",
 			resources: "Ressourcen",
-			tryPiyApi: "PiyAPI Testen",
+			tryPiyApi: "PiyAPI Ausprobieren",
 		},
 		hero: {
-			headlinePre: "Die nächste Evolution der\nIntelligenz ist ",
+			headlinePre: "Die Nächste Evolution Der\nIntelligenz Ist ",
 			headlineMemory: "Gedächtnis.",
-			subline: "Piyapi verleiht KI die Fähigkeit zu erinnern, zu lernen und sich weiterzuentwickeln.",
-			emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
-			joinWaitlist: "Auf die Warteliste",
-			joining: "Wird eingetragen...",
+			subline: "Piyapi gibt KI die Fähigkeit zu erinnern, zu lernen und sich zu entwickeln.",
+			emailPlaceholder: "Geben Sie Ihre E-Mail ein",
+			joinWaitlist: "Warteliste Beitreten",
+			joining: "Beitreten...",
 			successMsg: "Sie stehen auf der Warteliste! Wir melden uns in Kürze.",
 			duplicateMsg: "Sie stehen bereits auf der Warteliste!",
 			invalidEmailMsg: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
 		},
 		partner: {
-			supportedBy: "Unterstützt von weltweiten Startup-Programmen",
+			supportedBy: "UNTERSTÜTZT VON GLOBALEN STARTUP-PROGRAMMEN",
 		},
-		paradigm: {
-			tag: "DAS PROBLEM",
-			titlePre: "KI kann schlussfolgern. ",
-			titleHighlight: "Sie braucht Gedächtnis.",
+		problem: {
+			tag: "PROBLEM",
+			headlinePre: "KI Kann Schlussfolgern.\nSie Braucht Immer Noch ",
+			headlineMemory: "Gedächtnis.",
 			subline:
-				"Aktuelle Modelle behandeln jede Interaktion als isolierte Sitzung. Ohne persistentes kognitives Gedächtnis bleibt Intelligenz zustandslos, repetitiv und teuer.",
-			problem1Title: "Kontextfenster-Grenzen",
-			problem1Desc:
-				"Größere Kontextfenster erhöhen quadratische Aufmerksamkeitskosten und Latenzen, ohne echtes langfristiges Wissen zu speichern.",
-			problem2Title: "Natives RAG & Wrapper",
-			problem2Desc:
-				"Standard-Vektoreinbettungen erfassen nur oberflächliche Ähnlichkeiten und modellieren weder zeitliche Beziehungen noch dynamische Fakten.",
-			problem3Title: "Zustandslose Multi-Agenten",
-			problem3Desc:
-				"Ohne deterministischen gemeinsamen Zustand leiden Agenten-Workflows unter Gedächtnisdrift und irreparablen Koordinationsfehlern.",
+				"KI kann im Moment schlussfolgern. Doch ohne Gedächtnis fällt es ihr schwer, Wissen, Erfahrung und Kontext weiterzutragen.",
+			tab1Label: "Kontext-Überladung",
+			tab1CardTitle: "Kontext-Überladung",
+			tab1CardDesc:
+				"Mehr Kontext bedeutet nicht besseres Gedächtnis. Mit wachsender Information steigen Kosten und relevantes Wissen wird schwerer abrufbar.",
+			tab2Label: "KI-Gedächtnis-Wrapper",
+			tab2CardTitle: "KI-Gedächtnis-Wrapper",
+			tab2CardDesc:
+				"Zusammenfassungen reduzieren die Kontextgröße, können jedoch exakte Fakten, Zeitstempel und Herkunft verlieren.",
+			tab3Label: "Natives Modell-Gedächtnis",
+			tab3CardTitle: "Natives Modell-Gedächtnis",
+			tab3CardDesc:
+				"Modelle können sich erinnern. Aber sie können nicht garantieren, woran sie sich erinnern, warum oder wann es sich geändert hat.",
 		},
 		differentApproach: {
-			sectionTag: "ARCHITEKTUR",
-			headlinePre: "Ein radikal neuer Ansatz für ",
-			headlineHighlight: "KI-Gedächtnis",
-			card1Title: "Assoziativer Neuronaler Graph",
-			card1Desc:
-				"Kombiniert semantische Einbettungen mit dynamischen Wissensgraphen zu assoziativen Gedächtnispfaden nach dem Vorbild menschlicher Kognition.",
-			card2Title: "Temporale Zustands-Engine",
-			card2Desc:
-				"Verfolgt Wissensstände, Präferenzen und Zustandsänderungen über die Zeit mit deterministischem Rollback und zeitpunktgenauer Rekonstruktion.",
-			card3Title: "Zero-Latency Hybrider Abruf",
-			card3Desc:
-				"Sub-Millisekunden-Hybridindizierung aus Vektorähnlichkeit und symbolischer Graph-Traversierung für extrem präzisen Faktenabruf.",
-			quotePre: "Vektorsuche ist nur eine grobe Annäherung an ",
+			tag: "LÖSUNG",
+			titlePre: "Ein Anderer Ansatz für KI-",
+			titleHighlight: "Gedächtnis.",
+			sublinePre: "Entwickelt für produktive KI, ",
+			sublineHighlight: "Piyapi",
+			sublinePost:
+				" bewahrt exaktes Wissen mit vorhersagbarem Abruf und überprüfbarer Herkunft.",
+			feat1Title: "Determinismus",
+			feat1Desc:
+				"Vorhersehbarer und wiederholbarer Speicherabruf für zuverlässige KI-Systeme.",
+			feat2Title: "Treue",
+			feat2Desc:
+				"Vollständigen Kontext und Feinheiten von Daten ohne Verlust oder Komprimierung bewahren.",
+			feat3Title: "Herkunft",
+			feat3Desc:
+				"Vollständige Rückverfolgbarkeit für jedes abgerufene Wissenselement.",
+			feat4Title: "Persistenz",
+			feat4Desc:
+				"Langfristige historische Kontinuität über Sitzungen und Modelle hinweg.",
+			feat5Title: "Eigentum",
+			feat5Desc:
+				"Volle Nutzerkontrolle und Souveränität über private Speicherdaten.",
+			feat6Title: "Portabilität",
+			feat6Desc:
+				"Modellagnostische Interoperabilität für nahtlose Infrastrukturmigration.",
+			quotePre: "Retrieval ist nur die halbe Miete. Produktive KI braucht ",
 			quoteHighlight: "Gedächtnis",
-			quotePost:
-				" — Wahre kognitive Intelligenz erfordert strukturierte, sich entwickelnde und kontextbezogene Zustandspersistenz.",
-			sotaTitle: "SOTA Performance-Überblick",
-			sotaLine1: "Führende Performance bei LongMemEval,",
+			quotePost: ", das bewahren und verifizieren kann, was es weiß.",
+			sotaHeading: "SOTA Gedächtnis,\nGemessen.",
+			sotaLine1: "Führende Leistung bei LongMemEval,",
 			sotaLine2: "LoCoMo, ConvoMem mit schnellem Abruf und",
 			sotaLine3: "drastisch reduziertem Token-Verbrauch.",
-			sotaMetric1Value: "#1",
-			sotaMetric1Badge: "PLATZIERUNG",
-			sotaMetric1Label: "LongMem Benchmark",
-			sotaMetric2Value: "<500ms",
-			sotaMetric2Badge: "LATENZ",
-			sotaMetric2Label: "Globaler Hybrider Abruf",
-			sotaMetric3Value: "50-90%",
-			sotaMetric3Badge: "TOKEN-ERSPARNIS",
-			sotaMetric3Label: "Reduzierung des Kontextfensters",
-			tableHeaderDim: "Funktionen & Architektur",
-			tableHeaderPiyapi: "Piyapi Kognitiv",
-			tableHeaderVector: "Herkömmliche Vektordatenbanken",
-			tableHeaderRedis: "Redis / Key-Value",
-			tableHeaderCustom: "Individuelle RAG-Pipelines",
-			row1Name: "Gedächtnisarchitektur",
-			row1Piyapi: "Neuronaler Graph + Temporaler Speicher",
-			row1Vector: "Flacher Vektorindex (HNSW)",
-			row1Redis: "Reines Key-Value-Caching",
-			row1Custom: "Ad-hoc LangChain / LlamaIndex",
-			row2Name: "Temporales Tracking",
-			row2Piyapi: "Vollständige Zeitleiste & Faktenentwicklung",
-			row2Vector: "Kein Zeitbewusstsein",
-			row2Redis: "Manuelle TTL-Zeitstempel",
-			row2Custom: "Fragile Eigenlogik",
-			row3Name: "Abruflatenz",
-			row3Piyapi: "< 500ms Sub-Millisekunden-Abruf",
-			row3Vector: "1.2s - 4.5s (Abfragelatenz)",
-			row3Redis: "Schneller Key-Lookup (ohne Semantik)",
-			row3Custom: "2.5s - 8.0s (Hoher Overhead)",
-			row4Name: "Kontextfenster-Kosten",
-			row4Piyapi: "50-90% Geringerer Token-Verbrauch",
-			row4Vector: "Überladenes Prompt-Stuffing",
-			row4Redis: "Kein semantisches Kontext-Pruning",
-			row4Custom: "Hohe Token-Verschwendung",
-			row5Name: "Konfliktlösung",
-			row5Piyapi: "Deterministische Wahrheits-Arbitrierung",
-			row5Vector: "Widersprüchliche Chunks im Top-k",
-			row5Redis: "Last-Write-Wins Überschreibung",
-			row5Custom: "Unvorhersehbare Halluzinationen",
-			row6Name: "Multi-Agenten-Synchronisation",
-			row6Piyapi: "Echtzeit-Struktur für geteilten Zustand",
-			row6Vector: "Zustandslose Abfrage pro Agent",
-			row6Redis: "Manuelle Sperren erforderlich",
-			row6Custom: "Anfällig für Zustandsdrift",
+			metric1Value: "#1",
+			metric1Sublabel: "AUF MEMBENCH",
+			metric1Line1: "ÜBERRAGENDE KI-",
+			metric1Line2: "ERFAHRUNG",
+			metric2Value: "<500ms",
+			metric2Sublabel: "ABRUFLATENZ",
+			metric2Line1: "ECHTZEIT-",
+			metric2Line2: "GEDÄCHTNIS",
+			metric3Value: "50-90%",
+			metric3Sublabel: "WENIGER TOKENS",
+			metric3Line1: "KI AUF",
+			metric3Line2: "ENTERPRISE-EBENE",
+			tableHeaderContext: "Kontext-Überladung",
+			tableHeaderWrapper: "Gedächtnis-Wrapper",
+			tableHeaderNative: "Natives Gedächtnis",
+			tableRow1: "Exakte Bewahrung",
+			tableRow2: "Modellunabhängigkeit",
+			tableRow3: "Überprüfbare Herkunft",
+			tableRow4: "Unternehmens-Governance",
 		},
 		workflows: {
-			headline: "Workflows mit Persistentem Gedächtnis Transformieren",
-			subline:
-				"Statten Sie Ihre Agenten, Copiloten und autonomen Pipelines mit produktionsreifen Gedächtnisarchitekturen aus.",
-			card1Title: "Persönliche KI-Begleiter",
-			card1Desc:
-				"Behalten Sie Nutzerpräferenzen, emotionale Nuancen und Lebenskontext über Monate hinweg bei.",
-			card2Title: "Wissensagenten für Unternehmen",
+			headlinePre: "Entwickelt für Jeden ",
+			headlineHighlight: "KI-Workflow.",
+			sublineLine1:
+				"Stärken Sie Ihre spezialisierte Infrastruktur mit deterministischem Gedächtnis",
+			sublineLine2:
+				"optimiert für hochskalierbare, kontextbewusste Produktionsmodelle.",
+			card1Id: "01",
+			card1Title: "KI-Agenten",
+			card1Desc: "Persistentes Gedächtnis für autonome, mehrstufige Entscheidungsfindung.",
+			card2Id: "02",
+			card2Title: "Konversationelle KI",
 			card2Desc:
-				"Durchsuchen Sie Tausende interne Dokumente, Slack-Threads und Tickets mit präziser Versionierung.",
-			card3Title: "Multi-Agenten-Koordination",
+				"Langzeitkontext im Kundensupport, Vertrieb und bei persönlichen Assistenten sichern.",
+			card3Id: "03",
+			card3Title: "RAG-Systeme",
 			card3Desc:
-				"Ermöglichen Sie spezialisierten Agententeams das gemeinsame Lesen und Schreiben auf einem kognitiven Notizblock.",
-			card4Title: "Gesundheitswesen & Patientenhistorie",
+				"Exaktes Wissen mit deterministischer Herkunft statt reiner semantischer Ähnlichkeit abrufen.",
+			card4Id: "04",
+			card4Title: "Unternehmenswissen",
 			card4Desc:
-				"Verfolgen Sie Behandlungsverläufe, Arztbesuche und diagnostische Entwicklungen mit höchster Datensicherheit.",
-			card5Title: "Finanzanalysen & Audit-Trails",
+				"Organisationswissen über Teams, Dokumente und Arbeitsabläufe hinweg bewahren.",
+			card5Id: "05",
+			card5Title: "Hochkritische KI",
 			card5Desc:
-				"Führen Sie nachvollziehbare Audit-Protokolle für Finanztransaktionen, regulatorische Vorschriften und Marktdaten.",
-			card6Title: "Autonome Code-Refaktorierung",
+				"Für juristische, finanzielle, medizinische und regulierte Systeme, bei denen exakter Abruf zählt.",
+			card6Id: "06",
+			card6Title: "Multi-Agenten-Systeme",
 			card6Desc:
-				"Geben Sie Entwickler-Copiloten ein Gedächtnis für Konventionen, technische Schulden und historische Pull Requests.",
+				"Eine gemeinsame, persistente Gedächtnisschicht für kollaborierende KI-Agenten bereitstellen.",
 		},
 		code: {
-			headline: "In 3 Zeilen Code Einsatzbereit",
-			subline:
-				"Integrieren Sie kognitives Gedächtnis in wenigen Minuten in Ihren LLM-Stack mit unseren leichtgewichtigen SDKs für TypeScript, Python und REST.",
-			installCmd: "npm install @piyapi/sdk",
-			feature1Title: "Kein Infrastruktur-Overhead",
-			feature1Desc: "Vollständig verwaltete, global verteilte Cloud-API.",
-			feature2Title: "Universelle LLM-Kompatibilität",
-			feature2Desc: "Kompatibel mit OpenAI, Anthropic, Gemini und lokalen Modellen.",
-			feature3Title: "Integrierte CDC-Konnektoren",
-			feature3Desc: "Automatische Echtzeitsynchronisierung mit PostgreSQL, MongoDB, Notion und Slack.",
+			headline: "Integrieren Sie Piyapi dort, wo Ihre KI bereits arbeitet.",
+			subline: "Gedächtnis, das mit jedem Modell, Framework oder Agenten-Stack funktioniert.",
+			tag01: "//01",
+			sdkTitle: "SDK",
+			sdkSubtitle: "Native SDKs, REST-APIs und KI-Framework-Integrationen",
+			tag02: "//02",
+			agentsTitle: "KI-AGENTEN",
+			agentsSubtitle:
+				"Ermöglichen Sie KI-Agenten, sich über jede Interaktion und jeden Workflow hinweg präzise zu erinnern.",
+			tag03: "//03",
+			connectorsTitle: "KONNEKTOREN",
+			connectorsSubtitle: "Eine einzige Quelle der Wahrheit. Jede Anwendung. Jedes Modell.",
+			tag04: "//04",
+			mcpTitle: "MCP",
+			mcpSubtitle:
+				"Ermöglichen Sie Coding-Assistenten, sich über Sitzungen hinweg an Projekte, Gespräche und Entscheidungen zu erinnern",
 		},
 		security: {
-			headlinePre: "Ihre Daten. Ihr Gedächtnis. ",
-			headlineHighlight: "Ihre Kontrolle.",
-			headlinePost: "",
-			subline:
-				"Sicherheit auf Enterprise-Niveau, deterministische Governance und granulare Datenschutzkontrollen auf jeder Ebene.",
-			card1Title: "Ende-zu-Ende-Verschlüsselung",
-			card1Desc: "Alle Gedächtnisgraphen und Vektoren bei Übertragung (TLS 1.3) und im Ruhezustand (AES-256) verschlüsselt.",
-			card2Title: "Keine Datenspeicherung zu Trainingszwecken",
-			card2Desc: "Strikte Datenschutzgrenzen. Ihre Gedächtniszustände werden niemals für Basistrainings verwendet.",
-			card3Title: "SOC 2 & HIPAA Konform",
-			card3Desc: "Erfüllt weltweite Datenschutzstandards, Enterprise-Audits und regulatorische Vorgaben.",
-			card4Title: "On-Premises & VPC-Bereitstellungen",
-			card4Desc: "Betreiben Sie PiyAPI in Ihrer dedizierten AWS, GCP, Azure VPC oder einer isolierten Sovereign Cloud.",
+			tag: "DATENSCHUTZ & SICHERHEIT",
+			headlineData: "Daten.",
+			headlineMemory: "Gedächtnis.",
+			headlineControl: "Kontrolle.",
+			subline1:
+				"PiyAPI hält KI-Gedächtnis privat, explizit und editierbar, damit Sie die Kontrolle darüber behalten, was Ihre KI",
+			subline2: "erinnert, ändert und vergisst.",
+			card1Title: "Von Grund auf Privat",
+			card1Desc:
+				"Sensibles Wissen bleibt über den gesamten Lebenszyklus hinweg verschlüsselt und isoliert.",
+			card2Title: "Explizites Gedächtnis",
+			card2Desc:
+				"Jede Erinnerung ist adressierbar und auditierbar, nicht in undurchsichtigen Modellparametern verborgen.",
+			card3Title: "Editierbar durch Design",
+			card3Desc:
+				"Korrigieren, aktualisieren oder löschen Sie einzelne Erinnerungen, ohne das Modell zu verändern.",
+			card4Title: "Volle Transparenz",
+			card4Desc:
+				"Sehen Sie, woran sich die KI erinnert, woher die Daten stammen und wie sie sich verändert haben.",
+			card5Title: "Nutzergesteuertes Gedächtnis",
+			card5Desc: "Steuern Sie, wer Erinnerungen erstellen, lesen, aktualisieren, exportieren oder löschen darf.",
 		},
 		research: {
-			headline: "Aus Unserem Forschungslabor",
-			subline: "Pioniere im Bereich deterministischer kognitiver Gedächtnis- und assoziativer Zustandsarchitekturen.",
-			readPaper: "Paper Lesen",
-			paper1Title: "Assoziativer Neuronaler Zustandsraum für Langzeitdialoge",
-			paper1Abstract:
-				"Wir präsentieren eine hybride Gedächtnisarchitektur, die temporale Zustandsräume mit spärlich besetzten assoziativen Graphenindizes für unbegrenzte Dialogerinnerung verbindet.",
-			paper2Title: "Deterministische Wahrheits-Arbitrierung in Dynamischen Wissensgraphen",
-			paper2Abstract:
-				"Ein formales Framework zur Auflösung zeitlicher Widersprüche im LLM-Gedächtnis ohne Nachtraining oder vollständige Kontextneuberechnung.",
-			paper3Title: "Sub-Millisekunden-Semantikgraphen-Traversierung für Echtzeit-Agenten",
-			paper3Abstract:
-				"Benchmark-Vergleich von Multi-Agenten-Zustandsstrukturen gegenüber herkömmlicher Vektorsuche auf Graphen mit über 10 Mio. Entitäten.",
+			tag: "FORSCHUNG & BLOGS",
+			headline: "Forschung & Einblicke",
+			paper1Overlay: "Gedächtnis",
+			paper1Title: "Gedächtnis ist die Fehlende Schicht der Intelligenz",
+			paper1Status: "Demnächst",
+			paper1Category: "Forschungsberichte",
+			paper2Overlay: "Gedächtnis",
+			paper2Title: "Deterministisches Gedächtnis für Probabilistische KI",
+			paper2Status: "Demnächst",
+			paper2Category: "Experimente",
+			paper3Overlay: "Gedächtnis",
+			paper3Title: "Messung des Langzeitgedächtnisses in KI-Systemen",
+			paper3Status: "Demnächst",
+			paper3Category: "Ingenieurwesen",
 		},
 		cta: {
-			headline: "Bauen Sie mit Piyapi",
+			headline: "Bauen Sie Mit Piyapi",
 			subline:
-				"Haben Sie einen konkreten Anwendungsfall? Sprechen Sie mit unserem Team und entdecken Sie, wie deterministischer Speicher Ihren KI-Stack optimiert.",
+				"Haben Sie einen Anwendungsfall im Kopf? Sprechen Sie mit unserem Team und entdecken Sie, wo deterministisches Gedächtnis in Ihren KI-Stack passt.",
 			talkButton: "Mit dem Team Sprechen",
 			marqueeItems: [
-				"Konversations-KI",
+				"Konversationelle KI",
 				"Persönliches KI-Gedächtnis",
 				"Unternehmenswissen",
 				"Multi-Agenten-Systeme",
-				"Healthcare-KI",
+				"Gesundheits-KI",
 			],
 		},
 		calendly: {
-			modalTitle: "Termin mit dem Negentro-Team vereinbaren",
-			openNewTab: "In neuem Tab öffnen",
-			loading: "Kalender wird geladen...",
+			title: "Demo mit Piyapi Vereinbaren",
+			loading: "Kalenderansicht wird geladen...",
+			close: "Modal schließen",
 		},
 		footer: {
 			infrastructure: "Infrastruktur für zuverlässige KI.",
@@ -1177,31 +1169,32 @@ export const translations: Record<Language, TranslationDictionary> = {
 			devMcp: "MCP-Integration",
 			devCli: "CLI-Referenz",
 			devTrust: "Trust Center",
-			devStatus: "Systemstatus",
+			devStatus: "Status",
 			prodTitle: "Produkt",
-			prodPiyapi: "PiyAPI Engine",
-			prodBench: "Benchmarks",
-			prodPlayground: "Playground",
-			prodConnectors: "Daten-Konnektoren",
+			prodResearch: "Forschung",
+			prodBlog: "Blog",
 			prodIntegrations: "Integrationen",
-			prodChangelog: "Changelog",
+			prodReleaseNotes: "Versionshinweise",
+			prodGithub: "GitHub",
 			compTitle: "Unternehmen",
 			compAbout: "Über Uns",
-			compResearch: "Forschungslabor",
+			compContact: "Kontaktieren Sie Uns",
 			compCareers: "Karriere",
-			compPrivacy: "Datenschutzerklärung",
-			compTerms: "Nutzungsbedingungen",
-			compSecurity: "Sicherheit",
-			useTitle: "Anwendungsfälle",
-			useConv: "Konversations-KI",
-			useAgents: "Multi-Agenten-Strukturen",
-			useHealth: "Healthcare-KI",
-			useFin: "Finanz-Analysen",
-			useEnter: "Unternehmenswissen",
-			soc2: "SOC 2 Typ I & II Bereit",
-			gdpr: "DSGVO Konform",
-			hipaa: "HIPAA Konform",
-			contactTitle: "Kontakt",
+			compStartup: "Startup-Programm",
+			compInvestors: "Investoren",
+			compPricing: "Preise",
+			usecasesTitle: "Anwendungsfälle",
+			useSupport: "Kundensupport",
+			useHealth: "Gesundheitswesen",
+			useEdu: "Bildung",
+			useSales: "Vertrieb & CRM",
+			useEcom: "E-Commerce",
+			soc2: "SOC 2 Typ I & Typ II Bereit",
+			gdpr: "DSGVO Bereit",
+			hipaa: "HIPAA Bereit",
+			complianceTitle: "Compliance",
+			contactTitle: "Kontaktieren Sie Uns",
+			contactEmail: "ceo@negentro.tech",
 			copyright: "© 2026 INFORAVIUM TECHNOLOGIES PRIVATE LIMITED",
 			rightsReserved: "– Alle Rechte vorbehalten",
 			languagesLabel: "Sprachen",
@@ -1210,26 +1203,6 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "Gedächtnis wird geladen...",
 			sublinePre: "Unser Team legt letzte Hand an",
 			sublineHighlight: "Negentro.",
-			comingSoon: "DEMNÄCHST VERFÜGBAR",
-			exploreDocs: "Dokumentation Erkunden",
-			returnHome: "Zur Startseite",
-			notifyTitle: "Bei Veröffentlichung benachrichtigt werden",
-			notifySub: "Erhalten Sie als Erster Zugang zu Entwickler-Previews, Forschungspapieren und neuen Funktionen.",
-			placeholder: "Geben Sie Ihre geschäftliche E-Mail ein",
-			notifyBtn: "Benachrichtigen",
-			joined: "Sie stehen auf der Liste! Wir informieren Sie zum Start.",
-			subpageResearchTitle: "Pionierarbeit in Kognitiver KI-Forschung",
-			subpageResearchDesc:
-				"Unser Forschungsteam veröffentlicht grundlegende Arbeiten zu assoziativen neuronalen Graphen, Wahrheitsarbitrierung und Gedächtnisarchitekturen für künstliche allgemeine Intelligenz.",
-			subpagePricingTitle: "Transparente & Skalierbare Preise",
-			subpagePricingDesc:
-				"Flexible Entwickler-Tarife und hochleistungsfähige Enterprise-Infrastruktur zur Skalierung von Prototypen bis hin zu Hunderten Millionen täglicher Abfragen.",
-			subpageInitiativesTitle: "Globale KI-Initiativen & Ökosystem",
-			subpageInitiativesDesc:
-				"Förderung offener Forschungspartnerschaften, Universitätsstipendien und Open-Source-SDKs zur Demokratisierung kognitiver Zustandspersistenz.",
-			subpageResourcesTitle: "Entwickler-Ressourcen & Knowledge Base",
-			subpageResourcesDesc:
-				"Umfassende Anleitungen, Architektur-Blueprints, Integrationsbeispiele und Community-MCP-Plugins für den Bau zuverlässiger KI-Anwendungen.",
 		},
 	},
 
@@ -1243,217 +1216,232 @@ export const translations: Record<Language, TranslationDictionary> = {
 			tryPiyApi: "Попробовать PiyAPI",
 		},
 		hero: {
-			headlinePre: "Следующий этап эволюции\nинтеллекта — это ",
+			headlinePre: "Следующая Эволюция\nИнтеллекта — Это ",
 			headlineMemory: "Память.",
-			subline: "Piyapi дает искусственному интеллекту возможность помнить, учиться и развиваться.",
+			subline: "Piyapi наделяет ИИ способностью помнить, учиться и развиваться.",
 			emailPlaceholder: "Введите ваш email",
-			joinWaitlist: "Вступить в лист ожидания",
-			joining: "Запись...",
-			successMsg: "Вы в списке ожидания! Мы свяжемся с вами в ближайшее время.",
+			joinWaitlist: "Присоединиться",
+			joining: "Отправка...",
+			successMsg: "Вы в списке ожидания! Мы скоро свяжемся с вами.",
 			duplicateMsg: "Вы уже находитесь в списке ожидания!",
 			invalidEmailMsg: "Пожалуйста, введите корректный адрес электронной почты.",
 		},
 		partner: {
-			supportedBy: "При поддержке ведущих международных акселераторов",
+			supportedBy: "ПРИ ПОДДЕРЖКЕ МЕЖДУНАРОДНЫХ СТАРТАП-ПРОГРАММ",
 		},
-		paradigm: {
+		problem: {
 			tag: "ПРОБЛЕМА",
-			titlePre: "ИИ способен рассуждать. ",
-			titleHighlight: "Ему все еще нужна память.",
+			headlinePre: "ИИ Способен Рассуждать.\nЕму Все Еще Нужна ",
+			headlineMemory: "Память.",
 			subline:
-				"Современные модели воспринимают каждое взаимодействие как изолированную сессию. Без постоянной когнитивной памяти интеллект остается статичным, повторяющимся и дорогим.",
-			problem1Title: "Ограничения контекстного окна",
-			problem1Desc:
-				"Увеличение контекстного окна экспоненциально повышает вычислительные затраты и задержку, не обеспечивая долговременного сохранения знаний.",
-			problem2Title: "Примитивный RAG и обертки",
-			problem2Desc:
-				"Обычные векторные базы данных находят лишь поверхностные сходства, не способные отражать временные взаимосвязи и изменение фактов.",
-			problem3Title: "Мультиагентные системы без состояния",
-			problem3Desc:
-				"Без детерминированного общего состояния рабочие процессы агентов подвержены искажению памяти и несогласованности действий.",
+				"ИИ может рассуждать в моменте. Но без памяти ему трудно сохранять знания, опыт и контекст на будущее.",
+			tab1Label: "Перегрузка Контекста",
+			tab1CardTitle: "Перегрузка Контекста",
+			tab1CardDesc:
+				"Увеличение контекста не означает улучшение памяти. С ростом информации растут затраты, а поиск нужных знаний усложняется.",
+			tab2Label: "Оболочки Памяти ИИ",
+			tab2CardTitle: "Оболочки Памяти ИИ",
+			tab2CardDesc:
+				"Суммаризация диалогов уменьшает размер контекста, но может терять точные факты, временные метки и источник.",
+			tab3Label: "Нативная Память Моделей",
+			tab3CardTitle: "Нативная Память Моделей",
+			tab3CardDesc:
+				"Модели могут помнить. Но они все еще не могут гарантировать, что они помнят, почему они это помнят и когда данные изменились.",
 		},
 		differentApproach: {
-			sectionTag: "АРХИТЕКТУРА",
-			headlinePre: "Принципиально новый подход к ",
-			headlineHighlight: "Памяти ИИ",
-			card1Title: "Ассоциативный Нейрограф",
-			card1Desc:
-				"Объединяет семантические эмбеддинги с динамическими графами знаний, создавая ассоциативные пути памяти по аналогии с человеческим мозгом.",
-			card2Title: "Движок Временных Состояний",
-			card2Desc:
-				"Отслеживает изменение убеждений, предпочтений и контекста во времени с возможностью детерминированного отката к любой точке истории.",
-			card3Title: "Мгновенный Гибридный Поиск",
-			card3Desc:
-				"Субмиллисекундная гибридная индексация, сочетающая векторный поиск со структурированным обходом графа для безупречной точности.",
-			quotePre: "Векторный поиск — лишь грубое приближение к ",
-			quoteHighlight: "памяти",
-			quotePost:
-				" — Истинному когнитивному интеллекту требуется структурированное, развивающееся и контекстное сохранение состояния.",
-			sotaTitle: "Показатели SOTA",
-			sotaLine1: "Лидирующие результаты в LongMemEval,",
-			sotaLine2: "LoCoMo, ConvoMem со сверхбыстрым откликом и",
-			sotaLine3: "кардинально сниженным расходом токенов.",
-			sotaMetric1Value: "#1",
-			sotaMetric1Badge: "РЕЙТИНГ",
-			sotaMetric1Label: "Бенчмарк LongMem",
-			sotaMetric2Value: "<500мс",
-			sotaMetric2Badge: "ЗАДЕРЖКА",
-			sotaMetric2Label: "Глобальный Гибридный Отклик",
-			sotaMetric3Value: "50-90%",
-			sotaMetric3Badge: "ЭКОНОМИЯ ТОКЕНОВ",
-			sotaMetric3Label: "Сокращение контекстного окна",
-			tableHeaderDim: "Возможности и Архитектура",
-			tableHeaderPiyapi: "Piyapi Когнитивная",
-			tableHeaderVector: "Традиционные Векторные БД",
-			tableHeaderRedis: "Redis / Key-Value",
-			tableHeaderCustom: "Кастомные RAG Пайплайны",
-			row1Name: "Архитектура Памяти",
-			row1Piyapi: "Нейрограф + Временная Память",
-			row1Vector: "Плоский векторный индекс (HNSW)",
-			row1Redis: "Простое кэширование ключ-значение",
-			row1Custom: "Связки LangChain / LlamaIndex",
-			row2Name: "Учет Фактора Времени",
-			row2Piyapi: "Полная хронология и эволюция фактов",
-			row2Vector: "Нет временного контекста",
-			row2Redis: "Ручные метки TTL",
-			row2Custom: "Ненадежная кастомная логика",
-			row3Name: "Скорость Отклика",
-			row3Piyapi: "< 500мс Субмиллисекундный поиск",
-			row3Vector: "1.2с - 4.5с (Задержка запроса)",
-			row3Redis: "Быстрый поиск по ключу (без смысла)",
-			row3Custom: "2.5с - 8.0с (Высокие накладные расходы)",
-			row4Name: "Расход Токенов",
-			row4Piyapi: "На 50-90% Меньше Расход Токенов",
-			row4Vector: "Перегрузка контекста сырыми данными",
-			row4Redis: "Нет смысловой фильтрации",
-			row4Custom: "Большие потери токенов",
-			row5Name: "Разрешение Конфликтов",
-			row5Piyapi: "Детерминированный арбитраж фактов",
-			row5Vector: "Противоречивые фрагменты в выдаче",
-			row5Redis: "Перезапись последней операцией",
-			row5Custom: "Непредсказуемые галлюцинации",
-			row6Name: "Мультиагентная Синхронизация",
-			row6Piyapi: "Единое общее состояние в реальном времени",
-			row6Vector: "Изолированные запросы агентов",
-			row6Redis: "Требуются ручные блокировки",
-			row6Custom: "Высокий риск рассинхронизации",
+			tag: "РЕШЕНИЕ",
+			titlePre: "Другой Подход к Памяти ",
+			titleHighlight: "ИИ.",
+			sublinePre: "Создано для продуктового ИИ: ",
+			sublineHighlight: "Piyapi",
+			sublinePost:
+				" сохраняет точные знания с предсказуемым извлечением и проверяемым происхождением.",
+			feat1Title: "Детерминизм",
+			feat1Desc:
+				"Предсказуемое и воспроизводимое извлечение памяти для надежных систем ИИ.",
+			feat2Title: "Точность",
+			feat2Desc:
+				"Сохранение полного контекста и нюансов данных без потерь и сжатия.",
+			feat3Title: "Происхождение",
+			feat3Desc:
+				"Полная прослеживаемость для каждого фрагмента извлеченных знаний.",
+			feat4Title: "Персистентность",
+			feat4Desc:
+				"Долгосрочная историческая непрерывность между сессиями и моделями.",
+			feat5Title: "Собственность",
+			feat5Desc:
+				"Полный контроль пользователя и суверенитет над приватными данными памяти.",
+			feat6Title: "Портативность",
+			feat6Desc:
+				"Модельно-независимая совместимость для бесшовной миграции инфраструктуры.",
+			quotePre: "Извлечение — это лишь половина задачи. Продуктовому ИИ нужна ",
+			quoteHighlight: "память",
+			quotePost: ", способная сохранять и верифицировать свои знания.",
+			sotaHeading: "Память SOTA,\nВ Цифрах.",
+			sotaLine1: "Лидирующие показатели в LongMemEval,",
+			sotaLine2: "LoCoMo, ConvoMem с быстрым извлечением и",
+			sotaLine3: "кардинальным снижением расхода токенов.",
+			metric1Value: "#1",
+			metric1Sublabel: "В MEMBENCH",
+			metric1Line1: "ПРЕВОСХОДНЫЙ",
+			metric1Line2: "ОПЫТ ИИ",
+			metric2Value: "<500ms",
+			metric2Sublabel: "ЗАДЕРЖКА ИЗВЛЕЧЕНИЯ",
+			metric2Line1: "ПАМЯТЬ В",
+			metric2Line2: "РЕАЛЬНОМ ВРЕМЕНИ",
+			metric3Value: "50-90%",
+			metric3Sublabel: "МЕНЬШЕ ТОКЕНОВ",
+			metric3Line1: "ИИ МАСШТАБА",
+			metric3Line2: "ПРЕДПРИЯТИЯ",
+			tableHeaderContext: "Перегрузка Контекста",
+			tableHeaderWrapper: "Оболочка Памяти",
+			tableHeaderNative: "Нативная Память",
+			tableRow1: "Точное Сохранение",
+			tableRow2: "Независимость от Модели",
+			tableRow3: "Проверяемое Происхождение",
+			tableRow4: "Корпоративное Управление",
 		},
 		workflows: {
-			headline: "Трансформация Процессов с Долговременной Памятью",
-			subline:
-				"Оснастите ваших агентов, копайлотов и автономные конвейеры архитектурой памяти, готовой к продакшену.",
-			card1Title: "Персональные ИИ-Ассистенты",
-			card1Desc:
-				"Сохраняйте предпочтения пользователя, эмоциональный контекст и детали общения на протяжении месяцев диалога.",
-			card2Title: "Корпоративные Базы Знаний",
+			headlinePre: "Создано для Любого ",
+			headlineHighlight: "ИИ-Воркфлоу.",
+			sublineLine1:
+				"Усильте вашу специализированную инфраструктуру детерминированной памятью,",
+			sublineLine2:
+				"оптимизированной для высоконагруженных продуктовых моделей с глубоким контекстом.",
+			card1Id: "01",
+			card1Title: "ИИ-Агенты",
+			card1Desc: "Персистентная память для автономного принятия многоэтапных решений.",
+			card2Id: "02",
+			card2Title: "Диалоговый ИИ",
 			card2Desc:
-				"Мгновенный поиск по тысячам внутренних документов, переписке в Slack и тикетам с точным версионированием.",
-			card3Title: "Координация Мультиагентов",
+				"Сохранение долгосрочного контекста в поддержке клиентов, продажах и персональных ассистентах.",
+			card3Id: "03",
+			card3Title: "RAG-Системы",
 			card3Desc:
-				"Позволяет командам специализированных агентов совместно работать с единым когнитивным пространством памяти.",
-			card4Title: "Медицина и История Пациентов",
+				"Извлечение точных знаний с детерминированным происхождением вместо простого семантического сходства.",
+			card4Id: "04",
+			card4Title: "Корпоративные Знания",
 			card4Desc:
-				"Безопасное отслеживание динамики лечения, истории приемов и диагностических показателей пациентов.",
-			card5Title: "Финансовый Анализ и Аудит",
+				"Сохранение знаний организации между командами, документами и рабочими процессами.",
+			card5Id: "05",
+			card5Title: "ИИ Высокой Ответственности",
 			card5Desc:
-				"Формирование прозрачных аудиторских следов для финансовых операций, комплаенса и рыночной аналитики.",
-			card6Title: "Автономный Рефакторинг Кода",
+				"Для юридических, финансовых, медицинских и регулируемых систем, где важна абсолютная точность.",
+			card6Id: "06",
+			card6Title: "Мультиагентные Системы",
 			card6Desc:
-				"Копайлоты для разработчиков запоминают архитектурные правила репозитория, техдолг и историю пулл-реквестов.",
+				"Единый персистентный слой памяти для совместной работы нескольких ИИ-агентов.",
 		},
 		code: {
-			headline: "Интеграция в 3 Строки Кода",
-			subline:
-				"Подключите когнитивную память к вашему LLM-стеку за считанные минуты с помощью наших SDK для TypeScript, Python и REST.",
-			installCmd: "npm install @piyapi/sdk",
-			feature1Title: "Без Затрат на Инфраструктуру",
-			feature1Desc: "Полностью управляемый, глобально распределенный облачный API.",
-			feature2Title: "Универсальная Совместимость",
-			feature2Desc: "Бесшовная работа с OpenAI, Anthropic, Gemini и локальными моделями.",
-			feature3Title: "Готовые CDC-Коннекторы",
-			feature3Desc: "Автоматическая синхронизация в реальном времени с PostgreSQL, MongoDB, Notion и Slack.",
+			headline: "Интегрируйте Piyapi туда, где уже работает ваш ИИ.",
+			subline: "Память, работающая с любой моделью, фреймворком или стеком агентов.",
+			tag01: "//01",
+			sdkTitle: "SDK",
+			sdkSubtitle: "Нативные SDK, REST API и интеграции с ИИ-фреймворками",
+			tag02: "//02",
+			agentsTitle: "ИИ-АГЕНТЫ",
+			agentsSubtitle:
+				"Позвольте ИИ-агентам точно помнить данные в каждом взаимодействии и процессе.",
+			tag03: "//03",
+			connectorsTitle: "КОННЕКТОРЫ",
+			connectorsSubtitle: "Единый источник истины. Каждое приложение. Каждая модель.",
+			tag04: "//04",
+			mcpTitle: "MCP",
+			mcpSubtitle:
+				"Позвольте ассистентам разработки помнить проекты, диалоги и решения между сессиями",
 		},
 		security: {
-			headlinePre: "Ваши Данные. Ваша Память. ",
-			headlineHighlight: "Ваш Контроль.",
-			headlinePost: "",
-			subline:
-				"Корпоративный уровень безопасности, детерминированное управление и гранулярный контроль конфиденциальности на каждом уровне.",
-			card1Title: "Сквозное Шифрование",
-			card1Desc: "Все графы и векторы памяти зашифрованы при передаче (TLS 1.3) и хранении (AES-256).",
-			card2Title: "Нулевое Сохранение Данных",
-			card2Desc: "Строгая изоляция. Ваши данные памяти никогда не используются для обучения базовых моделей.",
-			card3Title: "Готовность к SOC 2 и HIPAA",
-			card3Desc: "Соответствие международным стандартам безопасности, корпоративным аудитам и медицинским протоколам.",
-			card4Title: "On-Premises и VPC Развертывание",
-			card4Desc: "Развертывание PiyAPI в изолированном VPC в AWS, GCP, Azure или в суверенном закрытом контуре.",
+			tag: "КОНФИДЕНЦИАЛЬНОСТЬ И БЕЗОПАСНОСТЬ",
+			headlineData: "Данные.",
+			headlineMemory: "Память.",
+			headlineControl: "Контроль.",
+			subline1:
+				"PiyAPI сохраняет память ИИ приватной, явной и редактируемой, чтобы вы полностью контролировали то, что ваш ИИ",
+			subline2: "помнит, изменяет и забывает.",
+			card1Title: "Приватность по умолчанию",
+			card1Desc:
+				"Конфиденциальные знания остаются зашифрованными и изолированными на протяжении всего жизненного цикла.",
+			card2Title: "Явная Память",
+			card2Desc:
+				"Каждое воспоминание доступно и прозрачно, а не скрыто внутри непрозрачных параметров модели.",
+			card3Title: "Редактируемость по Дизайну",
+			card3Desc:
+				"Исправляйте, обновляйте или удаляйте отдельные записи памяти без переобучения базовой модели.",
+			card4Title: "Полная Прозрачность",
+			card4Desc:
+				"Смотрите, что именно помнит ИИ, откуда взялась информация и как она менялась со временем.",
+			card5Title: "Память под контролем пользователя",
+			card5Desc: "Управляйте правами на создание, чтение, обновление, экспорт и удаление памяти.",
 		},
 		research: {
-			headline: "Из Нашей Исследовательской Лаборатории",
-			subline: "Передовые разработки в области детерминированной когнитивной памяти и ассоциативных архитектур.",
-			readPaper: "Читать Статью",
-			paper1Title: "Ассоциативное Нейропространство Состояний для Долговременного Диалога",
-			paper1Abstract:
-				"Мы представляем гибридную архитектуру памяти, объединяющую временные пространства состояний с разреженными ассоциативными графами для неограниченного сохранения контекста.",
-			paper2Title: "Детерминированный Арбитраж Истинности в Динамических Графах Знаний",
-			paper2Abstract:
-				"Формальная модель разрешения временных противоречий в памяти LLM без повторного обучения или переиндексации контекста.",
-			paper3Title: "Субмиллисекундный Семантический Обход Графов для Агентов Реального Времени",
-			paper3Abstract:
-				"Сравнительный анализ высоконагруженных мультиагентных систем памяти с векторным поиском на графах более 10 млн сущностей.",
+			tag: "ИССЛЕДОВАНИЯ И СТАТЬИ",
+			headline: "Исследования & Инсайты",
+			paper1Overlay: "Память",
+			paper1Title: "Память — Недостающий Слой Интеллекта",
+			paper1Status: "Скоро",
+			paper1Category: "Научные Статьи",
+			paper2Overlay: "Память",
+			paper2Title: "Детерминированная Память для Вероятностного ИИ",
+			paper2Status: "Скоро",
+			paper2Category: "Эксперименты",
+			paper3Overlay: "Память",
+			paper3Title: "Измерение Долгосрочной Памяти в Системах ИИ",
+			paper3Status: "Скоро",
+			paper3Category: "Инженерия",
 		},
 		cta: {
-			headline: "Создавайте с Piyapi",
+			headline: "Создавайте С Piyapi",
 			subline:
-				"Есть проект или идея? Обсудите с нашей командой, как детерминированная память может усилить ваш ИИ-стек.",
+				"Есть проект? Поговорите с нашей командой и узнайте, как детерминированная память усилит ваш стек ИИ.",
 			talkButton: "Связаться с Командой",
 			marqueeItems: [
 				"Диалоговый ИИ",
 				"Персональная Память ИИ",
 				"Корпоративные Знания",
 				"Мультиагентные Системы",
-				"Медицинский ИИ",
+				"ИИ в Медицине",
 			],
 		},
 		calendly: {
-			modalTitle: "Запланировать встречу с командой Negentro",
-			openNewTab: "Открыть в новой вкладке",
-			loading: "Загрузка календаря...",
+			title: "Запланировать Демо с Piyapi",
+			loading: "Загрузка расписания...",
+			close: "Закрыть окно",
 		},
 		footer: {
 			infrastructure: "Инфраструктура для надежного ИИ.",
 			moreAboutUs: "Подробнее о нас",
 			devTitle: "Разработчикам",
-			devDocs: "Документация",
+			devDocs: "Документация разработчика",
 			devApi: "Справочник API",
 			devMcp: "Интеграция MCP",
 			devCli: "Справочник CLI",
-			devTrust: "Центр Доверия",
-			devStatus: "Статус Системы",
+			devTrust: "Центр доверия",
+			devStatus: "Статус",
 			prodTitle: "Продукт",
-			prodPiyapi: "Движок PiyAPI",
-			prodBench: "Бенчмарки",
-			prodPlayground: "Песочница",
-			prodConnectors: "Коннекторы Данных",
+			prodResearch: "Исследования",
+			prodBlog: "Блог",
 			prodIntegrations: "Интеграции",
-			prodChangelog: "История Изменений",
+			prodReleaseNotes: "Примечания к выпуску",
+			prodGithub: "GitHub",
 			compTitle: "Компания",
-			compAbout: "О Нас",
-			compResearch: "Лаборатория",
+			compAbout: "О нас",
+			compContact: "Связаться с нами",
 			compCareers: "Карьера",
-			compPrivacy: "Политика Конфиденциальности",
-			compTerms: "Условия Использования",
-			compSecurity: "Безопасность",
-			useTitle: "Сферы Применения",
-			useConv: "Диалоговый ИИ",
-			useAgents: "Мультиагентные Системы",
-			useHealth: "Медицина и Здравоохранение",
-			useFin: "Финансовая Аналитика",
-			useEnter: "Корпоративные Знания",
-			soc2: "Готовность к SOC 2 Type I & II",
+			compStartup: "Программа стартапов",
+			compInvestors: "Инвесторы",
+			compPricing: "Тарифы",
+			usecasesTitle: "Сценарии",
+			useSupport: "Поддержка клиентов",
+			useHealth: "Здравоохранение",
+			useEdu: "Образование",
+			useSales: "Продажи и CRM",
+			useEcom: "Электронная коммерция",
+			soc2: "SOC 2 Type I и Type II готов",
 			gdpr: "Соответствие GDPR",
 			hipaa: "Соответствие HIPAA",
-			contactTitle: "Контакты",
+			complianceTitle: "Соответствие",
+			contactTitle: "Связаться с нами",
+			contactEmail: "ceo@negentro.tech",
 			copyright: "© 2026 INFORAVIUM TECHNOLOGIES PRIVATE LIMITED",
 			rightsReserved: "– Все права защищены",
 			languagesLabel: "Языки",
@@ -1462,26 +1450,6 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "Память загружается...",
 			sublinePre: "Наша команда наносит последние штрихи на",
 			sublineHighlight: "Negentro.",
-			comingSoon: "СКОРО ОТКРЫТИЕ",
-			exploreDocs: "Изучить Документацию",
-			returnHome: "На Главную",
-			notifyTitle: "Узнайте первыми о запуске",
-			notifySub: "Получите ранний доступ к превью для разработчиков, публикациям исследований и новым функциям.",
-			placeholder: "Введите ваш рабочий email",
-			notifyBtn: "Уведомить Меня",
-			joined: "Вы в списке! Мы сообщим вам сразу после релиза.",
-			subpageResearchTitle: "Передовые Исследования в Области Когнитивного ИИ",
-			subpageResearchDesc:
-				"Наша исследовательская команда публикует фундаментальные работы по ассоциативным нейрографам, арбитражу фактов и архитектурам памяти для сильного искусственного интеллекта.",
-			subpagePricingTitle: "Прозрачные и Гибкие Тарифы",
-			subpagePricingDesc:
-				"Доступные тарифы для разработчиков и мощная корпоративная инфраструктура, готовая масштабироваться от первых тестов до сотен миллионов запросов в день.",
-			subpageInitiativesTitle: "Глобальные Инициативы и Экосистема ИИ",
-			subpageInitiativesDesc:
-				"Развитие открытых научных партнерств, университетских грантов и открытых SDK для демократизации когнитивной памяти в ИИ.",
-			subpageResourcesTitle: "База Знаний и Ресурсы для Разработчиков",
-			subpageResourcesDesc:
-				"Подробные руководства, архитектурные схемы, примеры интеграции и плагины сообщества для создания надежных ИИ-приложений с долговременной памятью.",
 		},
 	},
 }
@@ -1492,17 +1460,19 @@ interface LanguageContextType {
 	t: TranslationDictionary
 }
 
-const LanguageContext = createContext<LanguageContextType>({
-	language: "en",
-	setLanguage: () => {},
-	t: translations.en,
-})
+const LanguageContext = createContext<LanguageContextType | undefined>(
+	undefined,
+)
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const STORAGE_KEY = "negentro_lang"
+
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
+	children,
+}) => {
 	const [language, setLanguageState] = useState<Language>(() => {
 		if (typeof window !== "undefined") {
-			const saved = localStorage.getItem("negentro_language") as Language | null
-			if (saved && ["en", "es", "fr", "de", "ru"].includes(saved)) {
+			const saved = localStorage.getItem(STORAGE_KEY) as Language
+			if (saved && translations[saved]) {
 				return saved
 			}
 		}
@@ -1510,10 +1480,12 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 	})
 
 	const setLanguage = (lang: Language) => {
-		setLanguageState(lang)
-		if (typeof window !== "undefined") {
-			localStorage.setItem("negentro_language", lang)
-			document.documentElement.lang = lang
+		if (translations[lang]) {
+			setLanguageState(lang)
+			if (typeof window !== "undefined") {
+				localStorage.setItem(STORAGE_KEY, lang)
+				document.documentElement.lang = lang
+			}
 		}
 	}
 
@@ -1532,4 +1504,10 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 	)
 }
 
-export const useLanguage = () => useContext(LanguageContext)
+export function useLanguage(): LanguageContextType {
+	const context = useContext(LanguageContext)
+	if (!context) {
+		throw new Error("useLanguage must be used within a LanguageProvider")
+	}
+	return context
+}

@@ -1,5 +1,5 @@
 import type React from "react"
-import { Shield, ListOrdered, Layers, Sliders, ChevronRight } from "lucide-react"
+import { Shield, ListOrdered, FileEdit, Layers, Sliders, ChevronRight } from "lucide-react"
 import { MemoryVerificationDemo } from "@/components/ui/MemoryVerificationDemo"
 import { useLanguage } from "@/lib/i18n"
 
@@ -18,14 +18,19 @@ export const SecurityComplianceSection: React.FC = () => {
 			desc: t.security.card2Desc,
 		},
 		{
-			icon: <Layers className="w-4.5 h-4.5 text-white" />,
+			icon: <FileEdit className="w-4.5 h-4.5 text-white" />,
 			title: t.security.card3Title,
 			desc: t.security.card3Desc,
 		},
 		{
-			icon: <Sliders className="w-4.5 h-4.5 text-white" />,
+			icon: <Layers className="w-4.5 h-4.5 text-white" />,
 			title: t.security.card4Title,
 			desc: t.security.card4Desc,
+		},
+		{
+			icon: <Sliders className="w-4.5 h-4.5 text-white" />,
+			title: t.security.card5Title,
+			desc: t.security.card5Desc,
 		},
 	]
 
@@ -47,19 +52,25 @@ export const SecurityComplianceSection: React.FC = () => {
 				<div className="w-full flex items-center justify-start">
 					<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase select-none">
 						<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
-						<span>PRIVACY &amp; SECURITY</span>
+						<span>{t.security.tag}</span>
 					</div>
 				</div>
 
 				{/* Centered Main Title & Subtitle */}
 				<div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
 					<h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#000410] tracking-[-0.03em] leading-[1.12]">
-						{t.security.headlinePre}
-						<span className="text-[#765DFB]">{t.security.headlineHighlight}</span>
+						Your <span className="text-[#765DFB]">{t.security.headlineData}</span> Your{" "}
+						<span className="text-[#765DFB]">{t.security.headlineMemory}</span> Your{" "}
+						<span className="text-[#765DFB]">{t.security.headlineControl}</span>
 					</h2>
 
 					<p className="text-base sm:text-[17px] text-[#000410] leading-relaxed font-normal max-w-2xl mx-auto">
-						{t.security.subline}
+						<span className="block sm:whitespace-nowrap">
+							{t.security.subline1}
+						</span>
+						<span className="block">
+							{t.security.subline2}
+						</span>
 					</p>
 				</div>
 
