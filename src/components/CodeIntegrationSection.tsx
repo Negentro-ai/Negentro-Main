@@ -1,6 +1,7 @@
 import type React from "react"
 import { useState } from "react"
 import { Copy, Check } from "lucide-react"
+import { useLanguage } from "@/lib/i18n"
 
 type CategoryType = "sdk" | "agents" | "connectors" | "mcp"
 type LangType = "python" | "node"
@@ -22,6 +23,7 @@ interface CategoryInfo {
 }
 
 export const CodeIntegrationSection: React.FC = () => {
+	const { t } = useLanguage()
 	const [activeCategory, setActiveCategory] = useState<CategoryType>("sdk")
 	const [activeLang, setActiveLang] = useState<LangType>("python")
 	const [copied, setCopied] = useState(false)
@@ -29,9 +31,9 @@ export const CodeIntegrationSection: React.FC = () => {
 	const CATEGORIES: Record<CategoryType, CategoryInfo> = {
 		sdk: {
 			id: "sdk",
-			tag: "//01",
-			title: "SDK",
-			subtitle: "Native SDKs, REST APIs, and AI framework integrations",
+			tag: t.code.tag01,
+			title: t.code.sdkTitle,
+			subtitle: t.code.sdkSubtitle,
 			code: {
 				python: {
 					raw: `# 1. Install
@@ -290,10 +292,9 @@ const context = await memory.search({
 		},
 		agents: {
 			id: "agents",
-			tag: "//02",
-			title: "AI AGENTS",
-			subtitle:
-				"Enable AI agents to remember accurately across every interaction and workflow.",
+			tag: t.code.tag02,
+			title: t.code.agentsTitle,
+			subtitle: t.code.agentsSubtitle,
 			code: {
 				python: {
 					raw: `from piyapi_memory import PiyAPI
@@ -576,9 +577,9 @@ const agentContext = { memory: context };`,
 		},
 		connectors: {
 			id: "connectors",
-			tag: "//03",
-			title: "CONNECTORS",
-			subtitle: "One source of truth. Every application. Every model.",
+			tag: t.code.tag03,
+			title: t.code.connectorsTitle,
+			subtitle: t.code.connectorsSubtitle,
 			code: {
 				python: {
 					raw: `from piyapi_memory import PiyAPI
@@ -880,10 +881,9 @@ console.log(agentContext);`,
 		},
 		mcp: {
 			id: "mcp",
-			tag: "//04",
-			title: "MCP",
-			subtitle:
-				"Enable coding assistants to remember projects, conversations, and decisions across sessions",
+			tag: t.code.tag04,
+			title: t.code.mcpTitle,
+			subtitle: t.code.mcpSubtitle,
 			code: {
 				python: {
 					raw: `from piyapi_memory import PiyAPI

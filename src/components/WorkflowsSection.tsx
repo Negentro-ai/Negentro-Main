@@ -49,11 +49,17 @@ export const WorkflowsSection: React.FC = () => {
 				{/* Section Header */}
 				<div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
 					<h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F1123] tracking-[-0.03em] leading-[1.15]">
-						{t.workflows.headline}
+						{t.workflows.headlinePre}{" "}
+						<span className="text-[#765DFB]">{t.workflows.headlineHighlight}</span>
 					</h2>
 
 					<p className="text-base sm:text-lg text-[#5A5D7A] leading-relaxed font-normal max-w-2xl mx-auto">
-						{t.workflows.subline}
+						<span className="block sm:whitespace-nowrap">
+							{t.workflows.sublineLine1}
+						</span>
+						<span className="block">
+							{t.workflows.sublineLine2}
+						</span>
 					</p>
 				</div>
 

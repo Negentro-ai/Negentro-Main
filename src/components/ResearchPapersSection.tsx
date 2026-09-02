@@ -8,26 +8,26 @@ export const ResearchPapersSection: React.FC = () => {
 	const articles = [
 		{
 			id: "01",
-			overlayTag: "Memory",
+			overlayTag: t.research.paper1Overlay,
 			title: t.research.paper1Title,
-			status: "Coming soon",
-			category: "Research Papers",
+			status: t.research.paper1Status,
+			category: t.research.paper1Category,
 			image: "/assets/research-butterfly.svg",
 		},
 		{
 			id: "02",
-			overlayTag: "Memory",
+			overlayTag: t.research.paper2Overlay,
 			title: t.research.paper2Title,
-			status: "Coming Soon",
-			category: "Experiments",
+			status: t.research.paper2Status,
+			category: t.research.paper2Category,
 			image: "/assets/research-image-2.svg",
 		},
 		{
 			id: "03",
-			overlayTag: "Memory",
+			overlayTag: t.research.paper3Overlay,
 			title: t.research.paper3Title,
-			status: "Coming Soon",
-			category: "Engineering",
+			status: t.research.paper3Status,
+			category: t.research.paper3Category,
 			image: "/assets/research-image-3.svg",
 		},
 	]
@@ -39,7 +39,7 @@ export const ResearchPapersSection: React.FC = () => {
 				<div className="w-full flex items-center justify-start">
 					<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase select-none">
 						<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
-						<span>INSIGHTS AND BLOGS</span>
+						<span>{t.research.tag}</span>
 					</div>
 				</div>
 
