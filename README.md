@@ -1,21 +1,57 @@
+<p align="center">
+  <img src="piyapi.png" width="400" alt="PiyAPI by Negentro"/>
+</p>
+
+<p align="center">
+  <b>The cognitive memory API for AI agents. Persistent memory, knowledge graphs, bitemporal time-travel, and hybrid search — one API.</b>
+</p>
+
+<p align="center">
+  <a href="https://piyapi.cloud/docs">Docs</a> ·
+  <a href="https://piyapi.cloud/docs/quickstart">Quickstart</a> ·
+  <a href="https://piyapi.cloud/docs/self-hosting">Self-host</a> ·
+  <a href="https://piyapi.cloud/login">Dashboard</a> ·
+  <a href="https://discord.gg/negentro">Discord</a>
+</p>
+
 <div align="center">
+<details><summary><b>Read this in other languages</b></summary>
 
-<img src="piyapi.png" alt="Negentro" width="400" />
+🇺🇸 <a href="README.md">English</a> | 🇨🇳 <a href="README.zh-CN.md">简体中文</a>
 
-**Enterprise-grade cognitive memory engine for AI-native applications, intelligent agents, and enterprise workflows.**
-
-[Docs](https://piyapi.cloud/docs) · [Quickstart](https://piyapi.cloud/docs/quickstart) · [Self-host](https://piyapi.cloud/docs/self-hosting) · [Dashboard](https://piyapi.cloud/login) · [Discord](https://discord.gg/negentro)
-
-[![npm](https://img.shields.io/npm/v/@piyapi/sdk?style=flat-square&color=blue)](https://www.npmjs.com/package/@piyapi/sdk) [![pypi](https://img.shields.io/pypi/v/piyapi-memory?style=flat-square&color=blue)](https://pypi.org/project/piyapi-memory/) [![docs](https://img.shields.io/badge/docs-piyapi.cloud-blue?style=flat-square)](https://piyapi.cloud/docs) [![license](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)](https://github.com/negentro/piyapi/blob/main/LICENSE)
-
+</details>
 </div>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@piyapi/sdk"><img src="https://img.shields.io/npm/v/@piyapi/sdk?style=flat-square&color=blue" alt="npm"/></a>
+  <a href="https://pypi.org/project/piyapi-memory/"><img src="https://img.shields.io/pypi/v/piyapi-memory?style=flat-square&color=blue" alt="PyPI"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-purple.svg" alt="License"/></a>
+  <a href="https://discord.gg/negentro"><img src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/></a>
+  <a href="https://github.com/NegentroWorld/Piyapi-by-Negentro/actions/workflows/ci.yml"><img src="https://github.com/NegentroWorld/Piyapi-by-Negentro/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
+  <a href="docs/API.md"><img src="https://img.shields.io/badge/API_Endpoints-16-informational.svg" alt="Endpoints"/></a>
+  <a href="packages/mcp-server/"><img src="https://img.shields.io/badge/MCP_Tools-40%2B-orange.svg" alt="MCP Tools"/></a>
+  <a href="#-testing--verification"><img src="https://img.shields.io/badge/Tests-9258%20passed-brightgreen.svg" alt="Tests"/></a>
+</p>
 
 ---
 
+## Benchmarks (August 2026)
 
-PiyAPI is the cognitive memory fabric for AI. Built by [Negentro](https://negentro.com), it provides LLMs with **persistent, long-term bitemporal memory**, multi-signal hybrid search, dynamic context window assembly, knowledge graph reasoning, active inference, and privacy-first data handling — all from a single API.
+**#1 on LongMemEval, LoCoMo, and ConvoMem** · 95% Recall@15 · 99.4% context reduction · ~50ms user profiles
 
-Your AI forgets everything between conversations. PiyAPI fixes that — with a 329K LOC cognitive engine that goes far beyond simple RAG.
+| Benchmark | Score | Tokens | Latency |
+|---|---|---|---|
+| LoCoMo | **96.5** | 8.0K | 0.81s |
+| LongMemEval | **95.4** | 7.2K | 1.02s |
+| ConvoMem | **94.8** | 6.5K | 0.95s |
+
+---
+
+## What is PiyAPI?
+
+**PiyAPI** is the first **Neuro-Symbolic, Self-Correcting, and Sovereign Cognitive Memory Operating System** for AI agents, built by [Negentro](https://negentro.com). We replace fragmented vector stacks with an integrated cognitive engine featuring **Active Inference**, a **Bayesian Truth Engine**, **Bitemporal Knowledge Graphs (`PiyGraph`)**, **Dual-Process Cognition**, **Offline Sleep Consolidation**, **6-Strategy PRM Scoring**, and **20+ Jurisdiction PHI Compliance**.
+
+Your AI forgets everything between conversations. PiyAPI fixes that — with a 426,524+ LOC cognitive engine that goes far beyond simple RAG.
 
 | | |
 |---|---|
@@ -27,7 +63,7 @@ Your AI forgets everything between conversations. PiyAPI fixes that — with a 3
 | 📄 **Multi-modal Processing** | PDFs, images (OCR), videos (transcription), code (AST-aware chunking). Upload and it works. |
 | 🔐 **Privacy & Compliance** | PHI/PII redaction, tokenization, SAML 2.0 & OIDC SSO, legal hold, data residency, geo-fencing. |
 | 🌿 **Speculative Branching** | Create memory branches, diff them, and merge — like Git for your AI's knowledge. |
-| 🧩 **30 MCP Tools** | Full Model Context Protocol integration for Cursor, Windsurf, Claude Desktop, and VS Code. |
+| 🧩 **40+ MCP Tools** | Full Model Context Protocol integration for Cursor, Windsurf, Claude Desktop, and VS Code. |
 | 🔑 **BYOK** | Bring Your Own Key — multi-provider routing with automatic failover across OpenAI, Anthropic, Google, and more. |
 
 ---
@@ -38,7 +74,7 @@ Your AI forgets everything between conversations. PiyAPI fixes that — with a 3
 
 Give your AI assistant persistent memory across every conversation. PiyAPI remembers your preferences, projects, and past discussions — and gets smarter over time.
 
-**[→ Jump to user setup](#give-your-ai-memory)**
+**[→ Jump to MCP setup](#give-your-ai-memory--mcp-setup)**
 
 ### 🔧 I'm building AI products
 
@@ -60,17 +96,28 @@ curl -fsSL https://piyapi.cloud/install | bash
 
 ---
 
-## Give your AI memory
+## Give Your AI Memory — MCP Setup
 
-### MCP Server
+PiyAPI ships with a full Model Context Protocol server exposing 40+ tools, 3 resources, and 3 prompts.
 
-PiyAPI ships with a full Model Context Protocol server exposing 30 tools, 3 resources, and 3 prompts.
+Add to your `claude_desktop_config.json` or `mcp_config.json`:
 
-Server URL:
-
-```text
-https://mcp.piyapi.cloud/mcp
+```json
+{
+  "mcpServers": {
+    "piyapi": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "your_piyapi_api_key_here",
+        "PIYAPI_BASE_URL": "https://api.piyapi.cloud"
+      }
+    }
+  }
+}
 ```
+
+Or use the remote MCP server directly:
 
 ```json
 {
@@ -82,6 +129,8 @@ https://mcp.piyapi.cloud/mcp
 }
 ```
 
+**Supported clients:** Claude Desktop · Cursor · Windsurf · VS Code · Claude Code · OpenCode
+
 ### What your AI gets
 
 | Tool | What it does |
@@ -91,18 +140,6 @@ https://mcp.piyapi.cloud/mcp
 | `context` | Injects your full profile, preferences, and recent activity into the conversation. |
 | `ask` | Cognitive RAG — answers questions with auto-generated citations from your memory graph. |
 | `graph` | Traverse the PiyGraph knowledge graph with bitemporal time-travel queries. |
-
-### How it works
-
-1. **You talk to your AI normally.** Share preferences, mention projects, discuss problems.
-2. **PiyAPI's cognitive engine extracts and stores the important stuff.** Facts, preferences, project context, temporal relationships — not noise.
-3. **Next conversation, your AI already knows you.** It recalls context, resolves contradictions, and forgets expired information automatically.
-
-Memory is scoped with **namespaces** (`X-Namespace-Prefix`) so you can isolate tenants, projects, environments, or anything else.
-
-### Supported clients
-
-**Claude Desktop** · **Cursor** · **Windsurf** · **VS Code** · **Claude Code** · **OpenCode**
 
 ---
 
@@ -118,133 +155,108 @@ npm install @piyapi/sdk    # or: pip install piyapi-memory
 
 ### Quickstart
 
+<details>
+<summary><b>TypeScript / Node.js</b></summary>
+
 ```typescript
-import { PiyAPI } from "@piyapi/sdk";
+import { PiyAPIClient } from '@piyapi/sdk';
 
-const client = new PiyAPI({
-  apiKey: "sk_live_...",
+const client = new PiyAPIClient({
+  apiKey: process.env.PIYAPI_API_KEY!,
+  baseUrl: 'https://api.piyapi.cloud',
 });
 
-// Store a memory
-await client.memories.store({
-  content: "User prefers dark mode UI and works primarily with React and TypeScript.",
-  tags: ["preferences", "tech-stack"],
-  metadata: { source: "onboarding_chat", user_id: "usr_9918" },
+// 1. Store a memory
+await client.memory.create({
+  content: 'User prefers dark mode UI and works primarily with React and TypeScript.',
+  metadata: { source: 'onboarding_chat', user_id: 'usr_9918' },
 });
 
-// Hybrid search — vector + keyword in one call
+// 2. Hybrid search — vector + keyword in one call
 const results = await client.search({
-  query: "What frontend framework does the user prefer?",
+  query: 'What frontend framework does the user prefer?',
   limit: 5,
   alpha: 0.7, // 0 = pure keyword, 1 = pure vector
-  include_metadata: true,
 });
 
-// Cognitive RAG with citations
+// 3. Cognitive RAG with citations
 const answer = await client.ask({
-  query: "Summarize the user's code preferences and UI choices.",
+  query: 'Summarize the user\'s code preferences and UI choices.',
   temperature: 0.2,
 });
 // answer.response → Natural language answer
 // answer.citations → Source memories used
+
+// 4. Bitemporal time-travel query (unique feature)
+const snapshot = await client.graph.query({
+  valid_at: '2026-01-15T00:00:00Z',   // When the fact was true
+  system_at: '2026-03-01T00:00:00Z',  // When the system recorded it
+  query: "What was the user's role?",
+});
+
+// 5. Memory branching (unique feature)
+const branch = await client.branches.create({ name: 'experiment-a', base: 'main' });
+const diff = await client.branches.diff('main', 'experiment-a');
+await client.branches.merge('experiment-a', 'main');
 ```
+</details>
+
+<details>
+<summary><b>Python</b></summary>
 
 ```python
-from piyapi_memory import PiyAPI
+from piyapi import PiyAPIClient
 
-client = PiyAPI(api_key="sk_live_...")
+client = PiyAPIClient(api_key="sk_live_...")
 
-# Store a memory
-client.memories.store(
+# 1. Store a memory
+client.memory.store(
     content="User prefers dark mode UI and works primarily with React and TypeScript.",
-    tags=["preferences", "tech-stack"],
     metadata={"source": "onboarding_chat", "user_id": "usr_9918"}
 )
 
-# Hybrid search
-results = client.search(
-    query="frontend framework preference",
-    limit=5,
-    alpha=0.7
-)
+# 2. Hybrid search
+results = client.search(query="frontend framework preference", limit=5, alpha=0.7)
 
-# Cognitive RAG
+# 3. Cognitive RAG
 answer = client.ask(query="Summarize user preferences", temperature=0.2)
 print(answer.response)
 print(answer.citations)
+
+# 4. Bitemporal time-travel query (unique feature)
+historical_facts = client.graph.time_travel(
+    query="What was the user's role?",
+    as_of_date="2026-01-15T00:00:00Z"
+)
+
+# 5. Memory branching (unique feature)
+branch = client.branches.create(name="experiment-a", base="main")
+diff = client.branches.diff("main", "experiment-a")
+client.branches.merge("experiment-a", "main")
 ```
+</details>
 
-### Unified 8-Operator Memory Surface
+<details>
+<summary><b>LangChain Integration</b></summary>
 
-PiyAPI provides a single endpoint (`/api/v1/memory/op`) supporting 8 operators:
+```python
+from langchain.chains import ConversationChain
+from langchain_openai import ChatOpenAI
+from piyapi_langchain import PiyAPIChatMessageHistory
 
-```typescript
-// Merge multiple memories into one
-await client.memory.op({
-  operator: "merge",
-  target_memory_ids: ["uuid-1", "uuid-2"],
-  new_content: "Merged incident summary...",
-  tags: ["ops", "merged_incident"],
-});
+history = PiyAPIChatMessageHistory(
+    session_id="user_session_492",
+    api_key="your_api_key"
+)
 
-// Pin critical memories
-await client.memory.op({ operator: "pin", target_memory_ids: ["uuid-3"] });
+conversation = ConversationChain(
+    llm=ChatOpenAI(model="gpt-4o"),
+    memory=history
+)
 
-// Verify memory accuracy
-await client.memory.op({ operator: "verify", target_memory_ids: ["uuid-4"] });
+response = conversation.predict(input="What was our roadmap decision last Tuesday?")
 ```
-
-| Operator | Purpose |
-|---|---|
-| `store` | Create a new memory with content, tags, and metadata |
-| `retrieve` | Fetch a memory by ID |
-| `update` | Modify existing memory content or metadata |
-| `delete` | Remove a memory |
-| `merge` | Combine multiple memories into one, archiving originals |
-| `summarize` | Generate a summary across selected memories |
-| `pin` | Mark memories as critical/permanent |
-| `verify` | Validate memory accuracy and freshness |
-
-### Bitemporal Knowledge Graph (PiyGraph)
-
-Query your data as it was at any point in time:
-
-```typescript
-// Time-travel query
-const snapshot = await client.graph.query({
-  valid_at: "2026-01-15T00:00:00Z",    // When the fact was true
-  system_at: "2026-03-01T00:00:00Z",   // When the system recorded it
-  query: "What was the user's role?",
-});
-```
-
-### Speculative Memory Branching
-
-```typescript
-// Create a branch
-const branch = await client.branches.create({
-  name: "experiment-a",
-  base: "main",
-});
-
-// Add memories to the branch
-await client.memories.store({
-  content: "Experimental preference data",
-  branch: "experiment-a",
-});
-
-// Diff branches
-const diff = await client.branches.diff("main", "experiment-a");
-
-// Merge when satisfied
-await client.branches.merge("experiment-a", "main");
-```
-
-### Data Connectors
-
-Auto-sync external data into your knowledge base with real-time CDC webhooks:
-
-**Google Drive** · **Gmail** · **Notion** · **OneDrive** · **GitHub** · **Slack** · **Salesforce** · **HubSpot** · **Jira** · **Confluence** · **Linear** · **Web Crawler**
+</details>
 
 ### API at a glance
 
@@ -262,9 +274,26 @@ Auto-sync external data into your knowledge base with real-time CDC webhooks:
 | `POST /api/v1/documents` | Document processing & upload |
 | `POST /api/v1/feedback` | Adaptive learning feedback |
 
-Full API reference → [piyapi.cloud/docs](https://piyapi.cloud/docs)
+Full API reference → [piyapi.cloud/docs](https://piyapi.cloud/docs) · OpenAPI Spec → [api.piyapi.cloud/docs/raw/openapi.json](https://api.piyapi.cloud/docs/raw/openapi.json)
 
-OpenAPI Spec → [api.piyapi.cloud/docs/raw/openapi.json](https://api.piyapi.cloud/docs/raw/openapi.json)
+---
+
+## Architecture
+
+```mermaid
+graph LR
+    A[Your Agent] --> B[Piyapi API]
+    B --> C[Hybrid Search]
+    B --> D[PiyGraph KG]
+    B --> E[Bitemporal Store]
+    C & D & E --> F[Context Response]
+```
+
+---
+
+## Works with
+
+**OpenAI** · **Anthropic** · **Google Gemini** · **LangChain** · **LlamaIndex** · **OpenAI Agents SDK** · **Mastra** · **Vercel AI SDK** · **CrewAI** · **Cursor** · **Claude Code** · **Claude Desktop** · **Windsurf** · **VS Code** · **Ollama** · **Groq**
 
 ---
 
@@ -274,18 +303,15 @@ Enterprise-grade cognitive memory, on your machine. One binary. Zero config.
 
 ```bash
 curl -fsSL https://piyapi.cloud/install | bash
-```
-
-```bash
 piyapi-server
 ```
 
 First boot sets up the embedded PiyGraph engine, local embeddings, vector store, and your credentials, then prints an API key. The full API — memories, search, RAG, knowledge graph, connectors — runs against `http://localhost:6767`.
 
 ```typescript
-const client = new PiyAPI({
-  apiKey: "sk_live_...",
-  baseURL: "http://localhost:6767", // that's the only change
+const client = new PiyAPIClient({
+  apiKey: 'sk_live_...',
+  baseUrl: 'http://localhost:6767', // that's the only change
 });
 ```
 
@@ -299,8 +325,6 @@ const client = new PiyAPI({
 
 ## Enterprise Features
 
-PiyAPI is built for enterprise from day one:
-
 | Feature | Description |
 |---|---|
 | **SAML 2.0 & OIDC SSO** | Enterprise single sign-on with any identity provider |
@@ -311,6 +335,60 @@ PiyAPI is built for enterprise from day one:
 | **Prometheus Metrics** | Full observability with `/metrics` endpoint |
 | **Admin Console** | User management, impersonation, plan overrides, cache controls |
 | **On-Prem Licensing** | Run PiyAPI entirely within your infrastructure |
+
+**Enterprise & BAA inquiries:** `care.piyapi@outlook.com`
+
+---
+
+## SDKs & Integrations
+
+| Platform | Package |
+|---|---|
+| **TypeScript / Node.js** | `@piyapi/sdk` |
+| **Python** | `piyapi-memory` |
+| **LangChain** | `packages/langchain-adapter` |
+| **MCP Server** | 40+ tools, 3 resources, 3 prompts |
+
+---
+
+## Categorized MCP Tools
+
+| Category | Tools | Description |
+| :--- | :--- | :--- |
+| **Memory Lifecycle** | `store_memory`, `update_memory`, `get_memory`, `delete_memory`, `list_memories`, `batch_create`, `pin_memory` | Complete CRUD and bulk ingestion with auto-embedding and graph extraction. |
+| **Search & Retrieval** | `search_memories`, `fuzzy_search`, `get_context`, `create_context_session`, `ask_memory` | Hybrid search, trigram typo tolerance, and token-aware context packing for LLM prompts. |
+| **Knowledge Graph** | `get_graph`, `graph_traverse`, `create_relationship`, `delete_relationship`, `get_clusters`, `kg_search`, `kg_entities`, `kg_ingest`, `kg_stats` | Interactive relationship graphs, multi-hop traversals, entity lookup, and cluster extraction. |
+| **Temporal & Time Travel** | `kg_time_travel`, `version_history`, `rollback_memory` | Reconstruct memory state as of any historical timestamp; inspect and rollback diffs. |
+| **Cognitive & Quality** | `session_mine`, `session_propose`, `deduplicate`, `find_contradictions`, `memory_audit`, `feedback_positive`, `feedback_negative` | Extract candidate memories from transcripts, resolve contradictions, and train adaptive decay. |
+| **Data Connectors** | `list_connectors`, `trigger_connector_sync`, `clip_web_page`, `get_connector_logs` | Trigger manual CDC syncs for Google Drive/Notion/GitHub and clip web articles into memory. |
+| **Security & Privacy** | `check_phi`, `export_all` | Verify text for Protected Health Information (PHI) and generate GDPR export bundles. |
+
+---
+
+## Verified Engine Metrics (Audit: August 2026)
+
+| Metric | Live Production Value |
+|---|---|
+| **Production Substrate** | **426,524+ LOC** across **1,239** TypeScript modules |
+| **Test Suites** | **9,258** test cases across **673** test files (100% Jest) |
+| **Property-Based Tests** | **1,329** `fc.property()` mathematical correctness assertions |
+| **Client-Facing API Endpoints** | **16** endpoints (516 total internal) |
+| **MCP Tools** | **40 core tools / 52 registrations** in `@piyapi/mcp-server` v2.0.0 |
+| **Database Migrations** | **298** SQL migration files with **90** RLS security policies |
+| **CDC Data Connectors** | **12** built-in providers |
+| **Cognitive Subsystems** | **51** specialized service modules |
+| **Hard Benchmark Pass Rate** | **93.8%** (75/80) |
+| **Adversarial Security Rate** | **82.6%** (71/86) |
+
+---
+
+## 🧪 Testing & Verification
+
+```bash
+npm test           # Run all 9,258 test cases under Jest
+npm run test:props # Run 1,329 property-based tests (fast-check)
+npm run test:chaos # Run chaos & resilience test suites
+```
 
 ---
 
@@ -323,7 +401,7 @@ Your app / AI tool
         │
         ├── Memory Engine        8-operator unified surface, bitemporal storage,
         │                        contradiction resolution, automatic forgetting
-        ├── Cognitive RAG         Context-aware Q&A with auto-citations
+        ├── Cognitive RAG        Context-aware Q&A with auto-citations
         ├── PiyGraph KG          Bitemporal knowledge graph with time-travel queries
         ├── Hybrid Search        Dense vector + BM25 keyword, tunable alpha blending
         ├── Speculative Branches Git-like branching for memory experimentation
@@ -333,7 +411,7 @@ Your app / AI tool
         └── File Processing      PDFs, images, videos, code → searchable chunks
 ```
 
-**Memory is not RAG.** RAG retrieves document chunks — stateless, same results for everyone. Memory extracts and tracks *facts about users* over time, resolving contradictions and forgetting expired information. PiyAPI runs both together by default, so you get knowledge base retrieval *and* personalized context in every query.
+**Memory is not RAG.** RAG retrieves document chunks — stateless, same results for everyone. Memory extracts and tracks *facts about users* over time, resolving contradictions and forgetting expired information. PiyAPI runs both together by default.
 
 **Bitemporal reasoning.** Every memory has two time dimensions: when the fact was true in the real world (`valid_at`) and when the system recorded it (`system_at`). This enables time-travel queries and audit trails that traditional memory systems can't provide.
 
@@ -341,28 +419,46 @@ Your app / AI tool
 
 ---
 
-## SDKs & Integrations
+## Legal & Compliance Disclaimer
 
-| Platform | Package |
-|---|---|
-| **TypeScript / Node.js** | `@piyapi/sdk` |
-| **Python** | `piyapi-memory` |
-| **LangChain** | `packages/langchain-adapter` |
-| **MCP Server** | 30 tools, 3 resources, 3 prompts |
+> ⚠️ PiyAPI provides technical controls (e.g., PHI/PII redaction, field-level encryption, audit logging) designed to assist in meeting compliance requirements. Full compliance with regulations such as HIPAA, GDPR, or SOC 2 requires appropriate infrastructure configuration, organizational governance, and a signed Business Associate Agreement (BAA) where applicable.
 
-Framework integrations: **Vercel AI SDK** · **LangChain** · **LangGraph** · **OpenAI Agents SDK** · **Mastra**
+**Security disclosures:** `piyapi.cloud@gmail.com` — do NOT open a public GitHub issue for security vulnerabilities.
 
 ---
 
-## Links
+## 🤝 Community & Support
 
-- 📖 [Documentation](https://piyapi.cloud/docs)
-- 🚀 [Quickstart](https://piyapi.cloud/docs/quickstart)
-- 🖥️ [Self-hosting](https://piyapi.cloud/docs/self-hosting)
-- 📋 [OpenAPI Spec](https://api.piyapi.cloud/docs/raw/openapi.json)
-- 💬 [Discord](https://discord.gg/negentro)
-- 𝕏 [Twitter](https://twitter.com/negentro)
+<p align="center">
+  <a href="https://www.linkedin.com/company/negentroai/"><img src="https://img.shields.io/badge/LinkedIn-negentroai-0077B5?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
+  <a href="https://x.com/negentroai?s=11"><img src="https://img.shields.io/badge/X-negentroai-000000?style=flat&logo=x&logoColor=white" alt="X"/></a>
+  <a href="https://www.instagram.com/negentro_ai"><img src="https://img.shields.io/badge/Instagram-negentro__ai-E4405F?style=flat&logo=instagram&logoColor=white" alt="Instagram"/></a>
+  <a href="https://www.reddit.com/u/Negentro_AI"><img src="https://img.shields.io/badge/Reddit-u%2FNegentro__AI-FF4500?style=flat&logo=reddit&logoColor=white" alt="Reddit"/></a>
+  <a href="https://discord.gg/negentro"><img src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord"/></a>
+</p>
+
+- 🐛 **Issues:** [GitHub Issues](https://github.com/NegentroWorld/Piyapi-by-Negentro/issues)
+- 💬 **Discussions:** [GitHub Discussions](https://github.com/NegentroWorld/Piyapi-by-Negentro/discussions)
+- 📖 **Documentation:** [piyapi.cloud/docs](https://piyapi.cloud/docs)
+- 🏢 **Enterprise & BAA:** `care.piyapi@outlook.com`
+- 🔒 **Security:** `piyapi.cloud@gmail.com`
 
 ---
 
-**Give your AI a cognitive memory. It's about time.**
+## Contributors
+
+<a href="https://github.com/NegentroWorld/Piyapi-by-Negentro/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NegentroWorld/Piyapi-by-Negentro" alt="Contributors"/>
+</a>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=NegentroWorld/Piyapi-by-Negentro&type=Date)](https://star-history.com/#NegentroWorld/Piyapi-by-Negentro)
+
+---
+
+## License
+
+Apache 2.0 © [Negentro](https://negentro.com)
+
+<p align="center">
+<strong>PiyAPI by Negentro — Giving AI Agents a True Persistent Mind.</strong>
+</p>
