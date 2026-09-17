@@ -46,7 +46,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 			<div className="container-universal">
 				{/* Top Eyebrow: > PROBLEM label */}
 				<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase mb-6 sm:mb-8 select-none">
-					<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
+					<ChevronRight className="w-3.5 h-3.5 text-[#765DFB] stroke-[3]" />
 					<span>{t.problem.tag}</span>
 				</div>
 

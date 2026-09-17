@@ -79,41 +79,7 @@ export default function CTAWithVerticalMarquee({
 }: CTAWithVerticalMarqueeProps = {}) {
 	const { t } = useLanguage()
 	const [isCalendlyOpen, setIsCalendlyOpen] = useState(false)
-	const marqueeRef = useRef<HTMLDivElement>(null)
 	const marqueeItems = t.cta.marqueeItems
-
-	useEffect(() => {
-		const marqueeContainer = marqueeRef.current
-		if (!marqueeContainer) return
-
-		const updateOpacity = () => {
-			const items = marqueeContainer.querySelectorAll(".marquee-item")
-			const containerRect = marqueeContainer.getBoundingClientRect()
-			const centerY = containerRect.top + containerRect.height / 2
-
-			items.forEach((item) => {
-				const itemRect = item.getBoundingClientRect()
-				const itemCenterY = itemRect.top + itemRect.height / 2
-				const distance = Math.abs(centerY - itemCenterY)
-				const maxDistance = containerRect.height / 2
-				const normalizedDistance = Math.min(distance / maxDistance, 1)
-				const opacity = 1 - normalizedDistance * 0.78
-				;(item as HTMLElement).style.opacity = Math.max(
-					0.2,
-					opacity,
-				).toString()
-			})
-		}
-
-		const animationFrame = () => {
-			updateOpacity()
-			requestAnimationFrame(animationFrame)
-		}
-
-		const frame = requestAnimationFrame(animationFrame)
-
-		return () => cancelAnimationFrame(frame)
-	}, [])
 
 	return (
 		<section className="w-full relative overflow-hidden bg-[#0e0728] min-h-[400px] lg:min-h-[450px] flex items-center justify-center font-['DM_Sans',sans-serif] border-t border-white/10 select-none">
@@ -170,7 +136,6 @@ export default function CTAWithVerticalMarquee({
 
 					{/* Right Moving Word Marquee directly on cosmic background */}
 					<div
-						ref={marqueeRef}
 						className="lg:col-span-6 relative h-[320px] sm:h-[360px] lg:h-[390px] flex items-center justify-start pointer-events-none bg-transparent overflow-hidden"
 						style={{
 							maskImage:

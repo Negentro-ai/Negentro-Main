@@ -36,6 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 						onClick={() => setActiveTab("overview")}
 						className="flex items-center transition-all duration-300 ease-out hover:opacity-85 hover:scale-[1.03] active:scale-[0.97] cursor-pointer focus:outline-none"
 						title="Negentro Home"
+						aria-label="Negentro Home"
 					>
 						<NegentroLogo
 							className={`h-8 sm:h-[34px] transition-all duration-300 ${
@@ -66,14 +67,14 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 												? "text-white font-semibold"
 												: "text-white/70 font-normal hover:text-white"
 											: isActive
-												? "text-neutral-950 font-semibold"
-												: "text-[#666666] font-normal hover:text-neutral-950"
+												? "text-[#765DFB] font-semibold"
+												: "text-[#666666] font-normal hover:text-[#765DFB]"
 									}`}
 								>
 									<span>{item.label}</span>
 									<span
 										className={`absolute -bottom-0.5 left-0 right-0 h-[2px] rounded-full transition-all duration-250 ease-out ${
-											isOverview ? "bg-white" : "bg-neutral-950"
+											isOverview ? "bg-white" : "bg-[#765DFB]"
 										} ${
 											isActive
 												? "opacity-100 scale-x-100"
@@ -149,10 +150,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 										activeTab === item.key
 											? isOverview
 												? "bg-white/20 text-white font-semibold"
-												: "bg-white text-neutral-950 font-semibold shadow-xs"
+												: "bg-[#765DFB]/10 text-[#765DFB] font-semibold shadow-xs"
 											: isOverview
 												? "text-white/70 hover:text-white hover:bg-white/10"
-												: "text-[#666666] hover:text-neutral-950 hover:bg-white/60"
+												: "text-[#666666] hover:text-[#765DFB] hover:bg-[#765DFB]/5"
 									}`}
 								>
 									{item.label}

@@ -4,22 +4,53 @@ import { Navbar } from "./components/Navbar"
 import { Hero } from "./components/Hero"
 import { FluidBackground } from "./components/FluidBackground"
 import { PartnerLogos } from "./components/PartnerLogos"
-import { MemoryParadigmSection } from "./components/MemoryParadigmSection"
-import { DifferentApproachSection } from "./components/DifferentApproachSection"
-import { WorkflowsSection } from "./components/WorkflowsSection"
-import { CodeIntegrationSection } from "./components/CodeIntegrationSection"
-import { SecurityComplianceSection } from "./components/SecurityComplianceSection"
-import { ResearchPapersSection } from "./components/ResearchPapersSection"
-import { CtaSection } from "./components/CtaSection"
-import { Footer } from "./components/Footer"
-
-// Lazy loaded non-initial route and interactive modal
+// Lazy loaded non-initial routes, below-the-fold sections and interactive modals
 const WaitPage = lazy(() =>
 	import("./components/WaitPage").then((m) => ({ default: m.WaitPage })),
 )
 const TryPiyApiModal = lazy(() =>
 	import("./components/TryPiyApiModal").then((m) => ({
 		default: m.TryPiyApiModal,
+	})),
+)
+const MemoryParadigmSection = lazy(() =>
+	import("./components/MemoryParadigmSection").then((m) => ({
+		default: m.MemoryParadigmSection,
+	})),
+)
+const DifferentApproachSection = lazy(() =>
+	import("./components/DifferentApproachSection").then((m) => ({
+		default: m.DifferentApproachSection,
+	})),
+)
+const WorkflowsSection = lazy(() =>
+	import("./components/WorkflowsSection").then((m) => ({
+		default: m.WorkflowsSection,
+	})),
+)
+const CodeIntegrationSection = lazy(() =>
+	import("./components/CodeIntegrationSection").then((m) => ({
+		default: m.CodeIntegrationSection,
+	})),
+)
+const SecurityComplianceSection = lazy(() =>
+	import("./components/SecurityComplianceSection").then((m) => ({
+		default: m.SecurityComplianceSection,
+	})),
+)
+const ResearchPapersSection = lazy(() =>
+	import("./components/ResearchPapersSection").then((m) => ({
+		default: m.ResearchPapersSection,
+	})),
+)
+const CtaSection = lazy(() =>
+	import("./components/CtaSection").then((m) => ({
+		default: m.CtaSection,
+	})),
+)
+const Footer = lazy(() =>
+	import("./components/Footer").then((m) => ({
+		default: m.Footer,
 	})),
 )
 
@@ -55,14 +86,16 @@ export function App() {
 					</section>
 
 					{/* Landing Page Content Sections */}
-					<MemoryParadigmSection onOpenConsole={() => setIsConsoleOpen(true)} />
-					<DifferentApproachSection />
-					<WorkflowsSection />
-					<CodeIntegrationSection />
-					<SecurityComplianceSection />
-					<ResearchPapersSection />
-					<CtaSection onOpenConsole={() => setIsConsoleOpen(true)} />
-					<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
+					<Suspense fallback={null}>
+						<MemoryParadigmSection onOpenConsole={() => setIsConsoleOpen(true)} />
+						<DifferentApproachSection />
+						<WorkflowsSection />
+						<CodeIntegrationSection />
+						<SecurityComplianceSection />
+						<ResearchPapersSection />
+						<CtaSection onOpenConsole={() => setIsConsoleOpen(true)} />
+						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
+					</Suspense>
 				</div>
 			) : (
 				<div className="min-h-screen bg-white text-neutral-900 flex flex-col justify-between selection:bg-neutral-900 selection:text-white font-sans antialiased">

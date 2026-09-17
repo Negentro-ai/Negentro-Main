@@ -51,7 +51,7 @@ export const SecurityComplianceSection: React.FC = () => {
 				{/* Top-Left Category Tag */}
 				<div className="w-full flex items-center justify-start">
 					<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase select-none">
-						<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
+						<ChevronRight className="w-3.5 h-3.5 text-[#765DFB] stroke-[3]" />
 						<span>{t.security.tag}</span>
 					</div>
 				</div>

@@ -93,7 +93,7 @@ export const DifferentApproachSection: React.FC = () => {
 				{/* Top-Left Category Tag */}
 				<div className="w-full flex items-center justify-start">
 					<div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-[0.08em] text-[#888E94] uppercase select-none">
-						<ChevronRight className="w-3.5 h-3.5 text-[#0562EF] stroke-[3]" />
+						<ChevronRight className="w-3.5 h-3.5 text-[#765DFB] stroke-[3]" />
 						<span>{t.differentApproach.tag}</span>
 					</div>
 				</div>
@@ -227,22 +227,28 @@ export const DifferentApproachSection: React.FC = () => {
 				</div>
 
 				{/* Architectural Comparison Table */}
-				<div className="w-full max-w-[1258px] mx-auto pt-10 sm:pt-14">
-					<div className="w-full overflow-x-auto">
-						<table className="w-full text-left border-collapse min-w-[680px]">
+				<div className="w-full max-w-[1258px] mx-auto pt-8 sm:pt-14">
+					{/* Mobile Scroll Indicator */}
+					<div className="flex sm:hidden items-center justify-end gap-1.5 pb-2 text-[11px] text-[#765DFB] font-medium select-none">
+						<span>Swipe to view all columns</span>
+						<ChevronRight className="w-3.5 h-3.5 animate-pulse" />
+					</div>
+
+					<div className="w-full overflow-x-auto overscroll-x-contain pb-3 scrollbar-thin [scrollbar-color:#E0DCEF_transparent] -mx-4 px-4 sm:mx-0 sm:px-0">
+						<table className="w-full text-left border-collapse min-w-[560px] sm:min-w-[680px]">
 							<thead>
 								<tr className="border-t border-[#E0DCEF]">
-									<th className="py-5 sm:py-6 px-4 sm:px-6 w-[34%]" />
-									<th className="py-5 sm:py-6 px-3 w-[16%] text-center font-normal text-[13px] sm:text-[14px] text-[#5146B8] font-['DM_Sans',sans-serif]">
+									<th className="py-3.5 sm:py-6 px-2.5 sm:px-6 w-[34%]" />
+									<th className="py-3.5 sm:py-6 px-2 sm:px-3 w-[16%] text-center font-normal text-[11.5px] sm:text-[14px] text-[#765DFB] font-['DM_Sans',sans-serif]">
 										Context Stuffing
 									</th>
-									<th className="py-5 sm:py-6 px-3 w-[16%] text-center font-normal text-[13px] sm:text-[14px] text-[#5146B8] font-['DM_Sans',sans-serif]">
+									<th className="py-3.5 sm:py-6 px-2 sm:px-3 w-[16%] text-center font-normal text-[11.5px] sm:text-[14px] text-[#765DFB] font-['DM_Sans',sans-serif]">
 										Memory Wrapper
 									</th>
-									<th className="py-5 sm:py-6 px-3 w-[16%] text-center font-normal text-[13px] sm:text-[14px] text-[#5146B8] font-['DM_Sans',sans-serif]">
+									<th className="py-3.5 sm:py-6 px-2 sm:px-3 w-[16%] text-center font-normal text-[11.5px] sm:text-[14px] text-[#765DFB] font-['DM_Sans',sans-serif]">
 										Native Memory
 									</th>
-									<th className="py-4 sm:py-5 px-4 w-[18%] text-center align-middle bg-[#7B6EF6] rounded-t-[14px]">
+									<th className="py-3 sm:py-5 px-2 sm:px-4 w-[18%] text-center align-middle bg-[#7B6EF6] rounded-t-[12px] sm:rounded-t-[14px]">
 										<img
 											src="/assets/piyapi-logo-exact.svg"
 											alt="Piya.pi"
@@ -250,7 +256,7 @@ export const DifferentApproachSection: React.FC = () => {
 											decoding="async"
 											width={120}
 											height={30}
-											className="h-[25px] sm:h-[28px] md:h-[30px] w-auto mx-auto object-contain select-none"
+											className="h-[20px] sm:h-[28px] md:h-[30px] w-auto mx-auto object-contain select-none"
 										/>
 									</th>
 								</tr>
@@ -264,44 +270,44 @@ export const DifferentApproachSection: React.FC = () => {
 											key={row.feature}
 											className="border-t border-[#E0DCEF]"
 										>
-											<td className="py-5 sm:py-6 px-4 sm:px-6">
-												<span className="font-normal text-[14px] sm:text-[15px] text-[#1A1935] font-['DM_Sans',sans-serif]">
+											<td className="py-3.5 sm:py-6 px-2.5 sm:px-6">
+												<span className="font-normal text-[12.5px] sm:text-[15px] text-[#1A1935] font-['DM_Sans',sans-serif] leading-tight block">
 													{row.feature}
 												</span>
 											</td>
 
-											<td className="py-5 sm:py-6 px-3 text-center align-middle">
+											<td className="py-3.5 sm:py-6 px-2 sm:px-3 text-center align-middle">
 												{row.contextStuffing === true ? (
-													<span className="inline-block text-[#5146B8] text-[16px] font-light leading-none select-none">✓</span>
+													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">✓</span>
 												) : (
-													<span className="inline-block text-[#5146B8] text-[18px] font-normal leading-none select-none">—</span>
+													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">—</span>
 												)}
 											</td>
 
-											<td className="py-5 sm:py-6 px-3 text-center align-middle">
+											<td className="py-3.5 sm:py-6 px-2 sm:px-3 text-center align-middle">
 												{row.memoryWrapper === true ? (
-													<span className="inline-block text-[#5146B8] text-[16px] font-light leading-none select-none">✓</span>
+													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">✓</span>
 												) : row.memoryWrapper === "partial" ? (
-													<div className="w-[22px] h-[22px] rounded-full overflow-hidden flex mx-auto border border-[#5146B8]/25">
-														<div className="w-1/2 h-full bg-[#5146B8]" />
+													<div className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] rounded-full overflow-hidden flex mx-auto border border-[#765DFB]/25">
+														<div className="w-1/2 h-full bg-[#765DFB]" />
 														<div className="w-1/2 h-full bg-[#DDD9EE]" />
 													</div>
 												) : (
-													<span className="inline-block text-[#5146B8] text-[18px] font-normal leading-none select-none">—</span>
+													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">—</span>
 												)}
 											</td>
 
-											<td className="py-5 sm:py-6 px-3 text-center align-middle">
+											<td className="py-3.5 sm:py-6 px-2 sm:px-3 text-center align-middle">
 												{row.nativeMemory === true ? (
-													<span className="inline-block text-[#5146B8] text-[16px] font-light leading-none select-none">✓</span>
+													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">✓</span>
 												) : (
-													<span className="inline-block text-[#5146B8] text-[18px] font-normal leading-none select-none">—</span>
+													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">—</span>
 												)}
 											</td>
 
 											<td
-												className={`py-3.5 sm:py-4 px-3 text-center align-middle bg-[#7B6EF6] ${isLast
-														? "rounded-b-[14px]"
+												className={`py-2.5 sm:py-4 px-2 sm:px-3 text-center align-middle bg-[#7B6EF6] ${isLast
+														? "rounded-b-[12px] sm:rounded-b-[14px]"
 														: "border-b border-white/20"
 													}`}
 											>
@@ -312,7 +318,7 @@ export const DifferentApproachSection: React.FC = () => {
 													decoding="async"
 													width={36}
 													height={36}
-													className="w-[36px] h-[36px] mx-auto select-none object-contain"
+													className="w-[26px] h-[26px] sm:w-[36px] sm:h-[36px] mx-auto select-none object-contain"
 												/>
 											</td>
 										</tr>

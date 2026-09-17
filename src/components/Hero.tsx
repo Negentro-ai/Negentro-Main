@@ -135,16 +135,20 @@ export const Hero: React.FC<HeroProps> = () => {
 						<div className="flex items-center h-14 sm:h-16 rounded-full border border-white/15 bg-white/[0.08] backdrop-blur-xl shadow-sm pl-5 sm:pl-6 pr-1.5 sm:pr-2 transition-all duration-300 ease-out focus-within:border-white/30 focus-within:bg-white/[0.12] focus-within:shadow-[0_0_24px_rgba(193,106,255,0.18)]">
 							<input
 								type="email"
+								name="email"
 								required
 								disabled={isSubmitting}
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								placeholder={t.hero.emailPlaceholder}
+								aria-label="Email address"
+								autoComplete="email"
 								className="flex-1 min-w-0 h-full bg-transparent text-[#eef0f6] text-base sm:text-lg outline-none border-none placeholder:text-[#b9becf] font-normal font-sans disabled:opacity-50"
 							/>
 							<button
 								type="submit"
 								disabled={isSubmitting}
+								aria-label={t.hero.joinWaitlist}
 								className="inline-flex items-center justify-center h-11 sm:h-12 px-6 sm:px-7 rounded-full bg-white hover:bg-white/90 text-[#2f2f33] font-medium text-sm sm:text-base cursor-pointer shadow-xs hover:shadow-md transition-all duration-250 ease-out hover:scale-[1.03] active:scale-[0.97] shrink-0 select-none disabled:opacity-60 disabled:cursor-not-allowed"
 							>
 								{isSubmitting ? (

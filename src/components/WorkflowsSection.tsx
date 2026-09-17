@@ -73,10 +73,10 @@ export const WorkflowsSection: React.FC = () => {
 							{/* Card Header: Title on Left, Number Tag on Right */}
 							<div>
 								<div className="flex items-start justify-between gap-2 mb-2">
-									<h3 className="text-xl sm:text-[23px] font-bold text-[#0F1123] tracking-tight group-hover:text-[#5146B8] transition-colors">
+									<h3 className="text-xl sm:text-[23px] font-bold text-[#0F1123] tracking-tight group-hover:text-[#765DFB] transition-colors">
 										{wf.title}
 									</h3>
-									<span className="font-mono text-xs sm:text-sm font-semibold text-[#5146B8] shrink-0 pt-0.5">
+									<span className="font-mono text-xs sm:text-sm font-semibold text-[#765DFB] shrink-0 pt-0.5">
 										{wf.id}
 									</span>
 								</div>
