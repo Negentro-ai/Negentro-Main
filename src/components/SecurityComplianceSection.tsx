@@ -75,7 +75,14 @@ export const SecurityComplianceSection: React.FC = () => {
 				</div>
 
 				{/* Central Visual Banner: Animated Memory Verification Flow */}
-				<MemoryVerificationDemo />
+				<video
+					src="/assets/native-problem.mp4"
+					autoPlay
+					loop
+					muted
+					playsInline
+					className="w-full max-w-[960px] mx-auto rounded-[20px] shadow-[0_14px_36px_rgba(118,93,251,0.12)] border border-[#BFBFBF]/60 object-cover"
+				/>
 
 				{/* 5 Security Pillar Cards (5 Columns Grid) */}
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">

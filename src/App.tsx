@@ -1,4 +1,6 @@
-import { useState, lazy, Suspense } from "react"
+import { useState, lazy, Suspense, useEffect } from "react"
+import Lenis from "lenis"
+import "lenis/dist/lenis.css"
 import { LanguageProvider } from "./lib/i18n"
 import { Navbar } from "./components/Navbar"
 import { Hero } from "./components/Hero"
@@ -58,6 +60,16 @@ export function App() {
 	const [activeTab, setActiveTab] = useState<string>("overview")
 	const [isConsoleOpen, setIsConsoleOpen] = useState<boolean>(false)
 	const isOverview = activeTab === "overview"
+
+	useEffect(() => {
+		const lenis = new Lenis({
+			autoRaf: true,
+		})
+
+		return () => {
+			lenis.destroy()
+		}
+	}, [])
 
 	return (
 		<LanguageProvider>
