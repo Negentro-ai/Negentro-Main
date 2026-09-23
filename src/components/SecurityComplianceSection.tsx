@@ -1,6 +1,5 @@
 import type React from "react"
 import { Shield, ListOrdered, FileEdit, Layers, Sliders, ChevronRight } from "lucide-react"
-import { MemoryVerificationDemo } from "@/components/ui/MemoryVerificationDemo"
 import { useLanguage } from "@/lib/i18n"
 
 export const SecurityComplianceSection: React.FC = () => {
