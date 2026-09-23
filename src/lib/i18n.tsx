@@ -233,7 +233,7 @@ export const translations: Record<Language, TranslationDictionary> = {
 		hero: {
 			headlinePre: "The Next Evolution Of\nIntelligence Is ",
 			headlineMemory: "Memory.",
-			subline: "Piyapi gives AI the ability to remember, learn, and evolve.",
+			subline: "Piyapi gives AI the ability to remember, learn and evolve.",
 			emailPlaceholder: "Enter your email",
 			joinWaitlist: "Join Waitlist",
 			joining: "Joining...",

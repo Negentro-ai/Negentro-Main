@@ -227,9 +227,7 @@
 	animation: marquee 25s linear infinite;
 }
 
-.animate-marquee:hover {
-	animation-play-state: paused;
-}
+
 
 /* Horizontal Gradient Mask for smooth fade-in/out on edges */
 .mask-gradient-x {

@@ -68,25 +68,8 @@ export const WorkflowsSection: React.FC = () => {
 					{workflows.map((wf) => (
 						<div
 							key={wf.id}
-							className="group relative flex flex-col justify-between rounded-[18px] bg-white border border-[#E5E2F4] p-6 sm:p-7 shadow-[0_4px_20px_rgba(35,25,105,0.03)] transition-all duration-300 hover:shadow-xl hover:border-[#765DFB]/40 hover:-translate-y-1 overflow-hidden"
+							className="group relative flex flex-col justify-between rounded-[18px] bg-white border border-[#E5E2F4] shadow-[0_4px_20px_rgba(35,25,105,0.03)] transition-all duration-300 hover:shadow-xl hover:border-[#765DFB]/40 hover:-translate-y-1 overflow-hidden"
 						>
-							{/* Card Header: Title on Left, Number Tag on Right */}
-							<div>
-								<div className="flex items-start justify-between gap-2 mb-2">
-									<h3 className="text-xl sm:text-[23px] font-bold text-[#0F1123] tracking-tight group-hover:text-[#765DFB] transition-colors">
-										{wf.title}
-									</h3>
-									<span className="font-mono text-xs sm:text-sm font-semibold text-[#765DFB] shrink-0 pt-0.5">
-										{wf.id}
-									</span>
-								</div>
-
-								{/* Description */}
-								<p className="text-sm sm:text-[14.5px] text-[#5A5D7A] leading-relaxed font-normal mb-5 min-h-[42px]">
-									{wf.desc}
-								</p>
-							</div>
-
 							{/* Isometric Graphic Container */}
 							<div className="relative w-full overflow-hidden flex items-center justify-center aspect-[446/276]">
 								<img
@@ -98,6 +81,23 @@ export const WorkflowsSection: React.FC = () => {
 									height={276}
 									className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
 								/>
+							</div>
+
+							{/* Card Header: Title on Left, Number Tag on Right */}
+							<div className="p-6 sm:p-7 pt-5 sm:pt-6">
+								<div className="flex items-start justify-between gap-2 mb-2">
+									<h3 className="text-xl sm:text-[23px] font-bold text-[#0F1123] tracking-tight group-hover:text-[#765DFB] transition-colors">
+										{wf.title}
+									</h3>
+									<span className="font-mono text-xs sm:text-sm font-semibold text-[#765DFB] shrink-0 pt-0.5">
+										{wf.id}
+									</span>
+								</div>
+
+								{/* Description */}
+								<p className="text-sm sm:text-[14.5px] text-[#5A5D7A] leading-relaxed font-normal min-h-[42px]">
+									{wf.desc}
+								</p>
 							</div>
 						</div>
 					))}

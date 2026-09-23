@@ -79,7 +79,97 @@
 
 <body
   class="bg-white text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white min-h-screen overflow-x-hidden w-full">
-  <div id="root"></div>
+  <div id="root">
+    <style>
+      .app-skeleton {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 100%;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+      .app-skeleton-header {
+        height: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .app-skeleton-logo {
+        width: 140px;
+        height: 32px;
+        background-color: #f3f4f6;
+        border-radius: 8px;
+        animation: skeleton-pulse 1.5s infinite ease-in-out;
+      }
+      .app-skeleton-nav {
+        width: 320px;
+        height: 32px;
+        background-color: #f3f4f6;
+        border-radius: 8px;
+        animation: skeleton-pulse 1.5s infinite ease-in-out;
+        display: none;
+      }
+      @media (min-width: 768px) {
+        .app-skeleton-nav {
+          display: block;
+        }
+      }
+      .app-skeleton-hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        flex: 1;
+        margin-top: 10vh;
+      }
+      .app-skeleton-title {
+        width: 80%;
+        max-width: 800px;
+        height: 64px;
+        background-color: #f3f4f6;
+        border-radius: 12px;
+        animation: skeleton-pulse 1.5s infinite ease-in-out;
+      }
+      .app-skeleton-subtitle {
+        width: 60%;
+        max-width: 500px;
+        height: 32px;
+        background-color: #f3f4f6;
+        border-radius: 8px;
+        animation: skeleton-pulse 1.5s infinite ease-in-out;
+      }
+      .app-skeleton-button {
+        width: 180px;
+        height: 48px;
+        background-color: #f3f4f6;
+        border-radius: 24px;
+        margin-top: 16px;
+        animation: skeleton-pulse 1.5s infinite ease-in-out;
+      }
+      @keyframes skeleton-pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+    </style>
+    <div class="app-skeleton">
+      <div class="app-skeleton-header">
+        <div class="app-skeleton-logo"></div>
+        <div class="app-skeleton-nav"></div>
+      </div>
+      <div class="app-skeleton-hero">
+        <div class="app-skeleton-title"></div>
+        <div class="app-skeleton-subtitle"></div>
+        <div class="app-skeleton-button"></div>
+      </div>
+    </div>
+  </div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 

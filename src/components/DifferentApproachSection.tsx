@@ -179,8 +179,8 @@ export const DifferentApproachSection: React.FC = () => {
 				{/* Performance Snapshot */}
 				<div className="w-full max-w-[1140px] mx-auto flex flex-col lg:flex-row justify-between gap-10 lg:gap-14 pt-2 sm:pt-4 px-4">
 					{/* SOTA Overview */}
-					<div className="flex flex-col justify-between min-h-[170px] shrink-0 w-full lg:w-[320px]">
-						<div>
+					<div className="flex flex-col justify-start min-h-[170px] shrink-0 w-full lg:w-[320px]">
+						<div className="min-h-[89px]">
 							<h3 className="text-[30px] sm:text-[34px] lg:text-[36px] font-medium text-[#000410] tracking-[-0.03em] leading-[1.08] lg:leading-[40px] font-['DM_Sans',sans-serif]">
 								<span className="text-[#765DFB]">SOTA</span> memory,
 								<br />
@@ -207,9 +207,9 @@ export const DifferentApproachSection: React.FC = () => {
 						{metrics.slice(0, 3).map((metric) => (
 							<div
 								key={metric.value}
-								className="flex flex-col justify-between min-h-[170px]"
+								className="flex flex-col justify-start min-h-[170px]"
 							>
-								<div>
+								<div className="min-h-[89px]">
 									<div className="text-[36px] sm:text-[42px] lg:text-[44px] font-medium text-[#765DFB] tracking-[-0.03em] leading-none font-['DM_Sans',sans-serif]">
 										{metric.value}
 									</div>
