@@ -75,11 +75,12 @@ export const SecurityComplianceSection: React.FC = () => {
 
 				{/* Central Visual Banner: Animated Memory Verification Flow */}
 				<video
-					src="/assets/native-problem.mp4"
+					src="/assets/native-problem.webm"
 					autoPlay
 					loop
 					muted
 					playsInline
+					preload="auto"
 					className="w-full max-w-[960px] mx-auto rounded-[20px] shadow-[0_14px_36px_rgba(118,93,251,0.12)] border border-[#BFBFBF]/60 object-cover"
 				/>
 
