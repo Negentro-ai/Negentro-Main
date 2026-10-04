@@ -14,6 +14,7 @@ This document provides a comprehensive technical guide for any AI agent or softw
 - **Language**: TypeScript 5.8+ (Strict mode, `tsc -b --noEmit`)
 - **Styling**: Tailwind CSS v4 (`@tailwindcss/vite`, `@import "tailwindcss";` with `@theme inline` tokens in `src/index.css`)
 - **Animation & Graphics**:
+  - Global Smooth Scroll: Lenis (`lenis`)
   - GSAP (`gsap` timelines and tweens)
   - Custom WebGL & WebGL2 fragment/vertex shaders (Fluid simulation, Velaris noise shader, Cosmic FBM mesh)
 - **Icons**: Lucide React (`lucide-react`)
@@ -26,21 +27,22 @@ This document provides a comprehensive technical guide for any AI agent or softw
 
 ```
 ├── public/
-│   ├── assets/               # Production SVGs & images for sections
-│   │   ├── AI Agents.svg
-│   │   ├── Conversational AI.svg
-│   │   ├── Enterprise Knowledge.svg
-│   │   ├── High-Stakes.svg
-│   │   ├── Multi-Agents.svg
-│   │   ├── RAG Systems.svg
+│   ├── assets/               # Production media (WebP, WebM, SVG)
+│   │   ├── AI Agents.webp
+│   │   ├── Conversational AI.webp
+│   │   ├── Enterprise Knowledge.webp
+│   │   ├── High-Stakes.webp
+│   │   ├── Multi-Agents.webp
+│   │   ├── RAG Systems.webp
 │   │   ├── context-problem.svg
 │   │   ├── cta-bg-frame88.jpg
-│   │   ├── native-problem.svg
+│   │   ├── native-problem.webm    # Highly compressed VP9 video
+│   │   ├── native-problem.webp
 │   │   ├── piyapi-check-badge.svg
 │   │   ├── piyapi-logo-exact.svg
-│   │   ├── research-butterfly.svg
-│   │   ├── research-image-2.svg
-│   │   ├── research-image-3.svg
+│   │   ├── research-butterfly.webp
+│   │   ├── research-image-2.webp
+│   │   ├── research-image-3.webp
 │   │   └── wrappers-problem.svg
 │   ├── logos/                # Partner & brand vector logos (negentro, notion, claude, modal, mongoDB)
 │   └── wait-illustration.svg # Coming-soon placeholder graphic
@@ -49,7 +51,6 @@ This document provides a comprehensive technical guide for any AI agent or softw
 │   │   ├── ui/               # Reusable UI primitives & shader canvas components
 │   │   │   ├── blue-meshy-background.tsx   # WebGL2 FBM domain-warped dynamic background
 │   │   │   ├── cta-with-text-marquee.tsx   # CTA section with vertical text marquee
-│   │   │   ├── MemoryVerificationDemo.tsx  # Interactive step-by-step memory simulation
 │   │   │   ├── negentro-footer-logo.tsx    # Footer brand vector
 │   │   │   ├── ruixen-gradient-footer.tsx  # Scroll-reactive footer bottom glow
 │   │   │   └── velaris.tsx                 # WebGL Simplex noise shader for CTA
@@ -100,7 +101,9 @@ This document provides a comprehensive technical guide for any AI agent or softw
 
 ### Design Guidelines:
 - **Ultra-Premium Finish**: Use rich gradients, subtle glassmorphism (`backdrop-blur-xl`), smooth hover micro-interactions, and 60fps GPU-accelerated animations.
+- **Global Smooth Scroll**: Lenis is globally initialized in `App.tsx` with `autoRaf: true` to provide buttery-smooth inertia scrolling across the entire SPA.
 - **Strict Aspect Ratios**: All media containers must enforce explicit aspect ratios or `width`/`height` attributes to prevent Cumulative Layout Shift (CLS).
+- **Media Optimization**: Always use highly compressed `.webp` formats for standard imagery and VP9 `.webm` for videos to ensure instant loading.
 
 ---
 
@@ -161,7 +164,7 @@ When working on this repository, all agents MUST follow these mandatory rules:
 3. **Code & Comment Standards**:
    - Maintain clean, humanized, concise comments. Avoid verbose AI banners, conversational filler, or boilerplate disclaimers.
    - Do NOT add unnecessary `"use client"` directives (this is a Vite SPA, not Next.js).
-   - Ensure all `img` tags include `loading="lazy"`, `decoding="async"`, and descriptive `alt` tags.
+   - Ensure critical above-the-fold `img` tags and interactive images use `loading="eager"`, while secondary images use `loading="lazy"`. All `video` tags must use optimized formats (`.webm`) with `preload="auto"` for instant load.
 
 4. **Verification Protocol**:
    After any code modification, always verify both codebases:

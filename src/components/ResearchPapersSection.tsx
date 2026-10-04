@@ -12,7 +12,7 @@ export const ResearchPapersSection: React.FC = () => {
 			title: t.research.paper1Title,
 			status: t.research.paper1Status,
 			category: t.research.paper1Category,
-			image: "/assets/research-butterfly.svg",
+			image: "/assets/research-butterfly.webp",
 		},
 		{
 			id: "02",
@@ -20,7 +20,7 @@ export const ResearchPapersSection: React.FC = () => {
 			title: t.research.paper2Title,
 			status: t.research.paper2Status,
 			category: t.research.paper2Category,
-			image: "/assets/research-image-2.svg",
+			image: "/assets/research-image-2.webp",
 		},
 		{
 			id: "03",
@@ -28,7 +28,7 @@ export const ResearchPapersSection: React.FC = () => {
 			title: t.research.paper3Title,
 			status: t.research.paper3Status,
 			category: t.research.paper3Category,
-			image: "/assets/research-image-3.svg",
+			image: "/assets/research-image-3.webp",
 		},
 	]
 
@@ -62,7 +62,7 @@ export const ResearchPapersSection: React.FC = () => {
 								<img
 									src={article.image}
 									alt={article.title}
-									loading="lazy"
+									loading="eager"
 									decoding="async"
 									width={315}
 									height={169}

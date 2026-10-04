@@ -143,45 +143,54 @@
 }
 
 /* Universal Responsive Container System */
+.container-universal,
+.page-gutter {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
 .container-universal {
 	width: 100%;
 	max-width: 1456px;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 1rem;
-	padding-right: 1rem;
 }
 
 @media (min-width: 640px) {
-	.container-universal {
+	.container-universal,
+	.page-gutter {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
 	}
 }
 
 @media (min-width: 768px) {
-	.container-universal {
+	.container-universal,
+	.page-gutter {
 		padding-left: 2rem;
 		padding-right: 2rem;
 	}
 }
 
 @media (min-width: 1024px) {
-	.container-universal {
+	.container-universal,
+	.page-gutter {
 		padding-left: 3rem;
 		padding-right: 3rem;
 	}
 }
 
 @media (min-width: 1280px) {
-	.container-universal {
+	.container-universal,
+	.page-gutter {
 		padding-left: 4rem;
 		padding-right: 4rem;
 	}
 }
 
 @media (min-width: 1536px) {
-	.container-universal {
+	.container-universal,
+	.page-gutter {
 		padding-left: 4.5rem;
 		padding-right: 4.5rem;
 	}
@@ -190,8 +199,8 @@
 /* Navigation Pill Container */
 .nav-pill-container {
 	background: rgba(243, 244, 246, 0.75);
-	backdrop-filter: blur(12px);
 	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
 	border: 1px solid rgba(229, 231, 235, 0.8);
 }
 
@@ -231,14 +240,14 @@
 
 /* Horizontal Gradient Mask for smooth fade-in/out on edges */
 .mask-gradient-x {
-	mask-image: linear-gradient(
+	-webkit-mask-image: linear-gradient(
 		to right,
 		transparent,
 		black 12%,
 		black 88%,
 		transparent
 	);
-	-webkit-mask-image: linear-gradient(
+	mask-image: linear-gradient(
 		to right,
 		transparent,
 		black 12%,

@@ -9,37 +9,37 @@ export const WorkflowsSection: React.FC = () => {
 			id: "01",
 			title: t.workflows.card1Title,
 			desc: t.workflows.card1Desc,
-			image: "/assets/AI Agents.svg",
+			image: "/assets/AI Agents.webp",
 		},
 		{
 			id: "02",
 			title: t.workflows.card2Title,
 			desc: t.workflows.card2Desc,
-			image: "/assets/Conversational AI.svg",
+			image: "/assets/Conversational AI.webp",
 		},
 		{
 			id: "03",
 			title: t.workflows.card3Title,
 			desc: t.workflows.card3Desc,
-			image: "/assets/RAG Systems.svg",
+			image: "/assets/RAG Systems.webp",
 		},
 		{
 			id: "04",
 			title: t.workflows.card4Title,
 			desc: t.workflows.card4Desc,
-			image: "/assets/Enterprise Knowledge.svg",
+			image: "/assets/Enterprise Knowledge.webp",
 		},
 		{
 			id: "05",
 			title: t.workflows.card5Title,
 			desc: t.workflows.card5Desc,
-			image: "/assets/High-Stakes.svg",
+			image: "/assets/High-Stakes.webp",
 		},
 		{
 			id: "06",
 			title: t.workflows.card6Title,
 			desc: t.workflows.card6Desc,
-			image: "/assets/Multi-Agents.svg",
+			image: "/assets/Multi-Agents.webp",
 		},
 	]
 
@@ -79,7 +79,7 @@ export const WorkflowsSection: React.FC = () => {
 									decoding="async"
 									width={446}
 									height={276}
-									className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+									className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
 								/>
 							</div>
 

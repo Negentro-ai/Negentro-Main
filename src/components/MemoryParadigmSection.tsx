@@ -35,7 +35,7 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 			label: t.problem.tab3Label,
 			cardTitle: t.problem.tab3CardTitle,
 			cardDescription: t.problem.tab3CardDesc,
-			imageSrc: "/assets/native-problem.svg",
+			imageSrc: "/assets/native-problem.webp",
 		},
 	}
 
