@@ -15,7 +15,16 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 	const { t } = useLanguage()
 	const [activeTab, setActiveTab] = useState<TabType>("context")
 
-	const tabData: Record<TabType, { id: TabType; label: string; cardTitle: string; cardDescription: string; imageSrc: string }> = {
+	const tabData: Record<
+		TabType,
+		{
+			id: TabType
+			label: string
+			cardTitle: string
+			cardDescription: string
+			imageSrc: string
+		}
+	> = {
 		context: {
 			id: "context",
 			label: t.problem.tab1Label,

@@ -6,13 +6,14 @@ import { Navbar } from "./components/Navbar"
 import { Hero } from "./components/Hero"
 import { FluidBackground } from "./components/FluidBackground"
 import { PartnerLogos } from "./components/PartnerLogos"
-import { getIndustryPage } from "./data/industryPages"
 // Lazy loaded non-initial routes, below-the-fold sections and interactive modals
 const WaitPage = lazy(() =>
 	import("./components/WaitPage").then((m) => ({ default: m.WaitPage })),
 )
 const AdminCMSPage = lazy(() =>
-	import("./components/AdminCMSPage").then((m) => ({ default: m.AdminCMSPage })),
+	import("./components/AdminCMSPage").then((m) => ({
+		default: m.AdminCMSPage,
+	})),
 )
 const TryPiyApiModal = lazy(() =>
 	import("./components/TryPiyApiModal").then((m) => ({
@@ -105,7 +106,6 @@ export function App() {
 	const industrySlug = activeTab.startsWith("industry:")
 		? activeTab.slice("industry:".length)
 		: ""
-	const activeIndustry = industrySlug ? getIndustryPage(industrySlug) : undefined
 
 	const lenisRef = useRef<Lenis | null>(null)
 
@@ -168,7 +168,9 @@ export function App() {
 
 					{/* Landing Page Content Sections */}
 					<Suspense fallback={null}>
-						<MemoryParadigmSection onOpenConsole={() => setIsConsoleOpen(true)} />
+						<MemoryParadigmSection
+							onOpenConsole={() => setIsConsoleOpen(true)}
+						/>
 						<DifferentApproachSection />
 						<WorkflowsSection />
 						<CodeIntegrationSection />
@@ -214,7 +216,9 @@ export function App() {
 								</div>
 							}
 						>
-							<ResearchArticlePage onNavigateBlog={() => setActiveTab("blog")} />
+							<ResearchArticlePage
+								onNavigateBlog={() => setActiveTab("blog")}
+							/>
 						</Suspense>
 					</main>
 					<Suspense fallback={null}>
@@ -280,14 +284,17 @@ export function App() {
 								</div>
 							}
 						>
-							<BlogArticlePage articleId={blogArticleId} onNavigate={(route) => setActiveTab(route)} />
+							<BlogArticlePage
+								articleId={blogArticleId}
+								onNavigate={(route) => setActiveTab(route)}
+							/>
 						</Suspense>
 					</main>
 					<Suspense fallback={null}>
 						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
 					</Suspense>
 				</div>
-			) : activeIndustry ? (
+			) : industrySlug ? (
 				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
 					<Navbar
 						activeTab={activeTab}
@@ -304,7 +311,7 @@ export function App() {
 							}
 						>
 							<IndustryPage
-								industry={activeIndustry}
+								industrySlug={industrySlug}
 								onNavigate={(slug) => setActiveTab(`industry:${slug}`)}
 							/>
 						</Suspense>

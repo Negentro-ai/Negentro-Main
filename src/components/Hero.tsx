@@ -94,7 +94,9 @@ export const Hero: React.FC<HeroProps> = () => {
 		setIsSubmitting(false)
 
 		if (res.success) {
-			setStatusMessage(res.isDuplicate ? t.hero.duplicateMsg : t.hero.successMsg)
+			setStatusMessage(
+				res.isDuplicate ? t.hero.duplicateMsg : t.hero.successMsg,
+			)
 			setSubmitted(true)
 		} else {
 			setErrorMessage(res.message)

@@ -1,5 +1,12 @@
 import type React from "react"
-import { Shield, ListOrdered, FileEdit, Layers, Sliders, ChevronRight } from "lucide-react"
+import {
+	Shield,
+	ListOrdered,
+	FileEdit,
+	Layers,
+	Sliders,
+	ChevronRight,
+} from "lucide-react"
 import { useLanguage } from "@/lib/i18n"
 
 export const SecurityComplianceSection: React.FC = () => {
@@ -58,8 +65,11 @@ export const SecurityComplianceSection: React.FC = () => {
 				{/* Centered Main Title & Subtitle */}
 				<div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
 					<h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#000410] tracking-[-0.03em] leading-[1.12]">
-						Your <span className="text-[#765DFB]">{t.security.headlineData}</span> Your{" "}
-						<span className="text-[#765DFB]">{t.security.headlineMemory}</span> Your{" "}
+						Your{" "}
+						<span className="text-[#765DFB]">{t.security.headlineData}</span>{" "}
+						Your{" "}
+						<span className="text-[#765DFB]">{t.security.headlineMemory}</span>{" "}
+						Your{" "}
 						<span className="text-[#765DFB]">{t.security.headlineControl}</span>
 					</h2>
 
@@ -67,9 +77,7 @@ export const SecurityComplianceSection: React.FC = () => {
 						<span className="block sm:whitespace-nowrap">
 							{t.security.subline1}
 						</span>
-						<span className="block">
-							{t.security.subline2}
-						</span>
+						<span className="block">{t.security.subline2}</span>
 					</p>
 				</div>
 

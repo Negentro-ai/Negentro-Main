@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import { ArrowUpRight, ArrowRight } from "lucide-react"
 import { Footer } from "./Footer"
 
@@ -39,7 +40,7 @@ export const UseCasesPage: React.FC = () => {
 	// Generate exactly 26 items by cycling through the base cases
 	const cases = Array.from({ length: 26 }, (_, i) => ({
 		...baseCases[i % baseCases.length],
-		// Optional: Append an index if we want titles to feel slightly unique, 
+		// Optional: Append an index if we want titles to feel slightly unique,
 		// but since we want the exact UI, we just duplicate them.
 	}))
 
@@ -69,7 +70,8 @@ export const UseCasesPage: React.FC = () => {
 							gets better over time.
 						</h1>
 						<p className="text-base sm:text-xl md:text-[22px] text-[#b9becf] font-normal max-w-3xl mx-auto leading-relaxed mt-5 sm:mt-7 mb-10 tracking-[-0.01em]">
-							PiyApi gives agents, copilots and AI products a durable memory layer — so every interaction can build on what came before.
+							PiyApi gives agents, copilots and AI products a durable memory
+							layer — so every interaction can build on what came before.
 						</p>
 
 						<div className="flex items-center justify-center gap-4 mt-8">
@@ -115,8 +117,12 @@ export const UseCasesPage: React.FC = () => {
 								/>
 							</div>
 							<div className="p-6 sm:p-8 flex flex-col flex-1 relative min-h-40">
-								<h3 className="text-[20px] font-medium text-neutral-900 mb-3 leading-snug pr-4">{c.title}</h3>
-								<p className="text-[15px] text-neutral-500/90 leading-[1.6] mb-8 pr-4">{c.desc}</p>
+								<h3 className="text-[20px] font-medium text-neutral-900 mb-3 leading-snug pr-4">
+									{c.title}
+								</h3>
+								<p className="text-[15px] text-neutral-500/90 leading-[1.6] mb-8 pr-4">
+									{c.desc}
+								</p>
 
 								<div className="absolute bottom-6 right-6">
 									<div className="w-8 h-8 rounded-full bg-[#765DFB] flex items-center justify-center text-white shadow-sm transform group-hover:-translate-y-1 group-hover:shadow-md transition-all duration-300">
@@ -144,12 +150,15 @@ export const UseCasesPage: React.FC = () => {
 			{/* CTA Section from Figma */}
 			<div className="w-full bg-[#fafafa] py-32 border-t border-neutral-100">
 				<div className="container-universal max-w-200 mx-auto text-center">
-					<p className="text-[11px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase">GET STARTED</p>
+					<p className="text-[11px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase">
+						GET STARTED
+					</p>
 					<h2 className="text-4xl md:text-[48px] font-medium text-neutral-900 mb-6 tracking-tight leading-[1.1]">
 						Build AI that remembers.
 					</h2>
 					<p className="text-base text-[#765DFB] font-medium leading-relaxed max-w-125 mx-auto mb-10">
-						Start with PiyApi's memory infrastructure and give your AI products the context they need to become more useful with every interaction.
+						Start with PiyApi's memory infrastructure and give your AI products
+						the context they need to become more useful with every interaction.
 					</p>
 
 					<div className="flex items-center justify-center gap-4">
@@ -163,7 +172,7 @@ export const UseCasesPage: React.FC = () => {
 				</div>
 			</div>
 
-			<Footer onOpenConsole={() => { }} />
+			<Footer onOpenConsole={() => {}} />
 		</div>
 	)
 }

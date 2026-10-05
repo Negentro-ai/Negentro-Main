@@ -1,6 +1,18 @@
 import { useState, Fragment } from "react"
 import type React from "react"
-import { Check, X, ArrowRight, ArrowDown, Database, Search, Server, Headphones, Shield, LineChart, Users } from "lucide-react"
+import {
+	Check,
+	X,
+	ArrowRight,
+	ArrowDown,
+	Database,
+	Search,
+	Server,
+	Headphones,
+	Shield,
+	LineChart,
+	Users,
+} from "lucide-react"
 import { Footer } from "./Footer"
 import { useLanguage } from "@/lib/i18n"
 
@@ -24,7 +36,13 @@ function buildPlans(t: ReturnType<typeof useLanguage>["t"]) {
 			contextCapacity: "10K memories",
 			retrievals: "5K",
 			projects: "1",
-			features: [t.pricing.planExploreF1, t.pricing.planExploreF2, t.pricing.planExploreF3, t.pricing.planExploreF4, t.pricing.planExploreF5],
+			features: [
+				t.pricing.planExploreF1,
+				t.pricing.planExploreF2,
+				t.pricing.planExploreF3,
+				t.pricing.planExploreF4,
+				t.pricing.planExploreF5,
+			],
 		},
 		{
 			name: t.pricing.planBuildName,
@@ -40,7 +58,15 @@ function buildPlans(t: ReturnType<typeof useLanguage>["t"]) {
 			contextCapacity: "100K memories",
 			retrievals: "250K",
 			projects: "5",
-			features: [t.pricing.planBuildF1, t.pricing.planBuildF2, t.pricing.planBuildF3, t.pricing.planBuildF4, t.pricing.planBuildF5, t.pricing.planBuildF6, t.pricing.planBuildF7],
+			features: [
+				t.pricing.planBuildF1,
+				t.pricing.planBuildF2,
+				t.pricing.planBuildF3,
+				t.pricing.planBuildF4,
+				t.pricing.planBuildF5,
+				t.pricing.planBuildF6,
+				t.pricing.planBuildF7,
+			],
 		},
 		{
 			name: t.pricing.planScaleName,
@@ -56,7 +82,16 @@ function buildPlans(t: ReturnType<typeof useLanguage>["t"]) {
 			contextCapacity: "1M+ memories",
 			retrievals: "5M",
 			projects: "25",
-			features: [t.pricing.planScaleF1, t.pricing.planScaleF2, t.pricing.planScaleF3, t.pricing.planScaleF4, t.pricing.planScaleF5, t.pricing.planScaleF6, t.pricing.planScaleF7, t.pricing.planScaleF8],
+			features: [
+				t.pricing.planScaleF1,
+				t.pricing.planScaleF2,
+				t.pricing.planScaleF3,
+				t.pricing.planScaleF4,
+				t.pricing.planScaleF5,
+				t.pricing.planScaleF6,
+				t.pricing.planScaleF7,
+				t.pricing.planScaleF8,
+			],
 		},
 		{
 			name: t.pricing.planEnterpriseName,
@@ -72,112 +107,321 @@ function buildPlans(t: ReturnType<typeof useLanguage>["t"]) {
 			contextCapacity: t.pricing.planEnterpriseContextCapacity,
 			retrievals: "Custom",
 			projects: t.pricing.planEnterpriseProjects,
-			features: [t.pricing.planEnterpriseF1, t.pricing.planEnterpriseF2, t.pricing.planEnterpriseF3, t.pricing.planEnterpriseF4, t.pricing.planEnterpriseF5, t.pricing.planEnterpriseF6, t.pricing.planEnterpriseF7, t.pricing.planEnterpriseF8, t.pricing.planEnterpriseF9],
+			features: [
+				t.pricing.planEnterpriseF1,
+				t.pricing.planEnterpriseF2,
+				t.pricing.planEnterpriseF3,
+				t.pricing.planEnterpriseF4,
+				t.pricing.planEnterpriseF5,
+				t.pricing.planEnterpriseF6,
+				t.pricing.planEnterpriseF7,
+				t.pricing.planEnterpriseF8,
+				t.pricing.planEnterpriseF9,
+			],
 		},
 	]
 }
 
-
-
 function buildCoverageFeatures(t: ReturnType<typeof useLanguage>["t"]) {
 	return [
-		{ icon: Database, title: t.pricing.coverage1Title, description: t.pricing.coverage1Desc, example: t.pricing.coverage1Example },
-		{ icon: Search,   title: t.pricing.coverage2Title, description: t.pricing.coverage2Desc, example: t.pricing.coverage2Example },
-		{ icon: Server,   title: t.pricing.coverage3Title, description: t.pricing.coverage3Desc, example: t.pricing.coverage3Example },
-		{ icon: Headphones, title: t.pricing.coverage4Title, description: t.pricing.coverage4Desc, example: t.pricing.coverage4Example },
+		{
+			icon: Database,
+			title: t.pricing.coverage1Title,
+			description: t.pricing.coverage1Desc,
+			example: t.pricing.coverage1Example,
+		},
+		{
+			icon: Search,
+			title: t.pricing.coverage2Title,
+			description: t.pricing.coverage2Desc,
+			example: t.pricing.coverage2Example,
+		},
+		{
+			icon: Server,
+			title: t.pricing.coverage3Title,
+			description: t.pricing.coverage3Desc,
+			example: t.pricing.coverage3Example,
+		},
+		{
+			icon: Headphones,
+			title: t.pricing.coverage4Title,
+			description: t.pricing.coverage4Desc,
+			example: t.pricing.coverage4Example,
+		},
 	]
 }
-
-
-
 
 function buildComparisonData(t: ReturnType<typeof useLanguage>["t"]) {
 	return [
 		{
 			category: t.pricing.catMemory,
 			rows: [
-				{ name: t.pricing.rowMemoryStorage,    starter: "10K",     pro: "100K",     scale: "1M+",      enterprise: "Custom" },
-				{ name: t.pricing.rowMemoryRetrieval,  starter: "5K/mo",   pro: "250K/mo",  scale: "5M/mo",    enterprise: "Custom" },
-				{ name: t.pricing.rowMemoryRetention,  starter: "30 days", pro: "180 days", scale: "365 days", enterprise: "Custom" },
-				{ name: t.pricing.rowMemoryExport,     starter: false,     pro: true,       scale: true,       enterprise: true },
-				{ name: t.pricing.rowMetadataFiltering,starter: false,     pro: true,       scale: true,       enterprise: true },
-				{ name: t.pricing.rowMemoryHistory,    starter: "—",       pro: "Basic",    scale: "Advanced", enterprise: "Full" },
+				{
+					name: t.pricing.rowMemoryStorage,
+					starter: "10K",
+					pro: "100K",
+					scale: "1M+",
+					enterprise: "Custom",
+				},
+				{
+					name: t.pricing.rowMemoryRetrieval,
+					starter: "5K/mo",
+					pro: "250K/mo",
+					scale: "5M/mo",
+					enterprise: "Custom",
+				},
+				{
+					name: t.pricing.rowMemoryRetention,
+					starter: "30 days",
+					pro: "180 days",
+					scale: "365 days",
+					enterprise: "Custom",
+				},
+				{
+					name: t.pricing.rowMemoryExport,
+					starter: false,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowMetadataFiltering,
+					starter: false,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowMemoryHistory,
+					starter: "—",
+					pro: "Basic",
+					scale: "Advanced",
+					enterprise: "Full",
+				},
 			],
 		},
 		{
 			category: t.pricing.catRetrieval,
 			rows: [
-				{ name: t.pricing.rowSemanticSearch,        starter: true,  pro: true,  scale: true,  enterprise: true },
-				{ name: t.pricing.rowHybridRetrieval,       starter: false, pro: true,  scale: true,  enterprise: true },
-				{ name: t.pricing.rowReranking,             starter: false, pro: false, scale: true,  enterprise: true },
-				{ name: t.pricing.rowSearchFilters,         starter: true,  pro: true,  scale: true,  enterprise: true },
-				{ name: t.pricing.rowCustomRetrievalConfig, starter: false, pro: false, scale: true,  enterprise: true },
+				{
+					name: t.pricing.rowSemanticSearch,
+					starter: true,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowHybridRetrieval,
+					starter: false,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowReranking,
+					starter: false,
+					pro: false,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowSearchFilters,
+					starter: true,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowCustomRetrievalConfig,
+					starter: false,
+					pro: false,
+					scale: true,
+					enterprise: true,
+				},
 			],
 		},
 		{
 			category: t.pricing.catPlatform,
 			rows: [
-				{ name: t.pricing.rowApiAccess,      starter: true,     pro: true,      scale: true,      enterprise: true },
-				{ name: t.pricing.rowProjects,       starter: "1",      pro: "5",       scale: "25",      enterprise: "Unlimited" },
-				{ name: t.pricing.rowEnvironments,   starter: "1",      pro: "2",       scale: "5",       enterprise: "Custom" },
-				{ name: t.pricing.rowUsageAnalytics, starter: "Basic",  pro: "Standard",scale: "Advanced",enterprise: "Advanced" },
-				{ name: t.pricing.rowWebhooks,       starter: false,    pro: true,      scale: true,      enterprise: true },
+				{
+					name: t.pricing.rowApiAccess,
+					starter: true,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowProjects,
+					starter: "1",
+					pro: "5",
+					scale: "25",
+					enterprise: "Unlimited",
+				},
+				{
+					name: t.pricing.rowEnvironments,
+					starter: "1",
+					pro: "2",
+					scale: "5",
+					enterprise: "Custom",
+				},
+				{
+					name: t.pricing.rowUsageAnalytics,
+					starter: "Basic",
+					pro: "Standard",
+					scale: "Advanced",
+					enterprise: "Advanced",
+				},
+				{
+					name: t.pricing.rowWebhooks,
+					starter: false,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
 			],
 		},
 		{
 			category: t.pricing.catInfrastructure,
 			rows: [
-				{ name: t.pricing.rowManagedInfra,       starter: true,  pro: true,  scale: true,  enterprise: true },
-				{ name: t.pricing.rowSelfHosted,          starter: false, pro: false, scale: true,  enterprise: true },
-				{ name: t.pricing.rowCustomStorage,       starter: false, pro: false, scale: false, enterprise: true },
-				{ name: t.pricing.rowDedicatedResources,  starter: false, pro: false, scale: false, enterprise: true },
-				{ name: t.pricing.rowDeploymentControls,  starter: false, pro: false, scale: true,  enterprise: true },
+				{
+					name: t.pricing.rowManagedInfra,
+					starter: true,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowSelfHosted,
+					starter: false,
+					pro: false,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowCustomStorage,
+					starter: false,
+					pro: false,
+					scale: false,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowDedicatedResources,
+					starter: false,
+					pro: false,
+					scale: false,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowDeploymentControls,
+					starter: false,
+					pro: false,
+					scale: true,
+					enterprise: true,
+				},
 			],
 		},
 		{
 			category: t.pricing.catSecurity,
 			rows: [
-				{ name: t.pricing.rowApiKeys,          starter: true,  pro: true,  scale: true,  enterprise: true },
-				{ name: t.pricing.rowRbac,             starter: false, pro: false, scale: true,  enterprise: true },
-				{ name: t.pricing.rowSsoSaml,          starter: false, pro: false, scale: false, enterprise: true },
-				{ name: t.pricing.rowAuditLogs,        starter: false, pro: false, scale: false, enterprise: true },
-				{ name: t.pricing.rowSecurityControls, starter: false, pro: false, scale: "Standard", enterprise: "Advanced" },
+				{
+					name: t.pricing.rowApiKeys,
+					starter: true,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowRbac,
+					starter: false,
+					pro: false,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowSsoSaml,
+					starter: false,
+					pro: false,
+					scale: false,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowAuditLogs,
+					starter: false,
+					pro: false,
+					scale: false,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowSecurityControls,
+					starter: false,
+					pro: false,
+					scale: "Standard",
+					enterprise: "Advanced",
+				},
 			],
 		},
 		{
 			category: t.pricing.catSupport,
 			rows: [
-				{ name: t.pricing.rowCommunitySupport, starter: true,  pro: true,  scale: true,  enterprise: true },
-				{ name: t.pricing.rowEmailSupport,     starter: false, pro: true,  scale: true,  enterprise: true },
-				{ name: t.pricing.rowPrioritySupport,  starter: false, pro: false, scale: true,  enterprise: true },
-				{ name: t.pricing.rowDedicatedSupport, starter: false, pro: false, scale: false, enterprise: true },
-				{ name: t.pricing.rowSla,              starter: false, pro: false, scale: false, enterprise: true },
+				{
+					name: t.pricing.rowCommunitySupport,
+					starter: true,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowEmailSupport,
+					starter: false,
+					pro: true,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowPrioritySupport,
+					starter: false,
+					pro: false,
+					scale: true,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowDedicatedSupport,
+					starter: false,
+					pro: false,
+					scale: false,
+					enterprise: true,
+				},
+				{
+					name: t.pricing.rowSla,
+					starter: false,
+					pro: false,
+					scale: false,
+					enterprise: true,
+				},
 			],
 		},
 	]
 }
 
-
-
-
-
 function buildFaqs(t: ReturnType<typeof useLanguage>["t"]) {
 	return [
-		{ q: t.pricing.faq1Q,  a: t.pricing.faq1A  },
-		{ q: t.pricing.faq2Q,  a: t.pricing.faq2A  },
-		{ q: t.pricing.faq3Q,  a: t.pricing.faq3A  },
-		{ q: t.pricing.faq4Q,  a: t.pricing.faq4A  },
-		{ q: t.pricing.faq5Q,  a: t.pricing.faq5A  },
-		{ q: t.pricing.faq6Q,  a: t.pricing.faq6A  },
-		{ q: t.pricing.faq7Q,  a: t.pricing.faq7A  },
-		{ q: t.pricing.faq8Q,  a: t.pricing.faq8A  },
-		{ q: t.pricing.faq9Q,  a: t.pricing.faq9A  },
+		{ q: t.pricing.faq1Q, a: t.pricing.faq1A },
+		{ q: t.pricing.faq2Q, a: t.pricing.faq2A },
+		{ q: t.pricing.faq3Q, a: t.pricing.faq3A },
+		{ q: t.pricing.faq4Q, a: t.pricing.faq4A },
+		{ q: t.pricing.faq5Q, a: t.pricing.faq5A },
+		{ q: t.pricing.faq6Q, a: t.pricing.faq6A },
+		{ q: t.pricing.faq7Q, a: t.pricing.faq7A },
+		{ q: t.pricing.faq8Q, a: t.pricing.faq8A },
+		{ q: t.pricing.faq9Q, a: t.pricing.faq9A },
 		{ q: t.pricing.faq10Q, a: t.pricing.faq10A },
 		{ q: t.pricing.faq11Q, a: t.pricing.faq11A },
 	]
 }
 
-const CriticalSystemsSection: React.FC<{ onOpenConsole?: () => void }> = ({ onOpenConsole }) => {
+const CriticalSystemsSection: React.FC<{ onOpenConsole?: () => void }> = ({
+	onOpenConsole,
+}) => {
 	const { t } = useLanguage()
 	const cards = [
 		{
@@ -269,19 +513,25 @@ const SelfHostSection: React.FC = () => {
 					{/* Left Column: Stack */}
 					<div className="flex flex-col items-center justify-center space-y-3">
 						<div className="w-full max-w-70 rounded-[10px] border border-neutral-200 py-4 text-center bg-white shadow-sm">
-							<span className="text-[14px] font-semibold text-neutral-950">{t.pricing.selfHostYourApp}</span>
+							<span className="text-[14px] font-semibold text-neutral-950">
+								{t.pricing.selfHostYourApp}
+							</span>
 						</div>
-						
+
 						<ArrowDown className="w-5 h-5 text-neutral-300" strokeWidth={2} />
 
 						<div className="w-full max-w-70 rounded-[10px] border border-[#efeafc] py-4 text-center bg-[#f5f3ff] shadow-sm">
-							<span className="text-[14px] font-semibold text-[#765DFB]">Negentro</span>
+							<span className="text-[14px] font-semibold text-[#765DFB]">
+								Negentro
+							</span>
 						</div>
 
 						<ArrowDown className="w-5 h-5 text-neutral-300" strokeWidth={2} />
 
 						<div className="w-full max-w-70 rounded-[10px] border border-neutral-200 py-4 text-center bg-white shadow-sm">
-							<span className="text-[14px] font-semibold text-neutral-950">{t.pricing.selfHostYourInfra}</span>
+							<span className="text-[14px] font-semibold text-neutral-950">
+								{t.pricing.selfHostYourInfra}
+							</span>
 						</div>
 					</div>
 
@@ -519,7 +769,7 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 	onOpenConsole,
 }) => {
 	const { t } = useLanguage()
-	
+
 	const plans = buildPlans(t)
 	const coverageFeatures = buildCoverageFeatures(t)
 	const comparisonData = buildComparisonData(t)
@@ -552,20 +802,22 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 							<button
 								type="button"
 								onClick={() => setBilling("monthly")}
-								className={`px-5 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200 cursor-pointer ${billing === "monthly"
-									? "bg-neutral-950 text-white shadow-sm"
-									: "bg-transparent text-neutral-500 hover:text-neutral-700"
-									}`}
+								className={`px-5 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200 cursor-pointer ${
+									billing === "monthly"
+										? "bg-neutral-950 text-white shadow-sm"
+										: "bg-transparent text-neutral-500 hover:text-neutral-700"
+								}`}
 							>
 								{t.pricing.billingMonthly}
 							</button>
 							<button
 								type="button"
 								onClick={() => setBilling("annual")}
-								className={`pl-5 pr-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${billing === "annual"
-									? "bg-neutral-950 text-white shadow-sm"
-									: "bg-transparent text-neutral-500 hover:text-neutral-700"
-									}`}
+								className={`pl-5 pr-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+									billing === "annual"
+										? "bg-neutral-950 text-white shadow-sm"
+										: "bg-transparent text-neutral-500 hover:text-neutral-700"
+								}`}
 							>
 								{t.pricing.billingYearly}
 								<span className="text-[10px] font-bold text-[#be185d] bg-[#fce7f3] px-2 py-1 rounded-md leading-none whitespace-nowrap">
@@ -582,10 +834,11 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 							return (
 								<div
 									key={plan.name}
-									className={`relative bg-white rounded-2xl p-6 sm:p-7 text-left flex flex-col transition-all duration-300 ring-1 ${isHighlighted
-										? "ring-2 ring-[#765DFB] shadow-xl shadow-[#765DFB]/10 z-10"
-										: "ring-neutral-200 hover:ring-[#765DFB] shadow-sm hover:shadow-md"
-										}`}
+									className={`relative bg-white rounded-2xl p-6 sm:p-7 text-left flex flex-col transition-all duration-300 ring-1 ${
+										isHighlighted
+											? "ring-2 ring-[#765DFB] shadow-xl shadow-[#765DFB]/10 z-10"
+											: "ring-neutral-200 hover:ring-[#765DFB] shadow-sm hover:shadow-md"
+									}`}
 								>
 									{/* Badge */}
 									{plan.badge && (
@@ -604,10 +857,14 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 
 									{/* Price */}
 									<div className="flex items-baseline gap-1 mb-1">
-										{plan.monthlyPrice !== "Custom" && plan.monthlyPrice !== "Free" ? (
+										{plan.monthlyPrice !== "Custom" &&
+										plan.monthlyPrice !== "Free" ? (
 											<>
 												<span className="text-[32px] sm:text-[38px] font-bold text-neutral-950 tracking-tight leading-none">
-													${billing === "monthly" ? plan.monthlyPrice : plan.annualPrice}
+													$
+													{billing === "monthly"
+														? plan.monthlyPrice
+														: plan.annualPrice}
 												</span>
 												<span className="text-[13px] text-neutral-500 font-medium ml-1">
 													{plan.unit}
@@ -626,13 +883,16 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 									{/* CTA */}
 									<button
 										type="button"
-										onClick={plan.ctaStyle === "filled" ? onOpenConsole : undefined}
-										className={`w-full py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 cursor-pointer mb-8 ${plan.ctaStyle === "filled"
-											? "bg-[#765DFB] text-white hover:bg-[#6348e8] shadow-sm"
-											: plan.ctaStyle === "dark"
-												? "bg-neutral-950 text-white hover:bg-neutral-800 shadow-sm"
-												: "bg-white text-neutral-950 ring-1 ring-neutral-200 hover:bg-neutral-50 shadow-sm"
-											}`}
+										onClick={
+											plan.ctaStyle === "filled" ? onOpenConsole : undefined
+										}
+										className={`w-full py-2.5 rounded-lg text-[13px] font-semibold transition-all duration-200 cursor-pointer mb-8 ${
+											plan.ctaStyle === "filled"
+												? "bg-[#765DFB] text-white hover:bg-[#6348e8] shadow-sm"
+												: plan.ctaStyle === "dark"
+													? "bg-neutral-950 text-white hover:bg-neutral-800 shadow-sm"
+													: "bg-white text-neutral-950 ring-1 ring-neutral-200 hover:bg-neutral-50 shadow-sm"
+										}`}
 									>
 										{plan.cta}
 									</button>
@@ -656,7 +916,9 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 										</p>
 										<div className="flex justify-between items-center text-[12px] text-neutral-500 mb-2">
 											<span>{t.pricing.retrievalsLabel}</span>
-											<span className="text-neutral-950">{plan.retrievals}</span>
+											<span className="text-neutral-950">
+												{plan.retrievals}
+											</span>
 										</div>
 										<div className="flex justify-between items-center text-[12px] text-neutral-500 mb-1 border-b border-neutral-100 pb-3">
 											<span>{t.pricing.projectsLabel}</span>
@@ -733,7 +995,6 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 				</div>
 			</section>
 
-
 			{/* ────────── Section 3: Feature comparison table ────────── */}
 			<section className="py-16 sm:py-20 lg:py-24 border-t border-neutral-100">
 				<div className="container-universal">
@@ -757,8 +1018,12 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 										{t.pricing.planExploreName}
 									</th>
 									<th className="text-left py-3 px-6 text-[14px] w-[18%] bg-[#f5f3ff] relative">
-										<div className="text-[#765DFB] text-[8px] font-bold uppercase tracking-wider mb-1">{t.pricing.recommendedLabel}</div>
-										<div className="font-semibold text-neutral-950">{t.pricing.planBuildName}</div>
+										<div className="text-[#765DFB] text-[8px] font-bold uppercase tracking-wider mb-1">
+											{t.pricing.recommendedLabel}
+										</div>
+										<div className="font-semibold text-neutral-950">
+											{t.pricing.planBuildName}
+										</div>
 									</th>
 									<th className="text-left py-5 px-6 font-semibold text-neutral-950 text-[14px] w-[18%] bg-white">
 										{t.pricing.planScaleName}
@@ -795,7 +1060,9 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 															<X className="w-4 h-4 text-neutral-300" />
 														)
 													) : (
-														<span className="text-neutral-600 text-[13px]">{row.starter}</span>
+														<span className="text-neutral-600 text-[13px]">
+															{row.starter}
+														</span>
 													)}
 												</td>
 												<td className="py-4 px-6 text-left bg-[#f5f3ff]">
@@ -806,7 +1073,9 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 															<X className="w-4 h-4 text-neutral-300" />
 														)
 													) : (
-														<span className="text-neutral-600 text-[13px]">{row.pro}</span>
+														<span className="text-neutral-600 text-[13px]">
+															{row.pro}
+														</span>
 													)}
 												</td>
 												<td className="py-4 px-6 text-left bg-white">
@@ -817,7 +1086,9 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 															<X className="w-4 h-4 text-neutral-300" />
 														)
 													) : (
-														<span className="text-neutral-600 text-[13px]">{row.scale}</span>
+														<span className="text-neutral-600 text-[13px]">
+															{row.scale}
+														</span>
 													)}
 												</td>
 												<td className="py-4 px-6 text-left bg-white">
@@ -828,7 +1099,9 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 															<X className="w-4 h-4 text-neutral-300" />
 														)
 													) : (
-														<span className="text-neutral-600 text-[13px]">{row.enterprise}</span>
+														<span className="text-neutral-600 text-[13px]">
+															{row.enterprise}
+														</span>
 													)}
 												</td>
 											</tr>
@@ -850,8 +1123,6 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 			{/* ────────── Section 3.7: Critical Systems ────────── */}
 			<CriticalSystemsSection onOpenConsole={onOpenConsole} />
 
-
-
 			{/* ────────── Section 8: FAQ ────────── */}
 			<section className="py-16 sm:py-20 lg:py-24">
 				<div className="container-universal max-w-270 mx-auto">
@@ -871,25 +1142,26 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 									<div key={faq.q}>
 										<button
 											type="button"
-											onClick={() =>
-												setOpenFaq(
-													isOpen ? null : idx,
-												)
-											}
+											onClick={() => setOpenFaq(isOpen ? null : idx)}
 											className="w-full flex items-center justify-between py-6 text-left cursor-pointer group"
 										>
-											<span className={`text-[15px] font-medium pr-6 transition-colors ${isOpen ? "text-[#765DFB]" : "text-neutral-900 group-hover:text-neutral-600"}`}>
+											<span
+												className={`text-[15px] font-medium pr-6 transition-colors ${isOpen ? "text-[#765DFB]" : "text-neutral-900 group-hover:text-neutral-600"}`}
+											>
 												{faq.q}
 											</span>
-											<span className={`text-[20px] font-light transition-colors ${isOpen ? "text-[#765DFB]" : "text-neutral-400"}`}>
+											<span
+												className={`text-[20px] font-light transition-colors ${isOpen ? "text-[#765DFB]" : "text-neutral-400"}`}
+											>
 												{isOpen ? "-" : "+"}
 											</span>
 										</button>
 										<div
-											className={`overflow-hidden transition-all duration-300 ease-out ${isOpen
-												? "max-h-60 pb-6 opacity-100"
-												: "max-h-0 opacity-0"
-												}`}
+											className={`overflow-hidden transition-all duration-300 ease-out ${
+												isOpen
+													? "max-h-60 pb-6 opacity-100"
+													: "max-h-0 opacity-0"
+											}`}
 										>
 											<p className="text-[14px] text-neutral-500 leading-[1.6] pr-12">
 												{faq.a}

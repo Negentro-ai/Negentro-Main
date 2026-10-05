@@ -1,5 +1,13 @@
 import type React from "react"
-import { RefreshCw, Target, Link, Clock, Shield, Box, ChevronRight } from "lucide-react"
+import {
+	RefreshCw,
+	Target,
+	Link,
+	Clock,
+	Shield,
+	Box,
+	ChevronRight,
+} from "lucide-react"
 import WavyBackground from "@/components/ui/blue-meshy-background"
 import { useLanguage } from "@/lib/i18n"
 
@@ -102,12 +110,16 @@ export const DifferentApproachSection: React.FC = () => {
 				<div className="text-center max-w-5xl lg:max-w-6xl mx-auto space-y-4 sm:space-y-6">
 					<h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0F1123] tracking-[-0.03em] leading-[1.15] font-['DM_Sans',sans-serif]">
 						{t.differentApproach.titlePre}
-						<span className="text-[#765DFB]">{t.differentApproach.titleHighlight}</span>
+						<span className="text-[#765DFB]">
+							{t.differentApproach.titleHighlight}
+						</span>
 					</h2>
 
 					<p className="text-[18px] sm:text-[28px] lg:text-[40px] font-normal text-[#0F1123] leading-[1.25] tracking-[-0.02em] font-['DM_Sans',sans-serif]">
 						{t.differentApproach.sublinePre}
-						<span className="font-semibold text-[#765DFB]">{t.differentApproach.sublineHighlight}</span>
+						<span className="font-semibold text-[#765DFB]">
+							{t.differentApproach.sublineHighlight}
+						</span>
 						{t.differentApproach.sublinePost}
 					</p>
 				</div>
@@ -170,7 +182,9 @@ export const DifferentApproachSection: React.FC = () => {
 					<p className="text-[20px] sm:text-[25px] md:text-[28px] lg:text-[30px] font-normal text-[#000410] tracking-[-0.02em] leading-[1.35] lg:leading-[40px] font-['DM_Sans',sans-serif]">
 						<span className="block">
 							"{t.differentApproach.quotePre}
-							<span className="text-[#765DFB]">{t.differentApproach.quoteHighlight}</span>
+							<span className="text-[#765DFB]">
+								{t.differentApproach.quoteHighlight}
+							</span>
 							{t.differentApproach.quotePost}"
 						</span>
 					</p>
@@ -194,11 +208,10 @@ export const DifferentApproachSection: React.FC = () => {
 							</span>
 							<span className="block">
 								<span className="text-[#765DFB]">LoCoMo</span>,{" "}
-								<span className="text-[#765DFB]">ConvoMem</span> with fast recall and
+								<span className="text-[#765DFB]">ConvoMem</span> with fast
+								recall and
 							</span>
-							<span className="block">
-								dramatically lower token usage.
-							</span>
+							<span className="block">dramatically lower token usage.</span>
 						</p>
 					</div>
 
@@ -266,10 +279,7 @@ export const DifferentApproachSection: React.FC = () => {
 								{comparisonRows.map((row, idx) => {
 									const isLast = idx === comparisonRows.length - 1
 									return (
-										<tr
-											key={row.feature}
-											className="border-t border-[#E0DCEF]"
-										>
+										<tr key={row.feature} className="border-t border-[#E0DCEF]">
 											<td className="py-3.5 sm:py-6 px-2.5 sm:px-6">
 												<span className="font-normal text-[12.5px] sm:text-[15px] text-[#1A1935] font-['DM_Sans',sans-serif] leading-tight block">
 													{row.feature}
@@ -278,38 +288,51 @@ export const DifferentApproachSection: React.FC = () => {
 
 											<td className="py-3.5 sm:py-6 px-2 sm:px-3 text-center align-middle">
 												{row.contextStuffing === true ? (
-													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">✓</span>
+													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">
+														✓
+													</span>
 												) : (
-													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">—</span>
+													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">
+														—
+													</span>
 												)}
 											</td>
 
 											<td className="py-3.5 sm:py-6 px-2 sm:px-3 text-center align-middle">
 												{row.memoryWrapper === true ? (
-													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">✓</span>
+													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">
+														✓
+													</span>
 												) : row.memoryWrapper === "partial" ? (
 													<div className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] rounded-full overflow-hidden flex mx-auto border border-[#765DFB]/25">
 														<div className="w-1/2 h-full bg-[#765DFB]" />
 														<div className="w-1/2 h-full bg-[#DDD9EE]" />
 													</div>
 												) : (
-													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">—</span>
+													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">
+														—
+													</span>
 												)}
 											</td>
 
 											<td className="py-3.5 sm:py-6 px-2 sm:px-3 text-center align-middle">
 												{row.nativeMemory === true ? (
-													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">✓</span>
+													<span className="inline-block text-[#765DFB] text-[14px] sm:text-[16px] font-light leading-none select-none">
+														✓
+													</span>
 												) : (
-													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">—</span>
+													<span className="inline-block text-[#765DFB] text-[16px] sm:text-[18px] font-normal leading-none select-none">
+														—
+													</span>
 												)}
 											</td>
 
 											<td
-												className={`py-2.5 sm:py-4 px-2 sm:px-3 text-center align-middle bg-[#7B6EF6] ${isLast
+												className={`py-2.5 sm:py-4 px-2 sm:px-3 text-center align-middle bg-[#7B6EF6] ${
+													isLast
 														? "rounded-b-[12px] sm:rounded-b-[14px]"
 														: "border-b border-white/20"
-													}`}
+												}`}
 											>
 												<img
 													src="/assets/piyapi-check-badge.svg"
@@ -332,4 +355,3 @@ export const DifferentApproachSection: React.FC = () => {
 		</section>
 	)
 }
-

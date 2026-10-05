@@ -49,7 +49,9 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 1: Developers */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">{t.footer.devTitle}</h4>
+						<h4 className="text-sm font-medium text-white">
+							{t.footer.devTitle}
+						</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
@@ -104,7 +106,9 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 2: Product */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">{t.footer.prodTitle}</h4>
+						<h4 className="text-sm font-medium text-white">
+							{t.footer.prodTitle}
+						</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
@@ -153,7 +157,9 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 3: Company */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">{t.footer.compTitle}</h4>
+						<h4 className="text-sm font-medium text-white">
+							{t.footer.compTitle}
+						</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
@@ -208,7 +214,9 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Column 4: Usecase */}
 					<div className="space-y-3.5">
-						<h4 className="text-sm font-medium text-white">{t.footer.usecasesTitle}</h4>
+						<h4 className="text-sm font-medium text-white">
+							{t.footer.usecasesTitle}
+						</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
@@ -258,7 +266,9 @@ export const Footer: React.FC<FooterProps> = ({
 				<div className="pt-8 pb-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
 					{/* Left: Contact Us */}
 					<div className="space-y-1.5">
-						<h4 className="text-sm font-medium text-white">{t.footer.contactTitle}</h4>
+						<h4 className="text-sm font-medium text-white">
+							{t.footer.contactTitle}
+						</h4>
 						<a
 							href={`mailto:${t.footer.contactEmail}`}
 							className="text-xs sm:text-sm text-[#8F9FA3] hover:text-white transition-colors block"
@@ -269,16 +279,16 @@ export const Footer: React.FC<FooterProps> = ({
 
 					{/* Right: Compliance Badges */}
 					<div className="space-y-3 md:text-right">
-						<h4 className="text-sm font-medium text-white">{t.footer.complianceTitle}</h4>
+						<h4 className="text-sm font-medium text-white">
+							{t.footer.complianceTitle}
+						</h4>
 						<div className="flex flex-wrap items-center md:justify-end gap-5 text-xs text-white">
 							{/* SOC 2 Badge */}
 							<div className="flex items-center gap-2">
 								<div className="w-6 h-6 rounded-full bg-[#4846AC] border border-[#765DFB] flex items-center justify-center text-[8px] font-bold text-white shadow-sm">
 									SOC
 								</div>
-								<span className="text-xs text-white/90">
-									{t.footer.soc2}
-								</span>
+								<span className="text-xs text-white/90">{t.footer.soc2}</span>
 							</div>
 
 							{/* GDPR Badge */}
@@ -419,13 +429,7 @@ export const Footer: React.FC<FooterProps> = ({
 									xmlns="http://www.w3.org/2000/svg"
 									className="w-full h-full"
 								>
-									<rect
-										y="100"
-										width="40"
-										height="40"
-										rx="20"
-										fill="white"
-									/>
+									<rect y="100" width="40" height="40" rx="20" fill="white" />
 									<path
 										d="M14.5 113.8C14.5 114.794 13.6941 115.6 12.7 115.6C11.7059 115.6 10.9 114.794 10.9 113.8C10.9 112.806 11.7059 112 12.7 112C13.6941 112 14.5 112.806 14.5 113.8ZM11.1 117.2H14.3V127H11.1V117.2ZM19.3 117.2H22.4V118.6C22.8 117.7 24.1 116.9 25.8 116.9C29 116.9 30.2 118.8 30.2 121.9V127H27V122.4C27 121 26.6 119.8 25 119.8C23.5 119.8 22.5 120.9 22.5 122.6V127H19.3V117.2Z"
 										fill="black"

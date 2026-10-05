@@ -1,4 +1,5 @@
-﻿import React, { createContext, useContext, useState, useEffect } from "react"
+﻿import type React from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
 export type Language = "en" | "es" | "fr" | "de" | "ru"
 
@@ -476,11 +477,9 @@ export const translations: Record<Language, TranslationDictionary> = {
 			feat3Desc:
 				"Complete traceability for every piece of retrieved knowledge.",
 			feat4Title: "Persistence",
-			feat4Desc:
-				"Long-term historical continuity across sessions and models.",
+			feat4Desc: "Long-term historical continuity across sessions and models.",
 			feat5Title: "Ownership",
-			feat5Desc:
-				"Full user control and sovereignty over private memory data.",
+			feat5Desc: "Full user control and sovereignty over private memory data.",
 			feat6Title: "Portability",
 			feat6Desc:
 				"Model-agnostic interoperability for seamless infrastructure migration.",
@@ -520,7 +519,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"management optimized for high-scale, context-aware production models.",
 			card1Id: "01",
 			card1Title: "AI Agents",
-			card1Desc: "Persistent memory for autonomous, multi-step decision making.",
+			card1Desc:
+				"Persistent memory for autonomous, multi-step decision making.",
 			card2Id: "02",
 			card2Title: "Conversational AI",
 			card2Desc:
@@ -557,7 +557,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"Enable AI agents to remember accurately across every interaction and workflow.",
 			tag03: "//03",
 			connectorsTitle: "CONNECTORS",
-			connectorsSubtitle: "One source of truth. Every application. Every model.",
+			connectorsSubtitle:
+				"One source of truth. Every application. Every model.",
 			tag04: "//04",
 			mcpTitle: "MCP",
 			mcpSubtitle:
@@ -584,7 +585,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			card4Desc:
 				"See what AI remembers, where it came from, and how it has changed.",
 			card5Title: "User-controlled memory",
-			card5Desc: "Control who can create, read, update, export, or delete memory.",
+			card5Desc:
+				"Control who can create, read, update, export, or delete memory.",
 		},
 		research: {
 			tag: "INSIGHTS AND BLOGS",
@@ -662,7 +664,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 		pricing: {
 			tag: "PRICING",
 			heroHeadline: "Infrastructure that scales with your context.",
-			heroSubline: "Start building with persistent intelligence, then scale your memory, retrieval, and infrastructure as your application grows.",
+			heroSubline:
+				"Start building with persistent intelligence, then scale your memory, retrieval, and infrastructure as your application grows.",
 			billingLabel: "BILLING",
 			billingMonthly: "Monthly",
 			billingYearly: "Yearly",
@@ -672,7 +675,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			retrievalsLabel: "Retrievals/mo",
 			projectsLabel: "Projects",
 			coverageHeadline: "What your plan actually covers",
-			coverageSubline: "Every plan is built from the same four infrastructure dimensions.",
+			coverageSubline:
+				"Every plan is built from the same four infrastructure dimensions.",
 			stepsPrototype: "Prototype",
 			stepsProduction: "Production",
 			stepsScale: "Scale",
@@ -682,7 +686,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			capabilityLabel: "CAPABILITY",
 			recommendedLabel: "RECOMMENDED",
 			calculatorHeadline: "Estimate your monthly usage",
-			calculatorSubline: "Tell us roughly how much context your application handles and we'll show an estimated plan range.",
+			calculatorSubline:
+				"Tell us roughly how much context your application handles and we'll show an estimated plan range.",
 			mauLabel: "MONTHLY ACTIVE USERS",
 			memoriesPerUserLabel: "MEMORIES CREATED PER USER",
 			retrievalRequestsLabel: "MONTHLY RETRIEVAL REQUESTS",
@@ -692,16 +697,20 @@ export const translations: Record<Language, TranslationDictionary> = {
 			suggestedPlanLabel: "SUGGESTED PLAN",
 			estimatedPriceLabel: "ESTIMATED PRICE",
 			calculatorCta: "Start building",
-			calculatorDisclaimer: "Actual usage and pricing may vary depending on configuration and infrastructure requirements.",
+			calculatorDisclaimer:
+				"Actual usage and pricing may vary depending on configuration and infrastructure requirements.",
 			selfHostHeadline: "Prefer to run it yourself?",
-			selfHostSubline: "Deploy Negentro on your own infrastructure and choose the components, storage, and model providers that fit your environment.",
+			selfHostSubline:
+				"Deploy Negentro on your own infrastructure and choose the components, storage, and model providers that fit your environment.",
 			selfHostExplore: "Explore Open Source",
 			criticalHeadline: "For teams building critical AI systems.",
-			criticalSubline: "Talk with the Negentro team about deployment requirements, security, scale, support, and custom infrastructure.",
+			criticalSubline:
+				"Talk with the Negentro team about deployment requirements, security, scale, support, and custom infrastructure.",
 			criticalCta: "Talk to sales",
 			faqHeadline: "Frequently asked questions",
 			finalCtaHeadline: "Start building with persistent intelligence.",
-			finalCtaSubline: "Begin with the free tier and scale when your application needs more context.",
+			finalCtaSubline:
+				"Begin with the free tier and scale when your application needs more context.",
 			finalCtaStart: "Start building",
 			finalCtaDocs: "Read the docs",
 			planExploreName: "Explore",
@@ -755,22 +764,29 @@ export const translations: Record<Language, TranslationDictionary> = {
 			promise1Title: "No hidden fees",
 			promise1Desc: "Transparent pricing with no surprise charges or overages.",
 			promise2Title: "Cancel anytime",
-			promise2Desc: "No lock-in contracts. Downgrade or cancel whenever you need.",
+			promise2Desc:
+				"No lock-in contracts. Downgrade or cancel whenever you need.",
 			promise3Title: "Usage-based flexibility",
-			promise3Desc: "Pay for what you use. Scale up or down based on your actual needs.",
+			promise3Desc:
+				"Pay for what you use. Scale up or down based on your actual needs.",
 			promise4Title: "Free tier forever",
-			promise4Desc: "Our starter plan is free forever. No credit card required to get started.",
+			promise4Desc:
+				"Our starter plan is free forever. No credit card required to get started.",
 			coverage1Title: "Memory",
-			coverage1Desc: "How much persistent context can be stored across your application.",
+			coverage1Desc:
+				"How much persistent context can be stored across your application.",
 			coverage1Example: "e.g. 10K ? 1M+ memories",
 			coverage2Title: "Retrieval",
-			coverage2Desc: "How much context can be searched and retrieved on demand.",
+			coverage2Desc:
+				"How much context can be searched and retrieved on demand.",
 			coverage2Example: "e.g. 5K ? 5M requests/mo",
 			coverage3Title: "Infrastructure",
-			coverage3Desc: "Storage, compute, deployment topology, and reliability guarantees.",
+			coverage3Desc:
+				"Storage, compute, deployment topology, and reliability guarantees.",
 			coverage3Example: "Shared to Dedicated",
 			coverage4Title: "Support",
-			coverage4Desc: "Community, priority, or dedicated engineering support levels.",
+			coverage4Desc:
+				"Community, priority, or dedicated engineering support levels.",
 			coverage4Example: "Community to Dedicated",
 			catMemory: "MEMORY",
 			catRetrieval: "RETRIEVAL",
@@ -822,36 +838,50 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason6Title: "Full data ownership",
 			reason6Desc: "Your memory, your data, your control. Always.",
 			criticalCard1Title: "Security",
-			criticalCard1Desc: "SSO, access controls, and audit requirements built for regulated environments.",
+			criticalCard1Desc:
+				"SSO, access controls, and audit requirements built for regulated environments.",
 			criticalCard2Title: "Scale",
-			criticalCard2Desc: "Custom capacity and dedicated infrastructure for demanding workloads.",
+			criticalCard2Desc:
+				"Custom capacity and dedicated infrastructure for demanding workloads.",
 			criticalCard3Title: "Support",
-			criticalCard3Desc: "Priority engineering and deployment support from our team.",
+			criticalCard3Desc:
+				"Priority engineering and deployment support from our team.",
 			selfHostYourApp: "Your Application",
 			selfHostYourInfra: "Your Infrastructure",
 			faq1Q: "Is there a free plan?",
-			faq1A: "Yes, the Explore plan is free and designed for developers experimenting with persistent context.",
+			faq1A:
+				"Yes, the Explore plan is free and designed for developers experimenting with persistent context.",
 			faq2Q: "How is usage measured?",
-			faq2A: "Usage is measured based on the number of active users, stored memories, and retrieval operations performed each month.",
+			faq2A:
+				"Usage is measured based on the number of active users, stored memories, and retrieval operations performed each month.",
 			faq3Q: "What counts as a memory operation?",
-			faq3A: "A memory operation includes any create, read, update, or delete action on your memory store.",
+			faq3A:
+				"A memory operation includes any create, read, update, or delete action on your memory store.",
 			faq4Q: "Can I change plans later?",
-			faq4A: "Yes! You can upgrade or downgrade your plan at any time to match your infrastructure needs.",
+			faq4A:
+				"Yes! You can upgrade or downgrade your plan at any time to match your infrastructure needs.",
 			faq5Q: "Do unused limits roll over?",
-			faq5A: "No, unused usage limits reset at the beginning of each billing cycle.",
+			faq5A:
+				"No, unused usage limits reset at the beginning of each billing cycle.",
 			faq6Q: "Can I use Negentro with my own infrastructure?",
-			faq6A: "Yes, you can deploy Negentro on your own infrastructure with our open-source or enterprise offerings.",
+			faq6A:
+				"Yes, you can deploy Negentro on your own infrastructure with our open-source or enterprise offerings.",
 			faq7Q: "What is included in self-hosting?",
-			faq7A: "Self-hosting includes full deployment control, custom infrastructure, and the ability to bring your own model providers.",
+			faq7A:
+				"Self-hosting includes full deployment control, custom infrastructure, and the ability to bring your own model providers.",
 			faq8Q: "Do you offer enterprise agreements?",
-			faq8A: "Yes, our Enterprise plan includes custom limits, SSO/SAML, audit logs, and priority deployment support.",
+			faq8A:
+				"Yes, our Enterprise plan includes custom limits, SSO/SAML, audit logs, and priority deployment support.",
 			faq9Q: "Is there a usage-based option?",
-			faq9A: "Yes, beyond base plan limits, you can scale dynamically with transparent usage-based pricing.",
+			faq9A:
+				"Yes, beyond base plan limits, you can scale dynamically with transparent usage-based pricing.",
 			faq10Q: "Can I export my data?",
-			faq10A: "Absolutely. You retain full data ownership and can export your context data at any time via our API.",
+			faq10A:
+				"Absolutely. You retain full data ownership and can export your context data at any time via our API.",
 			faq11Q: "Do you offer support for production deployments?",
-			faq11A: "Yes, we provide priority engineering and deployment support for our Scale and Enterprise customers.",
-			},
+			faq11A:
+				"Yes, we provide priority engineering and deployment support for our Scale and Enterprise customers.",
+		},
 		waitPage: {
 			loading: "Memory is loading...",
 			sublinePre: "Our team is putting the finishing touches on",
@@ -872,11 +902,13 @@ export const translations: Record<Language, TranslationDictionary> = {
 		hero: {
 			headlinePre: "La Próxima Evolución De La\nInteligencia Es La ",
 			headlineMemory: "Memoria.",
-			subline: "Piyapi le da a la IA la capacidad de recordar, aprender y evolucionar.",
+			subline:
+				"Piyapi le da a la IA la capacidad de recordar, aprender y evolucionar.",
 			emailPlaceholder: "Introduce tu correo electrónico",
 			joinWaitlist: "Unirse a la Lista",
 			joining: "Uniéndose...",
-			successMsg: "¡Estás en la lista de espera! Nos pondremos en contacto pronto.",
+			successMsg:
+				"¡Estás en la lista de espera! Nos pondremos en contacto pronto.",
 			duplicateMsg: "¡Ya estás en la lista de espera!",
 			invalidEmailMsg: "Por favor, introduce un correo electrónico válido.",
 		},
@@ -928,7 +960,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			feat6Title: "Portabilidad",
 			feat6Desc:
 				"Interoperabilidad agnóstica de modelos para una migración de infraestructura sin fricciones.",
-			quotePre: "La recuperación es solo la mitad del problema. La IA en producción necesita ",
+			quotePre:
+				"La recuperación es solo la mitad del problema. La IA en producción necesita ",
 			quoteHighlight: "memoria",
 			quotePost: " que pueda preservar y verificar lo que sabe.",
 			sotaHeading: "Memoria SOTA,\nMedida.",
@@ -964,7 +997,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"optimizada para modelos de producción a gran escala y conscientes del contexto.",
 			card1Id: "01",
 			card1Title: "Agentes de IA",
-			card1Desc: "Memoria persistente para la toma de decisiones autónoma y en múltiples pasos.",
+			card1Desc:
+				"Memoria persistente para la toma de decisiones autónoma y en múltiples pasos.",
 			card2Id: "02",
 			card2Title: "IA Conversacional",
 			card2Desc:
@@ -991,17 +1025,20 @@ export const translations: Record<Language, TranslationDictionary> = {
 			headlinePre: "Integra ",
 			headlineHighlight: "Piyapi",
 			headlinePost: " donde tu IA ya vive.",
-			subline: "Memoria que funciona con cualquier modelo, framework o stack de agentes.",
+			subline:
+				"Memoria que funciona con cualquier modelo, framework o stack de agentes.",
 			tag01: "//01",
 			sdkTitle: "SDK",
-			sdkSubtitle: "SDKs nativos, APIs REST e integraciones con frameworks de IA",
+			sdkSubtitle:
+				"SDKs nativos, APIs REST e integraciones con frameworks de IA",
 			tag02: "//02",
 			agentsTitle: "AGENTES DE IA",
 			agentsSubtitle:
 				"Permite que los agentes de IA recuerden con precisión en cada interacción y flujo.",
 			tag03: "//03",
 			connectorsTitle: "CONECTORES",
-			connectorsSubtitle: "Una sola fuente de verdad. Cada aplicación. Cada modelo.",
+			connectorsSubtitle:
+				"Una sola fuente de verdad. Cada aplicación. Cada modelo.",
 			tag04: "//04",
 			mcpTitle: "MCP",
 			mcpSubtitle:
@@ -1025,10 +1062,10 @@ export const translations: Record<Language, TranslationDictionary> = {
 			card3Desc:
 				"Corrija, actualice o elimine memorias individuales sin alterar el modelo subyacente.",
 			card4Title: "Transparencia Total",
-			card4Desc:
-				"Vea qué recuerda la IA, de dónde provino y cómo ha cambiado.",
+			card4Desc: "Vea qué recuerda la IA, de dónde provino y cómo ha cambiado.",
 			card5Title: "Memoria controlada por el usuario",
-			card5Desc: "Controle quién puede crear, leer, actualizar, exportar o eliminar memoria.",
+			card5Desc:
+				"Controle quién puede crear, leer, actualizar, exportar o eliminar memoria.",
 		},
 		research: {
 			tag: "INVESTIGACIÓN Y BLOGS",
@@ -1106,7 +1143,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 		pricing: {
 			tag: "PRECIOS",
 			heroHeadline: "Infraestructura que escala con tu contexto.",
-			heroSubline: "Comienza a construir con inteligencia persistente, luego escala tu memoria, recuperación e infraestructura a medida que tu aplicación crece.",
+			heroSubline:
+				"Comienza a construir con inteligencia persistente, luego escala tu memoria, recuperación e infraestructura a medida que tu aplicación crece.",
 			billingLabel: "FACTURACIÓN",
 			billingMonthly: "Mensual",
 			billingYearly: "Anual",
@@ -1116,7 +1154,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			retrievalsLabel: "Recuperaciones/mes",
 			projectsLabel: "Proyectos",
 			coverageHeadline: "Lo que tu plan realmente cubre",
-			coverageSubline: "Cada plan se construye con las mismas cuatro dimensiones de infraestructura.",
+			coverageSubline:
+				"Cada plan se construye con las mismas cuatro dimensiones de infraestructura.",
 			stepsPrototype: "Prototipo",
 			stepsProduction: "Producción",
 			stepsScale: "Escala",
@@ -1126,7 +1165,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			capabilityLabel: "CAPACIDAD",
 			recommendedLabel: "RECOMENDADO",
 			calculatorHeadline: "Estima tu uso mensual",
-			calculatorSubline: "Cuéntanos aproximadamente cuánto contexto maneja tu aplicación y te mostraremos un rango de plan estimado.",
+			calculatorSubline:
+				"Cuéntanos aproximadamente cuánto contexto maneja tu aplicación y te mostraremos un rango de plan estimado.",
 			mauLabel: "USUARIOS ACTIVOS MENSUALES",
 			memoriesPerUserLabel: "MEMORIAS CREADAS POR USUARIO",
 			retrievalRequestsLabel: "SOLICITUDES DE RECUPERACIÓN MENSUALES",
@@ -1136,16 +1176,20 @@ export const translations: Record<Language, TranslationDictionary> = {
 			suggestedPlanLabel: "PLAN SUGERIDO",
 			estimatedPriceLabel: "PRECIO ESTIMADO",
 			calculatorCta: "Empezar a construir",
-			calculatorDisclaimer: "El uso real y los precios pueden variar según la configuración y los requisitos de infraestructura.",
+			calculatorDisclaimer:
+				"El uso real y los precios pueden variar según la configuración y los requisitos de infraestructura.",
 			selfHostHeadline: "¿Prefieres ejecutarlo tú mismo?",
-			selfHostSubline: "Despliega Negentro en tu propia infraestructura y elige los componentes, almacenamiento y proveedores de modelos que se adapten a tu entorno.",
+			selfHostSubline:
+				"Despliega Negentro en tu propia infraestructura y elige los componentes, almacenamiento y proveedores de modelos que se adapten a tu entorno.",
 			selfHostExplore: "Explorar Código Abierto",
 			criticalHeadline: "Para equipos que construyen sistemas de IA críticos.",
-			criticalSubline: "Habla con el equipo de Negentro sobre requisitos de despliegue, seguridad, escala, soporte e infraestructura personalizada.",
+			criticalSubline:
+				"Habla con el equipo de Negentro sobre requisitos de despliegue, seguridad, escala, soporte e infraestructura personalizada.",
 			criticalCta: "Hablar con ventas",
 			faqHeadline: "Preguntas frecuentes",
 			finalCtaHeadline: "Empieza a construir con inteligencia persistente.",
-			finalCtaSubline: "Comienza con el nivel gratuito y escala cuando tu aplicación necesite más contexto.",
+			finalCtaSubline:
+				"Comienza con el nivel gratuito y escala cuando tu aplicación necesite más contexto.",
 			finalCtaStart: "Empezar a construir",
 			finalCtaDocs: "Leer la documentación",
 			planExploreName: "Explorar",
@@ -1199,22 +1243,27 @@ export const translations: Record<Language, TranslationDictionary> = {
 			promise1Title: "Sin tarifas ocultas",
 			promise1Desc: "Precios transparentes sin cargos sorpresa ni excedentes.",
 			promise2Title: "Cancela en cualquier momento",
-			promise2Desc: "Sin contratos vinculantes. Cambia de plan cuando lo necesites.",
+			promise2Desc:
+				"Sin contratos vinculantes. Cambia de plan cuando lo necesites.",
 			promise3Title: "Flexibilidad basada en uso",
 			promise3Desc: "Paga por lo que usas. Escala segun tus necesidades.",
 			promise4Title: "Nivel gratuito para siempre",
-			promise4Desc: "Nuestro plan inicial es gratuito. No se requiere tarjeta de credito.",
+			promise4Desc:
+				"Nuestro plan inicial es gratuito. No se requiere tarjeta de credito.",
 			coverage1Title: "Memoria",
-			coverage1Desc: "Cuanto contexto persistente se puede almacenar en tu aplicacion.",
+			coverage1Desc:
+				"Cuanto contexto persistente se puede almacenar en tu aplicacion.",
 			coverage1Example: "ej. 10K - 1M+ memorias",
 			coverage2Title: "Recuperacion",
-			coverage2Desc: "Cuanto contexto se puede buscar y recuperar bajo demanda.",
+			coverage2Desc:
+				"Cuanto contexto se puede buscar y recuperar bajo demanda.",
 			coverage2Example: "ej. 5K - 5M solicitudes/mes",
 			coverage3Title: "Infraestructura",
 			coverage3Desc: "Almacenamiento, computo y garantias de fiabilidad.",
 			coverage3Example: "Compartida a Dedicada",
 			coverage4Title: "Soporte",
-			coverage4Desc: "Niveles de soporte comunitario, prioritario o de ingenieria dedicada.",
+			coverage4Desc:
+				"Niveles de soporte comunitario, prioritario o de ingenieria dedicada.",
 			coverage4Example: "Comunidad a Dedicado",
 			catMemory: "MEMORIA",
 			catRetrieval: "RECUPERACION",
@@ -1258,7 +1307,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason2Title: "Latencia de recuperacion sub-500ms",
 			reason2Desc: "Memoria determinista en tiempo real para IA en produccion.",
 			reason3Title: "50-90% menos tokens",
-			reason3Desc: "Reduce drasticamente el uso de tokens con memoria determinista.",
+			reason3Desc:
+				"Reduce drasticamente el uso de tokens con memoria determinista.",
 			reason4Title: "#1 en MemBench",
 			reason4Desc: "Rendimiento lider en benchmarks de memoria.",
 			reason5Title: "Agnostico al modelo",
@@ -1266,35 +1316,48 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason6Title: "Propiedad total de datos",
 			reason6Desc: "Tu memoria, tus datos, tu control. Siempre.",
 			criticalCard1Title: "Seguridad",
-			criticalCard1Desc: "SSO, controles de acceso y requisitos de auditoria para entornos regulados.",
+			criticalCard1Desc:
+				"SSO, controles de acceso y requisitos de auditoria para entornos regulados.",
 			criticalCard2Title: "Escala",
-			criticalCard2Desc: "Capacidad personalizada e infraestructura dedicada para cargas de trabajo exigentes.",
+			criticalCard2Desc:
+				"Capacidad personalizada e infraestructura dedicada para cargas de trabajo exigentes.",
 			criticalCard3Title: "Soporte",
-			criticalCard3Desc: "Soporte prioritario de ingenieria y despliegue de nuestro equipo.",
+			criticalCard3Desc:
+				"Soporte prioritario de ingenieria y despliegue de nuestro equipo.",
 			selfHostYourApp: "Tu Aplicacion",
 			selfHostYourInfra: "Tu Infraestructura",
 			faq1Q: "Hay un plan gratuito?",
-			faq1A: "Si, el plan Explorar es gratuito para desarrolladores que experimentan con contexto persistente.",
+			faq1A:
+				"Si, el plan Explorar es gratuito para desarrolladores que experimentan con contexto persistente.",
 			faq2Q: "Como se mide el uso?",
-			faq2A: "El uso se mide en funcion del numero de usuarios activos, memorias almacenadas y operaciones de recuperacion cada mes.",
+			faq2A:
+				"El uso se mide en funcion del numero de usuarios activos, memorias almacenadas y operaciones de recuperacion cada mes.",
 			faq3Q: "Que cuenta como operacion de memoria?",
-			faq3A: "Una operacion de memoria incluye cualquier accion de crear, leer, actualizar o eliminar en tu almacen de memoria.",
+			faq3A:
+				"Una operacion de memoria incluye cualquier accion de crear, leer, actualizar o eliminar en tu almacen de memoria.",
 			faq4Q: "Puedo cambiar de plan mas adelante?",
 			faq4A: "Si! Puedes actualizar o rebajar tu plan en cualquier momento.",
 			faq5Q: "Los limites no utilizados se acumulan?",
-			faq5A: "No, los limites de uso no utilizados se reinician al comienzo de cada ciclo de facturacion.",
+			faq5A:
+				"No, los limites de uso no utilizados se reinician al comienzo de cada ciclo de facturacion.",
 			faq6Q: "Puedo usar Negentro con mi propia infraestructura?",
-			faq6A: "Si, puedes desplegar Negentro en tu propia infraestructura con nuestras ofertas.",
+			faq6A:
+				"Si, puedes desplegar Negentro en tu propia infraestructura con nuestras ofertas.",
 			faq7Q: "Que incluye el autoalojamiento?",
-			faq7A: "El autoalojamiento incluye control total de despliegue, infraestructura personalizada y la posibilidad de usar tus propios proveedores de modelos.",
+			faq7A:
+				"El autoalojamiento incluye control total de despliegue, infraestructura personalizada y la posibilidad de usar tus propios proveedores de modelos.",
 			faq8Q: "Ofrecen acuerdos empresariales?",
-			faq8A: "Si, nuestro plan Empresarial incluye limites personalizados, SSO/SAML, registros de auditoria y soporte prioritario.",
+			faq8A:
+				"Si, nuestro plan Empresarial incluye limites personalizados, SSO/SAML, registros de auditoria y soporte prioritario.",
 			faq9Q: "Hay una opcion basada en uso?",
-			faq9A: "Si, mas alla de los limites del plan base, puedes escalar dinamicamente con precios transparentes.",
+			faq9A:
+				"Si, mas alla de los limites del plan base, puedes escalar dinamicamente con precios transparentes.",
 			faq10Q: "Puedo exportar mis datos?",
-			faq10A: "Absolutamente. Mantienes la propiedad total de los datos y puedes exportarlos en cualquier momento via nuestra API.",
+			faq10A:
+				"Absolutamente. Mantienes la propiedad total de los datos y puedes exportarlos en cualquier momento via nuestra API.",
 			faq11Q: "Ofrecen soporte para despliegues en produccion?",
-			faq11A: "Si, proporcionamos soporte prioritario para nuestros clientes de Escalar y Empresarial.",
+			faq11A:
+				"Si, proporcionamos soporte prioritario para nuestros clientes de Escalar y Empresarial.",
 		},
 		waitPage: {
 			loading: "La memoria se está cargando...",
@@ -1316,11 +1379,13 @@ export const translations: Record<Language, TranslationDictionary> = {
 		hero: {
 			headlinePre: "La Prochaine Évolution De\nL'Intelligence Est La ",
 			headlineMemory: "Mémoire.",
-			subline: "Piyapi donne à l'IA la capacité de se souvenir, d'apprendre et d'évoluer.",
+			subline:
+				"Piyapi donne à l'IA la capacité de se souvenir, d'apprendre et d'évoluer.",
 			emailPlaceholder: "Entrez votre email",
 			joinWaitlist: "Rejoindre la Liste",
 			joining: "Inscription...",
-			successMsg: "Vous êtes sur la liste d'attente ! Nous vous contacterons bientôt.",
+			successMsg:
+				"Vous êtes sur la liste d'attente ! Nous vous contacterons bientôt.",
 			duplicateMsg: "Vous êtes déjà sur la liste d'attente !",
 			invalidEmailMsg: "Veuillez entrer une adresse email valide.",
 		},
@@ -1372,7 +1437,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			feat6Title: "Portabilité",
 			feat6Desc:
 				"Interopérabilité agnostique des modèles pour une migration d'infrastructure fluide.",
-			quotePre: "La récupération n'est que la moitié du problème. L'IA en production a besoin de ",
+			quotePre:
+				"La récupération n'est que la moitié du problème. L'IA en production a besoin de ",
 			quoteHighlight: "mémoire",
 			quotePost: " capable de préserver et de vérifier ce qu'elle sait.",
 			sotaHeading: "Mémoire SOTA,\nMesurée.",
@@ -1408,7 +1474,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"optimisée pour les modèles de production à grande échelle et conscients du contexte.",
 			card1Id: "01",
 			card1Title: "Agents IA",
-			card1Desc: "Mémoire persistante pour la prise de décision autonome et multi-étapes.",
+			card1Desc:
+				"Mémoire persistante pour la prise de décision autonome et multi-étapes.",
 			card2Id: "02",
 			card2Title: "IA Conversationnelle",
 			card2Desc:
@@ -1435,7 +1502,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			headlinePre: "Intégrez ",
 			headlineHighlight: "Piyapi",
 			headlinePost: " là où votre IA évolue déjà.",
-			subline: "Une mémoire qui fonctionne avec n'importe quel modèle, framework ou stack d'agents.",
+			subline:
+				"Une mémoire qui fonctionne avec n'importe quel modèle, framework ou stack d'agents.",
 			tag01: "//01",
 			sdkTitle: "SDK",
 			sdkSubtitle: "SDKs natifs, APIs REST et intégrations aux frameworks IA",
@@ -1445,7 +1513,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"Permettez aux agents IA de se souvenir avec précision à travers chaque interaction et flux.",
 			tag03: "//03",
 			connectorsTitle: "CONNECTEURS",
-			connectorsSubtitle: "Une source unique de vérité. Chaque application. Chaque modèle.",
+			connectorsSubtitle:
+				"Une source unique de vérité. Chaque application. Chaque modèle.",
 			tag04: "//04",
 			mcpTitle: "MCP",
 			mcpSubtitle:
@@ -1472,7 +1541,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			card4Desc:
 				"Voyez ce que l'IA retient, d'où provient l'information et comment elle a évolué.",
 			card5Title: "Mémoire contrôlée par l'utilisateur",
-			card5Desc: "Contrôlez qui peut créer, lire, modifier, exporter ou supprimer la mémoire.",
+			card5Desc:
+				"Contrôlez qui peut créer, lire, modifier, exporter ou supprimer la mémoire.",
 		},
 		research: {
 			tag: "RECHERCHE ET BLOGS",
@@ -1550,7 +1620,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 		pricing: {
 			tag: "TARIFS",
 			heroHeadline: "Infrastructure qui s'adapte à votre contexte.",
-			heroSubline: "Commencez à construire avec une intelligence persistante, puis faites évoluer votre mémoire, votre récupération et votre infrastructure au fur et à mesure que votre application grandit.",
+			heroSubline:
+				"Commencez à construire avec une intelligence persistante, puis faites évoluer votre mémoire, votre récupération et votre infrastructure au fur et à mesure que votre application grandit.",
 			billingLabel: "FACTURATION",
 			billingMonthly: "Mensuel",
 			billingYearly: "Annuel",
@@ -1560,17 +1631,20 @@ export const translations: Record<Language, TranslationDictionary> = {
 			retrievalsLabel: "Récupérations/mois",
 			projectsLabel: "Projets",
 			coverageHeadline: "Ce que votre plan couvre réellement",
-			coverageSubline: "Chaque plan est construit sur les mêmes quatre dimensions d'infrastructure.",
+			coverageSubline:
+				"Chaque plan est construit sur les mêmes quatre dimensions d'infrastructure.",
 			stepsPrototype: "Prototype",
 			stepsProduction: "Production",
 			stepsScale: "Mise à l'échelle",
 			stepsEnterprise: "Entreprise",
 			compareHeadline: "Comparez chaque fonctionnalité",
-			compareSubline: "Voyez exactement comment chaque plan diffère avant de choisir.",
+			compareSubline:
+				"Voyez exactement comment chaque plan diffère avant de choisir.",
 			capabilityLabel: "FONCTIONNALITÉ",
 			recommendedLabel: "RECOMMANDÉ",
 			calculatorHeadline: "Estimez votre utilisation mensuelle",
-			calculatorSubline: "Dites-nous approximativement combien de contexte votre application traite et nous vous montrerons une fourchette de plan estimée.",
+			calculatorSubline:
+				"Dites-nous approximativement combien de contexte votre application traite et nous vous montrerons une fourchette de plan estimée.",
 			mauLabel: "UTILISATEURS ACTIFS MENSUELS",
 			memoriesPerUserLabel: "MÉMOIRES CRÉÉES PAR UTILISATEUR",
 			retrievalRequestsLabel: "REQUÊTES DE RÉCUPÉRATION MENSUELLES",
@@ -1580,16 +1654,22 @@ export const translations: Record<Language, TranslationDictionary> = {
 			suggestedPlanLabel: "PLAN SUGGÉRÉ",
 			estimatedPriceLabel: "PRIX ESTIMÉ",
 			calculatorCta: "Commencer à construire",
-			calculatorDisclaimer: "L'utilisation réelle et les tarifs peuvent varier selon la configuration et les exigences d'infrastructure.",
+			calculatorDisclaimer:
+				"L'utilisation réelle et les tarifs peuvent varier selon la configuration et les exigences d'infrastructure.",
 			selfHostHeadline: "Préférez-vous l'héberger vous-même ?",
-			selfHostSubline: "Déployez Negentro sur votre propre infrastructure et choisissez les composants, le stockage et les fournisseurs de modèles adaptés à votre environnement.",
+			selfHostSubline:
+				"Déployez Negentro sur votre propre infrastructure et choisissez les composants, le stockage et les fournisseurs de modèles adaptés à votre environnement.",
 			selfHostExplore: "Explorer l'Open Source",
-			criticalHeadline: "Pour les équipes qui construisent des systèmes IA critiques.",
-			criticalSubline: "Parlez avec l'équipe Negentro des exigences de déploiement, de sécurité, d'échelle, de support et d'infrastructure personnalisée.",
+			criticalHeadline:
+				"Pour les équipes qui construisent des systèmes IA critiques.",
+			criticalSubline:
+				"Parlez avec l'équipe Negentro des exigences de déploiement, de sécurité, d'échelle, de support et d'infrastructure personnalisée.",
 			criticalCta: "Parler aux ventes",
 			faqHeadline: "Questions fréquemment posées",
-			finalCtaHeadline: "Commencez à construire avec une intelligence persistante.",
-			finalCtaSubline: "Commencez avec le niveau gratuit et montez en charge quand votre application a besoin de plus de contexte.",
+			finalCtaHeadline:
+				"Commencez à construire avec une intelligence persistante.",
+			finalCtaSubline:
+				"Commencez avec le niveau gratuit et montez en charge quand votre application a besoin de plus de contexte.",
 			finalCtaStart: "Commencer à construire",
 			finalCtaDocs: "Lire la documentation",
 			planExploreName: "Explorer",
@@ -1641,24 +1721,32 @@ export const translations: Record<Language, TranslationDictionary> = {
 			planEnterpriseContextCapacity: "Personnalise",
 			planEnterpriseProjects: "Illimite",
 			promise1Title: "Pas de frais caches",
-			promise1Desc: "Tarification transparente sans frais surprises ni depassements.",
+			promise1Desc:
+				"Tarification transparente sans frais surprises ni depassements.",
 			promise2Title: "Annulez a tout moment",
-			promise2Desc: "Pas de contrats restrictifs. Changez de formule ou annulez quand vous voulez.",
+			promise2Desc:
+				"Pas de contrats restrictifs. Changez de formule ou annulez quand vous voulez.",
 			promise3Title: "Flexibilite basee sur utilisation",
-			promise3Desc: "Payez ce que vous utilisez. Montez ou descendez selon vos besoins.",
+			promise3Desc:
+				"Payez ce que vous utilisez. Montez ou descendez selon vos besoins.",
 			promise4Title: "Niveau gratuit pour toujours",
-			promise4Desc: "Notre plan de demarrage est gratuit pour toujours. Aucune carte de credit requise.",
+			promise4Desc:
+				"Notre plan de demarrage est gratuit pour toujours. Aucune carte de credit requise.",
 			coverage1Title: "Memoire",
-			coverage1Desc: "Combien de contexte persistant peut etre stocke dans votre application.",
+			coverage1Desc:
+				"Combien de contexte persistant peut etre stocke dans votre application.",
 			coverage1Example: "ex. 10K - 1M+ memoires",
 			coverage2Title: "Recuperation",
-			coverage2Desc: "Combien de contexte peut etre recherche et recupere a la demande.",
+			coverage2Desc:
+				"Combien de contexte peut etre recherche et recupere a la demande.",
 			coverage2Example: "ex. 5K - 5M requetes/mois",
 			coverage3Title: "Infrastructure",
-			coverage3Desc: "Stockage, calcul, topologie de deploiement et garanties de fiabilite.",
+			coverage3Desc:
+				"Stockage, calcul, topologie de deploiement et garanties de fiabilite.",
 			coverage3Example: "Partagee a Dediee",
 			coverage4Title: "Support",
-			coverage4Desc: "Niveaux de support communautaire, prioritaire ou ingenierie dediee.",
+			coverage4Desc:
+				"Niveaux de support communautaire, prioritaire ou ingenierie dediee.",
 			coverage4Example: "Communaute a Dedie",
 			catMemory: "MEMOIRE",
 			catRetrieval: "RECUPERATION",
@@ -1702,7 +1790,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason2Title: "Latence de rappel sub-500ms",
 			reason2Desc: "Memoire deterministe en temps reel pour IA en production.",
 			reason3Title: "50-90% moins de tokens",
-			reason3Desc: "Reduisez considerablement utilisation des tokens avec memoire deterministe.",
+			reason3Desc:
+				"Reduisez considerablement utilisation des tokens avec memoire deterministe.",
 			reason4Title: "#1 sur MemBench",
 			reason4Desc: "Performances de pointe sur les benchmarks de memoire.",
 			reason5Title: "Agnostique au modele",
@@ -1710,35 +1799,49 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason6Title: "Propriete totale des donnees",
 			reason6Desc: "Votre memoire, vos donnees, votre controle. Toujours.",
 			criticalCard1Title: "Securite",
-			criticalCard1Desc: "SSO, controles acces et exigences audit pour environnements reglementes.",
+			criticalCard1Desc:
+				"SSO, controles acces et exigences audit pour environnements reglementes.",
 			criticalCard2Title: "Mise a echelle",
-			criticalCard2Desc: "Capacite personnalisee et infrastructure dediee pour charges de travail exigeantes.",
+			criticalCard2Desc:
+				"Capacite personnalisee et infrastructure dediee pour charges de travail exigeantes.",
 			criticalCard3Title: "Support",
-			criticalCard3Desc: "Support prioritaire ingenierie et deploiement de notre equipe.",
+			criticalCard3Desc:
+				"Support prioritaire ingenierie et deploiement de notre equipe.",
 			selfHostYourApp: "Votre Application",
 			selfHostYourInfra: "Votre Infrastructure",
 			faq1Q: "Y a-t-il un plan gratuit?",
-			faq1A: "Oui, le plan Explorer est gratuit et concu pour les developpeurs experimentant avec un contexte persistant.",
+			faq1A:
+				"Oui, le plan Explorer est gratuit et concu pour les developpeurs experimentant avec un contexte persistant.",
 			faq2Q: "Comment utilisation est-elle mesuree?",
-			faq2A: "Utilisation est mesuree en fonction du nombre utilisateurs actifs, memoires stockees et operations de recuperation chaque mois.",
+			faq2A:
+				"Utilisation est mesuree en fonction du nombre utilisateurs actifs, memoires stockees et operations de recuperation chaque mois.",
 			faq3Q: "Qu est-ce qui compte comme operation de memoire?",
-			faq3A: "Une operation de memoire inclut toute action creation, lecture, mise a jour ou suppression sur votre memoire.",
+			faq3A:
+				"Une operation de memoire inclut toute action creation, lecture, mise a jour ou suppression sur votre memoire.",
 			faq4Q: "Puis-je changer de formule?",
-			faq4A: "Oui! Vous pouvez mettre a niveau ou retrograder votre formule a tout moment.",
+			faq4A:
+				"Oui! Vous pouvez mettre a niveau ou retrograder votre formule a tout moment.",
 			faq5Q: "Les limites non utilisees sont-elles reportees?",
-			faq5A: "Non, les limites utilisation non utilisees se reinitalisent au debut de chaque cycle de facturation.",
+			faq5A:
+				"Non, les limites utilisation non utilisees se reinitalisent au debut de chaque cycle de facturation.",
 			faq6Q: "Puis-je utiliser Negentro avec ma propre infrastructure?",
-			faq6A: "Oui, vous pouvez deployer Negentro sur votre propre infrastructure avec nos offres open-source ou entreprise.",
+			faq6A:
+				"Oui, vous pouvez deployer Negentro sur votre propre infrastructure avec nos offres open-source ou entreprise.",
 			faq7Q: "Qu est-ce qui est inclus dans auto-hebergement?",
-			faq7A: "L auto-hebergement inclut le controle total du deploiement, infrastructure personnalisee et vos propres fournisseurs de modeles.",
+			faq7A:
+				"L auto-hebergement inclut le controle total du deploiement, infrastructure personnalisee et vos propres fournisseurs de modeles.",
 			faq8Q: "Proposez-vous des accords entreprise?",
-			faq8A: "Oui, notre formule Entreprise inclut des limites personnalisees, SSO/SAML, des journaux audit et un support deploiement prioritaire.",
+			faq8A:
+				"Oui, notre formule Entreprise inclut des limites personnalisees, SSO/SAML, des journaux audit et un support deploiement prioritaire.",
 			faq9Q: "Y a-t-il une option basee sur utilisation?",
-			faq9A: "Oui, au-dela des limites de base du plan, vous pouvez evoluer dynamiquement avec une tarification transparente.",
+			faq9A:
+				"Oui, au-dela des limites de base du plan, vous pouvez evoluer dynamiquement avec une tarification transparente.",
 			faq10Q: "Puis-je exporter mes donnees?",
-			faq10A: "Absolument. Vous conservez la pleine propriete de vos donnees et pouvez les exporter a tout moment via notre API.",
+			faq10A:
+				"Absolument. Vous conservez la pleine propriete de vos donnees et pouvez les exporter a tout moment via notre API.",
 			faq11Q: "Proposez-vous du support pour les deploiements en production?",
-			faq11A: "Oui, nous fournissons un support prioritaire ingenierie et deploiement pour nos clients.",
+			faq11A:
+				"Oui, nous fournissons un support prioritaire ingenierie et deploiement pour nos clients.",
 		},
 		waitPage: {
 			loading: "La mémoire est en cours de chargement...",
@@ -1760,7 +1863,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 		hero: {
 			headlinePre: "Die Nächste Evolution Der\nIntelligenz Ist ",
 			headlineMemory: "Gedächtnis.",
-			subline: "Piyapi gibt KI die Fähigkeit zu erinnern, zu lernen und sich zu entwickeln.",
+			subline:
+				"Piyapi gibt KI die Fähigkeit zu erinnern, zu lernen und sich zu entwickeln.",
 			emailPlaceholder: "Geben Sie Ihre E-Mail ein",
 			joinWaitlist: "Warteliste Beitreten",
 			joining: "Beitreten...",
@@ -1852,7 +1956,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"optimiert für hochskalierbare, kontextbewusste Produktionsmodelle.",
 			card1Id: "01",
 			card1Title: "KI-Agenten",
-			card1Desc: "Persistentes Gedächtnis für autonome, mehrstufige Entscheidungsfindung.",
+			card1Desc:
+				"Persistentes Gedächtnis für autonome, mehrstufige Entscheidungsfindung.",
 			card2Id: "02",
 			card2Title: "Konversationelle KI",
 			card2Desc:
@@ -1879,7 +1984,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			headlinePre: "Integrieren Sie ",
 			headlineHighlight: "Piyapi",
 			headlinePost: " dort, wo Ihre KI bereits arbeitet.",
-			subline: "Gedächtnis, das mit jedem Modell, Framework oder Agenten-Stack funktioniert.",
+			subline:
+				"Gedächtnis, das mit jedem Modell, Framework oder Agenten-Stack funktioniert.",
 			tag01: "//01",
 			sdkTitle: "SDK",
 			sdkSubtitle: "Native SDKs, REST-APIs und KI-Framework-Integrationen",
@@ -1889,7 +1995,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"Ermöglichen Sie KI-Agenten, sich über jede Interaktion und jeden Workflow hinweg präzise zu erinnern.",
 			tag03: "//03",
 			connectorsTitle: "KONNEKTOREN",
-			connectorsSubtitle: "Eine einzige Quelle der Wahrheit. Jede Anwendung. Jedes Modell.",
+			connectorsSubtitle:
+				"Eine einzige Quelle der Wahrheit. Jede Anwendung. Jedes Modell.",
 			tag04: "//04",
 			mcpTitle: "MCP",
 			mcpSubtitle:
@@ -1916,7 +2023,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			card4Desc:
 				"Sehen Sie, woran sich die KI erinnert, woher die Daten stammen und wie sie sich verändert haben.",
 			card5Title: "Nutzergesteuertes Gedächtnis",
-			card5Desc: "Steuern Sie, wer Erinnerungen erstellen, lesen, aktualisieren, exportieren oder löschen darf.",
+			card5Desc:
+				"Steuern Sie, wer Erinnerungen erstellen, lesen, aktualisieren, exportieren oder löschen darf.",
 		},
 		research: {
 			tag: "FORSCHUNG & BLOGS",
@@ -1994,7 +2102,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 		pricing: {
 			tag: "PREISE",
 			heroHeadline: "Infrastruktur, die mit Ihrem Kontext skaliert.",
-			heroSubline: "Beginnen Sie mit persistenter Intelligenz und skalieren Sie Ihr Gedächtnis, Ihre Abfragen und Infrastruktur, wenn Ihre Anwendung wächst.",
+			heroSubline:
+				"Beginnen Sie mit persistenter Intelligenz und skalieren Sie Ihr Gedächtnis, Ihre Abfragen und Infrastruktur, wenn Ihre Anwendung wächst.",
 			billingLabel: "ABRECHNUNG",
 			billingMonthly: "Monatlich",
 			billingYearly: "Jährlich",
@@ -2004,17 +2113,20 @@ export const translations: Record<Language, TranslationDictionary> = {
 			retrievalsLabel: "Abrufe/Monat",
 			projectsLabel: "Projekte",
 			coverageHeadline: "Was Ihr Plan tatsächlich abdeckt",
-			coverageSubline: "Jeder Plan basiert auf denselben vier Infrastrukturdimensionen.",
+			coverageSubline:
+				"Jeder Plan basiert auf denselben vier Infrastrukturdimensionen.",
 			stepsPrototype: "Prototyp",
 			stepsProduction: "Produktion",
 			stepsScale: "Skalierung",
 			stepsEnterprise: "Enterprise",
 			compareHeadline: "Alle Funktionen vergleichen",
-			compareSubline: "Sehen Sie genau, wie sich jeder Plan unterscheidet, bevor Sie wählen.",
+			compareSubline:
+				"Sehen Sie genau, wie sich jeder Plan unterscheidet, bevor Sie wählen.",
 			capabilityLabel: "FUNKTION",
 			recommendedLabel: "EMPFOHLEN",
 			calculatorHeadline: "Schätzen Sie Ihre monatliche Nutzung",
-			calculatorSubline: "Sagen Sie uns ungefähr, wie viel Kontext Ihre Anwendung verarbeitet, und wir zeigen Ihnen einen geschätzten Planbereich.",
+			calculatorSubline:
+				"Sagen Sie uns ungefähr, wie viel Kontext Ihre Anwendung verarbeitet, und wir zeigen Ihnen einen geschätzten Planbereich.",
 			mauLabel: "MONATLICH AKTIVE NUTZER",
 			memoriesPerUserLabel: "ERSTELLTE ERINNERUNGEN PRO NUTZER",
 			retrievalRequestsLabel: "MONATLICHE ABRUFANFRAGEN",
@@ -2024,16 +2136,20 @@ export const translations: Record<Language, TranslationDictionary> = {
 			suggestedPlanLabel: "EMPFOHLENER PLAN",
 			estimatedPriceLabel: "GESCHÄTZTER PREIS",
 			calculatorCta: "Mit dem Aufbau beginnen",
-			calculatorDisclaimer: "Tatsächliche Nutzung und Preise können je nach Konfiguration und Infrastrukturanforderungen variieren.",
+			calculatorDisclaimer:
+				"Tatsächliche Nutzung und Preise können je nach Konfiguration und Infrastrukturanforderungen variieren.",
 			selfHostHeadline: "Bevorzugen Sie die Eigenverantwortung?",
-			selfHostSubline: "Stellen Sie Negentro auf Ihrer eigenen Infrastruktur bereit und wählen Sie die Komponenten, Speicher und Modellanbieter, die zu Ihrer Umgebung passen.",
+			selfHostSubline:
+				"Stellen Sie Negentro auf Ihrer eigenen Infrastruktur bereit und wählen Sie die Komponenten, Speicher und Modellanbieter, die zu Ihrer Umgebung passen.",
 			selfHostExplore: "Open Source erkunden",
 			criticalHeadline: "Für Teams, die kritische KI-Systeme entwickeln.",
-			criticalSubline: "Sprechen Sie mit dem Negentro-Team über Bereitstellungsanforderungen, Sicherheit, Skalierung, Support und benutzerdefinierte Infrastruktur.",
+			criticalSubline:
+				"Sprechen Sie mit dem Negentro-Team über Bereitstellungsanforderungen, Sicherheit, Skalierung, Support und benutzerdefinierte Infrastruktur.",
 			criticalCta: "Mit Vertrieb sprechen",
 			faqHeadline: "Häufig gestellte Fragen",
 			finalCtaHeadline: "Mit persistenter Intelligenz aufbauen.",
-			finalCtaSubline: "Beginnen Sie mit dem kostenlosen Tarif und skalieren Sie, wenn Ihre Anwendung mehr Kontext benötigt.",
+			finalCtaSubline:
+				"Beginnen Sie mit dem kostenlosen Tarif und skalieren Sie, wenn Ihre Anwendung mehr Kontext benötigt.",
 			finalCtaStart: "Mit dem Aufbau beginnen",
 			finalCtaDocs: "Dokumentation lesen",
 			planExploreName: "Erkunden",
@@ -2070,7 +2186,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			planScaleF6: "Erweiterte Analysen",
 			planScaleF7: "Priority-Support",
 			planScaleF8: "Hoehere Aufbewahrung",
-			planEnterpriseDesc: "Fuer Organisationen, die in grossem Massstab arbeiten",
+			planEnterpriseDesc:
+				"Fuer Organisationen, die in grossem Massstab arbeiten",
 			planEnterpriseBillingText: "Auf Ihre Beduerfnisse zugeschnitten",
 			planEnterpriseCta: "Mit Vertrieb sprechen",
 			planEnterpriseF1: "Benutzerdefinierte Limits",
@@ -2085,24 +2202,32 @@ export const translations: Record<Language, TranslationDictionary> = {
 			planEnterpriseContextCapacity: "Benutzerdefiniert",
 			planEnterpriseProjects: "Unbegrenzt",
 			promise1Title: "Keine versteckten Gebuehren",
-			promise1Desc: "Transparente Preisgestaltung ohne unerwartete Kosten oder Ueberschreitungen.",
+			promise1Desc:
+				"Transparente Preisgestaltung ohne unerwartete Kosten oder Ueberschreitungen.",
 			promise2Title: "Jederzeit kuendigen",
-			promise2Desc: "Keine Vertragsbindung. Stufen Sie ab oder kuendigen Sie, wann immer Sie moechten.",
+			promise2Desc:
+				"Keine Vertragsbindung. Stufen Sie ab oder kuendigen Sie, wann immer Sie moechten.",
 			promise3Title: "Nutzungsbasierte Flexibilitaet",
-			promise3Desc: "Zahlen Sie nur fuer das, was Sie nutzen. Skalieren Sie nach oben oder unten.",
+			promise3Desc:
+				"Zahlen Sie nur fuer das, was Sie nutzen. Skalieren Sie nach oben oder unten.",
 			promise4Title: "Kostenloses Tier fuer immer",
-			promise4Desc: "Unser Starterplan ist fuer immer kostenlos. Keine Kreditkarte erforderlich.",
+			promise4Desc:
+				"Unser Starterplan ist fuer immer kostenlos. Keine Kreditkarte erforderlich.",
 			coverage1Title: "Gedaechtnis",
-			coverage1Desc: "Wie viel persistenter Kontext in Ihrer Anwendung gespeichert werden kann.",
+			coverage1Desc:
+				"Wie viel persistenter Kontext in Ihrer Anwendung gespeichert werden kann.",
 			coverage1Example: "z.B. 10K - 1M+ Erinnerungen",
 			coverage2Title: "Abruf",
-			coverage2Desc: "Wie viel Kontext auf Anfrage gesucht und abgerufen werden kann.",
+			coverage2Desc:
+				"Wie viel Kontext auf Anfrage gesucht und abgerufen werden kann.",
 			coverage2Example: "z.B. 5K - 5M Anfragen/Monat",
 			coverage3Title: "Infrastruktur",
-			coverage3Desc: "Speicher, Rechenleistung, Bereitstellungstopologie und Zuverlaessigkeitsgarantien.",
+			coverage3Desc:
+				"Speicher, Rechenleistung, Bereitstellungstopologie und Zuverlaessigkeitsgarantien.",
 			coverage3Example: "Geteilt zu Dediziert",
 			coverage4Title: "Support",
-			coverage4Desc: "Community-, Prioritaets- oder dedizierter Engineering-Support.",
+			coverage4Desc:
+				"Community-, Prioritaets- oder dedizierter Engineering-Support.",
 			coverage4Example: "Community zu Dediziert",
 			catMemory: "GEDAECHTNIS",
 			catRetrieval: "ABRUF",
@@ -2144,9 +2269,11 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason1Title: "Sicherheit auf Enterprise-Niveau",
 			reason1Desc: "SOC 2, HIPAA und DSGVO-konforme Infrastruktur.",
 			reason2Title: "Abruflatenz unter 500ms",
-			reason2Desc: "Echtzeit-deterministisches Gedaechtnis fuer Produktions-KI.",
+			reason2Desc:
+				"Echtzeit-deterministisches Gedaechtnis fuer Produktions-KI.",
 			reason3Title: "50-90% weniger Tokens",
-			reason3Desc: "Reduzieren Sie den Token-Verbrauch drastisch mit deterministischem Gedaechtnis.",
+			reason3Desc:
+				"Reduzieren Sie den Token-Verbrauch drastisch mit deterministischem Gedaechtnis.",
 			reason4Title: "#1 bei MemBench",
 			reason4Desc: "Fuehrende Leistung bei Gedaechtnis-Benchmarks.",
 			reason5Title: "Modell-agnostisch",
@@ -2154,35 +2281,49 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason6Title: "Vollstaendige Dateneigentuemeschaft",
 			reason6Desc: "Ihr Gedaechtnis, Ihre Daten, Ihre Kontrolle. Immer.",
 			criticalCard1Title: "Sicherheit",
-			criticalCard1Desc: "SSO, Zugriffskontrollen und Audit-Anforderungen fuer regulierte Umgebungen.",
+			criticalCard1Desc:
+				"SSO, Zugriffskontrollen und Audit-Anforderungen fuer regulierte Umgebungen.",
 			criticalCard2Title: "Skalierung",
-			criticalCard2Desc: "Benutzerdefinierte Kapazitaet und dedizierte Infrastruktur fuer anspruchsvolle Workloads.",
+			criticalCard2Desc:
+				"Benutzerdefinierte Kapazitaet und dedizierte Infrastruktur fuer anspruchsvolle Workloads.",
 			criticalCard3Title: "Support",
-			criticalCard3Desc: "Prioritaets-Engineering- und Bereitstellungs-Support von unserem Team.",
+			criticalCard3Desc:
+				"Prioritaets-Engineering- und Bereitstellungs-Support von unserem Team.",
 			selfHostYourApp: "Ihre Anwendung",
 			selfHostYourInfra: "Ihre Infrastruktur",
 			faq1Q: "Gibt es einen kostenlosen Plan?",
-			faq1A: "Ja, der Erkunden-Plan ist kostenlos und fuer Entwickler konzipiert, die mit persistentem Kontext experimentieren.",
+			faq1A:
+				"Ja, der Erkunden-Plan ist kostenlos und fuer Entwickler konzipiert, die mit persistentem Kontext experimentieren.",
 			faq2Q: "Wie wird die Nutzung gemessen?",
-			faq2A: "Die Nutzung wird anhand der Anzahl aktiver Benutzer, gespeicherter Erinnerungen und Abrufoperationen pro Monat gemessen.",
+			faq2A:
+				"Die Nutzung wird anhand der Anzahl aktiver Benutzer, gespeicherter Erinnerungen und Abrufoperationen pro Monat gemessen.",
 			faq3Q: "Was zaehlt als Gedaechnisoperation?",
-			faq3A: "Eine Gedaechnisoperation umfasst jede Erstellungs-, Lese-, Aktualisierungs- oder Loeschaktion in Ihrem Gedaechnisspeicher.",
+			faq3A:
+				"Eine Gedaechnisoperation umfasst jede Erstellungs-, Lese-, Aktualisierungs- oder Loeschaktion in Ihrem Gedaechnisspeicher.",
 			faq4Q: "Kann ich spaeter den Plan wechseln?",
-			faq4A: "Ja! Sie koennen Ihren Plan jederzeit upgraden oder downgraden, um Ihren Anforderungen gerecht zu werden.",
+			faq4A:
+				"Ja! Sie koennen Ihren Plan jederzeit upgraden oder downgraden, um Ihren Anforderungen gerecht zu werden.",
 			faq5Q: "Werden ungenutzte Limits uebertragen?",
-			faq5A: "Nein, ungenutzte Nutzungslimits werden zu Beginn jedes Abrechnungszyklus zurueckgesetzt.",
+			faq5A:
+				"Nein, ungenutzte Nutzungslimits werden zu Beginn jedes Abrechnungszyklus zurueckgesetzt.",
 			faq6Q: "Kann ich Negentro mit meiner eigenen Infrastruktur nutzen?",
-			faq6A: "Ja, Sie koennen Negentro auf Ihrer eigenen Infrastruktur mit unseren Open-Source- oder Enterprise-Angeboten bereitstellen.",
+			faq6A:
+				"Ja, Sie koennen Negentro auf Ihrer eigenen Infrastruktur mit unseren Open-Source- oder Enterprise-Angeboten bereitstellen.",
 			faq7Q: "Was ist im Self-Hosting enthalten?",
-			faq7A: "Self-Hosting umfasst vollstaendige Bereitstellungskontrolle, benutzerdefinierte Infrastruktur und die Moeglichkeit, eigene Modellanbieter zu verwenden.",
+			faq7A:
+				"Self-Hosting umfasst vollstaendige Bereitstellungskontrolle, benutzerdefinierte Infrastruktur und die Moeglichkeit, eigene Modellanbieter zu verwenden.",
 			faq8Q: "Bieten Sie Enterprise-Vereinbarungen an?",
-			faq8A: "Ja, unser Enterprise-Plan umfasst benutzerdefinierte Limits, SSO/SAML, Audit-Protokolle und Priority-Deployment-Support.",
+			faq8A:
+				"Ja, unser Enterprise-Plan umfasst benutzerdefinierte Limits, SSO/SAML, Audit-Protokolle und Priority-Deployment-Support.",
 			faq9Q: "Gibt es eine nutzungsbasierte Option?",
-			faq9A: "Ja, ueber die Basislimits des Plans hinaus koennen Sie dynamisch mit transparenter nutzungsbasierter Preisgestaltung skalieren.",
+			faq9A:
+				"Ja, ueber die Basislimits des Plans hinaus koennen Sie dynamisch mit transparenter nutzungsbasierter Preisgestaltung skalieren.",
 			faq10Q: "Kann ich meine Daten exportieren?",
-			faq10A: "Absolut. Sie behalten die vollstaendige Dateneigentuemeschaft und koennen Ihre Daten jederzeit ueber unsere API exportieren.",
+			faq10A:
+				"Absolut. Sie behalten die vollstaendige Dateneigentuemeschaft und koennen Ihre Daten jederzeit ueber unsere API exportieren.",
 			faq11Q: "Bieten Sie Support fuer Produktionsbereitstellungen an?",
-			faq11A: "Ja, wir bieten Priority-Engineering- und Bereitstellungs-Support fuer unsere Skalieren- und Enterprise-Kunden.",
+			faq11A:
+				"Ja, wir bieten Priority-Engineering- und Bereitstellungs-Support fuer unsere Skalieren- und Enterprise-Kunden.",
 		},
 		waitPage: {
 			loading: "Gedächtnis wird geladen...",
@@ -2204,13 +2345,15 @@ export const translations: Record<Language, TranslationDictionary> = {
 		hero: {
 			headlinePre: "Следующая Эволюция\nИнтеллекта — Это ",
 			headlineMemory: "Память.",
-			subline: "Piyapi наделяет ИИ способностью помнить, учиться и развиваться.",
+			subline:
+				"Piyapi наделяет ИИ способностью помнить, учиться и развиваться.",
 			emailPlaceholder: "Введите ваш email",
 			joinWaitlist: "Присоединиться",
 			joining: "Отправка...",
 			successMsg: "Вы в списке ожидания! Мы скоро свяжемся с вами.",
 			duplicateMsg: "Вы уже находитесь в списке ожидания!",
-			invalidEmailMsg: "Пожалуйста, введите корректный адрес электронной почты.",
+			invalidEmailMsg:
+				"Пожалуйста, введите корректный адрес электронной почты.",
 		},
 		partner: {
 			supportedBy: "ПРИ ПОДДЕРЖКЕ МЕЖДУНАРОДНЫХ СТАРТАП-ПРОГРАММ",
@@ -2296,7 +2439,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"оптимизированной для высоконагруженных продуктовых моделей с глубоким контекстом.",
 			card1Id: "01",
 			card1Title: "ИИ-Агенты",
-			card1Desc: "Персистентная память для автономного принятия многоэтапных решений.",
+			card1Desc:
+				"Персистентная память для автономного принятия многоэтапных решений.",
 			card2Id: "02",
 			card2Title: "Диалоговый ИИ",
 			card2Desc:
@@ -2323,7 +2467,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			headlinePre: "Интегрируйте ",
 			headlineHighlight: "Piyapi",
 			headlinePost: " туда, где уже работает ваш ИИ.",
-			subline: "Память, работающая с любой моделью, фреймворком или стеком агентов.",
+			subline:
+				"Память, работающая с любой моделью, фреймворком или стеком агентов.",
 			tag01: "//01",
 			sdkTitle: "SDK",
 			sdkSubtitle: "Нативные SDK, REST API и интеграции с ИИ-фреймворками",
@@ -2333,7 +2478,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 				"Позвольте ИИ-агентам точно помнить данные в каждом взаимодействии и процессе.",
 			tag03: "//03",
 			connectorsTitle: "КОННЕКТОРЫ",
-			connectorsSubtitle: "Единый источник истины. Каждое приложение. Каждая модель.",
+			connectorsSubtitle:
+				"Единый источник истины. Каждое приложение. Каждая модель.",
 			tag04: "//04",
 			mcpTitle: "MCP",
 			mcpSubtitle:
@@ -2360,7 +2506,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			card4Desc:
 				"Смотрите, что именно помнит ИИ, откуда взялась информация и как она менялась со временем.",
 			card5Title: "Память под контролем пользователя",
-			card5Desc: "Управляйте правами на создание, чтение, обновление, экспорт и удаление памяти.",
+			card5Desc:
+				"Управляйте правами на создание, чтение, обновление, экспорт и удаление памяти.",
 		},
 		research: {
 			tag: "ИССЛЕДОВАНИЯ И СТАТЬИ",
@@ -2438,7 +2585,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 		pricing: {
 			tag: "ТАРИФЫ",
 			heroHeadline: "Инфраструктура, масштабируемая вместе с вашим контекстом.",
-			heroSubline: "Начните строить с персистентным интеллектом, затем масштабируйте память, извлечение и инфраструктуру по мере роста приложения.",
+			heroSubline:
+				"Начните строить с персистентным интеллектом, затем масштабируйте память, извлечение и инфраструктуру по мере роста приложения.",
 			billingLabel: "ОПЛАТА",
 			billingMonthly: "Ежемесячно",
 			billingYearly: "Ежегодно",
@@ -2448,7 +2596,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			retrievalsLabel: "Запросов/мес",
 			projectsLabel: "Проекты",
 			coverageHeadline: "Что реально включает ваш план",
-			coverageSubline: "Каждый план построен на одних и тех же четырёх инфраструктурных измерениях.",
+			coverageSubline:
+				"Каждый план построен на одних и тех же четырёх инфраструктурных измерениях.",
 			stepsPrototype: "Прототип",
 			stepsProduction: "Производство",
 			stepsScale: "Масштабирование",
@@ -2458,7 +2607,8 @@ export const translations: Record<Language, TranslationDictionary> = {
 			capabilityLabel: "ВОЗМОЖНОСТЬ",
 			recommendedLabel: "РЕКОМЕНДУЕТСЯ",
 			calculatorHeadline: "Оцените ежемесячное использование",
-			calculatorSubline: "Расскажите нам примерно, каким контекстом управляет ваше приложение, и мы покажем ориентировочный диапазон плана.",
+			calculatorSubline:
+				"Расскажите нам примерно, каким контекстом управляет ваше приложение, и мы покажем ориентировочный диапазон плана.",
 			mauLabel: "ЕЖЕМЕСЯЧНО АКТИВНЫХ ПОЛЬЗОВАТЕЛЕЙ",
 			memoriesPerUserLabel: "СОЗДАНО ВОСПОМИНАНИЙ НА ПОЛЬЗОВАТЕЛЯ",
 			retrievalRequestsLabel: "ЕЖЕМЕСЯЧНЫХ ЗАПРОСОВ ИЗВЛЕЧЕНИЯ",
@@ -2468,16 +2618,20 @@ export const translations: Record<Language, TranslationDictionary> = {
 			suggestedPlanLabel: "РЕКОМЕНДУЕМЫЙ ПЛАН",
 			estimatedPriceLabel: "ОРИЕНТИРОВОЧНАЯ ЦЕНА",
 			calculatorCta: "Начать разработку",
-			calculatorDisclaimer: "Фактическое использование и цены могут варьироваться в зависимости от конфигурации и требований к инфраструктуре.",
+			calculatorDisclaimer:
+				"Фактическое использование и цены могут варьироваться в зависимости от конфигурации и требований к инфраструктуре.",
 			selfHostHeadline: "Предпочитаете запускать самостоятельно?",
-			selfHostSubline: "Разверните Negentro на своей инфраструктуре и выберите компоненты, хранилище и поставщиков моделей, подходящих для вашей среды.",
+			selfHostSubline:
+				"Разверните Negentro на своей инфраструктуре и выберите компоненты, хранилище и поставщиков моделей, подходящих для вашей среды.",
 			selfHostExplore: "Изучить Open Source",
 			criticalHeadline: "Для команд, создающих критические системы ИИ.",
-			criticalSubline: "Поговорите с командой Negentro о требованиях к развёртыванию, безопасности, масштабировании, поддержке и настраиваемой инфраструктуре.",
+			criticalSubline:
+				"Поговорите с командой Negentro о требованиях к развёртыванию, безопасности, масштабировании, поддержке и настраиваемой инфраструктуре.",
 			criticalCta: "Связаться с отделом продаж",
 			faqHeadline: "Часто задаваемые вопросы",
 			finalCtaHeadline: "Начните разработку с персистентным интеллектом.",
-			finalCtaSubline: "Начните с бесплатного уровня и масштабируйтесь, когда приложению понадобится больше контекста.",
+			finalCtaSubline:
+				"Начните с бесплатного уровня и масштабируйтесь, когда приложению понадобится больше контекста.",
 			finalCtaStart: "Начать разработку",
 			finalCtaDocs: "Читать документацию",
 			planExploreName: "Izuchenie",
@@ -2529,24 +2683,31 @@ export const translations: Record<Language, TranslationDictionary> = {
 			planEnterpriseContextCapacity: "Nastraivaemyy",
 			planEnterpriseProjects: "Neogranichennno",
 			promise1Title: "Nikakih skrytykh platezhey",
-			promise1Desc: "Prozrachnoye tsenovoye formirovaniye bez neozhidannykh platezhey i prevysheniy.",
+			promise1Desc:
+				"Prozrachnoye tsenovoye formirovaniye bez neozhidannykh platezhey i prevysheniy.",
 			promise2Title: "Otmena v lyuboy moment",
-			promise2Desc: "Bez obyazatelnykh kontraktov. Ponizhajte tarif ili otmenyayte kogda ugodno.",
+			promise2Desc:
+				"Bez obyazatelnykh kontraktov. Ponizhajte tarif ili otmenyayte kogda ugodno.",
 			promise3Title: "Gibkost na osnove ispolzovaniya",
-			promise3Desc: "Platite za to, chto ispolzuyete. Masshtabirujtes vverkh ili vniz po mere neobkhodimosti.",
+			promise3Desc:
+				"Platite za to, chto ispolzuyete. Masshtabirujtes vverkh ili vniz po mere neobkhodimosti.",
 			promise4Title: "Besplatnyy uroven navsegda",
-			promise4Desc: "Nash startovyy plan besplatyen navsegda. Kreditnaya karta ne trebuetsya.",
+			promise4Desc:
+				"Nash startovyy plan besplatyen navsegda. Kreditnaya karta ne trebuetsya.",
 			coverage1Title: "Pamyat",
-			coverage1Desc: "Skolko persistentnogo konteksta mozhno khranit v vashem prilozhenii.",
+			coverage1Desc:
+				"Skolko persistentnogo konteksta mozhno khranit v vashem prilozhenii.",
 			coverage1Example: "napr. 10K - 1M+ vospominaniy",
 			coverage2Title: "Izvlechenie",
 			coverage2Desc: "Skolko konteksta mozhno nayti i izvlech po trebovaniyu.",
 			coverage2Example: "napr. 5K - 5M zaprosov/mes",
 			coverage3Title: "Infrastruktura",
-			coverage3Desc: "Khranilishche, vychisleniya, topologiya razvertyvaniya i garantii nadezhnosti.",
+			coverage3Desc:
+				"Khranilishche, vychisleniya, topologiya razvertyvaniya i garantii nadezhnosti.",
 			coverage3Example: "Obshchaya k Vydelennoy",
 			coverage4Title: "Podderzhka",
-			coverage4Desc: "Urovni podderzhki: soobshchestvo, prioritetnaya ili vydelennaya inzhenernaya.",
+			coverage4Desc:
+				"Urovni podderzhki: soobshchestvo, prioritetnaya ili vydelennaya inzhenernaya.",
 			coverage4Example: "Soobshchestvo k Vydelennoy",
 			catMemory: "PAMYAT",
 			catRetrieval: "IZVLECHENIE",
@@ -2588,9 +2749,11 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason1Title: "Korporativnyy uroven bezopasnosti",
 			reason1Desc: "Infrastruktura, sootvetstvuyushchaya SOC 2, HIPAA i GDPR.",
 			reason2Title: "Zaderzhka izvlecheniya meneye 500ms",
-			reason2Desc: "Deterministicheskaya pamyat v realnom vremeni dlya proizvodstvennogo II.",
+			reason2Desc:
+				"Deterministicheskaya pamyat v realnom vremeni dlya proizvodstvennogo II.",
 			reason3Title: "50-90% menshe tokenov",
-			reason3Desc: "Znachitelno sokratite ispolzovanie tokenov s deterministicheskoy pamyatyu.",
+			reason3Desc:
+				"Znachitelno sokratite ispolzovanie tokenov s deterministicheskoy pamyatyu.",
 			reason4Title: "#1 v MemBench",
 			reason4Desc: "Lidiruyushchaya proizvoditelnost v benchmarkakh pamyati.",
 			reason5Title: "Agnostik k modeli",
@@ -2598,35 +2761,50 @@ export const translations: Record<Language, TranslationDictionary> = {
 			reason6Title: "Polnoye vladenie dannymi",
 			reason6Desc: "Vasha pamyat, vashi dannye, vash kontrol. Vsegda.",
 			criticalCard1Title: "Bezopasnost",
-			criticalCard1Desc: "SSO, kontrol dostupa i trebovaniya audita dlya reguliruyemykh sred.",
+			criticalCard1Desc:
+				"SSO, kontrol dostupa i trebovaniya audita dlya reguliruyemykh sred.",
 			criticalCard2Title: "Masshtab",
-			criticalCard2Desc: "Individualynaya yomkost i vydelennaya infrastruktura dlya trebovatelynykh nagruzok.",
+			criticalCard2Desc:
+				"Individualynaya yomkost i vydelennaya infrastruktura dlya trebovatelynykh nagruzok.",
 			criticalCard3Title: "Podderzhka",
-			criticalCard3Desc: "Prioritetnaya inzhenernaya podderzhka i podderzhka razvertyvaniya ot nashey komandy.",
+			criticalCard3Desc:
+				"Prioritetnaya inzhenernaya podderzhka i podderzhka razvertyvaniya ot nashey komandy.",
 			selfHostYourApp: "Vashe Prilozhenie",
 			selfHostYourInfra: "Vasha Infrastruktura",
 			faq1Q: "Est li besplatnyy plan?",
-			faq1A: "Da, plan Izuchenie besplatyen i prednaznachen dlya razrabotchikov, eksperimentirruyushchikh s persistentnym kontekstom.",
+			faq1A:
+				"Da, plan Izuchenie besplatyen i prednaznachen dlya razrabotchikov, eksperimentirruyushchikh s persistentnym kontekstom.",
 			faq2Q: "Kak izmeryaetsya ispolzovanie?",
-			faq2A: "Ispolzovanie izmeryaetsya na osnove kolichestva aktivnykh polzovateley, sokhranennykh vospominaniy i operatsiy izvlecheniya za mesyats.",
+			faq2A:
+				"Ispolzovanie izmeryaetsya na osnove kolichestva aktivnykh polzovateley, sokhranennykh vospominaniy i operatsiy izvlecheniya za mesyats.",
 			faq3Q: "Chto schitaetsya operatsiey pamyati?",
-			faq3A: "Operatsiya pamyati vklyuchayet lyuboye deystviye sozdaniya, chteniya, obnovleniya ili udaleniya v vashem khranilishche pamyati.",
+			faq3A:
+				"Operatsiya pamyati vklyuchayet lyuboye deystviye sozdaniya, chteniya, obnovleniya ili udaleniya v vashem khranilishche pamyati.",
 			faq4Q: "Mozhno li smenit tarifnyy plan pozhe?",
-			faq4A: "Da! Vy mozhete povysit ili ponizit tarifnyy plan v lyuboye vremya v sootvetstvii s potrebnostyami infrastruktury.",
+			faq4A:
+				"Da! Vy mozhete povysit ili ponizit tarifnyy plan v lyuboye vremya v sootvetstvii s potrebnostyami infrastruktury.",
 			faq5Q: "Perenosyatsya li neispolzovannye limity?",
-			faq5A: "Net, neispolzovannye limity sbrasyvayutsya v nachale kazhdogo raschetnogo perioda.",
+			faq5A:
+				"Net, neispolzovannye limity sbrasyvayutsya v nachale kazhdogo raschetnogo perioda.",
 			faq6Q: "Mozhno li ispolzovat Negentro s sobstvennoy infrastrukturoy?",
-			faq6A: "Da, vy mozhete razvernet Negentro na svoyey infrastrukture s nashimi resheniyami.",
+			faq6A:
+				"Da, vy mozhete razvernet Negentro na svoyey infrastrukture s nashimi resheniyami.",
 			faq7Q: "Chto vklyucheno v samostoyatelnyy khosting?",
-			faq7A: "Samostoyatelnyy khosting vklyuchayet polnyy kontrol nad razvertyvanieyem, polzovatelskuyu infrastrukturu i vozmozhnost ispolzovat sobstvennykh postavshchikov modeley.",
+			faq7A:
+				"Samostoyatelnyy khosting vklyuchayet polnyy kontrol nad razvertyvanieyem, polzovatelskuyu infrastrukturu i vozmozhnost ispolzovat sobstvennykh postavshchikov modeley.",
 			faq8Q: "Predlagayete li vy korporativnyye soglasheniya?",
-			faq8A: "Da, nash korporativnyy plan vklyuchayet nastraivaemye limity, SSO/SAML, zhurnaly audita i prioritetnuyu podderzhku razvertyvaniya.",
+			faq8A:
+				"Da, nash korporativnyy plan vklyuchayet nastraivaemye limity, SSO/SAML, zhurnaly audita i prioritetnuyu podderzhku razvertyvaniya.",
 			faq9Q: "Est li variant na osnove ispolzovaniya?",
-			faq9A: "Da, pomimo bazovykh limitov plana, vy mozhete masshtabirovatsya dinamicheski s prozrachnym tsenoobrazovaniyem.",
+			faq9A:
+				"Da, pomimo bazovykh limitov plana, vy mozhete masshtabirovatsya dinamicheski s prozrachnym tsenoobrazovaniyem.",
 			faq10Q: "Mogu li ya eksportirovat svoi dannye?",
-			faq10A: "Absolyutno. Vy sokhranite polnoye vladenie dannymi i mozhete eksportirovat ikh v lyuboye vremya cherez nashe API.",
-			faq11Q: "Predlagayete li vy podderzhku dlya proizvodstvennykh razvertyvaniy?",
-			faq11A: "Da, my obespechivayem prioritetnuyu inzhenernuyu podderzhku i podderzhku razvertyvaniya dlya klientov Masshtabirovaniya i Predpriyatiya.",
+			faq10A:
+				"Absolyutno. Vy sokhranite polnoye vladenie dannymi i mozhete eksportirovat ikh v lyuboye vremya cherez nashe API.",
+			faq11Q:
+				"Predlagayete li vy podderzhku dlya proizvodstvennykh razvertyvaniy?",
+			faq11A:
+				"Da, my obespechivayem prioritetnuyu inzhenernuyu podderzhku i podderzhku razvertyvaniya dlya klientov Masshtabirovaniya i Predpriyatiya.",
 		},
 		waitPage: {
 			loading: "Память загружается...",

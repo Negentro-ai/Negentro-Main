@@ -12,7 +12,8 @@ export interface CalendlyModalProps {
 export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 	isOpen,
 	onClose,
-	calendlyUrl = import.meta.env.VITE_CALENDLY_URL || "https://calendly.com/negentro/30min",
+	calendlyUrl = import.meta.env.VITE_CALENDLY_URL ||
+		"https://calendly.com/negentro/30min",
 }) => {
 	const { t } = useLanguage()
 	const [isLoading, setIsLoading] = useState(true)

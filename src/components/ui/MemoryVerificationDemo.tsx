@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react"
+import type React from "react"
+import { useState, useEffect, useRef } from "react"
 
 const FULL_QUERY = "what is the SSO requirement for enterprise customers?"
 const FULL_ANSWER = "Enterprise Customers require SSO"

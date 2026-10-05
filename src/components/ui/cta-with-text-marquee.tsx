@@ -1,5 +1,12 @@
 import { cn } from "@/lib/utils"
-import { type ReactNode, useEffect, useRef, useState, lazy, Suspense } from "react"
+import {
+	type ReactNode,
+	useEffect,
+	useRef,
+	useState,
+	lazy,
+	Suspense,
+} from "react"
 import Velaris from "@/components/ui/velaris"
 import { useLanguage } from "@/lib/i18n"
 

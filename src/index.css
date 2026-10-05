@@ -236,8 +236,6 @@
 	animation: marquee 25s linear infinite;
 }
 
-
-
 /* Horizontal Gradient Mask for smooth fade-in/out on edges */
 .mask-gradient-x {
 	-webkit-mask-image: linear-gradient(

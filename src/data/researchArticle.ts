@@ -43,7 +43,8 @@ export const researchArticle = {
 		chartImage: "/assets/research/memory-performance-chart.png",
 		chartAlt:
 			"Line chart comparing memory performance at 100K, 1M, and 10M items. Negentro stays near 92 while System A and System B decline as scale increases.",
-		chartNote: "Illustrative benchmark values, internal research configuration.",
+		chartNote:
+			"Illustrative benchmark values, internal research configuration.",
 		chartSummary:
 			"Negentro maintains substantially flatter degradation as scale increases, suggesting that selective retrieval preserves relevant signal even as the underlying memory store grows by orders of magnitude.",
 		metrics: [
@@ -83,19 +84,23 @@ export const researchArticle = {
 		items: [
 			{
 				title: "Synthetic data",
-				description: "Benchmark data may differ meaningfully from real production traffic patterns and user behavior.",
+				description:
+					"Benchmark data may differ meaningfully from real production traffic patterns and user behavior.",
 			},
 			{
 				title: "Single configuration",
-				description: "Results depend on the specific evaluated configuration and may not generalize across all setups.",
+				description:
+					"Results depend on the specific evaluated configuration and may not generalize across all setups.",
 			},
 			{
 				title: "Judge variance",
-				description: "Evaluation methods, including model-based judges, can introduce variance into reported scores.",
+				description:
+					"Evaluation methods, including model-based judges, can introduce variance into reported scores.",
 			},
 			{
 				title: "Production scope",
-				description: "Real deployments introduce privacy, concurrency, identity, and operational constraints not fully captured here.",
+				description:
+					"Real deployments introduce privacy, concurrency, identity, and operational constraints not fully captured here.",
 			},
 		],
 	},
