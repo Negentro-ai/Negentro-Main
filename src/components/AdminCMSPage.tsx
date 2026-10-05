@@ -193,6 +193,31 @@ const ImageUploadInput = ({
 		}
 	}
 
+	const handleDelete = async () => {
+		if (!value) return
+		
+		// Optional: Extract filename if it's a Supabase storage URL
+		// URL format: .../storage/v1/object/public/media/filename.webp
+		try {
+			setIsUploading(true)
+			if (value.includes("/storage/v1/object/public/media/")) {
+				const parts = value.split("/storage/v1/object/public/media/")
+				if (parts.length === 2) {
+					const filename = parts[1]
+					const client = await getSupabase()
+					if (client) {
+						await client.storage.from("media").remove([filename])
+					}
+				}
+			}
+		} catch (error) {
+			console.error("Failed to delete from storage:", error)
+		} finally {
+			setIsUploading(false)
+			onChange("")
+		}
+	}
+
 	return (
 		<div className="flex gap-2 w-full mt-2">
 			<input
@@ -208,6 +233,17 @@ const ImageUploadInput = ({
 				onChange={handleUpload}
 				className="hidden"
 			/>
+			{value && (
+				<button
+					type="button"
+					onClick={handleDelete}
+					disabled={isUploading}
+					className="flex shrink-0 items-center justify-center rounded-md border border-red-200 bg-red-50 px-3 text-red-600 transition-colors hover:bg-red-100 dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/40 disabled:opacity-50"
+					title="Delete Image"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+				</button>
+			)}
 			<button
 				type="button"
 				onClick={() => fileInputRef.current?.click()}

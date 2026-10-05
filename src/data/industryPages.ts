@@ -144,7 +144,7 @@ export const industryPages: IndustryPageData[] = [
 		contextTitle: "Every session adds useful context.",
 		contextDescription:
 			"PiyApi remembers what matters across sessions, so a learning copilot can respond with a deeper understanding of each learner.",
-		contextImage: "/assets/use-cases/education-learner-context.png",
+		contextImage: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203367460-education-learner-context.webp",
 		contextImageAlt:
 			"Learner context and persistent memory across tutoring sessions",
 		introTitle: "Personalised learning needs memory.",
@@ -200,7 +200,7 @@ export const industryPages: IndustryPageData[] = [
 		],
 		flowSteps: ["SESSION", "CONTEXT", "MEMORY", "NEXT SESSION"],
 		architectureTitle: "The infrastructure underneath.",
-		architectureImage: "/assets/use-cases/education-memory-architecture.png",
+		architectureImage: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203368163-education-memory-architecture.webp",
 		memoryTitle: "Personalisation that deepens with every session.",
 		memoryDescription:
 			"A learning platform becomes more useful as it learns. With PiyApi, the first session creates context; later sessions can use strengths, recurring difficulties and learning history to make the next interaction more relevant.",
