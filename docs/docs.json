@@ -12,9 +12,10 @@
         "tab": "Docs",
         "groups": [
           {
-            "group": "Introduction",
+            "group": "Getting Started",
             "pages": [
-              "introduction"
+              "index",
+              "quickstart"
             ]
           }
         ]
