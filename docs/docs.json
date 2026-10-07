@@ -73,12 +73,6 @@
       "type": "button",
       "href": "https://piyapi.cloud/",
       "label": "Dashboard"
-    },
-    "links": [
-      {
-        "href": "https://piyapi.cloud/",
-        "label": "Platform"
-      }
-    ]
+    }
   }
 }
