@@ -70,9 +70,8 @@
   },
   "navbar": {
     "primary": {
-      "type": "button",
-      "label": "Get Started",
-      "href": "https://negntro.mintlify.site/get-started"
+      "type": "github",
+      "href": "https://github.com/Negentro-ai/Negentro-Main"
     }
   }
 }
