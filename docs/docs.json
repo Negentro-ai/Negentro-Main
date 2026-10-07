@@ -1,12 +1,24 @@
 {
   "name": "Negentro",
   "theme": "mint",
-  "navigation": [
-    {
-      "group": "Introduction",
-      "pages": [
-        "introduction"
-      ]
-    }
-  ]
+  "colors": {
+    "primary": "#765DFB",
+    "light": "#F9F8FF",
+    "dark": "#00050E"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Docs",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "introduction"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
