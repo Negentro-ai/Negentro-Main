@@ -1,1 +1,12 @@
-{}
+{
+  "name": "Negentro",
+  "theme": "mint",
+  "navigation": [
+    {
+      "group": "Introduction",
+      "pages": [
+        "introduction"
+      ]
+    }
+  ]
+}
