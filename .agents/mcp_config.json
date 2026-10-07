@@ -2,6 +2,9 @@
 	"mcpServers": {
 		"Figma": {
 			"serverUrl": "https://mcp.figma.com/mcp"
+		},
+		"Mintlify": {
+			"serverUrl": "https://mcp.mintlify.com"
 		}
 	}
 }
