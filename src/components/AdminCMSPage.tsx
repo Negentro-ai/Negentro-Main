@@ -1019,20 +1019,39 @@ export const AdminCMSPage = () => {
 		e.preventDefault()
 		const client = await getSupabase()
 		if (!client) return
+
+		// 1. Save record in database for UI history AND for any Postgres triggers that rely on it!
 		const { error } = await client
 			.from("team_invitations")
-			.insert({
+			.upsert({
 				email: inviteEmail,
 				role: inviteRole,
 				invited_by: session.user.id,
-			})
+			}, { onConflict: 'email' })
+			
 		if (error) {
-			alert(error.message)
-		} else {
-			setInviteEmail("")
-			setSaveMessage("Invitation sent!")
-			loadTeamData()
+			alert("Failed to save invitation to database: " + error.message)
+			return
 		}
+		
+		// 2. Send actual email via Edge Function
+		const { data: edgeData, error: fnError } = await client.functions.invoke("invite-user", {
+			body: { 
+				email: inviteEmail, 
+				role: inviteRole,
+				redirectTo: window.location.origin + "/admin"
+			}
+		})
+		
+		if (fnError || (edgeData && edgeData.success === false)) {
+			const errorMsg = edgeData?.error || fnError?.message || "Unknown error";
+			alert("Invitation saved, but failed to send email: " + errorMsg)
+			return
+		}
+
+		setInviteEmail("")
+		setSaveMessage("Invitation email sent successfully!")
+		loadTeamData()
 	}
 
 	const changeKind = (kind: any) => {

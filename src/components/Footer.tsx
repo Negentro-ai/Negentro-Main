@@ -1,7 +1,8 @@
-import type React from "react"
+import React, { useState, useEffect } from "react"
 import { RuixenGradientFooter } from "@/components/ui/ruixen-gradient-footer"
 import { NegentroFooterLogo } from "@/components/ui/negentro-footer-logo"
 import { useLanguage, type Language } from "@/lib/i18n"
+import { getSupabase } from "@/lib/supabase"
 
 export interface FooterProps {
 	onOpenConsole?: () => void
@@ -11,6 +12,25 @@ export const Footer: React.FC<FooterProps> = ({
 	onOpenConsole: _onOpenConsole,
 }) => {
 	const { language, setLanguage, t } = useLanguage()
+	
+	const [industryLinks, setIndustryLinks] = useState<{ title: string; slug: string }[]>([])
+	
+	useEffect(() => {
+		const fetchIndustries = async () => {
+			const client = await getSupabase()
+			if (!client) return
+			const { data } = await client
+				.from("cms_records")
+				.select("title, slug")
+				.eq("kind", "industries")
+				.order("updated_at", { ascending: false })
+				.limit(6)
+			if (data) {
+				setIndustryLinks(data)
+			}
+		}
+		fetchIndustries()
+	}, [])
 
 	const languagesList: { code: Language; label: string }[] = [
 		{ code: "en", label: "En" },
@@ -218,46 +238,61 @@ export const Footer: React.FC<FooterProps> = ({
 							{t.footer.usecasesTitle}
 						</h4>
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
-							<li>
-								<a
-									href="#support"
-									className="hover:text-white transition-colors block"
-								>
-									{t.footer.useSupport}
-								</a>
-							</li>
-							<li>
-								<a
-									href="#healthcare"
-									className="hover:text-white transition-colors block"
-								>
-									{t.footer.useHealth}
-								</a>
-							</li>
-							<li>
-								<a
-									href="#education"
-									className="hover:text-white transition-colors block"
-								>
-									{t.footer.useEdu}
-								</a>
-							</li>
-							<li>
-								<a
-									href="#sales"
-									className="hover:text-white transition-colors block"
-								>
-									{t.footer.useSales}
-								</a>
-							</li>
-							<li>
-								<a
-									href="#ecommerce"
-									className="hover:text-white transition-colors block"
-								>
-									{t.footer.useEcom}
-								</a>
-							</li>
+							{industryLinks.length > 0 ? (
+								industryLinks.map((industry) => (
+									<li key={industry.slug}>
+										<a
+											href={`/industries/${industry.slug}`}
+											className="hover:text-white transition-colors block"
+										>
+											{industry.title}
+										</a>
+									</li>
+								))
+							) : (
+								<>
+									<li>
+										<a
+											href="#support"
+											className="hover:text-white transition-colors block"
+										>
+											{t.footer.useSupport}
+										</a>
+									</li>
+									<li>
+										<a
+											href="#healthcare"
+											className="hover:text-white transition-colors block"
+										>
+											{t.footer.useHealth}
+										</a>
+									</li>
+									<li>
+										<a
+											href="#education"
+											className="hover:text-white transition-colors block"
+										>
+											{t.footer.useEdu}
+										</a>
+									</li>
+									<li>
+										<a
+											href="#sales"
+											className="hover:text-white transition-colors block"
+										>
+											{t.footer.useSales}
+										</a>
+									</li>
+									<li>
+										<a
+											href="#ecommerce"
+											className="hover:text-white transition-colors block"
+										>
+											{t.footer.useEcom}
+										</a>
+									</li>
+								</>
+							)}
 						</ul>
 					</div>
 				</div>
