@@ -71,7 +71,7 @@
   "navbar": {
     "primary": {
       "type": "button",
-      "href": "https://piyapi.cloud",
+      "href": "https://piyapi.cloud/",
       "label": "Dashboard"
     }
   }
