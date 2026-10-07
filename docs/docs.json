@@ -70,8 +70,9 @@
   },
   "navbar": {
     "primary": {
-      "type": "github",
-      "href": "https://github.com/Negentro-ai/Negentro-Main"
+      "type": "button",
+      "href": "https://piyapi.cloud",
+      "label": "Dashboard"
     }
   }
 }
