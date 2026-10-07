@@ -6,6 +6,9 @@
     "light": "#F9F8FF",
     "dark": "#00050E"
   },
+  "fonts": {
+    "family": "DM Sans"
+  },
   "navigation": {
     "tabs": [
       {
