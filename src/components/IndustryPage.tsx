@@ -278,32 +278,23 @@ export const IndustryPage = ({
 							))}
 						</div>
 					</div>
-					<div className="flex flex-wrap gap-3 pb-16">
-						<div className="flex flex-wrap items-center gap-6 self-start sm:self-auto shrink-0">
-							<a
-								href="https://piyapi.cloud"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[#00050e] px-6 text-[13px] font-medium text-white transition-colors hover:bg-[#262435]"
-							>
-								Start building
-							</a>
-							<a
-								href="https://docs.piyapi.cloud"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
-							>
-								Read the docs{" "}
-								<ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
-							</a>
-							<a
-								href="#contact"
-								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
-							>
-								Talk to us <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
-							</a>
-						</div>
+					<div className="flex flex-wrap gap-6 pb-16">
+						<a
+							href="https://piyapi.cloud"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[#00050e] px-6 text-[13px] font-medium text-white transition-colors hover:bg-[#262435]"
+						>
+							Start building
+						</a>
+						<a
+							href="https://docs.piyapi.cloud"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
+						>
+							Read the docs <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
+						</a>
 					</div>
 				</div>
 			</section>
@@ -521,14 +512,7 @@ export const IndustryPage = ({
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
 							>
-								Read the docs{" "}
-								<ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
-							</a>
-							<a
-								href="#contact"
-								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
-							>
-								Talk to us <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
+								Read the docs <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 							</a>
 						</div>
 					</div>
@@ -649,14 +633,7 @@ export const IndustryPage = ({
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white transition-colors hover:text-[#765dfb]"
 							>
-								Read the docs{" "}
-								<ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
-							</a>
-							<a
-								href="#contact"
-								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white transition-colors hover:text-[#765dfb]"
-							>
-								Talk to us <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
+								Read the docs <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 							</a>
 						</div>
 					</div>
