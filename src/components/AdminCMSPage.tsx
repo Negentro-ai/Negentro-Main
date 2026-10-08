@@ -195,7 +195,7 @@ const ImageUploadInput = ({
 
 	const handleDelete = async () => {
 		if (!value) return
-		
+
 		// Optional: Extract filename if it's a Supabase storage URL
 		// URL format: .../storage/v1/object/public/media/filename.webp
 		try {
@@ -241,7 +241,21 @@ const ImageUploadInput = ({
 					className="flex shrink-0 items-center justify-center rounded-md border border-red-200 bg-red-50 px-3 text-red-600 transition-colors hover:bg-red-100 dark:border-red-900/50 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/40 disabled:opacity-50"
 					title="Delete Image"
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					>
+						<path d="M3 6h18" />
+						<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+						<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+					</svg>
 				</button>
 			)}
 			<button
@@ -1021,16 +1035,22 @@ export const AdminCMSPage = () => {
 		if (!client) return
 
 		// 1. Send actual email via Edge Function (The Edge Function will also save the history record securely)
-		const { data: edgeData, error: fnError } = await client.functions.invoke("invite-user", {
-			body: { 
-				email: inviteEmail, 
-				role: inviteRole,
-				redirectTo: window.location.hostname === "localhost" ? "https://negentro.tech/admin" : window.location.origin + "/admin"
-			}
-		})
-		
+		const { data: edgeData, error: fnError } = await client.functions.invoke(
+			"invite-user",
+			{
+				body: {
+					email: inviteEmail,
+					role: inviteRole,
+					redirectTo:
+						window.location.hostname === "localhost"
+							? "https://negentro.tech/admin"
+							: window.location.origin + "/admin",
+				},
+			},
+		)
+
 		if (fnError || (edgeData && edgeData.success === false)) {
-			const errorMsg = edgeData?.error || fnError?.message || "Unknown error";
+			const errorMsg = edgeData?.error || fnError?.message || "Unknown error"
 			alert("Invitation saved, but failed to send email: " + errorMsg)
 			return
 		}
@@ -1084,7 +1104,7 @@ export const AdminCMSPage = () => {
 		)
 
 		setSaveMessage("Saving to database...")
-		
+
 		const client = await getSupabase()
 		if (!client) {
 			setSaveMessage("Database unavailable")
@@ -1176,11 +1196,14 @@ export const AdminCMSPage = () => {
 			})
 			if (error) setAuthError(error.message)
 		} else {
-			const { error } = await client.auth.signInWithOtp({ 
+			const { error } = await client.auth.signInWithOtp({
 				email,
 				options: {
-					emailRedirectTo: window.location.hostname === "localhost" ? "https://negentro.tech/admin" : window.location.origin + "/admin",
-				}
+					emailRedirectTo:
+						window.location.hostname === "localhost"
+							? "https://negentro.tech/admin"
+							: window.location.origin + "/admin",
+				},
 			})
 			if (error) setAuthError(error.message)
 			else setAuthError("Success! Check your email for a secure login link.")
@@ -1401,22 +1424,30 @@ export const AdminCMSPage = () => {
 													onClick={async () => {
 														const client = await getSupabase()
 														if (!client) return
-														
+
 														setSaveMessage("Importing 7 industries...")
 														try {
-															const res = await fetch("/temp_industry_seed.json")
+															const res = await fetch(
+																"/temp_industry_seed.json",
+															)
 															const industrySeed = await res.json()
-															
+
 															let successCount = 0
 															for (const record of industrySeed) {
-																const { error } = await client.from("cms_records").upsert(record, { onConflict: "slug" })
+																const { error } = await client
+																	.from("cms_records")
+																	.upsert(record, { onConflict: "slug" })
 																if (error) {
-																	alert(`Failed to import ${record.title}: ${error.message}`)
+																	alert(
+																		`Failed to import ${record.title}: ${error.message}`,
+																	)
 																} else {
 																	successCount++
 																}
 															}
-															setSaveMessage(`Successfully imported ${successCount} industries!`)
+															setSaveMessage(
+																`Successfully imported ${successCount} industries!`,
+															)
 															window.location.reload()
 														} catch (err: any) {
 															alert("Import failed: " + err.message)

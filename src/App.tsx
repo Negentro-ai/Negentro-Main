@@ -94,12 +94,14 @@ const IndustryPage = lazy(() =>
 export function App() {
 	const [activeTab, setActiveTab] = useState<string>(() => {
 		const path = window.location.pathname
-		if (path.startsWith('/industries/')) return `industry:${path.replace('/industries/', '')}`
-		if (path === '/pricing') return 'pricing'
-		if (path === '/research') return 'research'
-		if (path === '/use-cases') return 'use-cases'
-		if (path === '/blog') return 'blog'
-		if (path.startsWith('/blog/')) return `blog-article:${path.replace('/blog/', '')}`
+		if (path.startsWith("/industries/"))
+			return `industry:${path.replace("/industries/", "")}`
+		if (path === "/pricing") return "pricing"
+		if (path === "/research") return "research"
+		if (path === "/use-cases") return "use-cases"
+		if (path === "/blog") return "blog"
+		if (path.startsWith("/blog/"))
+			return `blog-article:${path.replace("/blog/", "")}`
 		return "overview"
 	})
 
@@ -115,16 +117,22 @@ export function App() {
 
 	useEffect(() => {
 		if (!window.history.state || !window.history.state.tab) {
-			window.history.replaceState({ tab: activeTab }, "", window.location.pathname)
+			window.history.replaceState(
+				{ tab: activeTab },
+				"",
+				window.location.pathname,
+			)
 		} else if (window.history.state.tab !== activeTab) {
 			let path = "/"
 			if (activeTab === "pricing") path = "/pricing"
 			else if (activeTab === "research") path = "/research"
 			else if (activeTab === "use-cases") path = "/use-cases"
 			else if (activeTab === "blog") path = "/blog"
-			else if (activeTab.startsWith("industry:")) path = `/industries/${activeTab.split(":")[1]}`
-			else if (activeTab.startsWith("blog-article:")) path = `/blog/${activeTab.split(":")[1]}`
-			
+			else if (activeTab.startsWith("industry:"))
+				path = `/industries/${activeTab.split(":")[1]}`
+			else if (activeTab.startsWith("blog-article:"))
+				path = `/blog/${activeTab.split(":")[1]}`
+
 			window.history.pushState({ tab: activeTab }, "", path)
 		}
 	}, [activeTab])

@@ -203,10 +203,12 @@ export const IndustryPage = ({
 						contextImage: parsed.contextImage || "",
 						contextImageAlt: parsed.contextImageAlt || "",
 						introTitle: parsed.introTitle || "",
-						introParagraphs: parsed.introParagraphs || [
-							parsed.introParagraphLeft || "",
-							parsed.introParagraphRight || "",
-						].filter(Boolean),
+						introParagraphs:
+							parsed.introParagraphs ||
+							[
+								parsed.introParagraphLeft || "",
+								parsed.introParagraphRight || "",
+							].filter(Boolean),
 						capabilitiesTitle: parsed.capabilitiesTitle || "",
 						capabilities: parsed.capabilities || [],
 						infrastructureTitle: parsed.infrastructureTitle || "",
@@ -293,7 +295,8 @@ export const IndustryPage = ({
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
 						>
-							Read the docs <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
+							Read the docs{" "}
+							<ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 						</a>
 					</div>
 				</div>
@@ -512,7 +515,8 @@ export const IndustryPage = ({
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
 							>
-								Read the docs <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
+								Read the docs{" "}
+								<ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 							</a>
 						</div>
 					</div>
@@ -633,7 +637,8 @@ export const IndustryPage = ({
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white transition-colors hover:text-[#765dfb]"
 							>
-								Read the docs <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
+								Read the docs{" "}
+								<ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 							</a>
 						</div>
 					</div>

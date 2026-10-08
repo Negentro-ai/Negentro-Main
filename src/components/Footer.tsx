@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react"
+import type React from "react"
+import { useState, useEffect } from "react"
 import { RuixenGradientFooter } from "@/components/ui/ruixen-gradient-footer"
 import { NegentroFooterLogo } from "@/components/ui/negentro-footer-logo"
 import { useLanguage, type Language } from "@/lib/i18n"
@@ -12,9 +13,11 @@ export const Footer: React.FC<FooterProps> = ({
 	onOpenConsole: _onOpenConsole,
 }) => {
 	const { language, setLanguage, t } = useLanguage()
-	
-	const [industryLinks, setIndustryLinks] = useState<{ title: string; slug: string }[]>([])
-	
+
+	const [industryLinks, setIndustryLinks] = useState<
+		{ title: string; slug: string }[]
+	>([])
+
 	useEffect(() => {
 		const fetchIndustries = async () => {
 			const client = await getSupabase()

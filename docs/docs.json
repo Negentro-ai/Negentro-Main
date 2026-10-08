@@ -1,81 +1,78 @@
 {
-  "name": "Negentro Docs",
-  "theme": "mint",
-  "colors": {
-    "primary": "#765DFB",
-    "light": "#F9F8FF",
-    "dark": "#00050E"
-  },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Docs",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "index",
-              "quickstart"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Platform"
-      }
-    ]
-  },
-  "icons": {
-    "library": "lucide"
-  },
-  "footer": {
-    "links": [
-      {
-        "header": "© 2026 Negentro. All rights reserved.",
-        "items": [
-          {
-            "label": "/docs",
-            "href": "/"
-          },
-          {
-            "label": "v1",
-            "href": "/"
-          },
-          {
-            "label": "Status",
-            "href": "https://status.negentro.tech"
-          },
-          {
-            "label": "Privacy",
-            "href": "https://negentro.tech/privacy"
-          },
-          {
-            "label": "Terms",
-            "href": "https://negentro.tech/terms"
-          }
-        ]
-      }
-    ]
-  },
-  "background": {
-    "color": {
-      "light": "#F9F8FF",
-      "dark": "#00050E"
-    }
-  },
-  "appearance": {
-    "strict": false
-  },
-  "seo": {
-    "metatags": {
-      "canonical": "https://docs.negentro.tech"
-    }
-  },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "href": "https://piyapi.cloud/",
-      "label": "Dashboard"
-    }
-  }
+	"name": "Negentro Docs",
+	"theme": "mint",
+	"colors": {
+		"primary": "#765DFB",
+		"light": "#F9F8FF",
+		"dark": "#00050E"
+	},
+	"navigation": {
+		"tabs": [
+			{
+				"tab": "Docs",
+				"groups": [
+					{
+						"group": "Getting Started",
+						"pages": ["index", "quickstart"]
+					}
+				]
+			},
+			{
+				"tab": "Platform"
+			}
+		]
+	},
+	"icons": {
+		"library": "lucide"
+	},
+	"footer": {
+		"links": [
+			{
+				"header": "© 2026 Negentro. All rights reserved.",
+				"items": [
+					{
+						"label": "/docs",
+						"href": "/"
+					},
+					{
+						"label": "v1",
+						"href": "/"
+					},
+					{
+						"label": "Status",
+						"href": "https://status.negentro.tech"
+					},
+					{
+						"label": "Privacy",
+						"href": "https://negentro.tech/privacy"
+					},
+					{
+						"label": "Terms",
+						"href": "https://negentro.tech/terms"
+					}
+				]
+			}
+		]
+	},
+	"background": {
+		"color": {
+			"light": "#F9F8FF",
+			"dark": "#00050E"
+		}
+	},
+	"appearance": {
+		"strict": false
+	},
+	"seo": {
+		"metatags": {
+			"canonical": "https://docs.negentro.tech"
+		}
+	},
+	"navbar": {
+		"primary": {
+			"type": "button",
+			"href": "https://piyapi.cloud/",
+			"label": "Dashboard"
+		}
+	}
 }

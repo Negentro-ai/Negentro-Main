@@ -27,7 +27,8 @@ export const featuredArticles: BlogArticle[] = [
 		category: "Engineering",
 		date: "Sep 25, 2026",
 		readTime: "8 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203369412-featured-agent-memory.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203369412-featured-agent-memory.webp",
 	},
 	{
 		id: "persistent-context-reliable-ai",
@@ -50,7 +51,8 @@ export const latestInsights: BlogArticle[] = [
 		category: "Engineering",
 		date: "Sep 12, 2026",
 		readTime: "7 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203377935-article-stateful-agents.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203377935-article-stateful-agents.webp",
 	},
 	{
 		id: "retrieval-when-context-persists",
@@ -60,7 +62,8 @@ export const latestInsights: BlogArticle[] = [
 		category: "Engineering",
 		date: "Sep 8, 2026",
 		readTime: "5 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203375969-article-persistent-retrieval.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203375969-article-persistent-retrieval.webp",
 	},
 	{
 		id: "reliable-knowledge-layers",
@@ -70,7 +73,8 @@ export const latestInsights: BlogArticle[] = [
 		category: "Product",
 		date: "Sep 3, 2026",
 		readTime: "6 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203370379-article-knowledge-layers.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203370379-article-knowledge-layers.webp",
 	},
 	{
 		id: "rag-pipelines-persistent-context",
@@ -79,7 +83,8 @@ export const latestInsights: BlogArticle[] = [
 		category: "Engineering",
 		date: "Aug 28, 2026",
 		readTime: "9 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203373403-article-rag-to-memory.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203373403-article-rag-to-memory.webp",
 	},
 	{
 		id: "agent-memory-needs-structure",
@@ -89,7 +94,8 @@ export const latestInsights: BlogArticle[] = [
 		category: "Engineering",
 		date: "Aug 22, 2026",
 		readTime: "7 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203371585-article-structured-memory.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203371585-article-structured-memory.webp",
 	},
 	{
 		id: "multi-tenant-memory-production-ai",
@@ -98,7 +104,8 @@ export const latestInsights: BlogArticle[] = [
 		category: "Engineering",
 		date: "Aug 15, 2026",
 		readTime: "6 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203374251-article-multitenant.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203374251-article-multitenant.webp",
 	},
 	{
 		id: "context-windows-are-not-memory",
@@ -107,7 +114,8 @@ export const latestInsights: BlogArticle[] = [
 		category: "Product",
 		date: "Aug 9, 2026",
 		readTime: "5 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203375068-article-context-windows.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203375068-article-context-windows.webp",
 	},
 	{
 		id: "engineering-ai-systems-learn-across-sessions",
@@ -117,6 +125,7 @@ export const latestInsights: BlogArticle[] = [
 		category: "Company",
 		date: "Aug 1, 2026",
 		readTime: "8 min read",
-		image: "https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203372435-article-learning-systems.webp",
+		image:
+			"https://oxnycpedzdquflzvqujl.supabase.co/storage/v1/object/public/media/migrated-1791203372435-article-learning-systems.webp",
 	},
 ]
