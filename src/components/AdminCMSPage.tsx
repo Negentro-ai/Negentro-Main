@@ -1235,7 +1235,7 @@ export const AdminCMSPage = () => {
 
 					<button
 						onClick={() => {
-							setAuthMode((m) => (m === "login" ? "accept_invite" : "login"))
+							setAuthMode((m) => (m === "login" ? "magic_link" : "login"))
 							setAuthError("")
 						}}
 						className="mt-6 w-full text-center text-[13px] text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors"
