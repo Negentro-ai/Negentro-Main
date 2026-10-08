@@ -203,10 +203,10 @@ export const IndustryPage = ({
 						contextImage: parsed.contextImage || "",
 						contextImageAlt: parsed.contextImageAlt || "",
 						introTitle: parsed.introTitle || "",
-						introParagraphs: [
+						introParagraphs: parsed.introParagraphs || [
 							parsed.introParagraphLeft || "",
 							parsed.introParagraphRight || "",
-						],
+						].filter(Boolean),
 						capabilitiesTitle: parsed.capabilitiesTitle || "",
 						capabilities: parsed.capabilities || [],
 						infrastructureTitle: parsed.infrastructureTitle || "",
@@ -304,14 +304,6 @@ export const IndustryPage = ({
 								Talk to us <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 							</a>
 						</div>
-						<a
-							href="https://docs.piyapi.cloud"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex h-11 items-center border border-[#00050e]/20 px-6 text-xs font-medium text-[#00050e] transition-colors hover:border-[#765dfb] hover:text-[#765dfb]"
-						>
-							Read the docs
-						</a>
 					</div>
 				</div>
 			</section>
@@ -647,7 +639,7 @@ export const IndustryPage = ({
 								href="https://piyapi.cloud"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="inline-flex h-11 items-center justify-center rounded-[6px] bg-[#00050e] px-6 text-[13px] font-medium text-white transition-colors hover:bg-[#262435]"
+								className="inline-flex h-11 items-center justify-center rounded-[6px] bg-white px-6 text-[13px] font-medium text-[#00050e] transition-colors hover:bg-white/90"
 							>
 								Start building
 							</a>
@@ -655,26 +647,18 @@ export const IndustryPage = ({
 								href="https://docs.piyapi.cloud"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
+								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white transition-colors hover:text-[#765dfb]"
 							>
 								Read the docs{" "}
 								<ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 							</a>
 							<a
 								href="#contact"
-								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
+								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white transition-colors hover:text-[#765dfb]"
 							>
 								Talk to us <ArrowRight className="h-3.5 w-3.5 text-[#765dfb]" />
 							</a>
 						</div>
-						<a
-							href="https://docs.piyapi.cloud"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex h-11 items-center border border-white/25 px-6 text-xs font-medium text-[#f9f8ff] transition-colors hover:border-white/60"
-						>
-							Explore the docs
-						</a>
 					</div>
 				</div>
 			</section>

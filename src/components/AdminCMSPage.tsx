@@ -879,7 +879,7 @@ export const AdminCMSPage = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [authError, setAuthError] = useState("")
-	const [authMode, setAuthMode] = useState<"login" | "accept_invite">("login")
+	const [authMode, setAuthMode] = useState<"login" | "magic_link">("login")
 	const [userRole, setUserRole] = useState<string>("Viewer")
 	const [teamMembers, setTeamMembers] = useState<any[]>([])
 	const [invitations, setInvitations] = useState<any[]>([])
@@ -1020,26 +1020,12 @@ export const AdminCMSPage = () => {
 		const client = await getSupabase()
 		if (!client) return
 
-		// 1. Save record in database for UI history AND for any Postgres triggers that rely on it!
-		const { error } = await client
-			.from("team_invitations")
-			.upsert({
-				email: inviteEmail,
-				role: inviteRole,
-				invited_by: session.user.id,
-			}, { onConflict: 'email' })
-			
-		if (error) {
-			alert("Failed to save invitation to database: " + error.message)
-			return
-		}
-		
-		// 2. Send actual email via Edge Function
+		// 1. Send actual email via Edge Function (The Edge Function will also save the history record securely)
 		const { data: edgeData, error: fnError } = await client.functions.invoke("invite-user", {
 			body: { 
 				email: inviteEmail, 
 				role: inviteRole,
-				redirectTo: window.location.origin + "/admin"
+				redirectTo: window.location.hostname === "localhost" ? "https://negentro.tech/admin" : window.location.origin + "/admin"
 			}
 		})
 		
@@ -1098,6 +1084,12 @@ export const AdminCMSPage = () => {
 		)
 
 		setSaveMessage("Saving to database...")
+		
+		const client = await getSupabase()
+		if (!client) {
+			setSaveMessage("Database unavailable")
+			return
+		}
 
 		try {
 			const client = await getSupabase()
@@ -1184,9 +1176,14 @@ export const AdminCMSPage = () => {
 			})
 			if (error) setAuthError(error.message)
 		} else {
-			const { error } = await client.auth.signUp({ email, password })
+			const { error } = await client.auth.signInWithOtp({ 
+				email,
+				options: {
+					emailRedirectTo: window.location.hostname === "localhost" ? "https://negentro.tech/admin" : window.location.origin + "/admin",
+				}
+			})
 			if (error) setAuthError(error.message)
-			else setAuthError("Success! Check your email to confirm your account.")
+			else setAuthError("Success! Check your email for a secure login link.")
 		}
 	}
 
@@ -1198,7 +1195,7 @@ export const AdminCMSPage = () => {
 						N
 					</div>
 					<h2 className="mb-2 text-xl font-bold text-zinc-900 dark:text-white">
-						{authMode === "login" ? "Admin Login" : "Accept Invitation"}
+						{authMode === "login" ? "Admin Login" : "Email Login"}
 					</h2>
 					<p className="mb-6 text-[14px] text-zinc-500 dark:text-zinc-400">
 						Access the Negentro Content Management System.
@@ -1213,14 +1210,16 @@ export const AdminCMSPage = () => {
 							required
 							className="h-11 w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent px-3.5 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
 						/>
-						<input
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							placeholder="Password"
-							required
-							className="h-11 w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent px-3.5 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
-						/>
+						{authMode === "login" && (
+							<input
+								type="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								placeholder="Password"
+								required
+								className="h-11 w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent px-3.5 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
+							/>
+						)}
 
 						{authError && (
 							<p className="text-[13px] text-red-500">{authError}</p>
@@ -1230,7 +1229,7 @@ export const AdminCMSPage = () => {
 							type="submit"
 							className="mt-2 flex h-11 w-full items-center justify-center rounded-md bg-violet-600 text-[14px] font-semibold text-white transition-all hover:bg-violet-700"
 						>
-							{authMode === "login" ? "Sign In" : "Set Password & Join"}
+							{authMode === "login" ? "Sign In" : "Send Login Link"}
 						</button>
 					</form>
 
@@ -1242,8 +1241,8 @@ export const AdminCMSPage = () => {
 						className="mt-6 w-full text-center text-[13px] text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors"
 					>
 						{authMode === "login"
-							? "Have an invite? Accept here"
-							: "Already have an account? Sign in"}
+							? "Forgot password or have an invite? Use Email Link"
+							: "Already have a password? Sign in"}
 					</button>
 				</div>
 			</div>
@@ -1395,16 +1394,50 @@ export const AdminCMSPage = () => {
 												website.
 											</p>
 										</div>
-										<button
-											type="button"
-											onClick={createArticle}
-											className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-[7px] bg-violet-600 px-4 text-[14px] font-medium text-white transition-all duration-300 ease-out hover:bg-violet-700 sm:self-auto"
-										>
-											<Plus className="h-4 w-4" />{" "}
-											{activeKind === "industries"
-												? "New Industry Page"
-												: "New article"}
-										</button>
+										<div className="flex items-center gap-3 self-start sm:self-auto">
+											{activeKind === "industries" && (
+												<button
+													type="button"
+													onClick={async () => {
+														const client = await getSupabase()
+														if (!client) return
+														
+														setSaveMessage("Importing 7 industries...")
+														try {
+															const res = await fetch("/temp_industry_seed.json")
+															const industrySeed = await res.json()
+															
+															let successCount = 0
+															for (const record of industrySeed) {
+																const { error } = await client.from("cms_records").upsert(record, { onConflict: "slug" })
+																if (error) {
+																	alert(`Failed to import ${record.title}: ${error.message}`)
+																} else {
+																	successCount++
+																}
+															}
+															setSaveMessage(`Successfully imported ${successCount} industries!`)
+															window.location.reload()
+														} catch (err: any) {
+															alert("Import failed: " + err.message)
+														}
+													}}
+													className="inline-flex h-10 items-center justify-center gap-2 rounded-[7px] bg-zinc-800 px-4 text-[14px] font-medium text-white transition-all hover:bg-zinc-700"
+												>
+													Bulk Import Markdown
+												</button>
+											)}
+											<button
+												type="button"
+												onClick={createArticle}
+												className="inline-flex h-10 items-center justify-center gap-2 rounded-[7px] bg-violet-600 px-4 text-[14px] font-medium text-white transition-all duration-300 ease-out hover:bg-violet-700"
+											>
+												<Plus className="h-4 w-4" />{" "}
+												{activeKind === "industries"
+													? "New Industry Page"
+													: "New article"}
+											</button>
+										</div>
 									</div>
 								)}
 
