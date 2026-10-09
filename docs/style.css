@@ -49,8 +49,31 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 strong {
   color: #765dfb;
   font-weight: inherit;
 }
-html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 a {
+html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 a[aria-label] {
   display: none;
+}
+html:has(.negentro-guides):not(.dark) #navbar {
+  background: #f9f8ff;
+  border-bottom: 1px solid #eeecf5;
+}
+html:has(.negentro-guides) #footer {
+  border-top: 1px solid #eeecf5;
+  padding-top: 28px;
+}
+html:has(.negentro-guides) #footer a {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+html:has(.negentro-guides) #topbar-cta-button {
+  border-radius: 9px;
+}
+.negentro-action-secondary {
+  border: 1px solid #dddde3;
+  background: transparent;
+}
+.negentro-actions :is(.negentro-action-primary, .negentro-action-secondary):focus-visible {
+  outline: 2px solid #765dfb;
+  outline-offset: 4px;
 }
 html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   order: 2;
@@ -69,8 +92,9 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   gap: 14px;
   margin: 36px auto 80px !important;
 }
-.negentro-actions .card {
+.negentro-actions :is(.negentro-action-primary, .negentro-action-secondary) {
   margin: 0;
+  padding: 0;
   min-width: 120px;
   border-radius: 9px;
   text-align: center;
@@ -99,6 +123,10 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
 }
 .negentro-guides {
   order: 4;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  width: 100%;
   gap: 18px;
   margin: 0 !important;
 }
