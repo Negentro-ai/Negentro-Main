@@ -1,66 +1,45 @@
 ---
-title: "Build with PiyAPI"
+title: "Build AI Applications With Negentro Memory and Context"
 sidebarTitle: "Get Started"
-description: "Start building persistent intelligence with PiyAPI's bitemporal memory, context, and developer infrastructure for AI applications."
+description: "Build persistent intelligence into your AI applications with Negentro's memory, context, and developer infrastructure. Explore guides and examples."
+mode: "center"
+hideFooterPagination: true
 ---
 
-Build persistent intelligence into your AI applications with PiyAPI's bitemporal memory, context, and developer infrastructure.
+Build persistent intelligence into your AI applications with Negentro's memory, context, and developer infrastructure.
 
-<CardGroup cols={2}>
-  <Card title="Get Started" icon="rocket" href="/quickstart">
-    Initialize your PiyGraph and start storing bitemporal facts.
+# Build with **Negentro**
+
+<CardGroup cols={2} className="negentro-actions">
+  <Card title="Get Started" icon="rocket" href="/quickstart" className="negentro-action-primary">
   </Card>
 
-  <Card title="API Reference" icon="code" href="/api-reference/overview">
-    Explore endpoints for memory, agents, and workflows.
+  <Card title="API Reference" icon="code" href="/api-reference/overview" className="negentro-action-secondary">
   </Card>
 </CardGroup>
 
-## Quickstart
+<CardGroup cols={3} className="negentro-guides">
+  <Card title="Store your first memory" icon="database" href="/quickstart" className="negentro-guide negentro-memory">
+    Learn how to create, store, and retrieve persistent memory with Negentro.
+  </Card>
 
-Initialize your PiyGraph. Learn how to create, store, and retrieve your first bitemporal facts with O(1) constant time latency.
+  <Card title="Add memory to your AI agent" icon="robot" href="/platform/overview" className="negentro-guide negentro-agent">
+    Give your agents persistent context across conversations, sessions, and workflows.
+  </Card>
 
-```javascript
-piyapi.memory.add({
-  fact: "User prefers Dark Mode",
-  valid_at: "2026-10-04",
-  user_id: "u_1029"
-})
-```
+  <Card title="Build your first context workflow" icon="diagram-project" href="/platform/overview#store-and-retrieve-context" className="negentro-guide negentro-workflow">
+    Connect memory and context into a workflow your application can use immediately.
+  </Card>
 
-## Agents
+  <Card title="Use Negentro with your framework" icon="puzzle-piece" href="/integrations/overview" className="negentro-guide negentro-framework">
+    Connect Negentro to the tools and frameworks you already use.
+  </Card>
 
-Add state to your AI agent. Give your agents persistent context across sessions with Deterministic Conflict Resolution to prevent hallucinations.
+  <Card title="Copy a working example" icon="code" href="/cookbooks/overview" className="negentro-guide negentro-example">
+    Start from practical examples and adapt them to your own application.
+  </Card>
 
-AI Agent → PiyGraph Memory → UnifiedScorer → Conflict-Free Payload
-
-## Workflows
-
-Retrieve context with UnifiedScorer. Build workflows that fuse dense vector HNSW and BM25 trigrams to retrieve exactly what the model needs.
-
-```javascript
-1. const payload = await retrieve(UnifiedScorer);
-2. resolveConflicts(payload);
-3. generateResponse();
-```
-
-## Integrations
-
-Use PiyAPI with your framework. Connect PiyAPI to your existing stack using our native SDKs and agentic framework plugins.
-
-_Tags: Next.js | Python | LangChain | Node.js | LlamaIndex | Vercel AI_
-
-## Examples
-
-Deploy a working Copilot. Start from production-ready examples of stateful coding agents, customer triage bots, and EdTech tutors.
-
-```javascript
-const client = new PiyApi(API_KEY);
-client.agent.deploy(edTechTutor_Config);
-```
-
-## Infrastructure
-
-Host on your own infrastructure. Understand VPC peering, data tokenization, and strict per-tenant isolation for enterprise compliance.
-
-Application → VPC Peering → PiyAPI Core → Your Secure DB
+  <Card title="Run Negentro on your own infrastructure" icon="server" href="/open-source/overview" className="negentro-guide negentro-infrastructure">
+    Understand deployment options and build Negentro into your infrastructure.
+  </Card>
+</CardGroup>
