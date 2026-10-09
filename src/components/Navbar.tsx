@@ -134,7 +134,6 @@ function InitiativesMenu({ current, setActiveTab }: any) {
                 </li>
               ))}
             </ul>
-            <a href={INDUSTRIES.all.href} onClick={(e) => nav(e, INDUSTRIES.all.tab)} className="nb-all" tabIndex={tab}>{INDUSTRIES.all.label}<Arrow /></a>
           </div>
         </div>
       </div>
@@ -157,7 +156,6 @@ function MobileInitiatives({ setActiveTab }: any) {
           <a href={USE_CASES.href} onClick={(e) => nav(e, USE_CASES.tab)} className="nb-m-item nb-m-item--page">{USE_CASES.title}<Arrow /></a>
           <p className="nb-m-head">{INDUSTRIES.title}</p>
           {INDUSTRIES.items.map((it) => <a key={it.label} href={it.href} onClick={(e) => nav(e, it.tab)} className="nb-m-item">{it.label}</a>)}
-          <a href={INDUSTRIES.all.href} onClick={(e) => nav(e, INDUSTRIES.all.tab)} className="nb-m-item nb-m-item--all">{INDUSTRIES.all.label}<Arrow /></a>
         </div>
       </div>
     </>
@@ -185,7 +183,7 @@ export function Navbar({ activeTab, setActiveTab, onTryPiyApi }: NavbarProps) {
   };
 
   return (
-    <header className="nb">
+    <header className={`nb ${activeTab === 'overview' ? 'nb--transparent' : ''}`}>
       <div className="nb-wrap">
         <a href="/" onClick={(e) => onNav(e, 'overview')} className="nb-logo" aria-label="Home">
           <Mark />
@@ -205,11 +203,7 @@ export function Navbar({ activeTab, setActiveTab, onTryPiyApi }: NavbarProps) {
         </nav>
 
         <div className="nb-end">
-          <a className="nb-gh" href="https://github.com/negentro">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" /></svg>
-            Star <span>66,594</span>
-          </a>
-          <button className="nb-btn" onClick={onTryPiyApi}>Get started <Arrow /></button>
+          <button className="nb-try-btn" onClick={onTryPiyApi}>Try Piyapi</button>
           <button className="nb-burger" aria-label="Menu" aria-expanded={mobile} aria-controls="nb-mobile" onClick={() => setMobile(!mobile)}>
             <i /><i /><i />
           </button>
