@@ -74,5 +74,11 @@
 			"href": "https://piyapi.cloud/",
 			"label": "Dashboard"
 		}
-	}
+  },
+  "logo": {
+    "light": "/images/light.png",
+    "dark": "/images/white.png",
+    "href": "https://docs.negentro.tech"
+  },
+  "favicon": "/images/negentroailogo.png"
 }
