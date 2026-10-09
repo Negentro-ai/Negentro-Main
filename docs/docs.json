@@ -9,17 +9,91 @@
 	"navigation": {
 		"tabs": [
 			{
-				"tab": "Docs",
+				"tab": "Get Started",
 				"groups": [
 					{
-						"group": "Getting Started",
+						"group": "Get Started",
 						"pages": ["index", "quickstart"]
 					}
 				]
 			},
 			{
-				"tab": "Platform"
-			}
+        "tab": "Platform",
+        "groups": [
+          {
+            "group": "Platform",
+            "pages": [
+              "platform/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Open Source",
+        "groups": [
+          {
+            "group": "Open Source",
+            "pages": [
+              "open-source/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Integrations",
+        "groups": [
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Agent Plugins",
+        "groups": [
+          {
+            "group": "Coding Agents",
+            "pages": [
+              "agent-plugins/claude-code"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Cookbooks",
+        "groups": [
+          {
+            "group": "Cookbooks",
+            "pages": [
+              "cookbooks/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "API Reference",
+            "pages": [
+              "api-reference/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Release Notes",
+        "groups": [
+          {
+            "group": "Release Notes",
+            "pages": [
+              "release-notes"
+            ]
+          }
+        ]
+      }
 		]
 	},
 	"icons": {

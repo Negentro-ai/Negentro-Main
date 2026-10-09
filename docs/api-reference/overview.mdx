@@ -1,0 +1,115 @@
+---
+title: "API Reference Overview"
+sidebarTitle: "Overview"
+description: "Explore the PiyAPI REST API for memory management, search, entity operations, and persistent context with endpoints, auth, and quick start steps."
+---
+
+The PiyAPI REST API provides programmatic access to persistent memory and context operations, allowing applications and agents to create, retrieve, search, update, and manage memory through standard HTTP requests.
+
+**API VERSION**: `v1` **BASE URL**: `Configure in your deployment`
+
+<Note>
+  **Quick start** Get your API key and make your first memory request in a few minutes.
+</Note>
+
+## Quick Start Guide
+
+<Steps>
+  <Step title="Add Memories">
+    Store information and context from your application's conversations or events.
+  </Step>
+  <Step title="Search Memories">
+    Retrieve relevant memories using semantic or contextual search.
+  </Step>
+  <Step title="Get Memories">
+    Retrieve a specific stored memory when you already know its identifier.
+  </Step>
+</Steps>
+
+```bash
+curl -X POST "https://<your-piyapi-endpoint>/v1/memories" \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id": "user_123", "content": "User prefers concise explanations"}'
+```
+
+## Core Operations
+
+| METHOD | ENDPOINT | DESCRIPTION |
+| :-- | :-- | :-- |
+| **POST** | `/v1/memories` | **Add Memories** - Store new memories from conversations and interactions. |
+| **POST** | `/v1/memories/search` | **Search Memories** - Find relevant memories using semantic search and filters. |
+| **PATCH** | `/v1/memories/:id` | **Update Memory** - Modify existing memory content or metadata. |
+| **DELETE** | `/v1/memories/:id` | **Delete Memory** - Remove a specific memory or perform supported deletion operations. |
+
+## API Categories
+
+Explore the API by functionality.
+
+<CardGroup cols={2}>
+  <Card title="Memory APIs" icon="hard-drive">
+    Core memory operations including create, search, update, delete, history, and export workflows.
+  </Card>
+
+  <Card title="Events APIs" icon="bolt">
+    Track and inspect asynchronous memory-related events.
+  </Card>
+
+  <Card title="Entities APIs" icon="users">
+    Manage users, agents, applications, and associated memory data.
+  </Card>
+
+  <Card title="Organizations & Projects" icon="building">
+    Manage organization-level access, projects, and collaboration boundaries.
+  </Card>
+
+  <Card title="Webhooks" icon="webhook">
+    Receive real-time notifications for supported memory and system events.
+  </Card>
+</CardGroup>
+
+<Tip>
+  **Building a multi-tenant application?** Learn how Organizations & Projects can be used to separate access, resources, and collaboration boundaries.
+</Tip>
+
+## Authentication
+
+All requests to the PiyAPI API must include a valid API key passed via the `Authorization` header using the Bearer scheme. Requests without a valid key will be rejected.
+
+```text
+Header
+Authorization: Bearer <PIYAPI_API_KEY>
+```
+
+- API keys should be stored server-side.
+- Requests should be made through secure server-side environments.
+- Do not expose secrets in client-side code.
+
+```javascript
+const response = await fetch(
+  "https://<your-piyapi-endpoint>/v1/memories",
+  { headers: { Authorization: `Bearer ${process.env.PIYAPI_API_KEY}` } }
+)
+```
+
+Your application sends an HTTP request to the PiyAPI API (Memory / Context Layer), which returns a JSON response.
+
+<Warning>
+  Keep your API key secure. Never expose API credentials in client-side code or public repositories. Use environment variables and server-side requests.
+</Warning>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Add your first memory" icon="plus">
+    Start storing persistent context through the API.
+  </Card>
+
+  <Card title="Search with filters" icon="magnifying-glass">
+    Learn advanced search and filtering techniques.
+  </Card>
+
+  <Card title="Build with cookbooks" icon="book-open" href="/cookbooks/overview">
+    See complete API workflows inside practical projects.
+  </Card>
+</CardGroup>

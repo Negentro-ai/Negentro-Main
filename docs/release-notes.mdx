@@ -1,0 +1,147 @@
+---
+title: "Release Notes"
+sidebarTitle: "Release Notes"
+description: "Track PiyAPI platform updates, SDK releases, and infrastructure improvements across highlights, SDKs, tools, and platform changes."
+---
+
+Platform updates, infrastructure improvements, and SDK releases.
+
+<Note>
+  Sample content - illustrative release notes for demonstration purposes.
+</Note>
+
+<Update label="2026-08-24" tags={["Highlight"]} description="August 2026 · Agent Plugin">
+  ## PiyAPI Coding Agent Plugin launches for VS Code
+
+  The VS Code plugin provides persistent project memory directly within the editor. The extension surfaces prior decisions, architectural conventions, and working context across isolated coding sessions.
+
+  - **Automatic memory**: Captures working context in the background without manual tagging.
+  - **Scoped recall**: Restricts `memory.search` to the current `project_id` to prevent cross-repo leakage.
+  - **Inline suggestions**: Injects relevant past fixes directly into the diff view.
+
+  <Tip>
+    Developer preview. Available to design partners; general availability targeted for Q4.
+  </Tip>
+</Update>
+
+<Update label="2026-08-19" description="August 2026 · SDK">
+  ## Python SDK v4.2 - batched writes and async memory client
+
+  A new `AsyncMemoryClient` and batched write support designed for high-throughput Python applications.
+
+  - **Batch API**: Write up to 500 memories per request, reducing round trips by 90%.
+  - **AsyncClient**: Mirrors the synchronous client API for `asyncio` compatibility.
+</Update>
+
+<Update label="2026-08-14" description="August 2026 · Memory">
+  ## Project vs. personal memory scoping
+
+  Memory queries and writes can now be strictly scoped to prevent crossover between shared project data and private user context.
+
+  - **Scope param**: Pass `scope=project` or `scope=user` on every write and query operation.
+  - **Isolation guarantee**: Hard boundary enforced at the storage layer, keyed by `user_id` and `project_id`.
+
+  <Warning>
+    **Migration note.** Existing memories default to `scope=user`. Update your endpoints if your application expects shared project context.
+  </Warning>
+</Update>
+
+<Update label="2026-08-07" description="August 2026 · API">
+  ## REST API v1.3 - richer filtering on /v1/memories
+
+  The `/v1/memories` endpoint now supports compound filtering and date constraints.
+
+  - **Filter operators**: Native support for `AND`/`OR` grouping structures.
+  - **Session filter**: Restrict retrieval results to a specific `session_id` for conversation-level boundaries.
+</Update>
+
+<Update label="2026-07-29" tags={["Highlight"]} description="July 2026 · Platform">
+  ## Native MCP support across the platform
+
+  Native Model Context Protocol (MCP) support allows compatible clients to read and write memory directly to the PiyAPI engine.
+
+  - **MCP server**: A single-line installation exposes native memory tools to the host environment.
+  - **Tool discovery**: Hosts automatically detect `search`, `add`, and `update` tools.
+</Update>
+
+<Update label="2026-07-22" description="July 2026 · SDK">
+  ## TypeScript SDK v3.0 - full type-safe memory client
+
+  The SDK has been entirely rewritten with strict TypeScript definitions, tree-shakeable exports, and Edge runtime support.
+
+  - **Edge-ready**: Executes in Vercel Edge and Cloudflare Workers environments with zero polyfills.
+  - **Breaking change**: `client.memories.add()` now returns a strictly typed `Memory` object instead of raw JSON.
+</Update>
+
+<Update label="2026-07-16" description="July 2026 · Open Source">
+  ## LangChain and LlamaIndex memory adapters
+
+  Native memory backends are now available as drop-in replacements for the primary open-source agent frameworks.
+
+  - **LangChain**: Implements `BaseMemory` with persistent cross-session state retention.
+  - **LlamaIndex**: Distributed as a zero-config `ChatMemoryBuffer` replacement.
+</Update>
+
+<Update label="2026-07-09" description="July 2026 · Provider">
+  ## UX Pilot AI and Google Gemini embedding support
+
+  PiyAPI now supports UX Pilot AI and Google Gemini as dense vector embedding providers, alongside OpenAI.
+
+  - **Provider config**: Configure via the `embedding_provider` project setting or explicitly per API call.
+</Update>
+
+<Update label="2026-07-02" description="July 2026 · Infrastructure">
+  ## Vector retrieval latency reduced by 40%
+
+  The core retrieval index was re-architected to reduce p95 query latency globally.
+
+  - **HNSW tuning**: Dynamic index parameters based on real-time collection size.
+  - **Result caching**: Repeated `memory.search` requests utilizing identical filters are now served directly from cache.
+</Update>
+
+<Update label="2026-06-26" tags={["Highlight"]} description="June 2026 · Product">
+  ## PiyAPI Memory Platform - general availability
+
+  The core persistent memory infrastructure is now generally available with SLA-backed uptime and strict tenant isolation.
+
+  - **GA SLA**: 99.9% uptime commitment across all production tiers.
+  - **Isolation model**: All memory records are strictly namespaced by `project_id` and `user_id`.
+</Update>
+
+<Update label="2026-06-19" description="June 2026 · Developer Tools">
+  ## PiyAPI CLI 1.0
+
+  Inspect, seed, and debug memory indices directly from the terminal.
+
+  - **piyapi tail**: Streams live memory writes matching a specific `project_id`.
+  - **piyapi seed**: Executes bulk imports from JSONL files for localized testing workflows.
+</Update>
+
+<Update label="2026-06-12" description="June 2026 · Platform">
+  ## Dashboard: memory graph visualizer
+
+  A visual interface for exploring relationships between memories, filterable by recency, category, and user entity.
+
+  - **Graph view**: Renders topological semantic clusters directly from the production dataset.
+
+  <Tip>
+    Developer preview. Enable via the feature flags section in project settings.
+  </Tip>
+</Update>
+
+<Update label="2026-06-05" description="June 2026 · Integration">
+  ## Slack and Zendesk connectors
+
+  Automatically index support conversations and team messages into scoped customer memory.
+
+  - **Zendesk sync**: Resolved tickets are parsed and converted to memories keyed by `user_id`.
+  - **Slack app**: Available via the Slack App Directory; requires channel authorization to begin indexing.
+</Update>
+
+<Update label="2026-06-01" description="June 2026 · API">
+  ## REST API rate limits raised for Pro tier
+
+  Pro workspaces receive a 5x increase to the global request ceiling across all memory endpoints.
+
+  - **New limit**: 5,000 requests per minute per project on the REST API.
+</Update>

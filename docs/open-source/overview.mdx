@@ -1,0 +1,144 @@
+---
+title: "Open Source Overview"
+sidebarTitle: "Overview"
+description: "Run PiyAPI on your own infrastructure with full control over data, configuration, and deployment. Deploy as a library or self-hosted microservice."
+---
+
+Run PiyAPI on your own infrastructure with full control over your data, configuration, and deployment environment.
+
+PiyAPI Open Source provides the flexibility to deploy our cognitive memory engine entirely within your VPC. Maintain strict data privacy, enterprise compliance, and total configuration control without sacrificing the power of bitemporal reasoning.
+
+Developers can install the SDK directly into an application as a lightweight library, or run the full PiyAPI server as an independent, scalable microservice. Both approaches allow you to configure storage, embeddings, and BYOK (Bring Your Own Key) model routing to match your existing infrastructure.
+
+The stack is designed to be fully extensible: connect your existing PostgreSQL databases, plug in custom LLMs, and build active inference workflows tailored to your exact deployment constraints.
+
+## Run PiyAPI your way
+
+<CardGroup cols={2}>
+  <Card title="As a library" icon="book">
+    Install the lightweight SDK directly into your TypeScript or Python application for immediate, embedded bitemporal memory.
+  </Card>
+
+  <Card title="As a self-hosted server" icon="server">
+    Run the full PiyAPI Gateway and Memory Engine as an independent Docker service with complete control over Redis caching, `pgvector` indexing, and LLM routing.
+  </Card>
+</CardGroup>
+
+## Get started
+
+<CardGroup cols={3}>
+  <Card title="Python Quickstart" icon="python" href="/quickstart">
+    Install the `piyapi-memory` package and verify that hybrid memory storage and retrieval work in a few lines of code.
+  </Card>
+
+  <Card title="Node.js Quickstart" icon="node" href="/quickstart">
+    Install the `@piyapi/sdk` package and connect your first stateful agent workflow.
+  </Card>
+
+  <Card title="Self-hosted server" icon="docker" href="/open-source/overview">
+    Deploy the PiyAPI Docker container locally or on your Kubernetes cluster and configure your bitemporal infrastructure.
+  </Card>
+</CardGroup>
+
+## Go further
+
+<CardGroup cols={3}>
+  <Card title="Configure components" icon="sliders">
+    Configure BYOK routing, embedding providers, `pgvector` storage, and tune the UnifiedScorer for your specific deployment.
+  </Card>
+
+  <Card title="Self-hosting features" icon="shield">
+    Explore enterprise namespace isolation, semantic cache purging, multimodal CDC connectors, and compliance-grade redaction tools.
+  </Card>
+
+  <Card title="Build with cookbooks" icon="utensils" href="/cookbooks/overview">
+    Use practical examples for LangChain agents, CrewAI, MCP server integrations, and real-world compliance workflows.
+  </Card>
+</CardGroup>
+
+<Note>
+  **Need a managed alternative?** Compare the self-hosted open-source deployment with the fully managed PiyAPI Cloud Platform, or switch to the **Platform** documentation.
+</Note>
+
+## Default components
+
+PiyAPI ships with sane, production-ready defaults for each part of the pipeline. Every component can be replaced or explicitly configured to match your existing VPC infrastructure and provider preferences.
+
+### Library defaults
+
+| Component | Default |
+| :-- | :-- |
+| **LLM** | OpenAI (via BYOK) |
+| **Embeddings** | OpenAI `text-embedding-3-small` |
+| **Vector store** | `pgvector` |
+| **History store** | PostgreSQL |
+
+### Self-hosted defaults
+
+| Component | Default |
+| :-- | :-- |
+| **Reranker** | UnifiedScorer (BM25 + RRF) |
+| **Storage** | PostgreSQL (Bitemporal KG) |
+| **Metadata cache** | Redis |
+| **Providers** | Multi-Provider BYOK Routing |
+
+## Configure your stack
+
+```typescript
+// piyapi.config.ts
+import { createPiyAPI } from '@piyapi/sdk';
+
+const piyapi = createPiyAPI({
+  llm: "openai:gpt-4o",
+  embeddings: "openai:text-embedding-3-small",
+  // Connect directly to your existing infrastructure
+  vectorStore: "pgvector://localhost:5432/piyapi",
+  storage: "postgres://localhost:5432/piyapi_graph",
+  cache: "redis://localhost:6379"
+});
+```
+
+## Self-hosted architecture
+
+```text
+[1] Your Application -> [2] PiyAPI Server -> (Memory, Retrieval, Embeddings, LLM, Storage) -> [3] Your Infrastructure
+```
+
+## Configuration
+
+<AccordionGroup>
+  <Accordion title="LLMs">
+    Route generation through any provider using our unified BYOK manager. Support for OpenAI, Anthropic, Gemini, DeepSeek, Mistral, Groq, Cohere, and Perplexity is handled natively.
+  </Accordion>
+
+  <Accordion title="Embeddings">
+    Choose the embedding provider and model used for vector generation. Easily swap out defaults for specialized models depending on your latency and accuracy requirements.
+  </Accordion>
+
+  <Accordion title="Vector databases">
+    Connect the storage backend used for dense HNSW retrieval. Defaults to PostgreSQL with `pgvector` for robust, transaction-safe vector operations.
+  </Accordion>
+
+  <Accordion title="Storage">
+    Configure where persistent bitemporal graph data (PiyGraph) and conversational history are stored.
+  </Accordion>
+
+  <Accordion title="Metadata filtering">
+    Control how stored context is filtered and retrieved using strict namespace scoping (`X-Namespace-Prefix`) and arbitrary tagging rules.
+  </Accordion>
+
+  <Accordion title="Reranking">
+    Fine-tune the UnifiedScorer reranking layer (combining BM25 trigram search and 11 distinct retrieval signals) when hyper-precise retrieval is required for your agents.
+  </Accordion>
+</AccordionGroup>
+
+## Build on the open-source stack
+
+- Replace infrastructure components (for example, swap Redis for an alternative caching layer)
+- Configure multi-provider routing and failover logic to prevent LLM downtime
+- Integrate directly with your existing enterprise PostgreSQL databases
+- Build custom Active Inference workflows and agent MCP tools
+
+<Tip>
+  **Open-source note** Keep your deployment configuration explicit so model, storage, and retrieval dependencies remain easy to understand, version control, and operate across your team.
+</Tip>
