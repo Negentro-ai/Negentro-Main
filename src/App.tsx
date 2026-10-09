@@ -82,7 +82,7 @@ const BlogArticlePage = lazy(() =>
 )
 const ResearchArticlePage = lazy(() =>
 	import("./components/ResearchArticlePage").then((m) => ({
-		default: m.ResearchArticlePage,
+		default: m.default,
 	})),
 )
 const IndustryPage = lazy(() =>
@@ -90,6 +90,8 @@ const IndustryPage = lazy(() =>
 		default: m.IndustryPage,
 	})),
 )
+const EducationPage = lazy(() => import("./components/EducationPage"))
+const CompanyPage = lazy(() => import("./components/CompanyPage").then((m) => ({ default: m.default })));
 
 export function App() {
 	const [activeTab, setActiveTab] = useState<string>(() => {
@@ -100,6 +102,7 @@ export function App() {
 		if (path === "/research") return "research"
 		if (path === "/use-cases") return "use-cases"
 		if (path === "/blog") return "blog"
+		if (path === "/company") return "company"
 		if (path.startsWith("/blog/"))
 			return `blog-article:${path.replace("/blog/", "")}`
 		return "overview"
@@ -128,6 +131,7 @@ export function App() {
 			else if (activeTab === "research") path = "/research"
 			else if (activeTab === "use-cases") path = "/use-cases"
 			else if (activeTab === "blog") path = "/blog"
+			else if (activeTab === "company") path = "/company"
 			else if (activeTab.startsWith("industry:"))
 				path = `/industries/${activeTab.split(":")[1]}`
 			else if (activeTab.startsWith("blog-article:"))
@@ -143,6 +147,7 @@ export function App() {
 	const isResearch = activeTab === "research"
 	const isUseCases = activeTab === "use-cases"
 	const isBlog = activeTab === "blog"
+	const isCompany = activeTab === "company"
 	const blogArticleId = activeTab.startsWith("blog-article:")
 		? activeTab.slice("blog-article:".length)
 		: ""
@@ -333,6 +338,52 @@ export function App() {
 							/>
 						</Suspense>
 					</main>
+					<Suspense fallback={null}>
+						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
+					</Suspense>
+				</div>
+			) : isCompany ? (
+				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
+					<Navbar
+						activeTab={activeTab}
+						setActiveTab={setActiveTab}
+						onTryPiyApi={() => setIsConsoleOpen(true)}
+					/>
+
+					<div className="flex-1">
+						<Suspense
+							fallback={
+								<div className="flex items-center justify-center min-h-[50vh]">
+									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
+								</div>
+							}
+						>
+							<CompanyPage />
+						</Suspense>
+					</div>
+					<Suspense fallback={null}>
+						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
+					</Suspense>
+				</div>
+			) : industrySlug === "education" ? (
+				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
+					<Navbar
+						activeTab={activeTab}
+						setActiveTab={setActiveTab}
+						onTryPiyApi={() => setIsConsoleOpen(true)}
+					/>
+
+					<div className="flex-1">
+						<Suspense
+							fallback={
+								<div className="flex items-center justify-center min-h-[50vh]">
+									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
+								</div>
+							}
+						>
+							<EducationPage />
+						</Suspense>
+					</div>
 					<Suspense fallback={null}>
 						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
 					</Suspense>
