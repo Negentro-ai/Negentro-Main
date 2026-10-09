@@ -1,5 +1,5 @@
 import type React from "react"
-import { useState } from "react"
+
 import { ArrowUpRight, ArrowRight } from "lucide-react"
 import { Footer } from "./Footer"
 

@@ -80,11 +80,7 @@ const BlogArticlePage = lazy(() =>
 		default: m.BlogArticlePage,
 	})),
 )
-const ResearchArticlePage = lazy(() =>
-	import("./components/ResearchArticlePage").then((m) => ({
-		default: m.ResearchArticlePage,
-	})),
-)
+
 const ResearchPage = lazy(() =>
 	import("./components/ResearchPage").then((m) => ({
 		default: m.ResearchPage,
