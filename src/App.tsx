@@ -6,6 +6,7 @@ import { Navbar } from "./components/Navbar"
 import { Hero } from "./components/Hero"
 import { FluidBackground } from "./components/FluidBackground"
 import { PartnerLogos } from "./components/PartnerLogos"
+
 // Lazy loaded non-initial routes, below-the-fold sections and interactive modals
 const WaitPage = lazy(() =>
 	import("./components/WaitPage").then((m) => ({ default: m.WaitPage })),
@@ -80,38 +81,76 @@ const BlogArticlePage = lazy(() =>
 		default: m.BlogArticlePage,
 	})),
 )
-const ResearchArticlePage = lazy(() =>
-	import("./components/ResearchArticlePage").then((m) => ({
-		default: m.ResearchArticlePage,
-	})),
+const ResearchPage = lazy(() =>
+	import("./components/ResearchPage")
 )
 const IndustryPage = lazy(() =>
 	import("./components/IndustryPage").then((m) => ({
 		default: m.IndustryPage,
 	})),
 )
+const CompanyPage = lazy(() =>
+	import("./components/CompanyPage").then((m) => ({
+		default: m.CompanyPage,
+	})),
+)
+
+const getTabFromUrl = () => {
+	const path = window.location.pathname.replace(/^\//, '');
+	if (!path) return 'overview';
+	if (path.startsWith('industry/')) return `industry:${path.replace('industry/', '')}`;
+	if (path.startsWith('blog/')) return `blog-article:${path.replace('blog/', '')}`;
+	return path;
+};
+
+const getUrlFromTab = (tab: string) => {
+	if (tab === 'overview') return '/';
+	if (tab.startsWith('industry:')) return `/industry/${tab.replace('industry:', '')}`;
+	if (tab.startsWith('blog-article:')) return `/blog/${tab.replace('blog-article:', '')}`;
+	return `/${tab}`;
+};
+
+const Loader = () => (
+	<div className="flex min-h-[50vh] flex-1 items-center justify-center">
+		<div className="h-8 w-8 animate-spin rounded-full border-2 border-[#765dfb] border-t-transparent" />
+	</div>
+);
 
 export function App() {
-	const [activeTab, setActiveTab] = useState<string>("overview")
+	const [activeTab, setActiveTabState] = useState<string>(getTabFromUrl)
 	const [isConsoleOpen, setIsConsoleOpen] = useState<boolean>(false)
+	
+	const lenisRef = useRef<Lenis | null>(null)
+
+	useEffect(() => {
+		const handlePopState = () => {
+			setActiveTabState(getTabFromUrl());
+		};
+		window.addEventListener('popstate', handlePopState);
+		return () => window.removeEventListener('popstate', handlePopState);
+	}, []);
+
+	const setActiveTab = (tab: string) => {
+		if (tab !== activeTab) {
+			window.history.pushState({}, "", getUrlFromTab(tab));
+			setActiveTabState(tab);
+		}
+	};
+
 	const isAdminRoute = window.location.pathname.replace(/\/+$/, "") === "/admin"
 	const isOverview = activeTab === "overview"
 	const isPricing = activeTab === "pricing"
 	const isResearch = activeTab === "research"
 	const isUseCases = activeTab === "use-cases"
 	const isBlog = activeTab === "blog"
-	const blogArticleId = activeTab.startsWith("blog-article:")
-		? activeTab.slice("blog-article:".length)
-		: ""
-	const industrySlug = activeTab.startsWith("industry:")
-		? activeTab.slice("industry:".length)
-		: ""
-
-	const lenisRef = useRef<Lenis | null>(null)
+	const isCompany = activeTab === "company"
+	const blogArticleId = activeTab.startsWith("blog-article:") ? activeTab.slice("blog-article:".length) : ""
+	const industrySlug = activeTab.startsWith("industry:") ? activeTab.slice("industry:".length) : ""
 
 	useEffect(() => {
 		const lenis = new Lenis({
 			autoRaf: true,
+			anchors: true,
 		})
 		lenisRef.current = lenis
 
@@ -122,7 +161,6 @@ export function App() {
 	}, [])
 
 	useEffect(() => {
-		// On tab/route change, instantly scroll to top without animation
 		if (lenisRef.current) {
 			lenisRef.current.scrollTo(0, { immediate: true })
 		} else {
@@ -133,215 +171,68 @@ export function App() {
 	return (
 		<LanguageProvider>
 			{isAdminRoute ? (
-				<Suspense
-					fallback={
-						<div className="flex min-h-screen items-center justify-center bg-[#f6f6f8]">
-							<div className="h-8 w-8 animate-spin rounded-full border-2 border-[#765dfb] border-t-transparent" />
-						</div>
-					}
-				>
+				<Suspense fallback={<Loader />}>
 					<AdminCMSPage />
 				</Suspense>
-			) : isOverview ? (
-				<div className="w-full bg-[#04050c] font-sans antialiased selection:bg-[#6320EE] selection:text-white">
-					{/* Hero Section with Interactive Fluid Simulation */}
-					<section className="relative w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden">
-						<FluidBackground />
-
-						<div className="relative z-20 w-full">
-							<Navbar
-								activeTab={activeTab}
-								setActiveTab={setActiveTab}
-								onTryPiyApi={() => setIsConsoleOpen(true)}
-							/>
-						</div>
-
-						<main className="flex-1 w-full flex flex-col items-center justify-center relative z-10 my-auto">
-							<Hero onOpenConsole={() => setIsConsoleOpen(true)} />
-						</main>
-					</section>
-
-					{/* Partner Logos */}
-					<section className="w-full bg-white pt-6 pb-12 sm:pb-16 lg:pb-20 relative z-20 border-t border-neutral-100/80">
-						<PartnerLogos />
-					</section>
-
-					{/* Landing Page Content Sections */}
-					<Suspense fallback={null}>
-						<MemoryParadigmSection
-							onOpenConsole={() => setIsConsoleOpen(true)}
-						/>
-						<DifferentApproachSection />
-						<WorkflowsSection />
-						<CodeIntegrationSection />
-						<SecurityComplianceSection />
-						<ResearchPapersSection />
-						<CtaSection onOpenConsole={() => setIsConsoleOpen(true)} />
-						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
-					</Suspense>
-				</div>
-			) : isPricing ? (
-				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
-					<Navbar
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						onTryPiyApi={() => setIsConsoleOpen(true)}
-					/>
-
-					<main className="flex-1">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<PricingPage onOpenConsole={() => setIsConsoleOpen(true)} />
-						</Suspense>
-					</main>
-				</div>
-			) : isResearch ? (
-				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
-					<Navbar
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						onTryPiyApi={() => setIsConsoleOpen(true)}
-					/>
-
-					<main className="flex-1">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<ResearchArticlePage
-								onNavigateBlog={() => setActiveTab("blog")}
-							/>
-						</Suspense>
-					</main>
-					<Suspense fallback={null}>
-						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
-					</Suspense>
-				</div>
-			) : isUseCases ? (
-				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
-					<Navbar
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						onTryPiyApi={() => setIsConsoleOpen(true)}
-					/>
-
-					<main className="flex-1">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<UseCasesPage />
-						</Suspense>
-					</main>
-				</div>
-			) : isBlog ? (
-				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
-					<Navbar
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						onTryPiyApi={() => setIsConsoleOpen(true)}
-					/>
-
-					<main className="flex-1">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<BlogPage onNavigate={(route) => setActiveTab(route)} />
-						</Suspense>
-					</main>
-					<Suspense fallback={null}>
-						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
-					</Suspense>
-				</div>
-			) : blogArticleId ? (
-				<div className="min-h-screen bg-[#f8fafc] text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
-					<Navbar
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						onTryPiyApi={() => setIsConsoleOpen(true)}
-					/>
-
-					<main className="flex-1">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<BlogArticlePage
-								articleId={blogArticleId}
-								onNavigate={(route) => setActiveTab(route)}
-							/>
-						</Suspense>
-					</main>
-					<Suspense fallback={null}>
-						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
-					</Suspense>
-				</div>
-			) : industrySlug ? (
-				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
-					<Navbar
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						onTryPiyApi={() => setIsConsoleOpen(true)}
-					/>
-
-					<main className="flex-1">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<IndustryPage
-								industrySlug={industrySlug}
-								onNavigate={(slug) => setActiveTab(`industry:${slug}`)}
-							/>
-						</Suspense>
-					</main>
-					<Suspense fallback={null}>
-						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
-					</Suspense>
-				</div>
 			) : (
-				<div className="min-h-screen bg-white text-neutral-900 flex flex-col justify-between selection:bg-neutral-900 selection:text-white font-sans antialiased">
+				<div className={`relative min-h-screen flex flex-col font-sans antialiased ${
+					isOverview ? "bg-[#04050c] selection:bg-[#6320EE] selection:text-white" : 
+					blogArticleId ? "bg-[#f8fafc] text-neutral-900 selection:bg-neutral-900 selection:text-white" : 
+					"bg-white text-neutral-900 selection:bg-neutral-900 selection:text-white"
+				}`}>
+					
+					{/* Persistent Navbar */}
 					<Navbar
 						activeTab={activeTab}
 						setActiveTab={setActiveTab}
 						onTryPiyApi={() => setIsConsoleOpen(true)}
 					/>
 
-					<main className="flex-1 flex flex-col items-center justify-center">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<WaitPage pageName={activeTab} />
-						</Suspense>
-					</main>
-					<Suspense fallback={null}>
-						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
-					</Suspense>
+					{isOverview ? (
+						<>
+							<section className="relative w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden">
+								<FluidBackground />
+								<main className="flex-1 w-full flex flex-col items-center justify-center relative z-10 my-auto">
+									<Hero onOpenConsole={() => setIsConsoleOpen(true)} />
+								</main>
+							</section>
+
+							<section className="w-full bg-white pt-6 pb-12 sm:pb-16 lg:pb-20 relative z-20 border-t border-neutral-100/80">
+								<PartnerLogos />
+							</section>
+
+							<Suspense fallback={null}>
+								<MemoryParadigmSection onOpenConsole={() => setIsConsoleOpen(true)} />
+								<DifferentApproachSection />
+								<WorkflowsSection />
+								<CodeIntegrationSection />
+								<SecurityComplianceSection />
+								<ResearchPapersSection />
+								<CtaSection onOpenConsole={() => setIsConsoleOpen(true)} />
+								<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
+							</Suspense>
+						</>
+					) : (
+						<>
+							<main className="flex-1 flex flex-col">
+								<Suspense fallback={<Loader />}>
+									{isPricing ? <PricingPage onOpenConsole={() => setIsConsoleOpen(true)} /> :
+									isResearch ? <ResearchPage /> :
+									isUseCases ? <UseCasesPage /> :
+									isBlog ? <BlogPage onNavigate={setActiveTab} /> :
+									blogArticleId ? <BlogArticlePage articleId={blogArticleId} onNavigate={setActiveTab} /> :
+									industrySlug ? <IndustryPage industrySlug={industrySlug} onNavigate={(slug) => setActiveTab(`industry:${slug}`)} /> :
+									isCompany ? <CompanyPage /> :
+									<div className="flex-1 flex flex-col items-center justify-center">
+										<WaitPage pageName={activeTab} />
+									</div>}
+								</Suspense>
+							</main>
+							<Suspense fallback={null}>
+								<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
+							</Suspense>
+						</>
+					)}
 				</div>
 			)}
 

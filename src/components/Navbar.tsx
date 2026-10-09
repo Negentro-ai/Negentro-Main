@@ -1,515 +1,234 @@
-import { useState } from "react"
-import type React from "react"
-import { NegentroLogo } from "./Logos"
-import { Menu, X, ArrowUpRight, ArrowRight } from "lucide-react"
-import { useLanguage } from "@/lib/i18n"
-import { industryPages as staticIndustryPages } from "@/data/industryPages"
-import { useEffect } from "react"
-import { getSupabase } from "@/lib/supabase"
+import { useEffect, useRef, useState } from "react";
+import "./css/Navbar.css";
 
 export interface NavbarProps {
-	activeTab: string
-	setActiveTab: (tab: string) => void
-	onTryPiyApi?: () => void
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  onTryPiyApi?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
-	const { t } = useLanguage()
-	const [mobileOpen, setMobileOpen] = useState(false)
-	const [industriesExpanded, setIndustriesExpanded] = useState(false)
-	const [hoveredIndustrySlug, setHoveredIndustrySlug] = useState<string | null>(
-		null,
-	)
-	const [industryPages, setIndustryPages] = useState<any[]>(staticIndustryPages)
+/* ------------------------------------------------------------------ */
+/*  Content                                                            */
+/* ------------------------------------------------------------------ */
+const NAV = [
+  { label: "Research", href: "/research", tab: "research" },
+  { label: "Pricing", href: "/pricing", tab: "pricing" },
+  { label: "Initiatives", menu: true, tab: "initiatives" },
+  { label: "Resources", href: "/resources", tab: "resources" },
+  { label: "Company", href: "/company", tab: "company" },
+];
 
-	useEffect(() => {
-		const fetchIndustries = async () => {
-			const client = await getSupabase()
-			if (client) {
-				const { data } = await client
-					.from("cms_records")
-					.select("title, slug, status")
-					.eq("kind", "industries")
-					.eq("status", "Published")
-					.order("created_at", { ascending: true })
-				if (data && data.length > 0) {
-					const mapped = data.map((d) => ({
-						name: d.title,
-						slug: d.slug,
-					}))
-					setIndustryPages(mapped)
-				}
-			}
-		}
-		fetchIndustries()
-	}, [])
+/* Initiatives: Use Cases is one page; Industries opens its list inside the same panel */
+const USE_CASES = {
+  title: "Use Cases",
+  text: "Explore the real-world workflows powered by persistent memory architecture.",
+  href: "/use-cases",
+  tab: "use-cases"
+};
+const INDUSTRIES = {
+  title: "Industries",
+  text: "Discover how persistent intelligence can transform different industries.",
+  all: { label: "All industries", href: "/industries", tab: "industry:all" },
+  items: [
+    { label: "Education & EdTech", href: "/industries/education", tab: "industry:education" },
+    { label: "E-commerce & Retail", href: "/industries/ecommerce", tab: "industry:ecommerce" },
+    { label: "Media & Entertainment", href: "/industries/media", tab: "industry:media" },
+    { label: "HR & Recruiting", href: "/industries/hr", tab: "industry:hr" },
+    { label: "Finance & Accounting", href: "/industries/finance", tab: "industry:finance" },
+    { label: "Consulting & Enterprise", href: "/industries/consulting", tab: "industry:consulting" },
+    { label: "Legal & Compliance", href: "/industries/legal", tab: "industry:legal" },
+    { label: "SaaS & Dev Tools", href: "/industries/saas", tab: "industry:saas" },
+    { label: "Healthcare & Medical", href: "/industries/healthcare", tab: "industry:healthcare" },
+    { label: "Customer Support", href: "/industries/support", tab: "industry:support" },
+  ],
+};
 
-	const navItems = [
-		{ key: "research", label: t.nav.research },
-		{ key: "pricing", label: t.nav.pricing },
-		{ key: "initiatives", label: t.nav.initiatives },
-		{ key: "resources", label: t.nav.resources },
-		{ key: "company", label: t.nav.company },
-	]
-	const isOverview = activeTab === "overview"
-	const dropdownPanelSurface = isOverview
-		? "bg-foreground/95 border border-white/10 backdrop-blur-2xl"
-		: "bg-[#fcfcff] border border-neutral-100/50"
+// Negentro logomark, traced from the brand guide: [x0, x1, y, halfThickness], radius 1
+const LOGOMARK = [
+  [-0.332, 0.535, -0.808, 0.045], [-0.659, -0.208, -0.69, 0.046], [-0.055, 0.764, -0.575, 0.046],
+  [-0.869, 0.009, -0.462, 0.045], [0.086, 0.931, -0.343, 0.045], [-0.976, -0.11, -0.228, 0.045],
+  [0.146, 1.0, -0.116, 0.045], [-1.0, -0.138, 0.0, 0.049], [0.146, 1.0, 0.117, 0.046],
+  [-0.976, -0.11, 0.23, 0.045], [0.086, 0.931, 0.344, 0.046], [-0.869, 0.009, 0.464, 0.045],
+  [-0.055, 0.764, 0.576, 0.045], [-0.659, -0.205, 0.69, 0.044], [-0.332, 0.535, 0.805, 0.048],
+];
 
-	return (
-		<header
-			className={`w-full transition-all duration-300 ${
-				isOverview
-					? "absolute top-0 inset-x-0 z-50 bg-transparent border-b border-white/10"
-					: "relative z-50 bg-white border-b border-[#e5e7eb]"
-			}`}
-		>
-			<div className="container-universal h-19 flex items-center justify-between relative">
-				{/* Left: Negentro Brand Logo */}
-				<div className="flex items-center z-10">
-					<button
-						onClick={() => setActiveTab("overview")}
-						className="flex items-center transition-all duration-300 ease-out hover:opacity-85 hover:scale-[1.03] active:scale-[0.97] cursor-pointer focus:outline-none"
-						title="Negentro Home"
-						aria-label="Negentro Home"
-					>
-						<NegentroLogo
-							className={`h-8 sm:h-8.5 transition-all duration-300 ${
-								isOverview ? "brightness-0 invert" : ""
-							}`}
-						/>
-					</button>
-				</div>
+function Mark({ size = 24 }: any) {
+  return (
+    <svg width={size} height={size} viewBox="-1.06 -1.06 2.12 2.12" aria-hidden="true">
+      {LOGOMARK.map(([a, b, y, h], i) => (
+        <rect key={i} x={a} y={y - h} width={b - a} height={h * 2} rx={h} fill="currentColor" />
+      ))}
+    </svg>
+  );
+}
 
-				{/* Center: Soft Rounded Rectangle Nav Container */}
-				<div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-					<nav
-						className={`flex items-center rounded-[10px] h-11.5 px-8 gap-7 sm:gap-8 transition-all duration-300 ${
-							isOverview
-								? "bg-white/10 border border-white/15 backdrop-blur-md text-white"
-								: "bg-secondary text-neutral-950"
-						}`}
-					>
-						{navItems.map((item) => {
-							const isActive = activeTab === item.key
-							return (
-								<div
-									key={item.key}
-									className="relative flex items-center h-full group"
-								>
-									<button
-										onClick={() =>
-											item.key !== "initiatives" &&
-											item.key !== "resources" &&
-											setActiveTab(item.key)
-										}
-										className={`relative py-1 text-[14px] transition-all duration-200 ease-out cursor-pointer select-none active:scale-[0.96] ${
-											isOverview
-												? isActive
-													? "text-white font-semibold"
-													: "text-white/70 font-normal hover:text-white"
-												: isActive
-													? "text-[#765DFB] font-semibold"
-													: "text-[#666666] font-normal hover:text-[#765DFB]"
-										}`}
-									>
-										<span>{item.label}</span>
-										<span
-											className={`absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full transition-all duration-250 ease-out ${
-												isOverview ? "bg-white" : "bg-[#765DFB]"
-											} ${
-												isActive
-													? "opacity-100 scale-x-100"
-													: "opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-75"
-											}`}
-										/>
-									</button>
+const Arrow = ({ className = "nb-arrow" }: any) => (
+  <svg className={className} viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M4 12h15M13 6l6 6-6 6" />
+  </svg>
+);
 
-									{item.key === "initiatives" && (
-										<div
-											className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none translate-y-3 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-500 ease-out z-50 ${industriesExpanded ? "w-[min(680px,calc(100vw-32px))]" : "w-160"}`}
-											onMouseLeave={() => setIndustriesExpanded(false)}
-										>
-											<div
-												className={`relative transition-[height] duration-500 ease-in-out ${industriesExpanded ? "h-82.5" : "h-52.5"}`}
-											>
-												<div
-													className={`absolute inset-0 transition-[opacity,transform] duration-300 ease-in-out ${industriesExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}
-												>
-													<div
-														className={`relative isolate overflow-hidden rounded-[14px] shadow-[0_8px_16px_rgba(118,93,251,0.1)] px-5 sm:px-7.5 py-5 sm:py-6.5 ${dropdownPanelSurface}`}
-													>
-														<div
-															className={`pointer-events-none absolute -left-16 -top-16 z-0 h-64 w-64 rounded-full blur-3xl ${isOverview ? "bg-purple-400/20" : "bg-purple-200/40"}`}
-														/>
-														<div
-															className={`pointer-events-none absolute -bottom-16 -right-16 z-0 h-64 w-64 rounded-full blur-3xl ${isOverview ? "bg-purple-400/20" : "bg-purple-200/40"}`}
-														/>
-														<div className="relative z-10">
-															<div className="pb-3">
-																<p className="text-[9px] font-medium text-[#765DFB] tracking-[0.09em] mb-1.5">
-																	02 / INDUSTRIES
-																</p>
-																<h3
-																	className={`text-[16px] leading-5.5 font-bold tracking-[0.01em] ${isOverview ? "text-white" : "text-[#00050e]"}`}
-																>
-																	Industries
-																</h3>
-															</div>
-															<div
-																className={`h-px mb-2 ${isOverview ? "bg-white/10" : "bg-[#00050e]/[0.07]"}`}
-															/>
-															<div className="grid grid-cols-2 gap-x-4 sm:gap-x-6">
-																{[
-																	industryPages.slice(0, 5),
-																	industryPages.slice(5),
-																].map((column, columnIndex) => (
-																	<div
-																		key={columnIndex}
-																		className={`min-w-0 ${columnIndex === 0 ? `${isOverview ? "border-r border-white/10" : "border-r border-[#00050e]/[0.07]"} pr-3 sm:pr-4` : "pl-0 sm:pl-1"}`}
-																	>
-																		{column.map((industry, industryIndex) => {
-																			const index =
-																				columnIndex * 5 + industryIndex + 1
-																			const isSelectedIndustry =
-																				activeTab ===
-																					`industry:${industry.slug}` ||
-																				hoveredIndustrySlug === industry.slug
-																			return (
-																				<button
-																					type="button"
-																					key={industry.slug}
-																					onMouseEnter={() =>
-																						setHoveredIndustrySlug(
-																							industry.slug,
-																						)
-																					}
-																					onMouseLeave={() =>
-																						setHoveredIndustrySlug(null)
-																					}
-																					onFocus={() =>
-																						setHoveredIndustrySlug(
-																							industry.slug,
-																						)
-																					}
-																					onBlur={() =>
-																						setHoveredIndustrySlug(null)
-																					}
-																					onClick={() => {
-																						setActiveTab(
-																							`industry:${industry.slug}`,
-																						)
-																						setIndustriesExpanded(false)
-																					}}
-																					aria-label={`Open ${industry.name} industry page`}
-																					className={`group/industry flex h-10.75 w-full items-center justify-between gap-2 border-b px-2.5 text-left transition-colors last:border-b-0 hover:rounded-lg focus-visible:ring-1 focus-visible:ring-[#765DFB] ${isOverview ? "border-white/10 hover:border-[#765DFB]/50 hover:bg-[#765DFB]/25" : "border-[#00050e]/[0.07] hover:border-[#765DFB]/25 hover:bg-[#ECCDE5]/40"} ${isSelectedIndustry ? (isOverview ? "border-[#765DFB]/50 rounded-lg bg-[#765DFB]/30" : "border-[#765DFB]/25 rounded-lg bg-[#ECCDE5]/60") : ""}`}
-																				>
-																					<span
-																						className={`w-4.5 shrink-0 font-mono text-[10px] tracking-widest ${isSelectedIndustry ? (isOverview ? "text-[#d5ccff]" : "text-[#765DFB]") : isOverview ? "text-white/45" : "text-[#00050e]/40"}`}
-																					>
-																						{String(index).padStart(2, "0")}
-																					</span>
-																					<span
-																						className={`min-w-0 flex-1 truncate text-[13px] font-medium ${isSelectedIndustry ? (isOverview ? "text-[#d5ccff]" : "text-[#765DFB]") : isOverview ? "text-white/85 group-hover/industry:text-white" : "text-[#00050e] group-hover/industry:text-[#765DFB]"}`}
-																					>
-																						{industry.name}
-																					</span>
-																					<ArrowRight
-																						className={`h-2.5 w-2.25 shrink-0 ${isSelectedIndustry ? (isOverview ? "text-[#d5ccff]" : "text-[#765DFB]") : isOverview ? "text-white/35 group-hover/industry:text-white/70" : "text-[#00050e]/20 group-hover/industry:text-[#765DFB]"}`}
-																					/>
-																				</button>
-																			)
-																		})}
-																	</div>
-																))}
-															</div>
-														</div>
-													</div>
-												</div>
-												<div
-													className={`absolute inset-0 transition-[opacity,transform] duration-300 ease-in-out ${industriesExpanded ? "opacity-0 -translate-y-2 pointer-events-none" : "opacity-100 translate-y-0"}`}
-												>
-													<div
-														className={`rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] overflow-hidden flex relative transition-all duration-300 ${dropdownPanelSurface}`}
-													>
-														{/* Left Column */}
-														<div
-															onClick={() => setActiveTab("use-cases")}
-															className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden border-r ${
-																isOverview
-																	? "hover:bg-white/5 border-white/10"
-																	: "hover:bg-white/60 border-indigo-50/50"
-															}`}
-														>
-															<div
-																className={`absolute -top-16 -left-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
-																	isOverview
-																		? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
-																		: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
-																}`}
-															/>
-															<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
-																01 / Use Cases
-															</p>
-															<h3
-																className={`text-[22px] font-bold mb-3 relative z-10 ${
-																	isOverview ? "text-white" : "text-neutral-900"
-																}`}
-															>
-																Use Cases
-															</h3>
-															<p
-																className={`text-[14px] leading-[1.6] pr-4 relative z-10 ${
-																	isOverview
-																		? "text-white/70"
-																		: "text-neutral-500"
-																}`}
-															>
-																Explore the real-world workflows powered by
-																persistent memory architecture.
-															</p>
-															<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
-																<ArrowUpRight className="w-5 h-5" />
-															</div>
-														</div>
+const Chevron = () => (
+  <svg className="nb-chev" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+    <path d="M2 3.5 5 6.5l3-3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
-														{/* Right Column */}
-														<div
-															onMouseEnter={() => setIndustriesExpanded(true)}
-															onFocus={() => setIndustriesExpanded(true)}
-															className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden ${
-																isOverview
-																	? "hover:bg-white/5"
-																	: "hover:bg-white/60"
-															}`}
-														>
-															<div
-																className={`absolute -bottom-16 -right-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
-																	isOverview
-																		? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
-																		: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
-																}`}
-															/>
-															<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
-																02 / Industries
-															</p>
-															<h3
-																className={`text-[22px] font-bold mb-3 relative z-10 ${
-																	isOverview ? "text-white" : "text-neutral-900"
-																}`}
-															>
-																Industries
-															</h3>
-															<p
-																className={`text-[14px] leading-[1.6] pr-4 relative z-10 ${
-																	isOverview
-																		? "text-white/70"
-																		: "text-neutral-500"
-																}`}
-															>
-																Discover how persistent intelligence can
-																transform different industries.
-															</p>
-															<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
-																<ArrowUpRight className="w-5 h-5" />
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									)}
+/* ------------------------------------------------------------------ */
+/*  Initiatives dropdown: hovering a group swaps the list in place     */
+/* ------------------------------------------------------------------ */
+function InitiativesMenu({ current, setActiveTab }: any) {
+  const [open, setOpen] = useState(false);
+  const wrap = useRef<HTMLDivElement>(null);
+  const timer = useRef<any>(null);
 
-									{item.key === "resources" && (
-										<div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none translate-y-3 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-500 ease-out z-50 w-160">
-											<div
-												className={`rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] overflow-hidden flex relative transition-all duration-300 ${dropdownPanelSurface}`}
-											>
-												{/* Left Column */}
-												<div
-													onClick={() => setActiveTab("docs")}
-													className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden border-r ${
-														isOverview
-															? "hover:bg-white/5 border-white/10"
-															: "hover:bg-white/60 border-indigo-50/50"
-													}`}
-												>
-													<div
-														className={`absolute -top-16 -left-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
-															isOverview
-																? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
-																: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
-														}`}
-													/>
-													<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
-														01 / Docs
-													</p>
-													<h3
-														className={`text-[22px] font-bold mb-3 relative z-10 ${
-															isOverview ? "text-white" : "text-neutral-900"
-														}`}
-													>
-														Docs
-													</h3>
-													<p
-														className={`text-[14px] leading-[1.6] pr-4 relative z-10 ${
-															isOverview ? "text-white/70" : "text-neutral-500"
-														}`}
-													>
-														Explore technical guides, API references, and
-														tutorials for building with PiyApi
-													</p>
-													<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
-														<ArrowUpRight className="w-5 h-5" />
-													</div>
-												</div>
+  const show = () => { clearTimeout(timer.current); setOpen(true); };
+  const hide = () => { clearTimeout(timer.current); timer.current = setTimeout(() => setOpen(false), 160); };
 
-												{/* Right Column */}
-												<div
-													onClick={() => setActiveTab("blog")}
-													onKeyDown={(event) => {
-														if (event.key === "Enter" || event.key === " ")
-															setActiveTab("blog")
-													}}
-													role="button"
-													tabIndex={0}
-													aria-label="Open Blog insights"
-													className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden focus-visible:ring-2 focus-visible:ring-[#765DFB] ${
-														isOverview
-															? "hover:bg-white/5"
-															: "hover:bg-white/60"
-													}`}
-												>
-													<div
-														className={`absolute -bottom-16 -right-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
-															isOverview
-																? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
-																: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
-														}`}
-													/>
-													<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
-														02 / Blog
-													</p>
-													<h3
-														className={`text-[22px] font-bold mb-3 relative z-10 ${
-															isOverview ? "text-white" : "text-neutral-900"
-														}`}
-													>
-														Blog
-													</h3>
-													<p
-														className={`text-[14px] leading-[1.6] pr-4 relative z-10 ${
-															isOverview ? "text-white/70" : "text-neutral-500"
-														}`}
-													>
-														Discover our latest research, engineering deep
-														dives, and product updates.
-													</p>
-													<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
-														<ArrowUpRight className="w-5 h-5" />
-													</div>
-												</div>
-											</div>
-										</div>
-									)}
-								</div>
-							)
-						})}
-					</nav>
-				</div>
+  useEffect(() => {
+    const onKey = (e: any) => e.key === "Escape" && setOpen(false);
+    const onDown = (e: any) => wrap.current && !wrap.current.contains(e.target as Node) && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("pointerdown", onDown); clearTimeout(timer.current); };
+  }, []);
 
-				{/* Right: Try PiyApi Button */}
-				<div className="hidden md:flex items-center z-10">
-					<a
-						href="https://piyapi.cloud"
-						target="_blank"
-						rel="noopener noreferrer"
-						className={`relative inline-flex items-center justify-center text-sm font-medium h-10.5 px-5 rounded-lg transition-all duration-250 ease-out shadow-xs hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] cursor-pointer overflow-hidden group ${
-							isOverview
-								? "bg-white text-neutral-950 hover:bg-white/90"
-								: "bg-[#232323] hover:bg-neutral-950 text-white"
-						}`}
-					>
-						<span className="relative z-10">{t.nav.tryPiyApi}</span>
-						<span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
-					</a>
-				</div>
+  const tab = open ? 0 : -1;
+  const nav = (e: any, targetTab: string) => { e.preventDefault(); setActiveTab(targetTab); setOpen(false); };
 
-				{/* Mobile Hamburger Button */}
-				<div className="flex md:hidden">
-					<button
-						onClick={() => setMobileOpen(!mobileOpen)}
-						className={`p-2 rounded-lg transition-all duration-200 active:scale-95 ${
-							isOverview
-								? "text-white hover:bg-white/10"
-								: "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100"
-						}`}
-						aria-label="Toggle Navigation"
-					>
-						{mobileOpen ? (
-							<X className="w-5 h-5 transition-transform duration-200 rotate-90" />
-						) : (
-							<Menu className="w-5 h-5 transition-transform duration-200" />
-						)}
-					</button>
-				</div>
-			</div>
+  return (
+    <div className="nb-dd" ref={wrap} onMouseEnter={show} onMouseLeave={hide}>
+      <button
+        type="button"
+        className={`nb-link nb-link--menu ${open ? "is-open" : ""} ${current === "Initiatives" ? "is-current" : ""}`}
+        aria-expanded={open}
+        aria-controls="nb-initiatives"
+        onClick={() => setOpen((o) => !o)}
+      >
+        Initiatives <Chevron />
+      </button>
 
-			{/* Mobile Drawer with smooth animation */}
-			{mobileOpen && (
-				<div
-					className={`md:hidden border-t px-6 py-4 space-y-3 animate-fade-in ${
-						isOverview
-							? "border-white/15 bg-[#04050c]/95 backdrop-blur-xl"
-							: "border-neutral-200 bg-white"
-					}`}
-				>
-					<div
-						className={`rounded-[10px] p-2 space-y-1 ${
-							isOverview ? "bg-white/10" : "bg-secondary"
-						}`}
-					>
-						{navItems.map((item) => {
-							return (
-								<button
-									key={item.key}
-									onClick={() => {
-										setActiveTab(item.key)
-										setMobileOpen(false)
-									}}
-									className={`block w-full text-left px-4 py-2.5 text-sm font-normal rounded-md transition-all duration-200 ease-out ${
-										activeTab === item.key
-											? isOverview
-												? "bg-white/20 text-white font-semibold"
-												: "bg-[#765DFB]/10 text-[#765DFB] font-semibold shadow-xs"
-											: isOverview
-												? "text-white/70 hover:text-white hover:bg-white/10"
-												: "text-[#666666] hover:text-[#765DFB] hover:bg-[#765DFB]/5"
-									}`}
-								>
-									{item.label}
-								</button>
-							)
-						})}
-					</div>
+      <div id="nb-initiatives" className={`nb-panel ${open ? "is-open" : ""}`} onFocus={show} onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && hide()}>
+        <div className="nb-panel__inner">
+          {/* left: Use Cases is a page, Industries labels the list on the right */}
+          <div className="nb-groups">
+            <a href={USE_CASES.href} onClick={(e) => nav(e, USE_CASES.tab)} className="nb-group nb-group--link" tabIndex={tab}>
+              <span className="nb-group__title">{USE_CASES.title}<Arrow className="nb-group__arrow" /></span>
+              <span className="nb-group__text">{USE_CASES.text}</span>
+            </a>
+            <div className="nb-group is-on" id="nb-ind-title">
+              <span className="nb-group__title">{INDUSTRIES.title}</span>
+              <span className="nb-group__text">{INDUSTRIES.text}</span>
+            </div>
+          </div>
 
-					<div className="pt-2">
-						<a
-							href="https://piyapi.cloud"
-							target="_blank"
-							rel="noopener noreferrer"
-							onClick={() => setMobileOpen(false)}
-							className={`w-full flex items-center justify-center text-sm font-medium py-3 rounded-lg transition-all duration-250 active:scale-[0.98] shadow-xs hover:shadow-md ${
-								isOverview
-									? "bg-white text-neutral-950 hover:bg-white/90"
-									: "bg-[#232323] hover:bg-neutral-950 text-white"
-							}`}
-						>
-							<span>{t.nav.tryPiyApi}</span>
-						</a>
-					</div>
-				</div>
-			)}
-		</header>
-	)
+          {/* right: industries */}
+          <div className="nb-list" aria-labelledby="nb-ind-title">
+            <ul className="nb-items nb-items--two">
+              {INDUSTRIES.items.map((it) => (
+                <li key={it.label}>
+                  <a href={it.href} onClick={(e) => nav(e, it.tab)} className="nb-item" tabIndex={tab}>
+                    <span>{it.label}</span>
+                    <Arrow />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a href={INDUSTRIES.all.href} onClick={(e) => nav(e, INDUSTRIES.all.tab)} className="nb-all" tabIndex={tab}>{INDUSTRIES.all.label}<Arrow /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Mobile: Initiatives expands to Use Cases (a page) and the industries list */
+function MobileInitiatives({ setActiveTab }: any) {
+  const [open, setOpen] = useState(false);
+  const nav = (e: any, targetTab: string) => { e.preventDefault(); setActiveTab(targetTab); setOpen(false); };
+  
+  return (
+    <>
+      <button type="button" className="nb-m-link" aria-expanded={open} onClick={() => setOpen(!open)}>
+        Initiatives <Chevron />
+      </button>
+      <div className={`nb-m-sub ${open ? "is-open" : ""}`}>
+        <div>
+          <a href={USE_CASES.href} onClick={(e) => nav(e, USE_CASES.tab)} className="nb-m-item nb-m-item--page">{USE_CASES.title}<Arrow /></a>
+          <p className="nb-m-head">{INDUSTRIES.title}</p>
+          {INDUSTRIES.items.map((it) => <a key={it.label} href={it.href} onClick={(e) => nav(e, it.tab)} className="nb-m-item">{it.label}</a>)}
+          <a href={INDUSTRIES.all.href} onClick={(e) => nav(e, INDUSTRIES.all.tab)} className="nb-m-item nb-m-item--all">{INDUSTRIES.all.label}<Arrow /></a>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export function Navbar({ activeTab, setActiveTab, onTryPiyApi }: NavbarProps) {
+  const [mobile, setMobile] = useState(false);
+  const brand = "Negentro";
+
+  const getLabel = (tab: string) => {
+    if (tab === 'company') return 'Company';
+    if (tab === 'research') return 'Research';
+    if (tab === 'pricing') return 'Pricing';
+    if (tab === 'use-cases' || tab.startsWith('industry:')) return 'Initiatives';
+    if (tab === 'resources') return 'Resources';
+    return '';
+  };
+  const current = getLabel(activeTab);
+
+  const onNav = (e: any, targetTab: string) => { 
+    e.preventDefault(); 
+    setActiveTab(targetTab); 
+    setMobile(false); 
+  };
+
+  return (
+    <header className="nb">
+      <div className="nb-wrap">
+        <a href="/" onClick={(e) => onNav(e, 'overview')} className="nb-logo" aria-label="Home">
+          <Mark />
+          <span>{brand}</span>
+        </a>
+
+        <nav className="nb-links" aria-label="Main">
+          {NAV.map((n) =>
+            n.menu ? (
+              <InitiativesMenu key={n.label} current={current} setActiveTab={setActiveTab} />
+            ) : (
+              <a key={n.label} href={n.href} onClick={(e) => onNav(e, n.tab!)} className={`nb-link ${current === n.label ? "is-current" : ""}`} aria-current={current === n.label ? "page" : undefined}>
+                {n.label}
+              </a>
+            )
+          )}
+        </nav>
+
+        <div className="nb-end">
+          <a className="nb-gh" href="https://github.com/negentro">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" /></svg>
+            Star <span>66,594</span>
+          </a>
+          <button className="nb-btn" onClick={onTryPiyApi}>Get started <Arrow /></button>
+          <button className="nb-burger" aria-label="Menu" aria-expanded={mobile} aria-controls="nb-mobile" onClick={() => setMobile(!mobile)}>
+            <i /><i /><i />
+          </button>
+        </div>
+      </div>
+
+      <div className={`nb-mobile ${mobile ? "is-open" : ""}`} id="nb-mobile">
+        <div className="nb-mobile__inner">
+          {NAV.map((n) =>
+            n.menu ? (
+              <MobileInitiatives key={n.label} setActiveTab={setActiveTab} />
+            ) : (
+              <a key={n.label} href={n.href} onClick={(e) => onNav(e, n.tab!)} className={`nb-m-link ${current === n.label ? "is-current" : ""}`} aria-current={current === n.label ? "page" : undefined}>
+                {n.label}<Arrow />
+              </a>
+            )
+          )}
+        </div>
+      </div>
+    </header>
+  );
 }

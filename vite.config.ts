@@ -19,6 +19,10 @@ export default defineConfig({
 			output: {
 				manualChunks(id) {
 					if (id.includes("node_modules")) {
+						// only the lazy Company page uses three, keep it out of the shared chunk
+						if (id.includes("node_modules/three/")) {
+							return "vendor-three"
+						}
 						if (id.includes("react") || id.includes("react-dom")) {
 							return "vendor-react"
 						}
