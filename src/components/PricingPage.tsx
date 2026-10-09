@@ -1194,7 +1194,7 @@ export const PricingPage: React.FC<{ onOpenConsole?: () => void }> = ({
 							{t.pricing.finalCtaStart}
 						</a>
 						<a
-							href="https://docs.piyapi.com"
+							href="https://docs.negentro.tech/"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center justify-center bg-white text-neutral-900 border border-neutral-200 px-8 py-3.5 rounded-lg text-[14px] font-semibold hover:border-neutral-300 hover:bg-neutral-50 transition-all duration-200 cursor-pointer shadow-sm"

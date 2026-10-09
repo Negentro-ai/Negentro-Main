@@ -290,7 +290,7 @@ export const IndustryPage = ({
 							Start building
 						</a>
 						<a
-							href="https://docs.piyapi.cloud"
+							href="https://docs.negentro.tech/"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
@@ -510,7 +510,7 @@ export const IndustryPage = ({
 								Start building
 							</a>
 							<a
-								href="https://docs.piyapi.cloud"
+								href="https://docs.negentro.tech/"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00050e] transition-colors hover:text-[#765dfb]"
@@ -632,7 +632,7 @@ export const IndustryPage = ({
 								Start building
 							</a>
 							<a
-								href="https://docs.piyapi.cloud"
+								href="https://docs.negentro.tech/"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-1.5 text-[13px] font-medium text-white transition-colors hover:text-[#765dfb]"

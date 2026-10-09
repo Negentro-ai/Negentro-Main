@@ -326,9 +326,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 												className={`rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] overflow-hidden flex relative transition-all duration-300 ${dropdownPanelSurface}`}
 											>
 												{/* Left Column */}
-												<div
-													onClick={() => setActiveTab("docs")}
-													className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden border-r ${
+												<a
+													href="https://docs.negentro.tech/"
+													target="_blank"
+													rel="noopener noreferrer"
+													className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden border-r block ${
 														isOverview
 															? "hover:bg-white/5 border-white/10"
 															: "hover:bg-white/60 border-indigo-50/50"
@@ -362,7 +364,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 													<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
 														<ArrowUpRight className="w-5 h-5" />
 													</div>
-												</div>
+												</a>
 
 												{/* Right Column */}
 												<div

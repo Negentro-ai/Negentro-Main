@@ -78,7 +78,9 @@ export const Footer: React.FC<FooterProps> = ({
 						<ul className="space-y-2.5 text-xs sm:text-sm text-[#8F9FA3]">
 							<li>
 								<a
-									href="#docs"
+									href="https://docs.negentro.tech/"
+									target="_blank"
+									rel="noopener noreferrer"
 									className="hover:text-white transition-colors block"
 								>
 									{t.footer.devDocs}

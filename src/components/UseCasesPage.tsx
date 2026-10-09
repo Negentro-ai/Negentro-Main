@@ -37,18 +37,7 @@ export const UseCasesPage: React.FC = () => {
 		},
 	]
 
-	// Generate exactly 26 items by cycling through the base cases
-	const cases = Array.from({ length: 26 }, (_, i) => ({
-		...baseCases[i % baseCases.length],
-		// Optional: Append an index if we want titles to feel slightly unique,
-		// but since we want the exact UI, we just duplicate them.
-	}))
 
-	const [visibleCount, setVisibleCount] = useState(6)
-
-	const loadMore = () => {
-		setVisibleCount((prev) => Math.min(prev + 6, cases.length))
-	}
 
 	return (
 		<div className="w-full min-h-screen bg-white text-neutral-900 font-sans selection:bg-[#6320EE] selection:text-white pt-6">
@@ -84,7 +73,9 @@ export const UseCasesPage: React.FC = () => {
 								Try Piyapi
 							</a>
 							<a
-								href="#"
+								href="https://docs.negentro.tech/"
+								target="_blank"
+								rel="noopener noreferrer"
 								className="relative inline-flex items-center justify-center text-sm font-medium h-11 px-6 rounded-lg transition-all duration-250 ease-out shadow-xs hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] cursor-pointer overflow-hidden bg-white text-neutral-950 hover:bg-neutral-50 select-none"
 							>
 								Read the docs
@@ -104,7 +95,7 @@ export const UseCasesPage: React.FC = () => {
 
 				{/* Grid */}
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-					{cases.slice(0, visibleCount).map((c, i) => (
+					{baseCases.map((c, i) => (
 						<div
 							key={i}
 							className="group flex flex-col bg-white border border-neutral-200/60 rounded-2xl overflow-hidden hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-pointer"
@@ -134,17 +125,7 @@ export const UseCasesPage: React.FC = () => {
 					))}
 				</div>
 
-				{/* Load More */}
-				{visibleCount < cases.length && (
-					<div className="flex justify-center">
-						<button
-							onClick={loadMore}
-							className="text-[17px] font-semibold text-neutral-900 hover:text-[#765DFB] transition-colors"
-						>
-							Load More...
-						</button>
-					</div>
-				)}
+
 			</div>
 
 			{/* CTA Section from Figma */}

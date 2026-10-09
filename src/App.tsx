@@ -85,6 +85,11 @@ const ResearchArticlePage = lazy(() =>
 		default: m.ResearchArticlePage,
 	})),
 )
+const ResearchPage = lazy(() =>
+	import("./components/ResearchPage").then((m) => ({
+		default: m.ResearchPage,
+	})),
+)
 const IndustryPage = lazy(() =>
 	import("./components/IndustryPage").then((m) => ({
 		default: m.IndustryPage,
@@ -259,9 +264,7 @@ export function App() {
 								</div>
 							}
 						>
-							<ResearchArticlePage
-								onNavigateBlog={() => setActiveTab("blog")}
-							/>
+							<ResearchPage />
 						</Suspense>
 					</main>
 					<Suspense fallback={null}>

@@ -614,9 +614,14 @@ export const BlogArticlePage = ({
 						<button className="rounded-[8px] bg-[#765dfb] px-8 py-3.5 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#6b52e8] active:scale-[0.98]">
 							Start building
 						</button>
-						<button className="rounded-[8px] border border-white/10 bg-white/5 px-8 py-3.5 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10 active:scale-[0.98]">
+						<a
+							href="https://docs.negentro.tech/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="rounded-[8px] border border-white/10 bg-white/5 px-8 py-3.5 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10 active:scale-[0.98] inline-flex items-center justify-center text-center"
+						>
 							Explore the docs
-						</button>
+						</a>
 					</div>
 				</div>
 			</section>
