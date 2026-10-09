@@ -76,9 +76,12 @@
 		}
   },
   "logo": {
-    "light": "/images/light.png",
-    "dark": "/images/white.png",
+    "light": "/images/negentroailogo.png",
+    "dark": "/images/negentroailogo.png",
     "href": "https://docs.negentro.tech"
   },
-  "favicon": "/images/negentroailogo.png"
+  "favicon": {
+    "light": "/images/light.png",
+    "dark": "/images/white.png"
+  }
 }
