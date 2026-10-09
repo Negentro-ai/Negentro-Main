@@ -1,0 +1,218 @@
+/* Preserve the existing navbar logo sizing. */
+img.nav-logo {
+  height: 3rem !important;
+  width: auto !important;
+}
+
+/* Homepage only: retain native navigation, footer, and Card components. */
+html:has(.negentro-guides) {
+  --content-width: 1240px;
+}
+html:has(.negentro-guides):not(.dark) #background-color,
+html:has(.negentro-guides):not(.dark) body {
+  background: #fff;
+}
+html:has(.negentro-guides) #header,
+html:has(.negentro-guides) #page-context-menu,
+html:has(.negentro-guides) #pagination {
+  display: none;
+}
+html:has(.negentro-guides) #content-area,
+html:has(.negentro-guides) #content {
+  width: 100%;
+  max-width: 1240px !important;
+  margin-inline: auto;
+}
+html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides) {
+  display: flex;
+  flex-direction: column;
+  padding: 64px 0 80px;
+}
+html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides)::before {
+  content: "NEGENTRO / DOCS";
+  order: 0;
+  text-align: center;
+  color: #765dfb;
+  font: 12px/1.5 ui-monospace, monospace;
+  margin-bottom: 24px;
+}
+html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 {
+  order: 1;
+  margin: 0 0 24px;
+  text-align: center;
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 strong {
+  color: #765dfb;
+  font-weight: inherit;
+}
+html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 a[aria-label] {
+  display: none;
+}
+html:has(.negentro-guides):not(.dark) #navbar {
+  background: #f9f8ff;
+  border-bottom: 1px solid #eeecf5;
+}
+html:has(.negentro-guides) #footer {
+  border-top: 1px solid #eeecf5;
+  padding-top: 28px;
+}
+html:has(.negentro-guides) #footer a {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+html:has(.negentro-guides) #topbar-cta-button {
+  border-radius: 9px;
+}
+.negentro-action-secondary {
+  border: 1px solid #dddde3;
+  background: transparent;
+}
+.negentro-actions :is(.negentro-action-primary, .negentro-action-secondary):focus-visible {
+  outline: 2px solid #765dfb;
+  outline-offset: 4px;
+}
+html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
+  order: 2;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  color: #70717b;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.negentro-actions {
+  order: 3;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: center;
+  gap: 14px;
+  margin: 36px auto 80px !important;
+}
+.negentro-actions :is(.negentro-action-primary, .negentro-action-secondary) {
+  margin: 0;
+  padding: 0;
+  min-width: 120px;
+  border-radius: 9px;
+  text-align: center;
+  box-shadow: none;
+}
+.negentro-actions [data-component-part="card-content-container"] {
+  padding: 11px 22px;
+}
+.negentro-actions [data-component-part="card-title"] {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.negentro-actions [data-component-part="card-icon"],
+.negentro-actions [data-component-part="card-content"],
+.negentro-guides [data-component-part="card-icon"] {
+  display: none;
+}
+.negentro-action-primary {
+  background: #765dfb !important;
+  border-color: #765dfb !important;
+}
+.negentro-action-primary [data-component-part="card-title"] {
+  color: #fff !important;
+}
+.negentro-guides {
+  order: 4;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  width: 100%;
+  gap: 18px;
+  margin: 0 !important;
+}
+.negentro-guide {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 16px;
+  border: 1px solid #e6e4eb;
+  box-shadow: 0 2px 5px rgb(0 5 14 / 4%);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.negentro-guide:hover {
+  border-color: #b8aaff;
+  box-shadow: 0 6px 18px rgb(118 93 251 / 10%);
+}
+.negentro-guide:focus-visible {
+  outline: 2px solid #765dfb;
+  outline-offset: 4px;
+}
+/* Decorative panels reuse the supplied design. Text and links remain native. */
+.negentro-guide::before {
+  content: "";
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 400 / 169;
+  background-image: url('/images/negentro-homepage-reference.png');
+  background-repeat: no-repeat;
+  background-size: 360% 753.2544%;
+  background-position: var(--preview-x) var(--preview-y);
+}
+.negentro-memory { --preview-x: 9.6154%; --preview-y: 45.8333%; --guide-label: "01"; }
+.negentro-agent { --preview-x: 50%; --preview-y: 45.8333%; --guide-label: "02"; }
+.negentro-workflow { --preview-x: 90.3846%; --preview-y: 45.8333%; --guide-label: "GUIDE"; }
+.negentro-framework { --preview-x: 9.6154%; --preview-y: 72.2826%; --guide-label: "SDK"; }
+.negentro-example { --preview-x: 50%; --preview-y: 72.2826%; --guide-label: "EXAMPLE"; }
+.negentro-infrastructure { --preview-x: 90.3846%; --preview-y: 72.2826%; --guide-label: "REFERENCE"; }
+.negentro-guide [data-component-part="card-content-container"] {
+  padding: 18px;
+}
+.negentro-guide [data-component-part="card-title"] {
+  position: relative;
+  padding-right: 48px;
+  margin: 0 0 9px;
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 650;
+}
+.negentro-guide [data-component-part="card-title"]::after {
+  content: var(--guide-label);
+  position: absolute;
+  right: 0;
+  top: 5px;
+  color: #765dfb;
+  font: 10px/1.5 ui-monospace, monospace;
+}
+.negentro-guide [data-component-part="card-content"] {
+  margin: 0;
+  color: #777982;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.negentro-guide [data-component-part="card-content"] p {
+  margin: 0;
+}
+html.dark .negentro-guide {
+  border-color: #34303e;
+  background: #121019;
+}
+html.dark .negentro-guide [data-component-part="card-content"],
+html.dark:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
+  color: #b8b4c4;
+}
+html.dark .negentro-guide::before {
+  filter: brightness(0.8);
+}
+@media (max-width: 1023px) {
+  .negentro-guides { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides) {
+    padding-block: 32px 48px;
+  }
+  .negentro-guides { grid-template-columns: minmax(0, 1fr); }
+  .negentro-actions { margin-bottom: 48px !important; }
+}
