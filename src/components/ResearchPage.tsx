@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
-import { Footer } from './Footer';
 
 const faqs = [
   { question: "What is token efficient memory algorithm?", answer: "Negentro's memory algorithm optimizes context window usage by dynamically compressing and retrieving only the most relevant tokens for any given query, reducing overhead by up to 74x." },
@@ -381,8 +380,6 @@ export const ResearchPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      <Footer onOpenConsole={() => {}} />
     </div>
   );
 };

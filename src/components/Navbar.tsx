@@ -1,10 +1,8 @@
-import { useState } from "react"
-import type React from "react"
+import React, { useState, useEffect } from "react"
 import { NegentroLogo } from "./Logos"
 import { Menu, X, ArrowUpRight, ArrowRight } from "lucide-react"
 import { useLanguage } from "@/lib/i18n"
 import { industryPages as staticIndustryPages } from "@/data/industryPages"
-import { useEffect } from "react"
 import { getSupabase } from "@/lib/supabase"
 
 export interface NavbarProps {
@@ -127,191 +125,279 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
 									{item.key === "initiatives" && (
 										<div
-											className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none translate-y-3 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-500 ease-out z-50 ${industriesExpanded ? "w-[min(680px,calc(100vw-32px))]" : "w-160"}`}
-											onMouseLeave={() => setIndustriesExpanded(false)}
+											className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none translate-y-3 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] z-50 ${
+												industriesExpanded
+													? "w-[min(820px,calc(100vw-32px))]"
+													: "w-160 max-w-[calc(100vw-32px)]"
+											}`}
+											onMouseLeave={() => {
+												setIndustriesExpanded(false)
+												setHoveredIndustrySlug(null)
+											}}
 										>
 											<div
-												className={`relative transition-[height] duration-500 ease-in-out ${industriesExpanded ? "h-82.5" : "h-52.5"}`}
+												className={`rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col md:flex-row relative transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${dropdownPanelSurface} ${
+													industriesExpanded ? "h-[340px]" : "h-[225px]"
+												}`}
 											>
+												{/* LEFT COLUMN: Use Cases (Rock-solid fixed width: 320px) */}
 												<div
-													className={`absolute inset-0 transition-[opacity,transform] duration-300 ease-in-out ${industriesExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}
+													onClick={() => setActiveTab("use-cases")}
+													onMouseEnter={() => {
+														setIndustriesExpanded(false)
+														setHoveredIndustrySlug(null)
+													}}
+													className={`w-full md:w-[320px] shrink-0 p-8 sm:p-10 relative group/card cursor-pointer transition-colors duration-200 overflow-hidden border-b md:border-b-0 md:border-r ${
+														isOverview
+															? "hover:bg-white/5 border-white/10"
+															: "hover:bg-white/60 border-indigo-50/50"
+													}`}
 												>
+													{/* Left glow orb matching Resources exactly */}
 													<div
-														className={`relative isolate overflow-hidden rounded-[14px] shadow-[0_8px_16px_rgba(118,93,251,0.1)] px-5 sm:px-7.5 py-5 sm:py-6.5 ${dropdownPanelSurface}`}
+														className={`absolute -top-16 -left-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
+															isOverview
+																? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
+																: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
+														}`}
+													/>
+													<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
+														01 / Use Cases
+													</p>
+													<h3
+														className={`text-[22px] font-bold mb-3 relative z-10 ${
+															isOverview ? "text-white" : "text-neutral-900"
+														}`}
 													>
-														<div
-															className={`pointer-events-none absolute -left-16 -top-16 z-0 h-64 w-64 rounded-full blur-3xl ${isOverview ? "bg-purple-400/20" : "bg-purple-200/40"}`}
-														/>
-														<div
-															className={`pointer-events-none absolute -bottom-16 -right-16 z-0 h-64 w-64 rounded-full blur-3xl ${isOverview ? "bg-purple-400/20" : "bg-purple-200/40"}`}
-														/>
-														<div className="relative z-10">
-															<div className="pb-3">
-																<p className="text-[9px] font-medium text-[#765DFB] tracking-[0.09em] mb-1.5">
-																	02 / INDUSTRIES
-																</p>
-																<h3
-																	className={`text-[16px] leading-5.5 font-bold tracking-[0.01em] ${isOverview ? "text-white" : "text-[#00050e]"}`}
-																>
-																	Industries
-																</h3>
-															</div>
-															<div
-																className={`h-px mb-2 ${isOverview ? "bg-white/10" : "bg-[#00050e]/[0.07]"}`}
-															/>
-															<div className="grid grid-cols-2 gap-x-4 sm:gap-x-6">
-																{[
-																	industryPages.slice(0, 5),
-																	industryPages.slice(5),
-																].map((column, columnIndex) => (
-																	<div
-																		key={columnIndex}
-																		className={`min-w-0 ${columnIndex === 0 ? `${isOverview ? "border-r border-white/10" : "border-r border-[#00050e]/[0.07]"} pr-3 sm:pr-4` : "pl-0 sm:pl-1"}`}
-																	>
-																		{column.map((industry, industryIndex) => {
-																			const index =
-																				columnIndex * 5 + industryIndex + 1
-																			const isSelectedIndustry =
-																				activeTab ===
-																					`industry:${industry.slug}` ||
-																				hoveredIndustrySlug === industry.slug
-																			return (
-																				<button
-																					type="button"
-																					key={industry.slug}
-																					onMouseEnter={() =>
-																						setHoveredIndustrySlug(
-																							industry.slug,
-																						)
-																					}
-																					onMouseLeave={() =>
-																						setHoveredIndustrySlug(null)
-																					}
-																					onFocus={() =>
-																						setHoveredIndustrySlug(
-																							industry.slug,
-																						)
-																					}
-																					onBlur={() =>
-																						setHoveredIndustrySlug(null)
-																					}
-																					onClick={() => {
-																						setActiveTab(
-																							`industry:${industry.slug}`,
-																						)
-																						setIndustriesExpanded(false)
-																					}}
-																					aria-label={`Open ${industry.name} industry page`}
-																					className={`group/industry flex h-10.75 w-full items-center justify-between gap-2 border-b px-2.5 text-left transition-colors last:border-b-0 hover:rounded-lg focus-visible:ring-1 focus-visible:ring-[#765DFB] ${isOverview ? "border-white/10 hover:border-[#765DFB]/50 hover:bg-[#765DFB]/25" : "border-[#00050e]/[0.07] hover:border-[#765DFB]/25 hover:bg-[#ECCDE5]/40"} ${isSelectedIndustry ? (isOverview ? "border-[#765DFB]/50 rounded-lg bg-[#765DFB]/30" : "border-[#765DFB]/25 rounded-lg bg-[#ECCDE5]/60") : ""}`}
-																				>
-																					<span
-																						className={`w-4.5 shrink-0 font-mono text-[10px] tracking-widest ${isSelectedIndustry ? (isOverview ? "text-[#d5ccff]" : "text-[#765DFB]") : isOverview ? "text-white/45" : "text-[#00050e]/40"}`}
-																					>
-																						{String(index).padStart(2, "0")}
-																					</span>
-																					<span
-																						className={`min-w-0 flex-1 truncate text-[13px] font-medium ${isSelectedIndustry ? (isOverview ? "text-[#d5ccff]" : "text-[#765DFB]") : isOverview ? "text-white/85 group-hover/industry:text-white" : "text-[#00050e] group-hover/industry:text-[#765DFB]"}`}
-																					>
-																						{industry.name}
-																					</span>
-																					<ArrowRight
-																						className={`h-2.5 w-2.25 shrink-0 ${isSelectedIndustry ? (isOverview ? "text-[#d5ccff]" : "text-[#765DFB]") : isOverview ? "text-white/35 group-hover/industry:text-white/70" : "text-[#00050e]/20 group-hover/industry:text-[#765DFB]"}`}
-																					/>
-																				</button>
-																			)
-																		})}
-																	</div>
-																))}
-															</div>
-														</div>
+														Use Cases
+													</h3>
+													<p
+														className={`text-[14px] leading-[1.6] pr-4 relative z-10 ${
+															isOverview ? "text-white/70" : "text-neutral-500"
+														}`}
+													>
+														Explore how Negentro intelligence can power real-world applications and workflows.
+													</p>
+													<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
+														<ArrowUpRight className="w-5 h-5" />
 													</div>
 												</div>
-												<div
-													className={`absolute inset-0 transition-[opacity,transform] duration-300 ease-in-out ${industriesExpanded ? "opacity-0 -translate-y-2 pointer-events-none" : "opacity-100 translate-y-0"}`}
-												>
-													<div
-														className={`rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] overflow-hidden flex relative transition-all duration-300 ${dropdownPanelSurface}`}
-													>
-														{/* Left Column */}
-														<div
-															onClick={() => setActiveTab("use-cases")}
-															className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden border-r ${
-																isOverview
-																	? "hover:bg-white/5 border-white/10"
-																	: "hover:bg-white/60 border-indigo-50/50"
-															}`}
-														>
-															<div
-																className={`absolute -top-16 -left-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
-																	isOverview
-																		? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
-																		: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
-																}`}
-															/>
-															<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
-																01 / Use Cases
-															</p>
-															<h3
-																className={`text-[22px] font-bold mb-3 relative z-10 ${
-																	isOverview ? "text-white" : "text-neutral-900"
-																}`}
-															>
-																Use Cases
-															</h3>
-															<p
-																className={`text-[14px] leading-[1.6] pr-4 relative z-10 ${
-																	isOverview
-																		? "text-white/70"
-																		: "text-neutral-500"
-																}`}
-															>
-																Explore the real-world workflows powered by
-																persistent memory architecture.
-															</p>
-															<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
-																<ArrowUpRight className="w-5 h-5" />
-															</div>
-														</div>
 
-														{/* Right Column */}
-														<div
-															onMouseEnter={() => setIndustriesExpanded(true)}
-															onFocus={() => setIndustriesExpanded(true)}
-															className={`flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-colors overflow-hidden ${
-																isOverview
-																	? "hover:bg-white/5"
-																	: "hover:bg-white/60"
+												{/* RIGHT COLUMN: Industries (Interactive Morphing Area) */}
+												<div
+													onClick={(e) => {
+														if ((e.target as HTMLElement).closest("button")) return
+														setIndustriesExpanded(!industriesExpanded)
+													}}
+													onMouseEnter={() => setIndustriesExpanded(true)}
+													className={`group-nav flex-1 p-8 sm:p-10 relative group/card cursor-pointer transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
+														industriesExpanded ? "is-expanded" : ""
+													} ${
+														isOverview
+															? "hover:bg-white/5"
+															: "hover:bg-white/60"
+													}`}
+												>
+													{/* Right glow orb matching Resources exactly */}
+													<div
+														className={`absolute -bottom-16 -right-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
+															isOverview
+																? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
+																: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
+														}`}
+													/>
+
+													{/* Header (Always Visible) */}
+													<div className="relative z-10 mb-3">
+														<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
+															02 / Industries
+														</p>
+														<h3
+															className={`text-[22px] font-bold relative z-10 ${
+																isOverview ? "text-white" : "text-neutral-900"
 															}`}
 														>
-															<div
-																className={`absolute -bottom-16 -right-16 w-64 h-64 rounded-full blur-3xl pointer-events-none transition-colors duration-500 ${
-																	isOverview
-																		? "bg-purple-400/20 group-hover/card:bg-purple-400/30"
-																		: "bg-purple-200/40 group-hover/card:bg-purple-300/40"
-																}`}
-															/>
-															<p className="text-[10px] font-mono font-bold text-[#765DFB] tracking-[0.15em] mb-4 uppercase relative z-10">
-																02 / Industries
-															</p>
-															<h3
-																className={`text-[22px] font-bold mb-3 relative z-10 ${
-																	isOverview ? "text-white" : "text-neutral-900"
-																}`}
-															>
-																Industries
-															</h3>
+															Industries
+														</h3>
+													</div>
+
+													{/* Default View State (Description & Arrow matching Resources) */}
+													<div className="ini-view-default relative z-10 w-full">
+														<div className="ini-view-inner">
 															<p
 																className={`text-[14px] leading-[1.6] pr-4 relative z-10 ${
-																	isOverview
-																		? "text-white/70"
-																		: "text-neutral-500"
+																	isOverview ? "text-white/70" : "text-neutral-500"
 																}`}
 															>
-																Discover how persistent intelligence can
-																transform different industries.
+																Discover how persistent intelligence can transform different industries.
 															</p>
-															<div className="absolute bottom-6 right-6 text-[#765DFB] transform opacity-0 -translate-x-2 translate-y-2 group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
-																<ArrowUpRight className="w-5 h-5" />
+														</div>
+													</div>
+
+													{/* Arrow matching Resources exactly in default state */}
+													<div
+														className={`absolute bottom-6 right-6 text-[#765DFB] transform -translate-x-2 translate-y-2 transition-all duration-300 ${
+															industriesExpanded
+																? "opacity-0 pointer-events-none"
+																: "opacity-0 group-hover/card:opacity-100 group-hover/card:translate-x-0 group-hover/card:translate-y-0"
+														}`}
+													>
+														<ArrowUpRight className="w-5 h-5" />
+													</div>
+
+													{/* Expanded View State (2-column Industry Navigation List) */}
+													<div className="ini-view-expanded relative z-10 w-full">
+														<div className="ini-view-inner">
+															<div className="grid grid-cols-2 gap-x-5 gap-y-0.5 pt-1">
+																{/* Left Sub-column (Items 1-5) */}
+																<div className="flex flex-col">
+																	{industryPages.slice(0, 5).map((industry, index) => {
+																		const idStr = String(index + 1).padStart(2, "0")
+																		const isSelected =
+																			activeTab === `industry:${industry.slug}` ||
+																			hoveredIndustrySlug === industry.slug
+																		return (
+																			<React.Fragment key={industry.slug}>
+																				<button
+																					type="button"
+																					onMouseEnter={() =>
+																						setHoveredIndustrySlug(industry.slug)
+																					}
+																					onMouseLeave={() => setHoveredIndustrySlug(null)}
+																					onClick={() =>
+																						setActiveTab(`industry:${industry.slug}`)
+																					}
+																					className={`ini-list-item group/row flex items-center justify-between py-2 px-2.5 -mx-2 rounded-lg transition-all duration-200 text-left cursor-pointer ${
+																						isOverview
+																							? isSelected
+																								? "bg-[#765DFB]/25 text-[#d5ccff]"
+																								: "hover:bg-white/10 text-white/80 hover:text-white"
+																							: isSelected
+																								? "bg-[#ECCDE5]/50 text-[#765DFB]"
+																								: "hover:bg-[#ECCDE5]/30 text-[#00050E] hover:text-[#765DFB]"
+																					}`}
+																					style={{
+																						transitionDelay: `${40 + index * 20}ms`,
+																					}}
+																				>
+																					<div className="flex items-center gap-2.5 min-w-0">
+																						<span
+																							className={`font-mono text-[11px] tracking-wider shrink-0 ${
+																								isSelected
+																									? isOverview
+																										? "text-[#d5ccff]"
+																										: "text-[#765DFB]"
+																									: isOverview
+																										? "text-white/40 group-hover/row:text-[#d5ccff]"
+																										: "text-gray-400 group-hover/row:text-[#765DFB]"
+																							}`}
+																						>
+																							{idStr}
+																						</span>
+																						<span className="font-medium text-[13px] truncate">
+																							{industry.name}
+																						</span>
+																					</div>
+																					<ArrowRight
+																						className={`w-3.5 h-3.5 shrink-0 transition-all duration-200 ${
+																							isSelected
+																								? "opacity-100 translate-x-0"
+																								: "opacity-0 -translate-x-1.5 group-hover/row:opacity-100 group-hover/row:translate-x-0"
+																						} ${
+																							isOverview
+																								? "text-[#d5ccff]"
+																								: "text-[#765DFB]"
+																						}`}
+																					/>
+																				</button>
+																				{index !== 4 && (
+																					<div
+																						className={`h-[1px] w-full my-0.5 ${
+																							isOverview
+																								? "bg-white/10"
+																								: "bg-neutral-100"
+																						}`}
+																					/>
+																				)}
+																			</React.Fragment>
+																		)
+																	})}
+																</div>
+
+																{/* Right Sub-column (Items 6-10) */}
+																<div className="flex flex-col">
+																	{industryPages.slice(5, 10).map((industry, index) => {
+																		const idStr = String(index + 6).padStart(2, "0")
+																		const isSelected =
+																			activeTab === `industry:${industry.slug}` ||
+																			hoveredIndustrySlug === industry.slug
+																		return (
+																			<React.Fragment key={industry.slug}>
+																				<button
+																					type="button"
+																					onMouseEnter={() =>
+																						setHoveredIndustrySlug(industry.slug)
+																					}
+																					onMouseLeave={() => setHoveredIndustrySlug(null)}
+																					onClick={() =>
+																						setActiveTab(`industry:${industry.slug}`)
+																					}
+																					className={`ini-list-item group/row flex items-center justify-between py-2 px-2.5 -mx-2 rounded-lg transition-all duration-200 text-left cursor-pointer ${
+																						isOverview
+																							? isSelected
+																								? "bg-[#765DFB]/25 text-[#d5ccff]"
+																								: "hover:bg-white/10 text-white/80 hover:text-white"
+																							: isSelected
+																								? "bg-[#ECCDE5]/50 text-[#765DFB]"
+																								: "hover:bg-[#ECCDE5]/30 text-[#00050E] hover:text-[#765DFB]"
+																					}`}
+																					style={{
+																						transitionDelay: `${140 + index * 20}ms`,
+																					}}
+																				>
+																					<div className="flex items-center gap-2.5 min-w-0">
+																						<span
+																							className={`font-mono text-[11px] tracking-wider shrink-0 ${
+																								isSelected
+																									? isOverview
+																										? "text-[#d5ccff]"
+																										: "text-[#765DFB]"
+																									: isOverview
+																										? "text-white/40 group-hover/row:text-[#d5ccff]"
+																										: "text-gray-400 group-hover/row:text-[#765DFB]"
+																							}`}
+																						>
+																							{idStr}
+																						</span>
+																						<span className="font-medium text-[13px] truncate">
+																							{industry.name}
+																						</span>
+																					</div>
+																					<ArrowRight
+																						className={`w-3.5 h-3.5 shrink-0 transition-all duration-200 ${
+																							isSelected
+																								? "opacity-100 translate-x-0"
+																								: "opacity-0 -translate-x-1.5 group-hover/row:opacity-100 group-hover/row:translate-x-0"
+																						} ${
+																							isOverview
+																								? "text-[#d5ccff]"
+																								: "text-[#765DFB]"
+																						}`}
+																					/>
+																				</button>
+																				{index !== 4 && (
+																					<div
+																						className={`h-[1px] w-full my-0.5 ${
+																							isOverview
+																								? "bg-white/10"
+																								: "bg-neutral-100"
+																						}`}
+																					/>
+																				)}
+																			</React.Fragment>
+																		)
+																	})}
+																</div>
 															</div>
 														</div>
 													</div>

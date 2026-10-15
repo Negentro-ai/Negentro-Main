@@ -350,3 +350,68 @@
 		animation: none;
 	}
 }
+
+/* Initiatives Dropdown: In-place Industries morphing animation */
+.ini-view-default,
+.ini-view-expanded {
+	display: grid;
+	transition: grid-template-rows 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ini-view-default {
+	grid-template-rows: 1fr;
+}
+
+.ini-view-expanded {
+	grid-template-rows: 0fr;
+}
+
+.ini-view-inner {
+	overflow: hidden;
+	transition: opacity 280ms ease, transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ini-view-default > .ini-view-inner {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.ini-view-expanded > .ini-view-inner {
+	opacity: 0;
+	transform: translateY(0.5rem);
+	pointer-events: none;
+}
+
+/* Expanded State Logic (Driven cleanly by .is-expanded via React state) */
+.group-nav.is-expanded .ini-view-default {
+	grid-template-rows: 0fr;
+}
+
+.group-nav.is-expanded .ini-view-default > .ini-view-inner {
+	opacity: 0;
+	transform: translateY(-0.5rem);
+	pointer-events: none;
+}
+
+.group-nav.is-expanded .ini-view-expanded {
+	grid-template-rows: 1fr;
+}
+
+.group-nav.is-expanded .ini-view-expanded > .ini-view-inner {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* Staggered animation for list items */
+.ini-list-item {
+	opacity: 0;
+	transform: translateX(-0.5rem);
+	transition: opacity 250ms ease, transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group-nav.is-expanded .ini-list-item {
+	opacity: 1;
+	transform: translateX(0);
+}
+
