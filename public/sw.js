@@ -1,4 +1,4 @@
-const CACHE_NAME = 'negentro-cache-v1';
+const CACHE_NAME = 'negentro-cache-v2';
 
 // Core critical assets to cache on install for instant shell rendering
 const PRECACHE_ASSETS = [
@@ -43,6 +43,11 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
+
+  // Skip localhost / development so preview always gets latest changes immediately
+  if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+    return;
+  }
 
   // Skip non-GET requests or browser extension schemes
   if (request.method !== 'GET' || !url.protocol.startsWith('http')) {

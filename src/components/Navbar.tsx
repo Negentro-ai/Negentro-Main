@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { NegentroLogo } from "./Logos"
-import { Menu, X, ArrowUpRight, ArrowRight } from "lucide-react"
+import { Menu, X, ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react"
 import { useLanguage } from "@/lib/i18n"
 import { industryPages as staticIndustryPages } from "@/data/industryPages"
 import { getSupabase } from "@/lib/supabase"
@@ -19,6 +19,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 		null,
 	)
 	const [industryPages, setIndustryPages] = useState<any[]>(staticIndustryPages)
+	const [mobileExpandedSection, setMobileExpandedSection] = useState<
+		string | null
+	>(null)
+	const [mobileIndustriesExpanded, setMobileIndustriesExpanded] =
+		useState(false)
 
 	useEffect(() => {
 		const fetchIndustries = async () => {
@@ -546,26 +551,306 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 			{/* Mobile Drawer with smooth animation */}
 			{mobileOpen && (
 				<div
-					className={`md:hidden border-t px-6 py-4 space-y-3 animate-fade-in ${
+					className={`md:hidden border-t px-5 py-4 space-y-3 animate-fade-in max-h-[calc(100vh-80px)] overflow-y-auto ${
 						isOverview
-							? "border-white/15 bg-[#04050c]/95 backdrop-blur-xl"
+							? "border-white/15 bg-[#04050c]/98 backdrop-blur-2xl"
 							: "border-neutral-200 bg-white"
 					}`}
 				>
 					<div
-						className={`rounded-[10px] p-2 space-y-1 ${
+						className={`rounded-[12px] p-2 space-y-1 ${
 							isOverview ? "bg-white/10" : "bg-secondary"
 						}`}
 					>
 						{navItems.map((item) => {
+							if (item.key === "initiatives") {
+								const isInitiativesActive =
+									activeTab === "use-cases" || activeTab.startsWith("industry:")
+								const isExpanded = mobileExpandedSection === "initiatives"
+
+								return (
+									<div key="initiatives" className="flex flex-col">
+										<button
+											type="button"
+											onClick={() =>
+												setMobileExpandedSection(
+													isExpanded ? null : "initiatives",
+												)
+											}
+											className={`flex items-center justify-between w-full text-left px-4 py-2.5 text-sm font-normal rounded-md transition-all duration-200 ease-out cursor-pointer ${
+												isInitiativesActive
+													? isOverview
+														? "bg-white/20 text-white font-semibold"
+														: "bg-[#765DFB]/10 text-[#765DFB] font-semibold shadow-xs"
+													: isOverview
+														? "text-white/70 hover:text-white hover:bg-white/10"
+														: "text-[#666666] hover:text-[#765DFB] hover:bg-[#765DFB]/5"
+											}`}
+										>
+											<span>{item.label}</span>
+											<ChevronDown
+												className={`w-4 h-4 transition-transform duration-250 ${
+													isExpanded
+														? "rotate-180 text-[#765DFB]"
+														: isOverview
+															? "text-white/60"
+															: "text-neutral-400"
+												}`}
+											/>
+										</button>
+
+										{isExpanded && (
+											<div
+												className={`mt-1 mb-2 ml-2 pl-3 border-l space-y-1.5 py-1 animate-fade-in ${
+													isOverview
+														? "border-white/20"
+														: "border-[#765DFB]/30"
+												}`}
+											>
+												{/* Use Cases Option */}
+												<button
+													type="button"
+													onClick={() => {
+														setActiveTab("use-cases")
+														setMobileOpen(false)
+														setMobileExpandedSection(null)
+													}}
+													className={`flex items-center justify-between w-full text-left px-3 py-2 rounded-lg transition-colors text-sm cursor-pointer ${
+														activeTab === "use-cases"
+															? isOverview
+																? "bg-[#765DFB]/35 text-white font-medium"
+																: "bg-[#765DFB]/15 text-[#765DFB] font-semibold"
+															: isOverview
+																? "text-white/85 hover:text-white hover:bg-white/10"
+																: "text-neutral-700 hover:text-[#765DFB] hover:bg-[#ECCDE5]/30"
+													}`}
+												>
+													<div className="flex flex-col">
+														<span className="font-medium text-[13.5px]">
+															Use Cases
+														</span>
+														<span
+															className={`text-[11px] ${
+																isOverview ? "text-white/50" : "text-neutral-400"
+															}`}
+														>
+															Real-world cognitive workflows
+														</span>
+													</div>
+													<ArrowRight className="w-3.5 h-3.5 opacity-60" />
+												</button>
+
+												{/* Industries Accordion */}
+												<div className="pt-0.5">
+													<button
+														type="button"
+														onClick={() =>
+															setMobileIndustriesExpanded(
+																!mobileIndustriesExpanded,
+															)
+														}
+														className={`flex items-center justify-between w-full text-left px-3 py-2 rounded-lg transition-colors text-sm cursor-pointer ${
+															activeTab.startsWith("industry:")
+																? isOverview
+																	? "text-[#d5ccff] font-medium"
+																	: "text-[#765DFB] font-semibold"
+																: isOverview
+																	? "text-white/85 hover:text-white hover:bg-white/10"
+																	: "text-neutral-700 hover:text-[#765DFB] hover:bg-[#ECCDE5]/30"
+														}`}
+													>
+														<div className="flex flex-col">
+															<span className="font-medium text-[13.5px]">
+																Industries ({industryPages.length})
+															</span>
+															<span
+																className={`text-[11px] ${
+																	isOverview
+																		? "text-white/50"
+																		: "text-neutral-400"
+																}`}
+															>
+																Enterprise architecture by sector
+															</span>
+														</div>
+														<ChevronDown
+															className={`w-3.5 h-3.5 transition-transform duration-200 ${
+																mobileIndustriesExpanded ? "rotate-180" : ""
+															}`}
+														/>
+													</button>
+
+													{mobileIndustriesExpanded && (
+														<div className="grid grid-cols-2 gap-1 mt-1 pl-1">
+															{industryPages.map((industry, index) => {
+																const idStr = String(index + 1).padStart(
+																	2,
+																	"0",
+																)
+																const isSelected =
+																	activeTab === `industry:${industry.slug}`
+																return (
+																	<button
+																		key={industry.slug}
+																		type="button"
+																		onClick={() => {
+																			setActiveTab(
+																				`industry:${industry.slug}`,
+																			)
+																			setMobileOpen(false)
+																			setMobileExpandedSection(null)
+																		}}
+																		className={`flex items-center gap-1.5 px-2 py-1.5 rounded-md text-left text-xs transition-colors cursor-pointer ${
+																			isSelected
+																				? isOverview
+																					? "bg-[#765DFB]/40 text-white font-medium"
+																					: "bg-[#765DFB]/15 text-[#765DFB] font-semibold"
+																				: isOverview
+																					? "text-white/75 hover:text-white hover:bg-white/10"
+																					: "text-neutral-600 hover:text-[#765DFB] hover:bg-neutral-100"
+																		}`}
+																	>
+																		<span className="font-mono text-[10px] opacity-50">
+																			{idStr}
+																		</span>
+																		<span className="truncate">
+																			{industry.name}
+																		</span>
+																	</button>
+																)
+															})}
+														</div>
+													)}
+												</div>
+											</div>
+										)}
+									</div>
+								)
+							}
+
+							if (item.key === "resources") {
+								const isResourcesActive =
+									activeTab === "blog" ||
+									activeTab.startsWith("blog-article:")
+								const isExpanded = mobileExpandedSection === "resources"
+
+								return (
+									<div key="resources" className="flex flex-col">
+										<button
+											type="button"
+											onClick={() =>
+												setMobileExpandedSection(
+													isExpanded ? null : "resources",
+												)
+											}
+											className={`flex items-center justify-between w-full text-left px-4 py-2.5 text-sm font-normal rounded-md transition-all duration-200 ease-out cursor-pointer ${
+												isResourcesActive
+													? isOverview
+														? "bg-white/20 text-white font-semibold"
+														: "bg-[#765DFB]/10 text-[#765DFB] font-semibold shadow-xs"
+													: isOverview
+														? "text-white/70 hover:text-white hover:bg-white/10"
+														: "text-[#666666] hover:text-[#765DFB] hover:bg-[#765DFB]/5"
+											}`}
+										>
+											<span>{item.label}</span>
+											<ChevronDown
+												className={`w-4 h-4 transition-transform duration-250 ${
+													isExpanded
+														? "rotate-180 text-[#765DFB]"
+														: isOverview
+															? "text-white/60"
+															: "text-neutral-400"
+												}`}
+											/>
+										</button>
+
+										{isExpanded && (
+											<div
+												className={`mt-1 mb-2 ml-2 pl-3 border-l space-y-1.5 py-1 animate-fade-in ${
+													isOverview
+														? "border-white/20"
+														: "border-[#765DFB]/30"
+												}`}
+											>
+												{/* Docs Link */}
+												<a
+													href="https://docs.negentro.tech/"
+													target="_blank"
+													rel="noopener noreferrer"
+													onClick={() => {
+														setMobileOpen(false)
+														setMobileExpandedSection(null)
+													}}
+													className={`flex items-center justify-between w-full text-left px-3 py-2 rounded-lg transition-colors text-sm cursor-pointer ${
+														isOverview
+															? "text-white/85 hover:text-white hover:bg-white/10"
+															: "text-neutral-700 hover:text-[#765DFB] hover:bg-[#ECCDE5]/30"
+													}`}
+												>
+													<div className="flex flex-col">
+														<span className="font-medium text-[13.5px]">
+															Documentation
+														</span>
+														<span
+															className={`text-[11px] ${
+																isOverview ? "text-white/50" : "text-neutral-400"
+															}`}
+														>
+															API reference & guides
+														</span>
+													</div>
+													<ArrowUpRight className="w-4 h-4 opacity-70" />
+												</a>
+
+												{/* Blog Link */}
+												<button
+													type="button"
+													onClick={() => {
+														setActiveTab("blog")
+														setMobileOpen(false)
+														setMobileExpandedSection(null)
+													}}
+													className={`flex items-center justify-between w-full text-left px-3 py-2 rounded-lg transition-colors text-sm cursor-pointer ${
+														activeTab === "blog" ||
+														activeTab.startsWith("blog-article:")
+															? isOverview
+																? "bg-[#765DFB]/35 text-white font-medium"
+																: "bg-[#765DFB]/15 text-[#765DFB] font-semibold"
+															: isOverview
+																? "text-white/85 hover:text-white hover:bg-white/10"
+																: "text-neutral-700 hover:text-[#765DFB] hover:bg-[#ECCDE5]/30"
+													}`}
+												>
+													<div className="flex flex-col">
+														<span className="font-medium text-[13.5px]">
+															Blog
+														</span>
+														<span
+															className={`text-[11px] ${
+																isOverview ? "text-white/50" : "text-neutral-400"
+															}`}
+														>
+															Engineering deep dives & news
+														</span>
+													</div>
+													<ArrowRight className="w-3.5 h-3.5 opacity-60" />
+												</button>
+											</div>
+										)}
+									</div>
+								)
+							}
+
 							return (
 								<button
 									key={item.key}
 									onClick={() => {
 										setActiveTab(item.key)
 										setMobileOpen(false)
+										setMobileExpandedSection(null)
 									}}
-									className={`block w-full text-left px-4 py-2.5 text-sm font-normal rounded-md transition-all duration-200 ease-out ${
+									className={`block w-full text-left px-4 py-2.5 text-sm font-normal rounded-md transition-all duration-200 ease-out cursor-pointer ${
 										activeTab === item.key
 											? isOverview
 												? "bg-white/20 text-white font-semibold"
