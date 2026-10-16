@@ -50,33 +50,6 @@ async function processDirectory(dir) {
         }
       }
     }
-
-    // 2. Check SVGs for heavy embedded base64 images (>50KB)
-    if (ext === '.svg') {
-      const svgStat = fs.statSync(fullPath);
-      if (svgStat.size > 50 * 1024) {
-        const content = fs.readFileSync(fullPath, 'utf8');
-        const match = content.match(/data:image\/(?:png|jpeg|jpg);base64,([^"]+)/i);
-        if (match) {
-          try {
-            const rawBuffer = Buffer.from(match[1], 'base64');
-            const compressed = await sharp(rawBuffer)
-              .webp({ quality: 85, effort: 6 })
-              .toBuffer();
-
-            const newSvg = content.replace(
-              /data:image\/(?:png|jpeg|jpg);base64,[^"]+/i,
-              `data:image/webp;base64,${compressed.toString('base64')}`
-            );
-            fs.writeFileSync(fullPath, newSvg, 'utf8');
-            const newStat = fs.statSync(fullPath);
-            console.log(`[SVG Optimized] ${fullPath}: ${(svgStat.size/1024).toFixed(1)} KB -> ${(newStat.size/1024).toFixed(1)} KB`);
-          } catch (err) {
-            console.warn(`[Skip] Could not optimize embedded SVG in ${fullPath}:`, err.message);
-          }
-        }
-      }
-    }
   }
 }
 

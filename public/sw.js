@@ -5,11 +5,10 @@ const PRECACHE_ASSETS = [
   '/',
   '/index.html',
   '/logos/fevicon.svg',
-  '/logos/negentro.webp',
   '/logos/negentro.svg',
-  '/assets/piyapi-logo-exact.webp',
-  '/assets/context-problem.webp',
-  '/assets/wrappers-problem.webp',
+  '/assets/piyapi-logo-exact.svg',
+  '/assets/context-problem.svg',
+  '/assets/wrappers-problem.svg',
   '/assets/native-problem.webp',
   '/assets/cta-bg-frame88.webp'
 ];

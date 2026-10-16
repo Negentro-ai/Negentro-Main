@@ -19,8 +19,8 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 	// Preload all 3 tab images immediately so tab switching is instantaneous
 	useEffect(() => {
 		preloadImages([
-			"/assets/context-problem.webp",
-			"/assets/wrappers-problem.webp",
+			"/assets/context-problem.svg",
+			"/assets/wrappers-problem.svg",
 			"/assets/native-problem.webp",
 		])
 	}, [])
@@ -40,14 +40,14 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 			label: t.problem.tab1Label,
 			cardTitle: t.problem.tab1CardTitle,
 			cardDescription: t.problem.tab1CardDesc,
-			imageSrc: "/assets/context-problem.webp",
+			imageSrc: "/assets/context-problem.svg",
 		},
 		wrappers: {
 			id: "wrappers",
 			label: t.problem.tab2Label,
 			cardTitle: t.problem.tab2CardTitle,
 			cardDescription: t.problem.tab2CardDesc,
-			imageSrc: "/assets/wrappers-problem.webp",
+			imageSrc: "/assets/wrappers-problem.svg",
 		},
 		native: {
 			id: "native",

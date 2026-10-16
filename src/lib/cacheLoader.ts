@@ -5,11 +5,10 @@
 
 // Critical interactive & visual assets to warm in browser cache
 export const CRITICAL_ASSETS = [
-	"/logos/negentro.webp",
 	"/logos/negentro.svg",
-	"/assets/piyapi-logo-exact.webp",
-	"/assets/context-problem.webp",
-	"/assets/wrappers-problem.webp",
+	"/assets/piyapi-logo-exact.svg",
+	"/assets/context-problem.svg",
+	"/assets/wrappers-problem.svg",
 	"/assets/native-problem.webp",
 	"/assets/cta-bg-frame88.webp",
 	"/logos/notion.svg",
