@@ -75,7 +75,7 @@ export const WorkflowsSection: React.FC = () => {
 								<img
 									src={wf.image}
 									alt={wf.title}
-									loading="eager"
+									loading="lazy"
 									decoding="async"
 									width={446}
 									height={276}

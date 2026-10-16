@@ -38,7 +38,7 @@ export const featuredArticles: BlogArticle[] = [
 		category: "Engineering",
 		date: "Sep 18, 2026",
 		readTime: "6 min read",
-		image: "/assets/blog/featured-reliable-ai.png",
+		image: "/assets/blog/featured-reliable-ai.webp",
 	},
 ]
 

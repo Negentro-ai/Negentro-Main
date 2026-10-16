@@ -220,7 +220,7 @@ export const BlogPage = ({
 					</p>
 					<div className="mx-auto mt-8 aspect-1098/366 w-full max-w-274.5 overflow-hidden rounded-[10px] bg-[#f9f8ff]">
 						<img
-							src="/assets/blog/hero-isometric.png"
+							src="/assets/blog/hero-isometric.webp"
 							alt="An isometric view of connected persistent-memory systems"
 							width={1098}
 							height={366}

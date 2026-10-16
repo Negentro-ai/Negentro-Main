@@ -104,7 +104,7 @@ export default function CTAWithVerticalMarquee({
 
 			{/* Cosmic Nebula Background Image Overlay with Soft Blend */}
 			<img
-				src="/assets/cta-bg-frame88.jpg"
+				src="/assets/cta-bg-frame88.webp"
 				alt="Cosmic Nebula Background"
 				loading="lazy"
 				decoding="async"

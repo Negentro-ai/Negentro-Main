@@ -62,7 +62,7 @@ export const ResearchPapersSection: React.FC = () => {
 								<img
 									src={article.image}
 									alt={article.title}
-									loading="eager"
+									loading="lazy"
 									decoding="async"
 									width={315}
 									height={169}

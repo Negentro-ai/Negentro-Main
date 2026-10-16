@@ -45,7 +45,7 @@ export const ResearchPage: React.FC = () => {
           <div className="flex-1 relative w-full flex justify-center lg:justify-end items-center">
             {/* Using a placeholder for the wireframe globe */}
             <div className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full bg-linear-to-tr from-[#765DFB]/20 to-[#B49CFF]/10 blur-xl absolute opacity-60 mix-blend-multiply" />
-            <img src="/assets/use-cases/hero_server_room.jpg" alt="Wireframe Globe Placeholder" className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] object-cover rounded-full mix-blend-luminosity opacity-30 shadow-2xl relative z-10 scale-95" />
+            <img src="/assets/use-cases/hero_server_room.webp" alt="Wireframe Globe Placeholder" className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] object-cover rounded-full mix-blend-luminosity opacity-30 shadow-2xl relative z-10 scale-95" />
           </div>
         </div>
 

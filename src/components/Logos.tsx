@@ -4,15 +4,19 @@ export const NegentroLogo: React.FC<{ className?: string }> = ({
 	className = "h-8 sm:h-9",
 }) => {
 	return (
-		<img
-			src="/logos/negentro.svg"
-			alt="Negentro"
-			width={160}
-			height={36}
-			loading="lazy"
-			decoding="async"
-			className={`select-none object-contain ${className}`}
-		/>
+		<picture className={`inline-flex items-center ${className}`}>
+			<source srcSet="/logos/negentro.webp" type="image/webp" />
+			<img
+				src="/logos/negentro.svg"
+				alt="Negentro"
+				width={160}
+				height={36}
+				loading="eager"
+				fetchPriority="high"
+				decoding="async"
+				className={`select-none object-contain ${className}`}
+			/>
+		</picture>
 	)
 }
 

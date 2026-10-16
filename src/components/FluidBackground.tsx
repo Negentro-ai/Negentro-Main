@@ -67,7 +67,14 @@ export const FluidBackground: React.FC = () => {
 
 			const { gl, ext } = getWebGLContext(canvas)
 
-			if (isMobile()) config.SHADING = false
+			if (isMobile()) {
+				config.SHADING = false
+				config.DYE_RESOLUTION = 512
+				config.SIM_RESOLUTION = 128
+				config.PRESSURE_ITERATIONS = 12
+				config.BLOOM_ITERATIONS = 4
+				config.BLOOM_RESOLUTION = 128
+			}
 			if (!ext.supportLinearFiltering) {
 				config.SHADING = false
 				config.BLOOM = false
@@ -199,7 +206,10 @@ export const FluidBackground: React.FC = () => {
 			}
 
 			function isMobile() {
-				return /Mobi|Android/i.test(navigator.userAgent)
+				return (
+					/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+					(typeof window !== "undefined" && window.innerWidth < 768)
+				)
 			}
 
 			class GLProgram {

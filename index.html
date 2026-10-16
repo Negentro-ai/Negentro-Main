@@ -4,27 +4,25 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/logos/fevicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Negentro AI</title>
   <meta name="description"
     content="Negentro (negentro.tech) is an AI infrastructure company building cognitive memory architecture and intelligent agent systems. Home of PiyAPI — next-generation AI memory infrastructure." />
-  <!-- Google Fonts: DM Sans & JetBrains Mono -->
+  <meta name="theme-color" content="#04050c" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Preload Critical Above-The-Fold Assets -->
+  <link rel="preload" as="image" href="/logos/negentro.webp" type="image/webp" fetchpriority="high" />
+
+  <!-- Google Fonts: DM Sans & JetBrains Mono with optimized weight subsets -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    rel="preload"
-    as="style"
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet"
-    media="print"
-    onload="this.media='all'" />
-  <noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet" />
-  </noscript>
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://negentro.tech/" />
@@ -44,7 +42,7 @@
   <meta name="twitter:image" content="https://negentro.tech/logos/negentro.svg" />
 
   <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -78,7 +76,7 @@
 </head>
 
 <body
-  class="bg-white text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white min-h-screen overflow-x-hidden w-full">
+  class="bg-[#04050c] text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white min-h-screen overflow-x-hidden w-full">
   <div id="root">
     <style>
       .app-skeleton {
@@ -88,6 +86,7 @@
         width: 100%;
         padding: 24px;
         box-sizing: border-box;
+        background-color: #04050c;
       }
       .app-skeleton-header {
         height: 60px;
@@ -103,14 +102,14 @@
       .app-skeleton-logo {
         width: 140px;
         height: 32px;
-        background-color: #f3f4f6;
+        background-color: rgba(255, 255, 255, 0.08);
         border-radius: 8px;
         animation: skeleton-pulse 1.5s infinite ease-in-out;
       }
       .app-skeleton-nav {
         width: 320px;
         height: 32px;
-        background-color: #f3f4f6;
+        background-color: rgba(255, 255, 255, 0.08);
         border-radius: 8px;
         animation: skeleton-pulse 1.5s infinite ease-in-out;
         display: none;
@@ -133,7 +132,7 @@
         width: 80%;
         max-width: 800px;
         height: 64px;
-        background-color: #f3f4f6;
+        background-color: rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         animation: skeleton-pulse 1.5s infinite ease-in-out;
       }
@@ -141,21 +140,21 @@
         width: 60%;
         max-width: 500px;
         height: 32px;
-        background-color: #f3f4f6;
+        background-color: rgba(255, 255, 255, 0.08);
         border-radius: 8px;
         animation: skeleton-pulse 1.5s infinite ease-in-out;
       }
       .app-skeleton-button {
         width: 180px;
         height: 48px;
-        background-color: #f3f4f6;
+        background-color: rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         margin-top: 16px;
         animation: skeleton-pulse 1.5s infinite ease-in-out;
       }
       @keyframes skeleton-pulse {
         0%, 100% { opacity: 1; }
-        50% { opacity: 0.4; }
+        50% { opacity: 0.3; }
       }
     </style>
     <div class="app-skeleton">

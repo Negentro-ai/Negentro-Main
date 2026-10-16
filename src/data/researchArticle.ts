@@ -40,7 +40,7 @@ export const researchArticle = {
 			"To understand how memory architecture behaves under load, we evaluate performance across illustrative scale tiers of 100K, 1M, and 10M stored items. These values represent research benchmark scale, not claims about any specific deployment or dataset.",
 			"Across these tiers, we observe how retrieval precision, latency, and reasoning quality shift as the underlying memory store grows, and how architectural choices affect the rate of degradation.",
 		],
-		chartImage: "/assets/research/memory-performance-chart.png",
+		chartImage: "/assets/research/memory-performance-chart.webp",
 		chartAlt:
 			"Line chart comparing memory performance at 100K, 1M, and 10M items. Negentro stays near 92 while System A and System B decline as scale increases.",
 		chartNote:

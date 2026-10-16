@@ -8,32 +8,32 @@ export const UseCasesPage: React.FC = () => {
 		{
 			title: "Customer knowledge that compounds",
 			desc: "Bring conversations, documents, emails and calls into one persistent customer memory.",
-			img: "/assets/use-cases/uc_enterprise_knowledge.jpg",
+			img: "/assets/use-cases/uc_enterprise_knowledge.webp",
 		},
 		{
 			title: "Onboarding that picks up where it left off",
 			desc: "Every interaction starts with the customer context your AI already knows.",
-			img: "/assets/use-cases/uc_onboarding.jpg",
+			img: "/assets/use-cases/uc_onboarding.webp",
 		},
 		{
 			title: "Documents agents can actually remember",
 			desc: "Extract, store and retrieve the knowledge inside long-running document workflows.",
-			img: "/assets/use-cases/uc_doc_analysis.jpg",
+			img: "/assets/use-cases/uc_doc_analysis.webp",
 		},
 		{
 			title: "Workflows with shared state",
 			desc: "Let multiple agents and steps work from the same persistent context.",
-			img: "/assets/use-cases/uc_workflow_automation.jpg",
+			img: "/assets/use-cases/uc_workflow_automation.webp",
 		},
 		{
 			title: "Search across audio and video",
 			desc: "Turn recordings into searchable knowledge your AI can retrieve by meaning.",
-			img: "/assets/use-cases/uc_asset_search.jpg",
+			img: "/assets/use-cases/uc_asset_search.webp",
 		},
 		{
 			title: "Coding agents with memory",
 			desc: "Keep project context, decisions and patterns available across sessions.",
-			img: "/assets/use-cases/uc_coding_agents.jpg",
+			img: "/assets/use-cases/uc_coding_agents.webp",
 		},
 	]
 
@@ -45,7 +45,7 @@ export const UseCasesPage: React.FC = () => {
 				{/* Hero Section */}
 				<div className="relative w-full min-h-115 md:min-h-130 rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center p-8 sm:p-12">
 					<img
-						src="/assets/use-cases/hero_server_room.jpg"
+						src="/assets/use-cases/hero_server_room.webp"
 						alt="Server Room"
 						className="absolute inset-0 w-full h-full object-cover"
 					/>

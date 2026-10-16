@@ -1,7 +1,8 @@
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ChevronRight } from "lucide-react"
 import { useLanguage } from "@/lib/i18n"
+import { preloadImages } from "@/lib/cacheLoader"
 
 export interface MemoryParadigmSectionProps {
 	onOpenConsole?: () => void
@@ -14,6 +15,15 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 }) => {
 	const { t } = useLanguage()
 	const [activeTab, setActiveTab] = useState<TabType>("context")
+
+	// Preload all 3 tab images immediately so tab switching is instantaneous
+	useEffect(() => {
+		preloadImages([
+			"/assets/context-problem.webp",
+			"/assets/wrappers-problem.webp",
+			"/assets/native-problem.webp",
+		])
+	}, [])
 
 	const tabData: Record<
 		TabType,
@@ -30,14 +40,14 @@ export const MemoryParadigmSection: React.FC<MemoryParadigmSectionProps> = ({
 			label: t.problem.tab1Label,
 			cardTitle: t.problem.tab1CardTitle,
 			cardDescription: t.problem.tab1CardDesc,
-			imageSrc: "/assets/context-problem.svg",
+			imageSrc: "/assets/context-problem.webp",
 		},
 		wrappers: {
 			id: "wrappers",
 			label: t.problem.tab2Label,
 			cardTitle: t.problem.tab2CardTitle,
 			cardDescription: t.problem.tab2CardDesc,
-			imageSrc: "/assets/wrappers-problem.svg",
+			imageSrc: "/assets/wrappers-problem.webp",
 		},
 		native: {
 			id: "native",

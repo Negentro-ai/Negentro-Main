@@ -128,15 +128,18 @@ export const DifferentApproachSection: React.FC = () => {
 				<div className="mx-auto w-full max-w-[1257.5px] h-[180px] sm:h-[220px] md:h-[256.73px] aspect-[1257.5/256.73] rounded-[16px] overflow-hidden shadow-2xl relative border border-[#4846AC]/40 group">
 					<WavyBackground className="w-full h-full flex items-center justify-center bg-[#0e0728]">
 						<div className="relative z-10 flex items-center justify-center w-full h-full px-4">
-							<img
-								src="/assets/piyapi-logo-exact.svg"
-								alt="PiyAPI"
-								loading="lazy"
-								decoding="async"
-								width={300}
-								height={64}
-								className="w-[24%] min-w-[170px] max-w-[300px] h-auto object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.8)] select-none"
-							/>
+							<picture className="w-[24%] min-w-[170px] max-w-[300px] flex items-center justify-center">
+								<source srcSet="/assets/piyapi-logo-exact.webp" type="image/webp" />
+								<img
+									src="/assets/piyapi-logo-exact.svg"
+									alt="PiyAPI"
+									loading="lazy"
+									decoding="async"
+									width={300}
+									height={64}
+									className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.8)] select-none"
+								/>
+							</picture>
 						</div>
 					</WavyBackground>
 				</div>
@@ -262,15 +265,18 @@ export const DifferentApproachSection: React.FC = () => {
 										Native Memory
 									</th>
 									<th className="py-3 sm:py-5 px-2 sm:px-4 w-[18%] text-center align-middle bg-[#7B6EF6] rounded-t-[12px] sm:rounded-t-[14px]">
-										<img
-											src="/assets/piyapi-logo-exact.svg"
-											alt="Piya.pi"
-											loading="lazy"
-											decoding="async"
-											width={120}
-											height={30}
-											className="h-[20px] sm:h-[28px] md:h-[30px] w-auto mx-auto object-contain select-none"
-										/>
+										<picture className="inline-block mx-auto">
+											<source srcSet="/assets/piyapi-logo-exact.webp" type="image/webp" />
+											<img
+												src="/assets/piyapi-logo-exact.svg"
+												alt="Piya.pi"
+												loading="lazy"
+												decoding="async"
+												width={120}
+												height={30}
+												className="h-[20px] sm:h-[28px] md:h-[30px] w-auto mx-auto object-contain select-none"
+											/>
+										</picture>
 									</th>
 								</tr>
 							</thead>
