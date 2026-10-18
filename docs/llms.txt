@@ -1,0 +1,59 @@
+# Negentro Documentation
+
+> Negentro is the persistent memory and context layer for AI agents. Store, search, and recall context across sessions via SDK, REST API, or Model Context Protocol (MCP).
+
+## Getting Started
+- [Build AI Applications With Negentro Memory and Context](https://docs.negentro.tech/index.md): Introduction to Negentro's memory, context, and developer infrastructure.
+- [Quickstart Guide](https://docs.negentro.tech/quickstart.md): Start using Negentro in less than 5 minutes.
+- [Platform Overview](https://docs.negentro.tech/platform/overview.md): Architecture, memory models, context assembly, and hybrid retrieval engine.
+
+## Core Platform & Architecture
+- [Architecture](https://docs.negentro.tech/platform/architecture.md): Understand bitemporal graphs, bitemporal facts, and O(1) constant-time latency.
+- [Persistent Memory](https://docs.negentro.tech/platform/memory.md): Create, store, and manage stateful agent memory across conversations and sessions.
+- [Context Assembly](https://docs.negentro.tech/platform/context.md): Token-budget-aware context assembly for LLM system prompts.
+- [Retrieval Engine](https://docs.negentro.tech/platform/retrieval.md): Hybrid search combining dense vectors (HNSW) and sparse BM25 trigrams.
+- [Users & Identity](https://docs.negentro.tech/platform/users.md): Multi-tenant isolation and user-scoped context.
+- [Data Management](https://docs.negentro.tech/platform/data.md): Data lifecycle, privacy redaction, updates, and retention.
+- [Platform Integrations](https://docs.negentro.tech/platform/integrations.md): Connect Negentro to your existing AI stack.
+- [Analytics](https://docs.negentro.tech/platform/analytics.md): Measure memory hit rate, retrieval latency, and token consumption.
+
+## Open Source & Self-Hosted
+- [Open Source Overview](https://docs.negentro.tech/open-source/overview.md): Run Negentro on your own infrastructure with full data control.
+- [Python SDK Quickstart](https://docs.negentro.tech/open-source/python-sdk.md): Install and integrate embedded memory in Python agents (piyapi-memory).
+- [Node.js Quickstart](https://docs.negentro.tech/open-source/nodejs-quickstart.md): Integrate stateful memory into TypeScript and Node.js applications (@piyapi/sdk).
+- [Web Studio](https://docs.negentro.tech/open-source/web-studio.md): Visual administrative interface and debugger for inspecting memories.
+- [Self-Hosted REST API](https://docs.negentro.tech/open-source/rest-api.md): Complete HTTP interface for interacting with the Negentro memory engine.
+- [Configuration](https://docs.negentro.tech/open-source/configuration.md): Fine-tune vector dimensions, chunking strategies, and inference pipelines.
+- [LLMs & Model Routing](https://docs.negentro.tech/open-source/llms.md): Configure inference engines for fact extraction and context generation.
+- [Vector Databases](https://docs.negentro.tech/open-source/vector-databases.md): Configure vector storage powering semantic memory recall.
+- [Embeddings](https://docs.negentro.tech/open-source/embeddings.md): Configure dense vector representations across local and cloud models.
+- [Storage & Knowledge Graphs](https://docs.negentro.tech/open-source/storage.md): Relational memories, bitemporal graphs, and cache layers.
+- [UnifiedScorer & Reranking](https://docs.negentro.tech/open-source/reranking.md): Combine dense vectors, sparse BM25, recency decay, and cross-encoders.
+- [Multimodal Memory](https://docs.negentro.tech/open-source/multimodal.md): Store and retrieve memories across images, audio transcripts, and documents.
+
+## Agent Plugins & Coding Agents
+- [Claude Code Integration](https://docs.negentro.tech/agent-plugins/claude-code.md): Connect Negentro memory directly to Claude Code CLI agents.
+- [Cursor IDE Integration](https://docs.negentro.tech/agent-plugins/cursor.md): Stateful memory and context integration for Cursor via MCP.
+- [Model Context Protocol (MCP)](https://docs.negentro.tech/integrations/mcp.md): Official stdio/SSE MCP server with 30 memory tools and context resources.
+
+## Integrations
+- [Integrations Overview](https://docs.negentro.tech/integrations/overview.md): Connect Negentro with frameworks, developer tools, and infrastructure.
+- [LangChain Integration](https://docs.negentro.tech/integrations/langchain.md): Official LangChain adapter for persistent bitemporal memory retrieval.
+- [REST API Integration](https://docs.negentro.tech/integrations/rest-api.md): Direct HTTP access to memory CRUD, vector search, and context assembly.
+- [Client SDKs](https://docs.negentro.tech/integrations/sdks.md): Official client libraries for TypeScript (@piyapi/sdk) and Python (piyapi-memory).
+- [Webhooks](https://docs.negentro.tech/integrations/webhooks.md): Real-time HTTP callbacks for memory mutations with HMAC-SHA256 signatures.
+- [PostgreSQL & pgvector](https://docs.negentro.tech/integrations/postgresql.md): Bitemporal storage substrate and dense vector indexes.
+- [Redis Semantic Caching](https://docs.negentro.tech/integrations/redis.md): Low-latency semantic caching layer and token acceleration.
+- [Hybrid Search Engine](https://docs.negentro.tech/integrations/vectordbs.md): Multi-signal retrieval combining dense vector search and BM25.
+
+## API Reference
+- [API Reference Overview](https://docs.negentro.tech/api-reference/overview.md): REST API reference for the Negentro platform.
+- [Add Memories](https://docs.negentro.tech/api-reference/add-memories.md): Endpoint for storing new memory objects.
+- [Get Memories](https://docs.negentro.tech/api-reference/get-memories.md): Endpoint for listing memories.
+- [Search Memories](https://docs.negentro.tech/api-reference/search-memories.md): Endpoint for hybrid search across memories.
+- [Update Memory](https://docs.negentro.tech/api-reference/update-memory.md): Endpoint for modifying an existing memory record.
+- [Delete Memory](https://docs.negentro.tech/api-reference/delete-memory.md): Endpoint for removing a memory record.
+
+## Optional
+- [Full Documentation Snapshot](https://docs.negentro.tech/llms-full.txt): Complete documentation corpus compiled into a single text snapshot.
+- [Agent Skill Definition](https://docs.negentro.tech/skill.md): Structured product capabilities, operating rules, and tool guidelines for agents.

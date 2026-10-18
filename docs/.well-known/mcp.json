@@ -1,0 +1,17 @@
+{
+  "name": "negentro-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Negentro persistent memory and context retrieval",
+  "transport": "stdio",
+  "command": "npx",
+  "args": ["-y", "@piyapi/mcp-server"],
+  "endpoints": {
+    "search": "https://docs.negentro.tech/mcp"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": true
+  },
+  "documentation": "https://docs.negentro.tech/integrations/mcp"
+}

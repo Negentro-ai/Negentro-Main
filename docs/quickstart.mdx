@@ -5,13 +5,75 @@ description: "Start using Negentro in less than 5 minutes."
 
 # Getting Started
 
-To get started with Negentro, follow these simple steps.
+To get started with Negentro, follow these simple steps to install the client, configure your API credentials, and store your first persistent memory.
 
-## 1. Sign Up
-Go to your Negentro dashboard and create an account.
+## 1. Install the SDK
 
-## 2. API Keys
-Navigate to your settings and generate an API key.
+Install the official client for your preferred runtime:
 
-## 3. Make your first request
-You are now ready to make your first AI request!
+<CodeGroup>
+```bash npm
+npm install @piyapi/sdk
+```
+
+```bash pip
+pip install piyapi-memory
+```
+</CodeGroup>
+
+## 2. Configure Your API Key
+
+Get your API key from the [Negentro Dashboard](https://piyapi.cloud/) and export it in your environment:
+
+```bash
+export PIYAPI_API_KEY="sk_live_your_key_here"
+```
+
+## 3. Store and Retrieve Your First Memory
+
+Initialize the client and save a bitemporal memory fact:
+
+<CodeGroup>
+```typescript TypeScript
+import { PiyApi } from '@piyapi/sdk';
+
+const client = new PiyApi({
+  apiKey: process.env.PIYAPI_API_KEY!,
+});
+
+// Store a persistent memory fact
+await client.memory.add({
+  content: 'User prefers dark mode and concise TypeScript examples',
+  userId: 'user_1029',
+  tags: ['preference', 'ui'],
+});
+
+// Retrieve relevant context for a model prompt
+const context = await client.context.retrieve({
+  query: 'How should I format this component?',
+  userId: 'user_1029',
+  maxTokens: 1000,
+});
+```
+
+```python Python
+import os
+from piyapi import PiyApi
+
+client = PiyApi(api_key=os.environ["PIYAPI_API_KEY"])
+
+# Store a persistent memory fact
+client.memory.add(
+    content="User prefers dark mode and concise TypeScript examples",
+    user_id="user_1029",
+    tags=["preference", "ui"]
+)
+
+# Search memories
+results = client.memory.search(
+    query="ui preference",
+    user_id="user_1029",
+    limit=5
+)
+```
+</CodeGroup>
