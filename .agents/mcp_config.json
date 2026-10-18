@@ -4,7 +4,7 @@
 			"serverUrl": "https://mcp.figma.com/mcp"
 		},
 		"Mintlify": {
-			"serverUrl": "https://mcp.mintlify.com"
+			"url": "https://mcp.mintlify.com"
 		}
 	}
 }
