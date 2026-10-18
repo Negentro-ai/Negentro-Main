@@ -1,6 +1,6 @@
 {
 	"name": "Negentro Docs",
-	"theme": "luma",
+	"theme": "mint",
 	"colors": {
 		"primary": "#765DFB",
 		"light": "#F9F8FF",
@@ -346,5 +346,5 @@
   "styling": {
     "eyebrows": "section"
   },
-  "description": "Open-source memory and context infrastructure for AI agents. Self-host or use the cloud API with hybrid search, MCP and LangChain support."
+  "description": "Negentro is the persistent memory and context layer for AI agents. Store, search and recall context across sessions via SDK, REST API or MCP."
 }
