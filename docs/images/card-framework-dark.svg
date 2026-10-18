@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 169" width="100%" height="100%">
+  <rect width="400" height="169" fill="#161426"/>
+  <!-- 2x2 Framework Cards -->
+  <!-- Row 1 -->
+  <g filter="drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.3))">
+    <rect x="58" y="24" width="134" height="52" rx="8" fill="#1f1c33" stroke="#353052" stroke-width="1"/>
+    <text x="125" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#f1f5f9" text-anchor="middle">Python</text>
+  </g>
+  <g filter="drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.3))">
+    <rect x="208" y="24" width="134" height="52" rx="8" fill="#1f1c33" stroke="#353052" stroke-width="1"/>
+    <text x="275" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#f1f5f9" text-anchor="middle">LangChain</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g filter="drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.3))">
+    <rect x="58" y="92" width="134" height="52" rx="8" fill="#1f1c33" stroke="#353052" stroke-width="1"/>
+    <text x="125" y="123" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#f1f5f9" text-anchor="middle">LlamaIndex</text>
+  </g>
+  <g filter="drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.3))">
+    <rect x="208" y="92" width="134" height="52" rx="8" fill="#1f1c33" stroke="#353052" stroke-width="1"/>
+    <text x="275" y="123" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#f1f5f9" text-anchor="middle">Vercel AI</text>
+  </g>
+</svg>

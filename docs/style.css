@@ -32,7 +32,7 @@ html.dark img.nav-logo[src*="negentroailogo.png"]:not([src*="negentroailogo-dark
 
 /* Homepage only: retain native navigation, footer, and Card components. */
 html:has(.negentro-guides) {
-  --content-width: 1240px;
+  --content-width: 1440px;
 }
 html:has(.negentro-guides):not(.dark) #background-color,
 html:has(.negentro-guides):not(.dark) body {
@@ -41,18 +41,27 @@ html:has(.negentro-guides):not(.dark) body {
 html:has(.negentro-guides) #header,
 html:has(.negentro-guides) #page-context-menu,
 html:has(.negentro-guides) #pagination {
-  display: none;
+  display: none !important;
 }
+
+html:has(.negentro-guides) #content-container,
 html:has(.negentro-guides) #content-area,
-html:has(.negentro-guides) #content {
-  width: 100%;
-  max-width: 1240px !important;
-  margin-inline: auto;
+html:has(.negentro-guides) #content,
+html:has(.negentro-guides) main,
+html:has(.negentro-guides) [data-page-mode] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
 }
+
 html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides) {
   display: flex;
   flex-direction: column;
-  padding: 64px 0 80px;
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin-inline: auto !important;
+  padding: 56px clamp(16px, 3vw, 48px) 80px !important;
 }
 html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides)::before {
   content: "NEGENTRO / DOCS";
@@ -61,6 +70,8 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides):
   color: #765dfb;
   font: 12px/1.5 ui-monospace, monospace;
   margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 {
   order: 1;
@@ -103,7 +114,7 @@ html:has(.negentro-guides) #topbar-cta-button {
 }
 html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   order: 2;
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 auto;
   text-align: center;
   color: #70717b;
@@ -116,7 +127,7 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   grid-template-columns: repeat(2, max-content);
   justify-content: center;
   gap: 14px;
-  margin: 36px auto 80px !important;
+  margin: 36px auto 72px !important;
 }
 .negentro-actions :is(.negentro-action-primary, .negentro-action-secondary) {
   margin: 0;
@@ -149,11 +160,11 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
 }
 .negentro-guides {
   order: 4;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   align-items: stretch;
-  width: 100%;
-  gap: 18px;
+  width: 100% !important;
+  gap: 22px !important;
   margin: 0 !important;
 }
 .negentro-guide {
@@ -163,18 +174,21 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   margin: 0 !important;
   padding: 0 !important;
   border-radius: 16px;
-  border: 1px solid #e6e4eb;
-  box-shadow: 0 2px 5px rgb(0 5 14 / 4%);
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  border: 1px solid #e4e2eb;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 5, 14, 0.05), 0 1px 2px rgba(0, 5, 14, 0.03);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 .negentro-guide:hover {
   border-color: #b8aaff;
-  box-shadow: 0 6px 18px rgb(118 93 251 / 10%);
+  box-shadow: 0 12px 32px rgba(118, 93, 251, 0.12);
+  transform: translateY(-2px);
 }
 .negentro-guide:focus-visible {
   outline: 2px solid #765dfb;
   outline-offset: 4px;
 }
+
 /* Decorative panels matching Figma design */
 .negentro-guide::before {
   content: "";
@@ -188,6 +202,7 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   border-bottom: 1px solid #f0edf9;
 }
 
+/* Light mode illustrations */
 .negentro-memory::before {
   background-image: url('/images/card-memory.svg');
 }
@@ -207,6 +222,26 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   background-image: url('/images/card-infrastructure.svg');
 }
 
+/* Dark mode illustrations */
+html.dark .negentro-memory::before, .dark .negentro-memory::before {
+  background-image: url('/images/card-memory-dark.svg');
+}
+html.dark .negentro-agent::before, .dark .negentro-agent::before {
+  background-image: url('/images/card-agent-dark.svg');
+}
+html.dark .negentro-workflow::before, .dark .negentro-workflow::before {
+  background-image: url('/images/card-workflow-dark.svg');
+}
+html.dark .negentro-framework::before, .dark .negentro-framework::before {
+  background-image: url('/images/card-framework-dark.svg');
+}
+html.dark .negentro-example::before, .dark .negentro-example::before {
+  background-image: url('/images/card-example-dark.svg');
+}
+html.dark .negentro-infrastructure::before, .dark .negentro-infrastructure::before {
+  background-image: url('/images/card-infrastructure-dark.svg');
+}
+
 .negentro-memory { --guide-label: "01"; }
 .negentro-agent { --guide-label: "02"; }
 .negentro-workflow { --guide-label: "GUIDE"; }
@@ -215,54 +250,74 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
 .negentro-infrastructure { --guide-label: "REFERENCE"; }
 
 .negentro-guide [data-component-part="card-content-container"] {
-  padding: 20px 22px 24px;
+  padding: 22px 24px 26px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .negentro-guide [data-component-part="card-title"] {
   position: relative;
-  padding-right: 48px;
-  margin: 0 0 9px;
-  font-size: 16px;
-  line-height: 1.45;
+  padding-right: 52px;
+  margin: 0 0 10px;
+  font-size: 16.5px;
+  line-height: 1.4;
   font-weight: 650;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  color: #0f172a;
 }
 .negentro-guide [data-component-part="card-title"]::after {
   content: var(--guide-label);
   position: absolute;
   right: 0;
-  top: 4px;
+  top: 3px;
   color: #765dfb;
-  font: 10px/1.5 ui-monospace, monospace;
+  font: 11px/1.5 ui-monospace, monospace;
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 .negentro-guide [data-component-part="card-content"] {
   margin: 0;
-  color: #777982;
+  color: #64748b;
   font-size: 13.5px;
   line-height: 1.55;
 }
 .negentro-guide [data-component-part="card-content"] p {
   margin: 0;
 }
+
+/* Dark mode styling for high visibility and contrast */
 html.dark .negentro-guide {
-  border-color: #34303e;
-  background: #121019;
+  border-color: #2b273d !important;
+  background: #100e1b !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(118, 93, 251, 0.08);
 }
-html.dark .negentro-guide [data-component-part="card-content"],
+html.dark .negentro-guide:hover {
+  border-color: #765dfb !important;
+  box-shadow: 0 12px 36px -4px rgba(118, 93, 251, 0.25), 0 0 0 1px #765dfb;
+}
+html.dark .negentro-guide [data-component-part="card-title"] {
+  color: #f8fafc !important;
+}
+html.dark .negentro-guide [data-component-part="card-content"] {
+  color: #94a3b8 !important;
+}
+html.dark .negentro-guide [data-component-part="card-title"]::after {
+  color: #a78bfa !important;
+}
 html.dark:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   color: #b8b4c4;
 }
 html.dark .negentro-guide::before {
-  filter: brightness(0.85);
-  border-bottom-color: #262232;
+  border-bottom-color: #252136;
 }
 @media (max-width: 1023px) {
-  .negentro-guides { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .negentro-guides { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
 @media (max-width: 640px) {
   html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides) {
-    padding-block: 32px 48px;
+    padding-block: 32px 48px !important;
+    padding-inline: 16px !important;
   }
-  .negentro-guides { grid-template-columns: minmax(0, 1fr); }
+  .negentro-guides { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
   .negentro-actions { margin-bottom: 48px !important; }
 }
