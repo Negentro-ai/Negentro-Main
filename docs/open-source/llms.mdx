@@ -1,0 +1,37 @@
+---
+title: "LLMs & Model Routing"
+sidebarTitle: "LLMs"
+description: "Configure inference engines for fact extraction, summarization, entity resolution, and context generation."
+---
+
+Configure inference engines for fact extraction, summarization, entity resolution, and context generation.
+
+| Provider | Supported Models | Recommended For |
+| :-- | :-- | :-- |
+| OpenAI | gpt-4o , gpt-4o-mini , o3-mini | Fast, accurate atomic fact extraction. |
+| Anthropic | claude-3-7-sonnet , claude-3-5-haiku | High-fidelity reasoning and complex entity resolution. |
+| Google Gemini | gemini-2.0-flash , gemini-1.5-pro | High-speed inference and multimodal context analysis. |
+| DeepSeek | deepseek-v3 , deepseek-r1 | Cost-effective open-weights inference. |
+| Ollama (Local) | llama3.3 , mistral-small , qwen2.5 | Air-gapped, zero-cost private deployments. |
+
+## Supported Providers
+
+## Local Ollama Configuration
+
+Run 100% private, on-premise memory pipelines without sending tokens to third-party APIs:
+
+```python python_ollama.py
+from negentro import Memory
+
+config = {
+    "llm": {
+        "provider": "ollama",
+        "config": {
+            "model": "llama3.3:latest",
+            "base_url": "http://localhost:11434"
+        }
+    }
+}
+
+m = Memory.from_config(config)
+```

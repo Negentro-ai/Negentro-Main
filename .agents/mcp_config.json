@@ -4,7 +4,14 @@
 			"serverUrl": "https://mcp.figma.com/mcp"
 		},
 		"Mintlify": {
-			"url": "https://mcp.mintlify.com"
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npx",
+				"-y",
+				"mcp-remote",
+				"https://mcp.mintlify.com"
+			]
 		}
 	}
 }

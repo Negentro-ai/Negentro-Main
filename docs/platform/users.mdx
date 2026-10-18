@@ -1,0 +1,49 @@
+---
+title: "Keep context scoped to the right user"
+sidebarTitle: "Users & Sessions"
+description: "AI applications often serve many users, devices, conversations, and workspaces. A clear identity and session model helps your application retrieve the right information while preventing accidental dat"
+---
+
+AI applications often serve many users, devices, conversations, and workspaces. A clear identity and session model helps your application retrieve the right information while preventing accidental data leakage across scopes.
+
+<CardGroup cols={3}>
+  <Card title="Users" icon="users">
+    Represent the identity or account to which persistent information belongs. User scope lets information remain available across separate conversations.
+  </Card>
+  <Card title="Sessions" icon="users">
+    Represent a particular conversation, workflow, or period of activity. Helps maintain short-term continuity without treating every detail as permanent.
+  </Card>
+  <Card title="Namespaces" icon="file-lines">
+    Represent a higher-level isolation boundary, such as an organization, workspace, or customer account, when supported by the deployment.
+  </Card>
+</CardGroup>
+
+## Users and sessions serve different purposes
+
+## Recommended scope model
+
+- Use a stable application-level identifier for each user.
+- Create or resolve a session identifier for each conversation or workflow.
+- Associate requests with the correct tenant or namespace when multi-tenant isolation is required.
+
+## Example identity model
+
+## Data isolation
+
+- Authenticate every request.
+- Authorize access to the requested user, session, and tenant.
+- Validate scope identifiers on the server.
+- Prevent one tenant from querying another tenant's information.
+- Apply consistent access rules to retrieval, updates, and deletion.
+- Avoid logging secrets or unnecessary personal information.
+- Test cross-user and cross-tenant access boundaries.
+
+## Session lifecycle
+
+A typical application can create or resolve a session when a conversation begins, attach relevant events to that session, retrieve session context during the interaction, and apply a retention or cleanup policy when the session ends.
+
+## Privacy and retention
+
+Give users appropriate control over their stored information. Define retention periods, deletion behavior, access policies, and any process for exporting or correcting data where required.
+
+## Testing checklist

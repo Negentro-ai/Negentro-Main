@@ -1,0 +1,36 @@
+---
+title: "Web Studio"
+description: "A visual administrative interface and debugger for inspecting memories, tuning retrieval parameters, and managing users."
+---
+
+A visual administrative interface and debugger for inspecting memories, tuning retrieval parameters, and managing users.
+
+## What is Web Studio?
+
+Web Studio is a lightweight, responsive admin dashboard bundled directly into Negentro. It allows engineering teams to visualize what their AI agents are remembering in real-time, test semantic queries, and inspect raw embedding vectors without opening database shells.
+
+## Key Capabilities
+
+<CardGroup cols={2}>
+  <Card title="Memory Explorer" icon="database">
+    Filter memories by user ID, agent ID, session, or tags. Inspect bitemporal timestamps ( valid_at vs system_at ) and edit facts directly.
+  </Card>
+  <Card title="Retrieval Playground" icon="magnifying-glass">
+    Test live queries with side-by-side comparisons of Dense Vector vs BM25 keyword search. Adjust the alpha slider and observe Reciprocal Rank Fusion scores.
+  </Card>
+  <Card title="Knowledge Graph Viewer" icon="network">
+    Interactive 2D/3D visualization of entity nodes and relationships extracted from conversation histories.
+  </Card>
+  <Card title="Audit & Privacy Redaction" icon="shield">
+    Verify automated PII and PHI redaction rules. Inspect revision histories to understand how conflicting facts were resolved.
+  </Card>
+</CardGroup>
+
+## Launching Web Studio
+
+If you are running the self-hosted Docker container, navigate directly to http://localhost:8080/studio . Alternatively, run the standalone studio CLI:
+
+```bash Terminal
+# Run standalone Web Studio pointing to any Negentro instance
+npx @negentro/studio --server http://localhost:8080
+```

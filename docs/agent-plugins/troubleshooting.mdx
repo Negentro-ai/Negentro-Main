@@ -1,0 +1,11 @@
+---
+title: "Troubleshooting"
+description: "Agent Plugins / Plugin Resources / Troubleshooting Troubleshooting Diagnostics and solutions for common plugin issues. ERROR / SYMPTOM CAUSE SOLUTION 401 Unauth"
+---
+
+| ERROR / SYMPTOM | CAUSE | SOLUTION |
+| :-- | :-- | :-- |
+| 401 Unauthorized | Missing or invalid API key. | Export NEGENTRO_API_KEY and test with curl /api/v1/verify . |
+| Empty search results | Overly strict search scope. | Change scope from dir to repo or increase top_k . |
+| Plugin crash on start | Node.js runtime < 18. | Upgrade to Node.js LTS (18+ or 20+). |
+| Session not flushed | Process killed abruptly. | Use /memory:remember or trigger graceful shutdown. |

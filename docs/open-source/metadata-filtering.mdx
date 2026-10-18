@@ -1,0 +1,30 @@
+---
+title: "Metadata Filtering"
+description: "Constrain search results with boolean logic, multi-tenant namespace boundaries, and arbitrary tag queries."
+---
+
+Constrain search results with boolean logic, multi-tenant namespace boundaries, and arbitrary tag queries.
+
+## Filter Operators
+
+| Operator | Meaning | Example |
+| :-- | :-- | :-- |
+| $eq | Equals | {"category": {"$eq": "billing"}} |
+| $in | Contained in array | {"status": {"$in": ["active", "pinned"]}} |
+| $gte / $lte | Numeric / Date ranges | {"created_at": {"$gte": 1704067200}} |
+| $and / $or | Compound logical grouping | {"$and": [{"role": "admin"}, {"dept": "eng"}]} |
+
+## Filtered Search Example
+
+```python search_filtered.py
+results = m.search(
+    query="What are our database credentials?",
+    user_id="dev_lead",
+    filters={
+        "$and": [
+            {"environment": {"$eq": "staging"}},
+            {"access_level": {"$in": ["eng", "admin"]}}
+        ]
+    }
+)
+```

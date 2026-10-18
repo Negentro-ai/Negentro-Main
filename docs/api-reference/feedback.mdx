@@ -1,0 +1,18 @@
+---
+title: "Adaptive Feedback API"
+sidebarTitle: "Feedback"
+description: "Train the UnifiedScorer ranking engine with positive and negative retrieval feedback."
+---
+
+Train the UnifiedScorer ranking engine with positive and negative retrieval feedback.
+
+`POST /api/v1/feedback/positive`
+
+Train the UnifiedScorer ranking engine with positive and negative retrieval feedback.
+
+```bash POST /api/v1/feedback/positive
+curl -X POST https://api.piyapi.cloud/api/v1/feedback/positive \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "memory_id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d", "query": "database preferences" }'
+```

@@ -1,0 +1,16 @@
+---
+title: "Memory Version History"
+sidebarTitle: "Memory History"
+description: "Inspect complete revision logs, timestamp diffs, and bitemporal valid_at history for a given memory."
+---
+
+Inspect complete revision logs, timestamp diffs, and bitemporal valid_at history for a given memory.
+
+`GET /api/v1/memories/:id/history`
+
+Inspect complete revision logs, timestamp diffs, and bitemporal valid_at history for a given memory.
+
+```bash GET /api/v1/memories/:id/history
+curl -X GET https://api.piyapi.cloud/api/v1/memories/8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d/history \
+  -H "Authorization: Bearer $PIYAPI_API_KEY"
+```

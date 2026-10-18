@@ -1,0 +1,49 @@
+---
+title: "Find the information that matters"
+sidebarTitle: "Retrieval"
+description: "Retrieval connects a user's current request with relevant information held in memory and configured knowledge sources. Its purpose is to help your application find useful evidence before generating a "
+---
+
+Retrieval connects a user's current request with relevant information held in memory and configured knowledge sources. Its purpose is to help your application find useful evidence before generating a response.
+
+## From query to results
+
+## Retrieval strategies
+
+<CardGroup cols={2}>
+  <Card title="Semantic search" icon="magnifying-glass">
+    Find information based on similarity in meaning, rather than requiring exact keyword matches. Helps when a query uses different words from the original stored information.
+  </Card>
+  <Card title="Keyword search" icon="magnifying-glass">
+    Match explicit terms, identifiers, names, or phrases. Valuable for exact facts and technical references.
+  </Card>
+  <Card title="Hybrid retrieval" icon="magnifying-glass">
+    Combine semantic and lexical signals. Balances conceptual similarity with exact-term matching.
+  </Card>
+  <Card title="Reranking" icon="file-lines">
+    Reorder an initial candidate set using a more focused relevance model. Can improve result ordering but adds computation and may increase latency.
+  </Card>
+</CardGroup>
+
+## Retrieval controls
+
+- Search scope and authorization.
+- Candidate limits and result count.
+- Similarity thresholds, where supported.
+- Metadata filters.
+- Ranking and tie-breaking behavior.
+- Freshness and update behavior.
+- Timeouts, retries, and error handling.
+
+## Evaluate retrieval quality
+
+| Metric | What it measures |
+| :-- | :-- |
+| Recall | How often the relevant information appears in the retrieved results. |
+| Precision | How much of the retrieved information is relevant. |
+| Ranking quality | Whether the most useful results appear near the top. |
+| Latency | How long retrieval takes end-to-end. |
+| Coverage | Whether important sources and data types are searchable. |
+| Failure rate | How often requests fail or return no useful results. |
+
+## Troubleshooting

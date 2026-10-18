@@ -1418,46 +1418,6 @@ export const AdminCMSPage = () => {
 											</p>
 										</div>
 										<div className="flex items-center gap-3 self-start sm:self-auto">
-											{activeKind === "industries" && (
-												<button
-													type="button"
-													onClick={async () => {
-														const client = await getSupabase()
-														if (!client) return
-
-														setSaveMessage("Importing 7 industries...")
-														try {
-															const res = await fetch(
-																"/temp_industry_seed.json",
-															)
-															const industrySeed = await res.json()
-
-															let successCount = 0
-															for (const record of industrySeed) {
-																const { error } = await client
-																	.from("cms_records")
-																	.upsert(record, { onConflict: "slug" })
-																if (error) {
-																	alert(
-																		`Failed to import ${record.title}: ${error.message}`,
-																	)
-																} else {
-																	successCount++
-																}
-															}
-															setSaveMessage(
-																`Successfully imported ${successCount} industries!`,
-															)
-															window.location.reload()
-														} catch (err: any) {
-															alert("Import failed: " + err.message)
-														}
-													}}
-													className="inline-flex h-10 items-center justify-center gap-2 rounded-[7px] bg-zinc-800 px-4 text-[14px] font-medium text-white transition-all hover:bg-zinc-700"
-												>
-													Bulk Import Markdown
-												</button>
-											)}
 											<button
 												type="button"
 												onClick={createArticle}

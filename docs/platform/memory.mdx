@@ -1,0 +1,60 @@
+---
+title: "Give your AI a memory that persists"
+sidebarTitle: "Memory"
+description: "Memory lets your application retain useful information beyond a single request or session. Instead of treating every interaction as a blank slate, your system can refer to relevant facts, preferences,"
+---
+
+Memory lets your application retain useful information beyond a single request or session. Instead of treating every interaction as a blank slate, your system can refer to relevant facts, preferences, and decisions when they matter.
+
+## What is persistent memory?
+
+Persistent memory is information your application stores for potential future use. It may include user preferences, project context, recurring instructions, summaries, or facts extracted from previous interactions.
+
+Memory is not the same as a complete conversation log. A well-designed memory system preserves information that has future value and makes it available when the application needs it.
+
+## Core memory operations
+
+<CardGroup cols={2}>
+  <Card title="store()" icon="database">
+    Save a new memory or piece of information for later retrieval.
+  </Card>
+  <Card title="retrieve()" icon="magnifying-glass">
+    Find existing memories relevant to a query, task, or user request.
+  </Card>
+  <Card title="update()" icon="file-lines">
+    Revise stored information when it changes or becomes more precise.
+  </Card>
+  <Card title="delete()" icon="file-lines">
+    Remove information according to user requests, retention rules, or application policy.
+  </Card>
+  <Card title="merge()" icon="file-lines">
+    Combine overlapping or related information when consolidation is appropriate.
+  </Card>
+  <Card title="summarize()" icon="file-lines">
+    Condense a larger body of information into a shorter representation for downstream use.
+  </Card>
+  <Card title="pin()" icon="file-lines">
+    Mark selected information for special treatment, if supported by the configured implementation.
+  </Card>
+  <Card title="verify()" icon="file-lines">
+    Check stored information against a defined source or validation process, where supported.
+  </Card>
+</CardGroup>
+
+## A practical memory lifecycle
+
+## What belongs in memory?
+
+- Explicit user preferences.
+- Long-running project decisions.
+- Stable facts needed across sessions.
+- Task state that must survive process restarts.
+- Summaries of prior work that are relevant to future requests.
+
+## Scope and ownership
+
+Memory should be associated with a clearly defined owner and access scope. Your application should establish who can read, update, and delete each item, and ensure that one user's information cannot be retrieved by another without authorization.
+
+## Memory quality
+
+Persistent memory is only useful when it remains relevant and trustworthy. Establish rules for resolving conflicting facts, refreshing stale information, distinguishing user-provided facts from model-generated inferences, and honoring deletion requests.

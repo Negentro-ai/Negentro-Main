@@ -1,0 +1,17 @@
+---
+title: "Persistent Persona & Pinned Memory Weighting"
+description: "Maintain deterministic agent tone, core principles, and identity using memory pinning and assistant boost."
+---
+
+Maintain deterministic agent tone, core principles, and identity using memory pinning and assistant boost.
+
+`POST /api/v1/memories/:id/pin`
+
+## Pinning Persona Facts into Context
+
+```bash POST /api/v1/memories/:id/pin
+curl -X POST https://api.piyapi.cloud/api/v1/memories/mem_persona_01/pin \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "is_pinned": true, "priority_weight": 2.5 }'
+```

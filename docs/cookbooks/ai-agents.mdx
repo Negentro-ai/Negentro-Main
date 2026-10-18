@@ -1,0 +1,22 @@
+---
+title: "AI Agents with Unified 8-Operator Memory Surface"
+sidebarTitle: "AI Agents with Unified 8"
+description: "Standardized lifecycle operators: store, retrieve, update, delete, merge, summarize, pin, verify."
+---
+
+Standardized lifecycle operators: store, retrieve, update, delete, merge, summarize, pin, verify.
+
+`POST /api/v1/memory/op`
+
+## Direct 8-Operator Dispatch
+
+```bash POST /api/v1/memory/op
+curl -X POST https://api.piyapi.cloud/api/v1/memory/op \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "operator": "summarize",
+    "filter": { "tags": ["project_alpha"] },
+    "max_tokens": 500
+  }'
+```

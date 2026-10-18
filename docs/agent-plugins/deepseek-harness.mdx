@@ -1,0 +1,16 @@
+---
+title: "DeepSeek Harness"
+description: "DeepSeek agent harnesses leverage Negentro's BYOK encrypted key manager and failover routing to maintain state across complex reasoning and tool execution chains."
+---
+
+DeepSeek agent harnesses leverage Negentro's BYOK encrypted key manager and failover routing to maintain state across complex reasoning and tool execution chains.
+
+## BYOK Configuration
+
+Add your encrypted DeepSeek API key via the platform BYOK management endpoint:
+
+```bash Terminal
+curl -X POST https://api.negentro.cloud/api/v1/byok/keys \
+  -H "Authorization: Bearer $NEGENTRO_API_KEY" \
+  -d '{"vendor": "deepseek", "api_key": "sk-deepseek-..."}'
+```

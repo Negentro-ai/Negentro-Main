@@ -1,0 +1,51 @@
+---
+title: "Understand how your memory system performs"
+sidebarTitle: "Analytics"
+description: "Measure the quality, speed, and cost of memory and retrieval workflows so you can improve the experience of your AI application over time."
+---
+
+Measure the quality, speed, and cost of memory and retrieval workflows so you can improve the experience of your AI application over time.
+
+## What to measure
+
+<CardGroup cols={2}>
+  <Card title="Retrieval quality" icon="magnifying-glass">
+    Understand whether the system returns relevant and useful information for representative queries. Use labeled examples and task-specific evaluations to assess result quality.
+  </Card>
+  <Card title="Latency" icon="file-lines">
+    Track end-to-end response time and, where instrumentation permits, separate the time spent in retrieval, context assembly, storage operations, and downstream model calls.
+  </Card>
+  <Card title="Usage" icon="file-lines">
+    Measure request volume, records stored, retrieval frequency, context size, and other usage dimensions exposed by your deployment.
+  </Card>
+  <Card title="Reliability" icon="file-lines">
+    Monitor errors, timeouts, retries, empty results, and dependency failures. Segment failures by operation and environment to identify recurring issues.
+  </Card>
+  <Card title="Cost and efficiency" icon="file-lines">
+    Where cost data is available, evaluate the relationship between retrieval quality, token usage, infrastructure consumption, and overall application cost.
+  </Card>
+</CardGroup>
+
+## Suggested dashboard layout
+
+### Overview metrics
+
+## Evaluate quality, not just activity
+
+A high number of retrievals does not necessarily mean retrieval is working well. Build a representative evaluation set from your real use cases and measure whether the system returns the information needed to complete each task.
+
+Review false positives, missed information, stale records, and conflicting results. Use the findings to improve data quality, metadata, retrieval settings, and context selection.
+
+## Monitor latency end to end
+
+Measure the full request lifecycle as well as individual stages. A slow response may originate in retrieval, storage, a model provider, or another dependency.
+
+Track median and tail latency rather than relying only on averages. Set alerts based on the needs of your application and establish a clear process for investigating regressions.
+
+## Observability and privacy
+
+Logs and analytics should help diagnose system behavior without unnecessarily exposing user content. Prefer structured events, operation identifiers, latency measurements, and carefully controlled diagnostic samples.
+
+Apply access controls and retention policies to telemetry. Redact sensitive values where appropriate and document which metrics are collected, where they are stored, and who can access them.
+
+## From measurement to improvement

@@ -1,0 +1,68 @@
+---
+title: "Get started with persistent AI memory"
+sidebarTitle: "Quickstart"
+description: "Give your AI application a reliable way to store information, retrieve relevant history, and assemble context across interactions. Start with the SDK or connect directly through the REST API."
+---
+
+Give your AI application a reliable way to store information, retrieve relevant history, and assemble context across interactions. Start with the SDK or connect directly through the REST API.
+
+## What you'll build
+
+In this quickstart, you'll learn how to:
+
+## Before you begin
+
+You'll need a Negentro API key, a supported runtime, and an application that can make authenticated API requests.
+
+## Steps
+
+<CodeGroup>
+
+```bash terminal
+npm install @negentro/sdk
+```
+
+```bash terminal
+pip install negentro
+```
+
+```typescript client.ts
+import { NegentroClient } from "@negentro/sdk";
+
+const client = new NegentroClient({
+  apiKey: process.env.NEGENTRO_API_KEY!,
+});
+```
+
+</CodeGroup>
+
+<CodeGroup>
+
+```python client.py
+from negentro import NegentroClient
+import os
+
+client = NegentroClient(
+    api_key=os.environ["NEGENTRO_API_KEY"]
+)
+```
+
+```typescript example.ts
+const memory = await client.memory.store({
+  user_id: "user_123",
+  content: "Prefers concise technical explanations.",
+});
+```
+
+</CodeGroup>
+
+```typescript example.ts
+const context = await client.context.retrieve({
+  user_id: "user_123",
+  query: "How should I explain this technical topic?",
+});
+```
+
+## What happens next?
+
+Your first integration is the starting point. As your application grows, you can configure retrieval behavior, manage user and session scopes, connect data sources, and observe system performance.

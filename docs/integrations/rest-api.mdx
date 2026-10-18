@@ -1,0 +1,39 @@
+---
+title: "REST API Integration"
+sidebarTitle: "REST API"
+description: "Direct programmatic access to memories, vector search, cognitive RAG, and context assembly at https://api.piyapi.cloud ."
+---
+
+Direct programmatic access to memories, vector search, cognitive RAG, and context assembly at https://api.piyapi.cloud .
+
+`POST /api/v1/memories`
+
+## Store Memory (POST /api/v1/memories)
+
+<CodeGroup>
+
+```bash Terminal
+curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer sk_live_your_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "User prefers PostgreSQL and Python for AI projects.",
+    "tags": ["preferences", "tech-stack"],
+    "metadata": {"source": "ide"}
+  }'
+```
+
+```bash Terminal
+curl -X POST https://api.piyapi.cloud/api/v1/search \
+  -H "Authorization: Bearer sk_live_your_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "What database does user prefer?",
+    "limit": 5,
+    "min_score": 0.75
+  }'
+```
+
+</CodeGroup>
+
+## Hybrid Vector Search (POST /api/v1/search)

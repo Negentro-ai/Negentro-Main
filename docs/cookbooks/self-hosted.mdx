@@ -1,0 +1,33 @@
+---
+title: "Self-Hosted AI Companion with Ollama & pgvector"
+sidebarTitle: "Self"
+description: "Run an air-gapped cognitive memory engine entirely on local hardware."
+---
+
+Run an air-gapped cognitive memory engine entirely on local hardware.
+
+## Docker Compose Setup
+
+```bash docker-compose.yml
+version: '3.8'
+services:
+  piyapi-engine:
+    image: piyapi/cognitive-engine:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://piyapi:secret@postgres:5432/piyapi_db
+      - REDIS_URL=redis://redis:6379
+      - EMBEDDING_PROVIDER=ollama
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      - POSTGRES_DB=piyapi_db
+      - POSTGRES_USER=piyapi
+      - POSTGRES_PASSWORD=secret
+```

@@ -1,0 +1,23 @@
+---
+title: "Search Memories"
+description: "Execute multi-signal hybrid search fusing pgvector HNSW dense vectors and BM25 trigram full-text scores."
+---
+
+Execute multi-signal hybrid search fusing pgvector HNSW dense vectors and BM25 trigram full-text scores.
+
+`POST /api/v1/search`
+
+Execute multi-signal hybrid search fusing pgvector HNSW dense vectors and BM25 trigram full-text scores.
+
+```bash POST /api/v1/search
+curl -X POST https://api.piyapi.cloud/api/v1/search \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "SOC2 audit report requests",
+    "limit": 5,
+    "alpha": 0.7,
+    "tags": ["compliance"],
+    "min_score": 0.25
+  }'
+```

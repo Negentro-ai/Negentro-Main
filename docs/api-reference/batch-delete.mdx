@@ -1,0 +1,17 @@
+---
+title: "Batch Delete Memories"
+description: "Bulk delete memories matching specific tag criteria, category filters, or time boundaries."
+---
+
+Bulk delete memories matching specific tag criteria, category filters, or time boundaries.
+
+`POST /api/v1/bulk/memories/delete`
+
+Bulk delete memories matching specific tag criteria, category filters, or time boundaries.
+
+```bash POST /api/v1/bulk/memories/delete
+curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/delete \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "tags": ["deprecated", "temporary"] }'
+```

@@ -1,0 +1,18 @@
+---
+title: "Bulk Update Memories"
+sidebarTitle: "Submit Update Memories"
+description: "Bulk append or replace tags and metadata across multiple memory records in a single transactional operation."
+---
+
+Bulk append or replace tags and metadata across multiple memory records in a single transactional operation.
+
+`POST /api/v1/bulk/memories/tag`
+
+Bulk append or replace tags and metadata across multiple memory records in a single transactional operation.
+
+```bash POST /api/v1/bulk/memories/tag
+curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \
+  -H "Authorization: Bearer $PIYAPI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "memory_ids": ["uuid-1...", "uuid-2..."], "add_tags": ["reviewed", "soc2"] }'
+```

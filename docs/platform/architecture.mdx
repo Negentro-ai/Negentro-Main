@@ -1,0 +1,32 @@
+---
+title: "Understand how Negentro works"
+sidebarTitle: "Architecture"
+description: "Negentro separates persistent memory, context assembly, and retrieval into distinct layers. This separation lets your application manage information over time without embedding all memory logic in the"
+---
+
+Negentro separates persistent memory, context assembly, and retrieval into distinct layers. This separation lets your application manage information over time without embedding all memory logic in the model or application session.
+
+## The platform at a glance
+
+## Request lifecycle
+
+| # | Step | Description |
+| :-- | :-- | :-- |
+| 01 | Receive the request | Your application accepts a user message or task. |
+| 02 | Identify the scope | Resolve the applicable user, session, tenant, and permissions. |
+| 03 | Retrieve information | Search the relevant memory and connected knowledge sources. |
+| 04 | Assemble context | Select and organize useful results for the task and token budget. |
+| 05 | Generate a response | Pass the assembled context to your chosen model. |
+| 06 | Persist useful outcomes | Where appropriate, record new facts, preferences, or decisions for future use. |
+
+## Separate memory from context
+
+Memory is the information your system retains. Context is the information supplied to a model for a particular operation.
+
+Keeping these concepts separate makes it easier to retain useful information without repeatedly sending an entire conversation history to the model.
+
+## Design principles
+
+## Deployment considerations
+
+Your deployment architecture should define the API boundary, credential management, storage configuration, network access, retention policy, backup and recovery strategy, and observability requirements.

@@ -1,0 +1,33 @@
+---
+title: "Model Context Protocol (MCP) Server"
+sidebarTitle: "MCP"
+description: "Official @piyapi/mcp-server providing standard stdio transport for IDE tools (Cursor, Windsurf, Claude Desktop, VS Code) with 30 Tools, 3 Resources, and 3 Prompts."
+---
+
+Official @piyapi/mcp-server providing standard stdio transport for IDE tools (Cursor, Windsurf, Claude Desktop, VS Code) with 30 Tools, 3 Resources, and 3 Prompts.
+
+## IDE Configuration (Cursor / Windsurf / Claude Desktop)
+
+```json JSON
+{
+  "mcpServers": {
+    "piyapi": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "sk_live_your_key_here"
+      }
+    }
+  }
+}
+```
+
+## Core Tools Catalog (from User Guide §6.2)
+
+| TOOL NAME | INPUT PARAMETERS | DESCRIPTION |
+| :-- | :-- | :-- |
+| store_memory | content (str), tags (array), metadata (obj) | Store memory with vector embedding and graph links |
+| get_memory | id (uuid) | Retrieve specific memory object by UUID |
+| search_memories | query (str), limit (int), min_score (float) | Hybrid search (semantic vector + BM25 trigram) |
+| get_context | query (str), max_tokens (int) | Token-budget-aware context assembly for prompt injection |
+| pin_memory | id (uuid), is_pinned (bool) | Pin/unpin memory in LLM context window budget |

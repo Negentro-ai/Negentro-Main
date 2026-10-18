@@ -1,0 +1,24 @@
+---
+title: "Build a Coding Companion with MCP & TypeScript"
+description: "Integrate persistent repository memory directly into Cursor, Windsurf, Claude Desktop, and VS Code."
+---
+
+Integrate persistent repository memory directly into Cursor, Windsurf, Claude Desktop, and VS Code.
+
+## IDE MCP Configuration
+
+Configure your IDE to connect to the @piyapi/mcp-server with standard stdio transport:
+
+```json mcpServers Configuration (claude_desktop_config.json / Cursor)
+{
+  "mcpServers": {
+    "piyapi": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "sk_live_your_api_key_here"
+      }
+    }
+  }
+}
+```

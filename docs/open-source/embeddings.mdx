@@ -1,0 +1,31 @@
+---
+title: "Embeddings"
+description: "Configure dense vector representations for text, code, and multimodal entities across local and cloud models."
+---
+
+Configure dense vector representations for text, code, and multimodal entities across local and cloud models.
+
+## Supported Embedding Models
+
+| Provider | Model | Dimensions | Cost / Deployment |
+| :-- | :-- | :-- | :-- |
+| OpenAI | text-embedding-3-small | 1536 | Cloud API (Fast & cost-efficient) |
+| OpenAI | text-embedding-3-large | 3072 | Cloud API (Maximum accuracy) |
+| FastEmbed | BAAI/bge-small-en-v1.5 | 384 | Local ONNX runtime (Zero API cost) |
+| Cohere | embed-english-v3.0 | 1024 | Cloud API (High quality search) |
+| Ollama | nomic-embed-text | 768 | Local Ollama instance |
+
+## Zero-Cost Local FastEmbed
+
+```python fastembed_config.py
+from negentro import Memory
+
+m = Memory.from_config({
+    "embedder": {
+        "provider": "fastembed",
+        "config": {
+            "model": "BAAI/bge-small-en-v1.5"
+        }
+    }
+})
+```

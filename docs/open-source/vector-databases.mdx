@@ -1,0 +1,34 @@
+---
+title: "Vector Databases"
+description: "Select and configure the high-dimensional vector substrate powering semantic memory recall."
+---
+
+Select and configure the high-dimensional vector substrate powering semantic memory recall.
+
+## Vector Store Matrix
+
+| Vector Store | Index Type | Best For | Connection Config |
+| :-- | :-- | :-- | :-- |
+| pgvector (Default) | HNSW / IVFFlat | Production apps using PostgreSQL; transactional safety. | pgvector://user:pass@host:5432/db |
+| Qdrant | HNSW with payload filters | Ultra-fast Rust vector engine with complex metadata filtering. | http://localhost:6333 |
+| Chroma | HNSW (DuckDB/ClickHouse) | Local prototyping, embedded apps, zero external services. | path/to/chroma_db |
+| Milvus | IVF / HNSW / SCaNN | Enterprise scale across 100M+ vector records. | localhost:19530 |
+
+## Configuring pgvector
+
+```python pgvector_setup.py
+from negentro import Memory
+
+config = {
+    "vector_store": {
+        "provider": "pgvector",
+        "config": {
+            "connection_string": "postgresql://postgres:secret@localhost:5432/negentro",
+            "table_name": "agent_memories",
+            "distance_metric": "cosine"
+        }
+    }
+}
+
+m = Memory.from_config(config)
+```

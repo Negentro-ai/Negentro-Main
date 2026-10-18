@@ -1,0 +1,75 @@
+---
+title: "Python SDK Quickstart"
+description: "Install and integrate Negentro embedded memory into your Python agents, LLM pipelines, and backend services."
+---
+
+Install and integrate Negentro embedded memory into your Python agents, LLM pipelines, and backend services.
+
+## Installation
+
+Install the core Python package via pip. You can also specify optional vector backend dependencies:
+
+```bash Terminal
+# Core embedded package
+pip install negentro-memory
+
+# Or install with optional database drivers (pgvector, redis, qdrant)
+pip install "negentro-memory[pgvector,redis]"
+```
+
+## Quickstart Code
+
+Initialize the memory engine and start storing conversational context in under five lines of code:
+
+```python quickstart.py
+from negentro import Memory
+
+# 1. Initialize embedded memory
+m = Memory()
+
+# 2. Add memories for a specific user
+m.add(
+    "User prefers dark mode UI and works primarily with React and TypeScript.",
+    user_id="usr_9918",
+    metadata={"category": "preferences"}
+)
+
+# 3. Retrieve relevant context
+results = m.search(
+    query="What frontend framework does the user like?",
+    user_id="usr_9918",
+    limit=3
+)
+
+for mem in results["results"]:
+    print(f"Score: {mem['score']} | Content: {mem['memory']}")
+```
+
+## Core Memory Operations
+
+The Python SDK provides complete CRUD operations with support for temporal audits and user boundaries:
+
+| Method | Parameters | Description |
+| :-- | :-- | :-- |
+| m.add(data, user_id=...) | content, user_id, metadata, agent_id | Extracts facts from natural language text and persists them. |
+| m.search(query, user_id=...) | query, user_id, limit, threshold | Runs hybrid vector + keyword retrieval with Reciprocal Rank Fusion. |
+| m.get_all(user_id=...) | user_id, agent_id, limit | Returns all active memories for the scoped identity. |
+| m.update(memory_id, data) | memory_id, new_content | Explicitly updates a memory and records a new bitemporal revision. |
+| m.delete(memory_id) | memory_id | Deletes a memory record and purges vector index entries. |
+| m.history(memory_id) | memory_id | Returns the complete audit log of changes made to this memory. |
+
+## LangChain & CrewAI Integration
+
+Use Negentro as the persistent memory provider for popular agent orchestration frameworks:
+
+```python agent_integration.py
+from langchain_openai import ChatOpenAI
+from negentro.integrations.langchain import NegentroMemory
+
+# Plug Negentro directly into LangChain agents
+memory = NegentroMemory(user_id="alex_204")
+llm = ChatOpenAI(model="gpt-4o")
+
+# Memory automatically syncs after each turn
+context = memory.load_memory_variables({"prompt": "What did we discuss earlier?"})
+```

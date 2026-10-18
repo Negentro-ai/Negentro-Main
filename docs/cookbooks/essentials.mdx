@@ -1,0 +1,36 @@
+---
+title: "Memory Essentials: 4 Foundational Pillars"
+sidebarTitle: "Memory Essentials"
+description: "Architectural principles for managing persistent agent state across weeks of interaction."
+---
+
+Architectural principles for managing persistent agent state across weeks of interaction.
+
+`POST /api/v1/bulk/memories/tag`
+
+## 1. Entity Partitioning Strategy
+
+Separate memory into distinct layers using metadata scoping: user_id (personalization), agent_id (agent persona and guidelines), and session_id (short-term thread context).
+
+## 2. Bulk Memory Operations
+
+Manage memory datasets efficiently at scale using bulk tagging and bulk deprecation endpoints.
+
+```bash POST /api/v1/bulk/memories/tag
+curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "memory_ids": ["8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d", "9b2c3d4e-5f6a-7b8c-9d0e-1f2a3b4c5d6e"],
+    "add_tags": ["verified", "q3-review"]
+  }'
+```
+
+## 3. GDPR & Compliance Memory Exports
+
+Export entire tenant or user datasets atomically for audit compliance or data migration:
+
+```bash GET /api/v1/compliance/export
+curl -s https://api.piyapi.cloud/api/v1/compliance/export?user_id=usr_9918 \
+  -H "Authorization: Bearer sk_live_prod_key_here"
+```

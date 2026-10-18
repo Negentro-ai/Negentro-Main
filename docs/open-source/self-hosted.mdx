@@ -1,0 +1,73 @@
+---
+title: "Self-hosted Server Deployment"
+sidebarTitle: "Self-hosted Server"
+description: "Deploy Negentro as a high-performance, containerized microservice within your own private cloud or on-premise infrastructure."
+---
+
+Deploy Negentro as a high-performance, containerized microservice within your own private cloud or on-premise infrastructure.
+
+## Docker Compose Deployment
+
+Spin up a complete Negentro instance with PostgreSQL (pgvector) and Redis in seconds:
+
+version : '3.8' services : negentro-server : image : negentro/server:latest ports : - "8080:8080" environment : - PORT = 8080 - DATABASE_URL = postgresql://negentro:secret@postgres:5432/negentro - REDIS_URL = redis://redis:6379 - OPENAI_API_KEY =${ OPENAI_API_KEY } - ENABLE_STUDIO = true depends_on : - postgres - redis postgres : image : pgvector/pgvector:pg16 environment : - POSTGRES_USER = negentro - POSTGRES_PASSWORD = secret - POSTGRES_DB = negentro volumes : - pgdata:/var/lib/postgresql/data redis : image : redis:7-alpine volumes : - redisdata:/data volumes : pgdata : redisdata : Run the stack with:
+
+```bash docker-compose.yml
+version: '3.8'
+
+services:
+  negentro-server:
+    image: negentro/server:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DATABASE_URL=postgresql://negentro:secret@postgres:5432/negentro
+      - REDIS_URL=redis://redis:6379
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ENABLE_STUDIO=true
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      - POSTGRES_USER=negentro
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=negentro
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:
+```
+
+```bash Terminal
+docker compose up -d
+# Negentro API ready at http://localhost:8080
+# Web Studio ready at http://localhost:8080/studio
+```
+
+## Environment Variables
+
+| Variable | Default | Description |
+| :-- | :-- | :-- |
+| PORT | 8080 | HTTP port for REST API and Studio. |
+| DATABASE_URL | Required | PostgreSQL connection URI with pgvector extension enabled. |
+| REDIS_URL | redis://localhost:6379 | Redis connection for caching and distributed locks. |
+| JWT_SECRET | Auto-generated | Secret key used for signing internal and user tokens. |
+| DEFAULT_LLM_PROVIDER | openai | Default provider for memory extraction. |
+| ENABLE_STUDIO | true | Exposes Web Studio UI at /studio . |
+
+## Health & Observability
+
+- GET /healthz — Liveness probe returning {"status":"ok"} .
+- GET /readyz — Readiness probe validating PostgreSQL and Redis connectivity.
+- GET /metrics — Prometheus endpoint tracking query latency, cache hit rates, and embedding throughput.

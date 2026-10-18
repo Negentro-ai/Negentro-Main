@@ -1,0 +1,41 @@
+---
+title: "Multimodal Memory Support"
+sidebarTitle: "Multimodal Support"
+description: "Store, index, and retrieve memories across images, documents, audio transcripts, and structured tables."
+---
+
+Store, index, and retrieve memories across images, documents, audio transcripts, and structured tables.
+
+## Supported Modalities
+
+<CardGroup cols={2}>
+  <Card title="Images & Diagrams" icon="file-lines">
+    Ingest system diagrams, error screenshots, and UI mockups. Extracted into structured visual descriptions and CLIP vector representations.
+  </Card>
+  <Card title="PDFs & Documents" icon="book-open">
+    Extract tabular data and contextual paragraphs while preserving source page coordinates for grounded citations.
+  </Card>
+  <Card title="Audio & Voice" icon="file-lines">
+    Ingest multi-speaker audio transcripts with speaker diarization tags and temporal boundaries.
+  </Card>
+  <Card title="Structured Data" icon="file-lines">
+    Seamlessly index JSON payloads, database rows, and spreadsheets alongside conversational context.
+  </Card>
+</CardGroup>
+
+## Ingesting Image Memories
+
+```python multimodal_example.py
+# Store an image with automatic vision fact extraction
+m.add(
+    "Architecture diagram showing Kubernetes cluster with 3 worker nodes and Istio service mesh.",
+    user_id="usr_9918",
+    metadata={
+        "type": "image",
+        "image_url": "https://storage.internal/diagrams/k8s_mesh.png"
+    }
+)
+
+# Natural language query retrieves image memory
+results = m.search("How many worker nodes are in our Kubernetes cluster?", user_id="usr_9918")
+```

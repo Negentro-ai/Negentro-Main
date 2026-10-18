@@ -1,0 +1,23 @@
+---
+title: "Memory-Powered Agent SDK (TypeScript, Python, LangChain)"
+sidebarTitle: "Memory"
+description: "Standardized SDK integrations for autonomous agent frameworks."
+---
+
+Standardized SDK integrations for autonomous agent frameworks.
+
+## LangChain Adapter Integration
+
+```python Python — LangChain Adapter
+from piyapi_langchain import PiyAPIMemoryRetriever
+
+retriever = PiyAPIMemoryRetriever(
+    api_key="sk_live_your_api_key_here",
+    top_k=5
+)
+
+# Retrieve relevant documents as LangChain Document objects
+docs = retriever.get_relevant_documents("user database preferences")
+for doc in docs:
+    print(doc.page_content, doc.metadata)
+```

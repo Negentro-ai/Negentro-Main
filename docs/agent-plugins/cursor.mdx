@@ -1,0 +1,48 @@
+---
+title: "Cursor"
+description: "Integrate Negentro directly into Cursor using the standard stdio MCP transport to provide full access to 30 cognitive memory tools, semantic search, and context assembly."
+---
+
+Integrate Negentro directly into Cursor using the standard stdio MCP transport to provide full access to 30 cognitive memory tools, semantic search, and context assembly.
+
+## MCP Server Configuration
+
+Add the Negentro MCP server to your Cursor configuration file ( .cursor/mcp.json or global Cursor settings):
+
+```json JSON
+{
+  "mcpServers": {
+    "negentro": {
+      "command": "npx",
+      "args": ["-y", "@piyapi/mcp-server"],
+      "env": {
+        "PIYAPI_API_KEY": "sk_live_your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+## Available MCP Tools in Cursor
+
+Once connected, Cursor's AI composer and chat can invoke 30 specialized memory tools:
+
+| TOOL NAME | PARAMETERS | CLIENT DESCRIPTION |
+| :-- | :-- | :-- |
+| store_memory | content, tags, metadata | Store memory with vector embedding and graph links. |
+| get_memory | id | Retrieve specific memory object by UUID. |
+| search_memories | query, limit, min_score | Hybrid search (dense vector + BM25 trigram). |
+| fuzzy_search | query, limit | Typo-tolerant trigram search for misspelled input. |
+| get_context | query, max_tokens | Token-budget-aware context assembly for prompt. |
+| ask_memory | question, temperature | RAG-powered Q&A with structured citations. |
+| pin_memory | id, is_pinned | Pin/unpin memory in LLM context window budget. |
+| graph_traverse | start_id, max_hops | Perform 1-3 hop graph traversal across linked entities. |
+
+## Agent Skills Framework
+
+Cursor automatically inspects repository-level skills from .agents/skills/data-connectors/SKILL.md to discover connected systems and credentials.
+
+```bash Terminal
+# Cursor Skill discovery path
+.agents/skills/data-connectors/SKILL.md
+```

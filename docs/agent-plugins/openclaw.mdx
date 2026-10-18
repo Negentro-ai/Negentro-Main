@@ -1,0 +1,24 @@
+---
+title: "OpenClaw"
+description: "OpenClaw agents run autonomous web scrapers and RSS monitors. The Negentro connector provides dedicated webhook ingest tokens to stream unstructured web findings directly into your memory graph."
+---
+
+OpenClaw agents run autonomous web scrapers and RSS monitors. The Negentro connector provides dedicated webhook ingest tokens to stream unstructured web findings directly into your memory graph.
+
+## Authentication & Webhook Token
+
+Configure your OpenClaw agent runtime with a dedicated webhook ingest token from Section 7.2 of the Negentro platform:
+
+```json JSON
+{
+  "connector": "open_claw",
+  "purpose": "Web scrapers & RSS feeds",
+  "auth_schema": {
+    "webhook_ingest_token": "whsec_live_9a8b7c6d5e4f3a2b1c"
+  }
+}
+```
+
+## CDC Ingestion Pipeline
+
+Scraped pages are chunked, embedded with bitemporal valid-time timestamps, and evaluated with the UnifiedScorer for automatic recency decay and deduplication.

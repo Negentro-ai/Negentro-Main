@@ -1,0 +1,35 @@
+---
+title: "Manage information throughout its lifecycle"
+sidebarTitle: "Data Management"
+description: "Reliable AI memory depends on more than storing records. Your application needs a consistent approach to data quality, updates, access, retention, deletion, and recovery."
+---
+
+Reliable AI memory depends on more than storing records. Your application needs a consistent approach to data quality, updates, access, retention, deletion, and recovery.
+
+## The data lifecycle
+
+## Organize data with metadata
+
+| Field | Purpose |
+| :-- | :-- |
+| type | Record type or category for classification and filtering. |
+| source | Source identifier for provenance tracking. |
+| created_at / updated_at | Timestamps for freshness evaluation. |
+| user_id / session_id | User, session, or tenant scope association. |
+| project_id | Project or workflow identifier for contextual grouping. |
+| retention_category | Classification for applying retention and deletion rules. |
+| version / status | Version or lifecycle status tracking. |
+
+## Data quality and consistency
+
+Define how your application handles duplicate records, conflicting facts, outdated values, and updates from multiple sources. Where information changes over time, preserve enough provenance to explain where a fact came from and when it was observed.
+
+## Retention and deletion
+
+Create clear rules for how long different types of information should remain available. A deletion workflow should account for the authoritative record, derived summaries, search indexes, caches, and other copies where applicable.
+
+## Backups and recovery
+
+Document backup frequency, retention periods, restore procedures, recovery objectives, and the responsibilities of your team versus your infrastructure provider.
+
+## Operational checklist

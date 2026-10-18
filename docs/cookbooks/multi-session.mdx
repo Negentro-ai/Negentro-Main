@@ -1,0 +1,23 @@
+---
+title: "Multi-Session Research Agent"
+sidebarTitle: "Multi"
+description: "Execute asynchronous, long-horizon research workflows without context degradation using the Session Mining Engine."
+---
+
+Execute asynchronous, long-horizon research workflows without context degradation using the Session Mining Engine.
+
+`POST /api/v1/sessions/mine`
+
+## Extracting Unstructured Session Insights
+
+```bash POST /api/v1/sessions/mine
+curl -X POST https://api.piyapi.cloud/api/v1/sessions/mine \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [
+      { "role": "user", "content": "I am analyzing quantum error correction benchmarks on neutral atom hardware." },
+      { "role": "assistant", "content": "Neutral atom systems typically leverage Rydberg blockade gates." }
+    ]
+  }'
+```

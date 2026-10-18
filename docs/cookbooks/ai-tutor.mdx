@@ -1,0 +1,27 @@
+---
+title: "Personalized AI Tutor with Adaptive Feedback"
+description: "Maintain student progress state, track mastery curves, and adjust curriculum pacing dynamically."
+---
+
+Maintain student progress state, track mastery curves, and adjust curriculum pacing dynamically.
+
+`POST /api/v1/memories`
+
+## 1. Tracking Student Mastery Facts
+
+Store discrete facts about student performance, strengths, and areas requiring remediation:
+
+```bash POST /api/v1/memories
+curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Student mastered quadratic factoring with real roots, but struggles with imaginary numbers.",
+    "tags": ["math", "algebra", "mastery"],
+    "metadata": { "student_id": "stu_4021", "level": "grade-10" }
+  }'
+```
+
+## 2. Reinforcement via Adaptive Feedback API
+
+When the student confirms an explanation was helpful, submit positive feedback to boost that concept's retrieval weight via POST /api/v1/feedback/positive .

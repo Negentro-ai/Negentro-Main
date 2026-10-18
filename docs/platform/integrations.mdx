@@ -1,0 +1,66 @@
+---
+title: "Connect Negentro to your AI stack"
+sidebarTitle: "Integrations"
+description: "Bring persistent memory and retrieval into the tools, frameworks, and data systems that power your application. Choose the integration approach that fits your architecture and deployment requirements."
+---
+
+Bring persistent memory and retrieval into the tools, frameworks, and data systems that power your application. Choose the integration approach that fits your architecture and deployment requirements.
+
+## Integration paths
+
+<CardGroup cols={2}>
+  <Card title="SDKs" icon="code">
+    Use a language-specific client to integrate platform operations into your application code. Choose the SDK that matches your runtime and verify its supported methods and release requirements.
+  </Card>
+  <Card title="REST API" icon="code">
+    Connect from any environment that can make authenticated HTTP requests. Useful for custom runtimes, internal services, and applications without a supported SDK.
+  </Card>
+  <Card title="Agent frameworks" icon="bot">
+    Integrate memory and context workflows into your existing agent architecture. The available setup depends on the framework adapter and the operations it supports.
+  </Card>
+  <Card title="Model Context Protocol" icon="layers">
+    Where a supported MCP server is available, connect compatible tools and clients through the documented protocol interface.
+  </Card>
+  <Card title="Data sources and storage" icon="file-lines">
+    Connect supported databases or upstream systems when you need to ingest, synchronize, or retrieve information from existing infrastructure.
+  </Card>
+  <Card title="SDKs" icon="code">
+    TypeScript / JavaScript, Python.
+  </Card>
+  <Card title="API access" icon="code">
+    REST API, webhooks where supported.
+  </Card>
+  <Card title="Agent frameworks" icon="bot">
+    Verified adapters for supported frameworks and versions.
+  </Card>
+  <Card title="Tool protocols (MCP)" icon="wrench">
+    MCP server where supported.
+  </Card>
+  <Card title="Data systems" icon="file-lines">
+    Verified databases, storage systems, and connectors. Confirm connector support with your deployment.
+  </Card>
+</CardGroup>
+
+## Choose your path
+
+| Scenario | Recommended approach |
+| :-- | :-- |
+| Building a new application? | Start with the SDK quickstart, then add retrieval and memory to the request lifecycle. |
+| Already using an agent framework? | Check whether a maintained Negentro adapter exists for your framework and version before relying on it for production. |
+| Working across multiple languages? | Use the REST API where it provides the functionality and operational controls your application needs. |
+| Connecting enterprise data? | Start by defining source permissions, synchronization behavior, deletion propagation, and data ownership. |
+
+## Integration catalog
+
+## Integration best practices
+
+- Keep API credentials on trusted server-side systems.
+- Use least-privilege access and clear ownership boundaries.
+- Define timeouts, retries, and idempotency behavior where applicable.
+- Monitor connector failures and synchronization lag.
+- Test update and deletion behavior across integrated systems.
+- Pin and validate dependency versions before production rollout.
+
+## Ready to connect?
+
+Start with the interface that best fits your application, then expand to frameworks and data sources as your requirements grow.

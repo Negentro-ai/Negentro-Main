@@ -1,79 +1,70 @@
 ---
 title: "Platform Overview"
-sidebarTitle: "Overview"
-description: "Learn the core concepts, architecture, and workflow of PiyAPI. Understand how persistent memory, context assembly, and hybrid retrieval power AI applications."
+description: "Everything you need to build, manage, and scale persistent intelligence with PiyAPI."
 ---
 
-PiyAPI provides the infrastructure for persistent intelligence across AI applications. The platform manages memory, context, and retrieval as distinct layers, allowing applications to store relevant information and recall it precisely when needed rather than relying on ephemeral session state.
+Everything you need to build, manage, and scale persistent intelligence with PiyAPI.
 
-This document introduces the core building blocks of PiyAPI and describes how they compose into a working system for AI agents and applications.
+`POST /api/v1/context/retrieve`
 
 ## Core Concepts
 
 <CardGroup cols={2}>
   <Card title="Persistent Memory" icon="database">
-    Long-term storage referenced via `memory_id`. Backed by the **Unified 8-Operator Surface** (`store`, `retrieve`, `update`, `delete`, `merge`, `summarize`, `pin`, `verify`).
+    Long-term storage referenced via memory_id . Backed by the Unified 8-Operator Surface .
   </Card>
-
   <Card title="Context" icon="layers">
-    Assembled data passed via `context` object. Token-budget-aware context assembly for LLM system prompts via `POST /api/v1/context/retrieve`.
+    Assembled data passed via context object. Token-budget-aware context assembly for LLM system prompts via POST /api/v1/context/retrieve .
   </Card>
-
   <Card title="Users & Sessions" icon="users">
-    Scoped via `user_id` identifiers. Enterprise multi-tenancy enforced via strict namespace isolation (`X-Namespace-Prefix` header) and automated PHI/PII privacy redaction.
+    Scoped via user_id identifiers. Enterprise multi-tenancy enforced via strict namespace isolation ( X-Namespace-Prefix header) and automated PHI/PII privacy redaction.
   </Card>
-
-  <Card title="Retrieval" icon="search">
-    Query via `client.search()`. Hybrid search engine combining dense vector similarity (HNSW via `pgvector`) and BM25 trigram full-text search, fused using Reciprocal Rank Fusion (`RRF_K=30`).
+  <Card title="Retrieval" icon="magnifying-glass">
+    Query via client.search() . Hybrid search engine combining dense vector similarity (HNSW via pgvector ) and BM25 trigram full-text search, fused using Reciprocal Rank Fusion ( RRF_K=30 ).
   </Card>
-
   <Card title="Knowledge" icon="network">
-    Structured domain data accessible through `knowledge.query()`. PiyGraph Knowledge Graph tracking real-world validity (`valid_at`) separately from system recording time (`system_at`).
+    Structured domain data accessible through knowledge.query() . PiyGraph Knowledge Graph tracking real-world validity ( valid_at ) separately from system recording time ( system_at ).
   </Card>
 </CardGroup>
 
 ## Architecture
 
-Request flows from your application through the PiyAPI Gateway to the Memory Engine, Cognitive Engine, and Integrations, then down to the Vector Substrate (pgvector + Redis).
+PiyAPI decouples cognitive and storage workloads to deliver sub-millisecond retrieval alongside durable state management across millions of concurrent users.
 
-<Note>
-  PiyAPI separates persistent memory from the application logic so your AI system can retrieve relevant context when it needs it.
-</Note>
-
-### System Architecture
-
-```text
-┌─────────────────────────────────────────────────────────────┐
+```bash system-architecture.txt
+┌────────────────────────────────────────────────────────────┐
 │                      CLIENT LAYER                           │
 │  TypeScript SDK  │  Python SDK  │  MCP Server  │  cURL     │
-└──────────────────────────────────────────┬──────────────────┘
-                                           │
-                                           ▼
-┌─────────────────────────────────────────────────────────────┐
+└──────────────────────────────┬─────────────────────────────┘
+                                │
+                                ▼
+┌────────────────────────────────────────────────────────────┐
 │          PIYAPI REST GATEWAY (api.piyapi.cloud)             │
 │     Namespace Scoping  │  Rate Limiter  │  Auth & BYOK Guard│
-└──────────────────────────────────────────┬──────────────────┘
-                                           │
-              ┌──────────────────┼──────────────────┐
+└──────────────────────────────┬─────────────────────────────┘
+                                │
+              ┌─────────────────┼─────────────────┐
               ▼                 ▼                  ▼
-    ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
-    │  MEMORY ENGINE   │ │ COGNITIVE ENG.   │ │ INTEGRATIONS     │
-    │ • 8-Operators    │ │ • Hybrid RAG     │ │ • BYOK Mgr       │
-    │ • Bitemporal     │ │ • PiyGraph KG    │ │ • 12 CDC Conn    │
-    │ • Branching      │ │ • UnifiedScorer  │ │ • 30 MCP Tools   │
-    └──────────────────┘ └──────────────────┘ └──────────────────┘
-                                           │
-┌─────────────────────────────────────────────────────────────┐
+    ┌─────────────────┐ ┌───────────────┐ ┌───────────────┐
+    │  MEMORY ENGINE  │ │ COGNITIVE ENG.│ │ INTEGRATIONS  │
+    │ • 8-Operators   │ │ • Hybrid RAG  │ │ • BYOK Mgr    │
+    │ • Bitemporal    │ │ • PiyGraph KG │ │ • 12 CDC Conn │
+    │ • Branching     │ │ • UnifiedScrr │ │ • 30 MCP Tools│
+    └─────────────────┘ └───────────────┘ └───────────────┘
+                                │
+┌────────────────────────────────────────────────────────────┐
 │               DATA & VECTOR SUBSTRATE                       │
 │    PostgreSQL + pgvector  │  Bitemporal KG  │  Redis Cache  │
-└─────────────────────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────┘
 ```
 
 ## Initialize the Client
 
+Connect to PiyAPI through our official SDKs or raw REST requests. Supply your API key generated from the dashboard.
+
 <CodeGroup>
 
-```javascript JavaScript
+```javascript client.js
 import { PiyAPIClient } from '@piyapi/sdk';
 
 const client = new PiyAPIClient({
@@ -81,41 +72,34 @@ const client = new PiyAPIClient({
 });
 ```
 
-```python Python
+```python client.py
 from piyapi_memory import PiyAPIClient
 
 client = PiyAPIClient(api_key="sk_live_your_key_here")
 ```
 
-```bash cURL
+```bash verify.sh
 curl -s https://api.piyapi.cloud/api/v1/verify \
   -H "Authorization: Bearer sk_live_..."
+
 # Response: {"status":"valid","key_id":"...","scopes":["memory:read","memory:write"]}
 ```
 
 </CodeGroup>
 
+| # | Step | Description |
+| :-- | :-- | :-- |
+| 01 | Capture | Conversational or event data enters the system via API, SDK, or one of 12 native CDC connectors (Google Drive, Notion, GitHub, Slack, Jira, Gmail, and more). |
+| 02 | Store | Relevant information is persisted as memory in PostgreSQL + pgvector , tagged and indexed for instant retrieval. |
+| 03 | Retrieve | The UnifiedScorer evaluates 11 signals in a single pass — including vector similarity, BM25 text score, recency decay, entity overlap, contradiction penalty, and pin weight. |
+| 04 | Compose context | Retrieved memory is assembled into a token-budget-aware context payload via POST /api/v1/context/retrieve . |
+| 05 | Generate response | Context is passed to the model for output. Route through BYOK to use your own OpenAI, Anthropic, Gemini, or DeepSeek keys natively. |
+
 ## Store and Retrieve Context
 
-<Steps>
-  <Step title="Create or initialize the client">
-    Use the TypeScript SDK, Python SDK, or cURL to authenticate with your API key.
-  </Step>
-  <Step title="Send conversational information">
-    Stream or batch events and messages into the system.
-  </Step>
-  <Step title="Store relevant memory">
-    Persist facts, preferences, and context as tagged memory records.
-  </Step>
-  <Step title="Retrieve context when needed">
-    Run a hybrid search query to pull back the most relevant memory.
-  </Step>
-  <Step title="Pass retrieved context to the model">
-    Include the assembled context in the LLM prompt for generation.
-  </Step>
-</Steps>
+A typical lifecycle integrates continuous memory persistence with targeted contextual recall before each model completion:
 
-### Store a memory
+<CodeGroup>
 
 ```javascript example.js
 const memory = await client.memories.create({
@@ -125,8 +109,6 @@ const memory = await client.memories.create({
 });
 ```
 
-### Retrieve via Hybrid Search
-
 ```javascript example.js
 const results = await client.search({
   query: 'What frontend framework does the user prefer?',
@@ -135,54 +117,10 @@ const results = await client.search({
 });
 ```
 
-### Response
-
-```json
-{
-  "query": "What frontend framework does the user prefer?",
-  "total": 1,
-  "results": [
-    {
-      "id": "8a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
-      "content": "User prefers dark mode UI and works primarily with React and TypeScript.",
-      "score": 0.892,
-      "vector_score": 0.854,
-      "bm25_score": 0.931
-    }
-  ]
-}
-```
-
-<Tip>
-  Use retrieval selectively so your application only sends relevant context to the model. Configure `min_score` (default `0.25`) and `alpha` (vector vs BM25 blend, default `0.7`) for precise control over retrieval quality.
-</Tip>
+</CodeGroup>
 
 ## How PiyAPI Works
 
-| # | Step | Description |
-| :-- | :-- | :-- |
-| **01** | **Capture** | Conversational or event data enters the system via API, SDK, or one of 12 native CDC connectors (Google Drive, Notion, GitHub, Slack, Jira, Gmail, and more). |
-| **02** | **Store** | Relevant information is persisted as memory in PostgreSQL + `pgvector`, tagged and indexed for instant retrieval. |
-| **03** | **Retrieve** | The UnifiedScorer evaluates 11 signals in a single pass, including vector similarity, BM25 text score, recency decay, entity overlap, contradiction penalty, and pin weight. |
-| **04** | **Compose context** | Retrieved memory is assembled into a token-budget-aware context payload via `POST /api/v1/context/retrieve`. |
-| **05** | **Generate response** | Context is passed to the model for output. Route through BYOK to use your own OpenAI, Anthropic, Gemini, or DeepSeek keys natively. |
+The five-stage pipeline transforms raw multi-turn dialogue into high-signal context vectors with bitemporal validity:
 
 ## What's Next?
-
-<CardGroup cols={2}>
-  <Card title="Explore the architecture" icon="network" href="/open-source/overview">
-    Understand how PiyGraph, bitemporal `valid_at`/`system_at` tracking, and Speculative Memory Branching are structured.
-  </Card>
-
-  <Card title="Store your first memory" icon="database">
-    Create and persist your first record using `POST /api/v1/memories` or the TypeScript SDK.
-  </Card>
-
-  <Card title="Build an AI agent" icon="bot">
-    Wire up memory and context using our MCP Server (`@piyapi/mcp-server`, 30 tools, 3 resources, 3 prompts).
-  </Card>
-
-  <Card title="Explore the API" icon="code" href="/api-reference/overview">
-    Browse the full REST reference and OpenAPI JSON spec at `https://api.piyapi.cloud/docs/raw/openapi.json`.
-  </Card>
-</CardGroup>

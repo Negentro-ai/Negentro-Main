@@ -1,0 +1,39 @@
+---
+title: "Client SDKs (TypeScript & Python)"
+sidebarTitle: "SDKs"
+description: "Official client libraries for TypeScript/Node.js ( @piyapi/sdk ) and Python ( piyapi-memory )."
+---
+
+Official client libraries for TypeScript/Node.js ( @piyapi/sdk ) and Python ( piyapi-memory ).
+
+## TypeScript / Node.js SDK (@piyapi/sdk)
+
+```typescript TypeScript
+import { PiyAPIClient } from '@piyapi/sdk';
+
+const client = new PiyAPIClient({
+  apiKey: process.env.PIYAPI_API_KEY || 'sk_live_...',
+});
+
+async function main() {
+  const memory = await client.memories.create({
+    content: 'User prefers PostgreSQL and Python for AI projects.',
+    tags: ['preferences', 'tech-stack'],
+  });
+  console.log('Created Memory ID:', memory.id);
+}
+main();
+```
+
+## Python SDK (piyapi-memory)
+
+```python Python
+from piyapi_memory import PiyAPIClient
+
+client = PiyAPIClient(api_key="sk_live_your_key_here")
+memory = client.memories.create(
+    content="User prefers PostgreSQL and Python for AI projects.",
+    tags=["preferences", "tech-stack"]
+)
+print("Created Memory ID:", memory.id)
+```

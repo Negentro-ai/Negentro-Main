@@ -1,0 +1,33 @@
+---
+title: "LangChain Integration"
+sidebarTitle: "LangChain"
+description: "Official LangChain adapter ( packages/langchain-adapter ) providing persistent bitemporal memory retrieval and context injection for LangChain chains and agents."
+---
+
+Official LangChain adapter ( packages/langchain-adapter ) providing persistent bitemporal memory retrieval and context injection for LangChain chains and agents.
+
+## Installation
+
+```bash Terminal
+pip install packages/langchain-adapter
+# Or install client memory library
+pip install piyapi-memory
+```
+
+## Code Example (from User Guide §5.3)
+
+```python Python
+from piyapi_langchain import PiyAPIMemoryRetriever
+
+# Initialize memory retriever with API key and namespace scope
+retriever = PiyAPIMemoryRetriever(
+    api_key="sk_live_your_key_here",
+    user_id="dev_lead",
+    scope="project"
+)
+
+# Retrieve relevant context documents directly for LangChain chains and agents
+docs = retriever.get_relevant_documents("user database preferences")
+for doc in docs:
+    print(doc.page_content)
+```

@@ -1,0 +1,30 @@
+---
+title: "Memory as an API Tool (Function Calling)"
+description: "Expose atomic memory storage and recall tools to OpenAI, Anthropic, and Gemini function calling."
+---
+
+Expose atomic memory storage and recall tools to OpenAI, Anthropic, and Gemini function calling.
+
+## OpenAI Tools Definition Schema
+
+```json JSON — Tool Definition
+{
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "store_memory",
+        "description": "Store a user fact or preference into long-term bitemporal memory.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "content": { "type": "string", "description": "The atomic fact to store." },
+            "tags": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": ["content"]
+        }
+      }
+    }
+  ]
+}
+```

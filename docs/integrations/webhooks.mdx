@@ -1,0 +1,17 @@
+---
+title: "Webhooks & Real-Time Event System"
+sidebarTitle: "Webhooks"
+description: "HTTP callbacks for memory lifecycle mutations ( memory.created ), CDC data sync completions ( sync.completed ), and BYOK key alerts ( byok.key_failed ) with HMAC-SHA256 signature verification."
+---
+
+HTTP callbacks for memory lifecycle mutations ( memory.created ), CDC data sync completions ( sync.completed ), and BYOK key alerts ( byok.key_failed ) with HMAC-SHA256 signature verification.
+
+## HMAC-SHA256 Signature Verification
+
+```python Python
+import hmac, hashlib
+
+def verify_webhook(payload_bytes, sig_header, secret):
+    computed = hmac.new(secret.encode(), payload_bytes, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(f"sha256={computed}", sig_header)
+```

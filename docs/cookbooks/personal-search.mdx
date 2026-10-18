@@ -1,0 +1,22 @@
+---
+title: "Personal Context Search & RAG Summaries"
+description: "High-throughput hybrid search fused with Reciprocal Rank Fusion (RRF_K=30) and token-budget context assembly."
+---
+
+High-throughput hybrid search fused with Reciprocal Rank Fusion (RRF_K=30) and token-budget context assembly.
+
+`POST /api/v1/search`
+
+## Executing Hybrid Search
+
+```bash POST /api/v1/search
+curl -X POST https://api.piyapi.cloud/api/v1/search \
+  -H "Authorization: Bearer sk_live_your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "user preferred deployment region and cloud provider",
+    "limit": 5,
+    "min_score": 0.65,
+    "include_metadata": true
+  }'
+```

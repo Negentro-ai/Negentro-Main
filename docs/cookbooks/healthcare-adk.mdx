@@ -1,0 +1,28 @@
+---
+title: "Healthcare Context & PHI/PII Redaction"
+description: "HIPAA-compliant patient memory storage with cryptographic tokenization and zero-knowledge redaction."
+---
+
+HIPAA-compliant patient memory storage with cryptographic tokenization and zero-knowledge redaction.
+
+`POST /api/v1/tokenization/check`
+
+## 1. Checking PHI Risk Before Ingestion
+
+```bash POST /api/v1/tokenization/check
+curl -X POST https://api.piyapi.cloud/api/v1/tokenization/check \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "Patient John Doe (DOB 1982-04-12) reports hypertension and takes Lisinopril 20mg."
+  }'
+
+# Response:
+# {
+#   "has_phi": true,
+#   "entities": [
+#     {"type": "NAME", "text": "John Doe", "token": "[NAME_1]"},
+#     {"type": "DOB", "text": "1982-04-12", "token": "[DATE_1]"}
+#   ]
+# }
+```

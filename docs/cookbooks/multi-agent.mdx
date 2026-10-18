@@ -1,0 +1,23 @@
+---
+title: "Multi-Agent Collaboration with Speculative Branching"
+sidebarTitle: "Multi"
+description: "Isolate agent reasoning trials into ephemeral branches and merge verified discoveries with 3-way conflict resolution."
+---
+
+Isolate agent reasoning trials into ephemeral branches and merge verified discoveries with 3-way conflict resolution.
+
+`POST /api/v1/branches`
+
+## Branch Creation & Diffing
+
+```bash POST /api/v1/branches
+# 1. Create trial branch
+curl -X POST https://api.piyapi.cloud/api/v1/branches \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{ "name": "research_agent_hypothesis_4", "purpose": "Testing drug interaction" }'
+
+# 2. Inspect diff before merging to production memory
+curl -s https://api.piyapi.cloud/api/v1/branches/branch_123/diff \
+  -H "Authorization: Bearer sk_live_prod_key_here"
+```

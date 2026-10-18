@@ -1,0 +1,43 @@
+---
+title: "Turn stored information into useful context"
+sidebarTitle: "Context"
+description: "Context is the information your model receives for a specific task. Negentro helps your application assemble relevant information from persistent memory and configured sources instead of relying exclu"
+---
+
+Context is the information your model receives for a specific task. Negentro helps your application assemble relevant information from persistent memory and configured sources instead of relying exclusively on the current prompt or replaying an entire conversation.
+
+## Memory versus context
+
+A user may have years of stored history, but a single request may require only a few preferences, facts, and recent decisions. Context assembly bridges that gap.
+
+<CardGroup cols={2}>
+  <Card title="Memory" icon="database">
+    Information retained for potential future use. Can span years of user history across all sessions.
+  </Card>
+  <Card title="Context" icon="layers">
+    The subset of information selected for the current operation. Task-specific, token-bounded, and ephemeral.
+  </Card>
+</CardGroup>
+
+## How context assembly works
+
+## Token-aware context
+
+- Relevance to the current task.
+- Source reliability and freshness.
+- Token limits and reserved response capacity.
+- Information priority and required instructions.
+- Duplicates and conflicting facts.
+- Privacy and authorization constraints.
+
+## Context retrieval interface
+
+```bash REST API
+POST /api/v1/context/retrieve
+```
+
+## Context quality checklist
+
+## Recommended practice
+
+Build context for the task at hand. Prefer a smaller, well-selected payload over a large collection of loosely related history. Keep retrieval and context assembly observable so you can tune quality as real workloads evolve.

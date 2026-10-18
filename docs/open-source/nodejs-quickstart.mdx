@@ -1,0 +1,87 @@
+---
+title: "Node.js Quickstart"
+description: "Integrate stateful memory and context management into TypeScript and Node.js applications with native ESM and CommonJS support."
+---
+
+Integrate stateful memory and context management into TypeScript and Node.js applications with native ESM and CommonJS support.
+
+## Installation
+
+```bash Terminal
+# npm
+npm install @negentro/sdk
+
+# pnpm
+pnpm add @negentro/sdk
+
+# yarn
+yarn add @negentro/sdk
+```
+
+## TypeScript Setup & Usage
+
+Initialize the Negentro client to connect to your self-hosted server or local instance:
+
+<CodeGroup>
+
+```typescript index.ts
+import { NegentroClient } from '@negentro/sdk';
+
+const client = new NegentroClient({
+  baseUrl: process.env.NEGENTRO_HOST || 'http://localhost:8080',
+  apiKey: process.env.NEGENTRO_API_KEY
+});
+
+async function main() {
+  // Store user preference
+  const mem = await client.memories.create({
+    content: "User prefers Node.js with Fastify over Express.",
+    userId: "user_42",
+    tags: ["backend", "frameworks"]
+  });
+  console.log("Created memory ID:", mem.id);
+
+  // Hybrid search across memories
+  const results = await client.search({
+    query: "What web framework does the user prefer?",
+    userId: "user_42",
+    limit: 5
+  });
+  console.log("Top match:", results.results[0]);
+}
+
+main();
+```
+
+```typescript app/api/chat/route.ts
+import { NegentroClient } from '@negentro/sdk';
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
+
+const negentro = new NegentroClient();
+
+export async function POST(req: Request) {
+  const { messages, userId } = await req.json();
+  const lastMessage = messages[messages.length - 1].content;
+
+  // 1. Retrieve targeted memory context
+  const context = await negentro.context.retrieve({
+    query: lastMessage,
+    userId: userId,
+    tokenBudget: 800
+  });
+
+  // 2. Stream completion with grounded memory
+  return streamText({
+    model: openai('gpt-4o'),
+    system: `You are a helpful assistant. Context: ${context.assembledPrompt}`,
+    messages
+  }).toDataStreamResponse();
+}
+```
+
+</CodeGroup>
+
+## Next.js & Vercel AI SDK Integration
+
+Assemble token-budgeted prompt context inside a Next.js App Router route handler:

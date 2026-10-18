@@ -1,0 +1,48 @@
+---
+title: "Configuration"
+description: "Fine-tune every layer of the memory stack — from vector dimensions and chunking strategies to LLM inference pipelines."
+---
+
+Fine-tune every layer of the memory stack — from vector dimensions and chunking strategies to LLM inference pipelines.
+
+## Complete Configuration Schema
+
+Negentro reads configuration from negentro.config.json , a JavaScript/TypeScript config file, or environment variables:
+
+```json negentro.config.json
+{
+  "llm": {
+    "provider": "openai",
+    "model": "gpt-4o",
+    "temperature": 0.1
+  },
+  "embedder": {
+    "provider": "openai",
+    "model": "text-embedding-3-small",
+    "dimension": 1536
+  },
+  "vector_store": {
+    "provider": "pgvector",
+    "connection_uri": "postgresql://negentro:secret@localhost:5432/negentro",
+    "collection_name": "negentro_memories"
+  },
+  "storage": {
+    "bitemporal_enabled": true,
+    "history_store": "postgres"
+  },
+  "cache": {
+    "provider": "redis",
+    "url": "redis://localhost:6379",
+    "ttl_seconds": 3600
+  }
+}
+```
+
+## Resolution Precedence
+
+Configuration values are resolved in the following priority order:
+
+- Direct arguments passed to SDK methods (e.g. user_id , limit ).
+- System environment variables (e.g. OPENAI_API_KEY , DATABASE_URL ).
+- Configuration file ( negentro.config.json ).
+- Default production settings.

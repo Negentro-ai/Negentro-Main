@@ -1,0 +1,54 @@
+---
+title: "Start Here: 3 Fast-Track Paths to Production Memory"
+sidebarTitle: "Start Here"
+description: "Deploying persistent memory takes under five minutes with PiyAPI REST endpoints or language SDKs."
+---
+
+Deploying persistent memory takes under five minutes with PiyAPI REST endpoints or language SDKs.
+
+## Path 1: Store & Recall Memory in 2 Steps
+
+Initialize your client with your live API key, store unstructured conversation facts, and perform multi-signal hybrid recall (dense vector + BM25 trigram fused with RRF_K=30).
+
+```typescript TypeScript / Node.js — Minimal Companion Loop
+import { PiyAPIClient } from '@piyapi/sdk';
+
+const client = new PiyAPIClient({
+  apiKey: process.env.PIYAPI_API_KEY || 'sk_live_prod_key_here',
+});
+
+// 1. Ingest user interaction fact
+const memory = await client.memories.create({
+  content: 'User prefers dark mode UI and works primarily with React and TypeScript.',
+  tags: ['preferences', 'tech-stack'],
+  metadata: { source: 'onboarding_chat', user_id: 'usr_9918' }
+});
+
+// 2. Perform hybrid search during subsequent chat turns
+const relevant = await client.search.query({
+  query: 'What frontend framework does the user prefer?',
+  limit: 5,
+  include_metadata: true
+});
+
+console.log('Recalled memory:', relevant.results[0].content);
+```
+
+## Path 2: Strict Multi-Tenant Namespace Isolation
+
+For SaaS applications with multi-tenant architectures, pass the X-Namespace-Prefix header on every request to guarantee zero scope leakage across client organizations.
+
+```bash cURL — Namespace Scoping
+curl -X POST https://api.piyapi.cloud/api/v1/memories \
+  -H "Authorization: Bearer sk_live_your_api_key_here" \
+  -H "X-Namespace-Prefix: tenant_acme_corp" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Enterprise security policy mandates 90-day key rotations.",
+    "tags": ["security", "policy"]
+  }'
+```
+
+## Path 3: Local Ollama & Air-Gapped Fallback
+
+When running in privacy-sensitive or edge environments, use the BYOK routing engine or run local containers with pgvector and Ollama embeddings.

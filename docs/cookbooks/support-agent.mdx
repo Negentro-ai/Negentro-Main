@@ -1,0 +1,26 @@
+---
+title: "Memory-Powered Customer Support Agent"
+sidebarTitle: "Memory"
+description: "Ingest customer ticket streams and empower support agents with continuous historical context."
+---
+
+Ingest customer ticket streams and empower support agents with continuous historical context.
+
+`POST /api/v1/conversations/ingest`
+
+## Continuous Sliding-Window Conversation Ingestion
+
+```bash POST /api/v1/conversations/ingest
+curl -X POST https://api.piyapi.cloud/api/v1/conversations/ingest \
+  -H "Authorization: Bearer sk_live_prod_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "conversation_id": "conv_support_8910",
+    "customer_id": "cust_3312",
+    "channel": "zendesk",
+    "turns": [
+      { "speaker": "customer", "text": "Our SSO setup fails with error ADFS_INVALID_ASSERTION." },
+      { "speaker": "agent", "text": "Checking certificate thumbprint validity in your tenant config." }
+    ]
+  }'
+```

@@ -1,0 +1,47 @@
+---
+title: "Self-hosted REST API"
+sidebarTitle: "REST API"
+description: "Complete HTTP interface for interacting with the Negentro memory engine from any programming language or framework."
+---
+
+Complete HTTP interface for interacting with the Negentro memory engine from any programming language or framework.
+
+## Endpoints Reference
+
+| Method | Endpoint | Description |
+| :-- | :-- | :-- |
+| POST | /api/v1/memories | Store new memory and extract atomic entities. |
+| GET | /api/v1/memories | List memories with user, agent, and pagination filters. |
+| GET | /api/v1/memories/:id | Retrieve memory details, vector metadata, and timestamps. |
+| PATCH | /api/v1/memories/:id | Update memory content and recalculate embeddings. |
+| DELETE | /api/v1/memories/:id | Delete a memory and purge vector store records. |
+| POST | /api/v1/memories/search | Hybrid vector + BM25 search across memories. |
+| POST | /api/v1/context/retrieve | Token-budget-aware prompt assembly for LLM system context. |
+| GET | /api/v1/memories/:id/history | Retrieve audit trail of changes made to a memory. |
+
+## cURL Examples
+
+<CodeGroup>
+
+```bash Bash
+curl -X POST http://localhost:8080/api/v1/memories \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer sk_live_..." \
+  -d '{
+    "content": "User prefers concise answers and TypeScript code snippets.",
+    "user_id": "usr_771",
+    "metadata": { "platform": "web" }
+  }'
+```
+
+```bash Bash
+curl -X POST http://localhost:8080/api/v1/memories/search \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "What language does the user prefer?",
+    "user_id": "usr_771",
+    "limit": 3
+  }'
+```
+
+</CodeGroup>

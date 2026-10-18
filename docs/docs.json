@@ -13,87 +13,272 @@
 				"groups": [
 					{
 						"group": "Get Started",
-						"pages": ["index", "quickstart"]
+						"pages": [
+							"index",
+							"quickstart"
+						]
 					}
 				]
 			},
 			{
-        "tab": "Platform",
-        "groups": [
-          {
-            "group": "Platform",
-            "pages": [
-              "platform/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Open Source",
-        "groups": [
-          {
-            "group": "Open Source",
-            "pages": [
-              "open-source/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Integrations",
-        "groups": [
-          {
-            "group": "Integrations",
-            "pages": [
-              "integrations/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Agent Plugins",
-        "groups": [
-          {
-            "group": "Coding Agents",
-            "pages": [
-              "agent-plugins/claude-code"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Cookbooks",
-        "groups": [
-          {
-            "group": "Cookbooks",
-            "pages": [
-              "cookbooks/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Reference",
-            "pages": [
-              "api-reference/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Release Notes",
-        "groups": [
-          {
-            "group": "Release Notes",
-            "pages": [
-              "release-notes"
-            ]
-          }
-        ]
-      }
+				"tab": "Platform",
+				"groups": [
+					{
+						"group": "Platform",
+						"pages": [
+							"platform/overview",
+							"platform/quickstart",
+							"platform/architecture",
+							"platform/memory",
+							"platform/context",
+							"platform/retrieval",
+							"platform/users",
+							"platform/data",
+							"platform/integrations",
+							"platform/analytics"
+						]
+					}
+				]
+			},
+			{
+				"tab": "Open Source",
+				"groups": [
+					{
+						"group": "Getting Started",
+						"pages": [
+							"open-source/overview",
+							"open-source/python-sdk",
+							"open-source/nodejs-quickstart",
+							"open-source/self-hosted",
+							"open-source/web-studio",
+							"open-source/rest-api"
+						]
+					},
+					{
+						"group": "Configuration & Architecture",
+						"pages": [
+							"open-source/configuration",
+							"open-source/llms",
+							"open-source/vector-databases",
+							"open-source/embeddings",
+							"open-source/storage",
+							"open-source/metadata-filtering",
+							"open-source/reranking",
+							"open-source/multimodal"
+						]
+					}
+				]
+			},
+			{
+				"tab": "Integrations",
+				"groups": [
+					{
+						"group": "Overview",
+						"pages": [
+							"integrations/overview"
+						]
+					},
+					{
+						"group": "Agent Frameworks",
+						"pages": [
+							"integrations/langchain",
+							"integrations/langgraph",
+							"integrations/llamaindex",
+							"integrations/crewai",
+							"integrations/autogen",
+							"integrations/mastra",
+							"integrations/uxpilot",
+							"integrations/google-adk",
+							"integrations/vercel-ai"
+						]
+					},
+					{
+						"group": "Voice & Real-Time",
+						"pages": [
+							"integrations/livekit",
+							"integrations/pipecat",
+							"integrations/elevenlabs"
+						]
+					},
+					{
+						"group": "Developer Tools",
+						"pages": [
+							"integrations/mcp",
+							"integrations/rest-api",
+							"integrations/sdks",
+							"integrations/webhooks"
+						]
+					},
+					{
+						"group": "Infrastructure",
+						"pages": [
+							"integrations/postgresql",
+							"integrations/redis",
+							"integrations/vectordbs",
+							"integrations/cloud-providers"
+						]
+					}
+				]
+			},
+			{
+				"tab": "Agent Plugins",
+				"groups": [
+					{
+						"group": "Coding Agents",
+						"pages": [
+							"agent-plugins/claude-code",
+							"agent-plugins/cursor",
+							"agent-plugins/codex",
+							"agent-plugins/opencode",
+							"agent-plugins/gemini-cli",
+							"agent-plugins/cline",
+							"agent-plugins/kimi-code",
+							"agent-plugins/antigravity"
+						]
+					},
+					{
+						"group": "Agent Harnesses",
+						"pages": [
+							"agent-plugins/openclaw",
+							"agent-plugins/hermes-agent",
+							"agent-plugins/pi-agent",
+							"agent-plugins/deepseek-harness",
+							"agent-plugins/livekit"
+						]
+					},
+					{
+						"group": "Plugin Resources",
+						"pages": [
+							"agent-plugins/plugin-overview",
+							"agent-plugins/installation",
+							"agent-plugins/configuration",
+							"agent-plugins/commands",
+							"agent-plugins/memory",
+							"agent-plugins/troubleshooting"
+						]
+					}
+				]
+			},
+			{
+				"tab": "Cookbooks",
+				"groups": [
+					{
+						"group": "Overview",
+						"pages": [
+							"cookbooks/overview"
+						]
+					},
+					{
+						"group": "Getting Started",
+						"pages": [
+							"cookbooks/start-here",
+							"cookbooks/essentials"
+						]
+					},
+					{
+						"group": "Companion Playbooks",
+						"pages": [
+							"cookbooks/companion-negentro",
+							"cookbooks/ai-tutor",
+							"cookbooks/coding-companion",
+							"cookbooks/self-hosted",
+							"cookbooks/interactive-demo",
+							"cookbooks/research-yt",
+							"cookbooks/travel-assistant"
+						]
+					},
+					{
+						"group": "Ops & Automations",
+						"pages": [
+							"cookbooks/multi-session",
+							"cookbooks/support-agent",
+							"cookbooks/email-intelligence",
+							"cookbooks/content-creation",
+							"cookbooks/collaborative-task"
+						]
+					},
+					{
+						"group": "Integrations & Platforms",
+						"pages": [
+							"cookbooks/agent-sdk",
+							"cookbooks/api-tool",
+							"cookbooks/healthcare-adk",
+							"cookbooks/personal-search",
+							"cookbooks/mastra-agents",
+							"cookbooks/bedrock-memory"
+						]
+					},
+					{
+						"group": "Frameworks & Multimodal",
+						"pages": [
+							"cookbooks/ai-agents",
+							"cookbooks/multi-agent",
+							"cookbooks/persistent-persona",
+							"cookbooks/visual-memory"
+						]
+					}
+				]
+			},
+			{
+				"tab": "API Reference",
+				"groups": [
+					{
+						"group": "Overview",
+						"pages": [
+							"api-reference/overview"
+						]
+					},
+					{
+						"group": "Core Memory Operations",
+						"pages": [
+							"api-reference/add-memories",
+							"api-reference/get-memories",
+							"api-reference/search-memories",
+							"api-reference/update-memory",
+							"api-reference/delete-memory"
+						]
+					},
+					{
+						"group": "Memory Management",
+						"pages": [
+							"api-reference/feedback",
+							"api-reference/get-memory",
+							"api-reference/memory-history",
+							"api-reference/submit-update",
+							"api-reference/batch-delete",
+							"api-reference/delete-memories",
+							"api-reference/create-export",
+							"api-reference/get-export"
+						]
+					},
+					{
+						"group": "Organizations & Projects",
+						"pages": [
+							"api-reference/organizations",
+							"api-reference/projects"
+						]
+					},
+					{
+						"group": "Events",
+						"pages": [
+							"api-reference/get-events"
+						]
+					}
+				]
+			},
+			{
+				"tab": "Release Notes",
+				"groups": [
+					{
+						"group": "Release Notes",
+						"pages": [
+							"release-notes",
+							"release-notes/sdk-tools",
+							"release-notes/platform"
+						]
+					}
+				]
+			}
 		]
 	},
 	"icons": {
@@ -148,14 +333,14 @@
 			"href": "https://piyapi.cloud/",
 			"label": "Dashboard"
 		}
-  },
-  "logo": {
-    "light": "/images/negentroailogo.png",
-    "dark": "/images/negentroailogo.png",
-    "href": "https://docs.negentro.tech"
-  },
-  "favicon": {
-    "light": "/images/light.png",
-    "dark": "/images/white.png"
-  }
+	},
+	"logo": {
+		"light": "/images/negentroailogo.png",
+		"dark": "/images/negentroailogo.png",
+		"href": "https://docs.negentro.tech"
+	},
+	"favicon": {
+		"light": "/images/light.png",
+		"dark": "/images/white.png"
+	}
 }
