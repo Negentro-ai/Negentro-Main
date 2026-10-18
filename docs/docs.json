@@ -1,6 +1,6 @@
 {
 	"name": "Negentro Docs",
-	"theme": "aspen",
+	"theme": "mint",
 	"colors": {
 		"primary": "#765DFB",
 		"light": "#F9F8FF",
@@ -282,7 +282,7 @@
 		]
 	},
 	"icons": {
-		"library": "fontawesome"
+		"library": "lucide"
 	},
 	"footer": {
 		"links": [
