@@ -342,5 +342,9 @@
 	"favicon": {
 		"light": "/images/light.png",
 		"dark": "/images/white.png"
-	}
+  },
+  "styling": {
+    "eyebrows": "section"
+  },
+  "description": "Open-source memory and context infrastructure for AI agents. Self-host or use the cloud API with hybrid search, MCP and LangChain support."
 }
