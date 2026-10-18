@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 169" width="100%" height="100%">
+  <rect width="400" height="169" fill="#f8f7fd"/>
+  <!-- Code Snippet Box -->
+  <g filter="drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.04))">
+    <rect x="22" y="18" width="356" height="133" rx="10" fill="#ffffff" stroke="#e6e4eb" stroke-width="1"/>
+  </g>
+  
+  <!-- Header: Example label + Copy button -->
+  <text x="42" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#9ca3af">Example</text>
+  <g filter="drop-shadow(0px 1px 3px rgba(118, 93, 251, 0.2))">
+    <rect x="312" y="30" width="50" height="22" rx="6" fill="#765DFB"/>
+    <text x="337" y="45.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#ffffff" text-anchor="middle">Copy</text>
+  </g>
+
+  <!-- Code text -->
+  <text font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11.5" xml:space="preserve">
+    <tspan x="42" y="78" fill="#765dfb" font-weight="600">const</tspan><tspan fill="#1e1b4b"> client = </tspan><tspan fill="#765dfb" font-weight="600">new</tspan><tspan fill="#2563eb"> PiyApi</tspan><tspan fill="#4b5563">(API_KEY);</tspan>
+    <tspan x="42" y="106" fill="#1e1b4b">client.agent.</tspan><tspan fill="#2563eb">deploy</tspan><tspan fill="#4b5563">(edTechTutor_Config);</tspan>
+  </text>
+</svg>

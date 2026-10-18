@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 169" width="100%" height="100%">
+  <rect width="400" height="169" fill="#f8f7fd"/>
+  <!-- Code Editor Window -->
+  <g filter="drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.04))">
+    <rect x="22" y="18" width="356" height="133" rx="10" fill="#ffffff" stroke="#e6e4eb" stroke-width="1"/>
+  </g>
+  <text font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11.5" xml:space="preserve">
+    <!-- Line 1 -->
+    <tspan x="38" y="52" fill="#9ca3af">1.</tspan>
+    <tspan x="56" y="52" fill="#765dfb" font-weight="600">const</tspan>
+    <tspan fill="#1e1b4b"> payload = </tspan>
+    <tspan fill="#765dfb" font-weight="600">await</tspan>
+    <tspan fill="#2563eb"> retrieve</tspan><tspan fill="#4b5563">(UnifiedScorer);</tspan>
+    
+    <!-- Line 2 -->
+    <tspan x="38" y="82" fill="#9ca3af">2.</tspan>
+    <tspan x="56" y="82" fill="#2563eb">resolveConflicts</tspan><tspan fill="#4b5563">(payload);</tspan>
+    
+    <!-- Line 3 -->
+    <tspan x="38" y="112" fill="#9ca3af">3.</tspan>
+    <tspan x="56" y="112" fill="#2563eb">generateResponse</tspan><tspan fill="#4b5563">();</tspan>
+  </text>
+</svg>
