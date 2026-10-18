@@ -202,7 +202,7 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
   border-bottom: 1px solid #f0edf9;
 }
 
-/* Light mode illustrations */
+/* Figma reference illustrations */
 .negentro-memory::before {
   background-image: url('/images/card-memory.svg');
 }
@@ -220,26 +220,6 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) > p:first-of-type {
 }
 .negentro-infrastructure::before {
   background-image: url('/images/card-infrastructure.svg');
-}
-
-/* Dark mode illustrations */
-html.dark .negentro-memory::before, .dark .negentro-memory::before {
-  background-image: url('/images/card-memory-dark.svg');
-}
-html.dark .negentro-agent::before, .dark .negentro-agent::before {
-  background-image: url('/images/card-agent-dark.svg');
-}
-html.dark .negentro-workflow::before, .dark .negentro-workflow::before {
-  background-image: url('/images/card-workflow-dark.svg');
-}
-html.dark .negentro-framework::before, .dark .negentro-framework::before {
-  background-image: url('/images/card-framework-dark.svg');
-}
-html.dark .negentro-example::before, .dark .negentro-example::before {
-  background-image: url('/images/card-example-dark.svg');
-}
-html.dark .negentro-infrastructure::before, .dark .negentro-infrastructure::before {
-  background-image: url('/images/card-infrastructure-dark.svg');
 }
 
 .negentro-memory { --guide-label: "01"; }
