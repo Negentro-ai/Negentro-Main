@@ -1,23 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 169" width="100%" height="100%">
   <rect width="400" height="169" fill="#f8f7fd"/>
-  <!-- 2x2 Framework Cards -->
+  <!-- 6 Framework Cards: 2 rows of 3 -->
+  
   <!-- Row 1 -->
+  <!-- Next.js -->
   <g filter="drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.04))">
-    <rect x="58" y="24" width="134" height="52" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-    <text x="125" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#1f2937" text-anchor="middle">Python</text>
+    <rect x="29" y="26" width="106" height="50" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="82" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#1f2937" text-anchor="middle">Next.js</text>
   </g>
+  <!-- Python -->
   <g filter="drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.04))">
-    <rect x="208" y="24" width="134" height="52" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-    <text x="275" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#1f2937" text-anchor="middle">LangChain</text>
+    <rect x="147" y="26" width="106" height="50" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="200" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#1f2937" text-anchor="middle">Python</text>
+  </g>
+  <!-- LangChain -->
+  <g filter="drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.04))">
+    <rect x="265" y="26" width="106" height="50" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="318" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#1f2937" text-anchor="middle">LangChain</text>
   </g>
 
   <!-- Row 2 -->
+  <!-- Node.js -->
   <g filter="drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.04))">
-    <rect x="58" y="92" width="134" height="52" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-    <text x="125" y="123" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#1f2937" text-anchor="middle">LlamaIndex</text>
+    <rect x="29" y="92" width="106" height="50" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="82" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#1f2937" text-anchor="middle">Node.js</text>
   </g>
+  <!-- LlamaIndex -->
   <g filter="drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.04))">
-    <rect x="208" y="92" width="134" height="52" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-    <text x="275" y="123" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#1f2937" text-anchor="middle">Vercel AI</text>
+    <rect x="147" y="92" width="106" height="50" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="200" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#1f2937" text-anchor="middle">LlamaIndex</text>
+  </g>
+  <!-- Vercel AI -->
+  <g filter="drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.04))">
+    <rect x="265" y="92" width="106" height="50" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="318" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#1f2937" text-anchor="middle">Vercel AI</text>
   </g>
 </svg>
