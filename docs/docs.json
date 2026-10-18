@@ -336,7 +336,7 @@
 	},
 	"logo": {
 		"light": "/images/negentroailogo.png",
-		"dark": "/images/negentroailogo.png",
+		"dark": "/images/negentroailogo-dark.png",
 		"href": "https://docs.negentro.tech"
 	},
 	"favicon": {

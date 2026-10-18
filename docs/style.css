@@ -1,7 +1,33 @@
-/* Preserve the existing navbar logo sizing. */
-img.nav-logo {
-  height: 3rem !important;
+/* Navbar logo sizing */
+img.nav-logo,
+header img.nav-logo,
+#navbar img.nav-logo,
+a:has(> img.nav-logo) img,
+img[alt="light logo"],
+img[alt="dark logo"],
+img[src*="negentroailogo"] {
+  height: 2.25rem !important;
+  max-height: 38px !important;
   width: auto !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 640px) {
+  img.nav-logo,
+  header img.nav-logo,
+  #navbar img.nav-logo,
+  a:has(> img.nav-logo) img,
+  img[alt="light logo"],
+  img[alt="dark logo"],
+  img[src*="negentroailogo"] {
+    height: 1.75rem !important;
+    max-height: 30px !important;
+  }
+}
+
+html.dark img.nav-logo[src*="negentroailogo.png"]:not([src*="negentroailogo-dark.png"]),
+.dark img.nav-logo[src*="negentroailogo.png"]:not([src*="negentroailogo-dark.png"]) {
+  filter: brightness(0) invert(1);
 }
 
 /* Homepage only: retain native navigation, footer, and Card components. */
