@@ -346,5 +346,5 @@
   "styling": {
     "eyebrows": "section"
   },
-  "description": "Negentro is the persistent memory and context layer for AI agents. Store, search and recall context across sessions via SDK, REST API or MCP."
+  "description": "Negentro is the persistent memory and context layer for AI agents. Store, search, and recall context across sessions via SDK, REST API, or MCP."
 }
