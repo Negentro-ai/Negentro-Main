@@ -1064,7 +1064,7 @@ const CSS = `
   /* type */
   --display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --text: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --mono: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --mono: "DM Mono", "JetBrains Mono", monospace;
 
   /* scale: 1.333 */
   --t-12: 0.75rem;

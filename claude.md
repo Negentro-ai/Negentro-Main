@@ -88,16 +88,15 @@ This document provides a comprehensive technical guide for any AI agent or softw
 ## 3. Design System & Aesthetic Standards
 
 ### Typography:
-- **Body & Headlines**: `"DM Sans"`, system-ui, sans-serif
-- **Code & Metrics**: `"JetBrains Mono"`, monospace
+- **Primary (Body & Headlines)**: `"DM Sans"`, system-ui, sans-serif *(replaces Neue Machina as per brand spec)*
+- **Secondary (Code & Metrics)**: `"DM Mono"` / `"JetBrains Mono"`, monospace *(DM MONO SANS in brand guide)*
 
-### Color Palette:
-- **Hero Dark Background**: `#04050c`
-- **PiyAPI Electric Violet**: `#765DFB`
-- **Deep Royal Violet**: `#6320EE` / `#5146B8` / `#37338C`
-- **Soft Lilac Accent**: `#ECCDF5` / `#F2EFFE`
-- **Dark Neutral Text**: `#0B1015` / `#0F1123` / `#1A1935`
-- **Muted Text / Border**: `#888E94` / `#8F9FA3` / `#2D2A54`/30
+### Official Brand Color Palette:
+- **Aura White**: `#F9F8FF` (RGB: 249, 248, 255 | CMYK: 2, 3, 0, 0)
+- **Aura Lavender**: `#ECCDF5` (RGB: 236, 205, 245 | CMYK: 4, 16, 0, 4)
+- **Gayo Purple**: `#765DFB` (RGB: 118, 93, 251 | CMYK: 53, 63, 0, 2) — Core brand accent & primary button fill
+- **Deep Indigo**: `#4846AC` (RGB: 72, 70, 172 | CMYK: 58, 59, 0, 33) — Contrast accent & secondary deep purple
+- **Deep Black**: `#00050E` (RGB: 0, 5, 14 | CMYK: 100, 64, 0, 94) — Primary text & dark surfaces
 
 ### Design Guidelines:
 - **Ultra-Premium Finish**: Use rich gradients, subtle glassmorphism (`backdrop-blur-xl`), smooth hover micro-interactions, and 60fps GPU-accelerated animations.

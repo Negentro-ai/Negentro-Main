@@ -90,7 +90,6 @@ const IndustryPage = lazy(() =>
 		default: m.IndustryPage,
 	})),
 )
-const EducationPage = lazy(() => import("./components/EducationPage"))
 const CompanyPage = lazy(() => import("./components/CompanyPage").then((m) => ({ default: m.default })));
 
 export function App() {
@@ -192,7 +191,7 @@ export function App() {
 					<AdminCMSPage />
 				</Suspense>
 			) : isOverview ? (
-				<div className="w-full bg-[#04050c] font-sans antialiased selection:bg-[#6320EE] selection:text-white">
+				<div className="w-full bg-[#04050c] font-sans antialiased selection:bg-[#765DFB] selection:text-white">
 					{/* Hero Section with Interactive Fluid Simulation */}
 					<section className="relative w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden">
 						<FluidBackground />
@@ -366,29 +365,6 @@ export function App() {
 						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
 					</Suspense>
 				</div>
-			) : industrySlug === "education" ? (
-				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
-					<Navbar
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
-						onTryPiyApi={() => setIsConsoleOpen(true)}
-					/>
-
-					<div className="flex-1">
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center min-h-[50vh]">
-									<div className="w-8 h-8 rounded-full border-2 border-[#765DFB] border-t-transparent animate-spin" />
-								</div>
-							}
-						>
-							<EducationPage />
-						</Suspense>
-					</div>
-					<Suspense fallback={null}>
-						<Footer onOpenConsole={() => setIsConsoleOpen(true)} />
-					</Suspense>
-				</div>
 			) : industrySlug ? (
 				<div className="min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-neutral-900 selection:text-white font-sans antialiased">
 					<Navbar
@@ -407,7 +383,16 @@ export function App() {
 						>
 							<IndustryPage
 								industrySlug={industrySlug}
-								onNavigate={(slug) => setActiveTab(`industry:${slug}`)}
+								onNavigate={(slug) => {
+									window.history.pushState(
+										{ tab: `industry:${slug}` },
+										"",
+										`/industries/${slug}`,
+									)
+									setActiveTab(`industry:${slug}`)
+									window.scrollTo(0, 0)
+								}}
+								onTryPiyApi={() => setIsConsoleOpen(true)}
 							/>
 						</Suspense>
 					</main>

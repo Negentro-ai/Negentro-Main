@@ -2202,19 +2202,26 @@ export const AdminCMSPage = () => {
 											content: { blocks: selectedRecord.blocks || [] },
 										}}
 									/>
-								) : (
-									<IndustryPage
-										previewIndustry={{
-											slug: selectedRecord.slug,
-											name: selectedRecord.title,
-											icon: "Building2",
-											...(selectedRecord.blocks?.[0]?.content
-												? JSON.parse(selectedRecord.blocks[0].content)
-												: {}),
-										}}
-										onNavigate={() => {}}
-									/>
-								)}
+								) : (() => {
+									let industryContent: any = {}
+									try {
+										if (selectedRecord.blocks?.[0]?.content) {
+											industryContent = JSON.parse(selectedRecord.blocks[0].content)
+										}
+									} catch (e) {
+										/* ignore */
+									}
+									return (
+										<IndustryPage
+											previewIndustry={{
+												slug: selectedRecord.slug,
+												name: selectedRecord.title,
+												...industryContent,
+											}}
+											onNavigate={() => {}}
+										/>
+									)
+								})()}
 							</div>
 						</div>
 					)}
@@ -2574,9 +2581,36 @@ const FieldTextarea = ({
 )
 
 interface IndustryEditorData {
+	templateVersion?: "v1" | "v2"
 	heroTitle?: string
 	heroDescription?: string
+	heroLede?: string
 	facts?: { label: string; value: string }[]
+
+	// New Template v2 (Education format)
+	sessionHeading?: string
+	sessionSub?: string
+	sessionSteps?: {
+		title: string
+		note: string
+		adds: { k: string; v: string }[]
+		reply: string
+	}[]
+	whyHeading?: string
+	whyParagraphs?: string[]
+	blocksHeading?: string
+	blocks?: { title: string; text: string; icon?: string }[]
+	infraHeading?: string
+	infraList?: { title: string; description: string }[]
+	architecture?: {
+		inputs?: { title: string; subtitle: string }[]
+		core?: { eyebrow: string; title: string; ops: string }
+		engine?: { title: string; text: string }[]
+		loop?: string[]
+	}
+	faqHeading?: string
+
+	// Legacy Template v1 fields
 	contextTitle?: string
 	contextDescription?: string
 	contextImage?: string
@@ -2615,7 +2649,13 @@ const IndustryPageEditor = ({
 		const raw = record.blocks?.[0]
 		if (raw?.type === "hero" && raw.content) {
 			try {
-				return JSON.parse(raw.content)
+				const parsed = JSON.parse(raw.content)
+				return {
+					...parsed,
+					templateVersion:
+						parsed.templateVersion ||
+						(record.slug === "education" ? "v2" : "v1"),
+				}
 			} catch (e) {
 				/* ignore */
 			}
@@ -2625,25 +2665,29 @@ const IndustryPageEditor = ({
 			return {
 				heroTitle: industry.heroTitle,
 				heroDescription: industry.heroDescription,
+				heroLede: industry.heroLede || industry.heroDescription,
 				facts: [...industry.facts],
-				contextTitle: industry.contextTitle,
-				contextDescription: industry.contextDescription,
-				contextImage: industry.contextImage || "",
-				introTitle: industry.introTitle,
-				introParagraphLeft: industry.introParagraphs[0] || "",
-				introParagraphRight: industry.introParagraphs[1] || "",
-				capabilitiesTitle: industry.capabilitiesTitle,
-				capabilities: [...industry.capabilities],
-				infrastructureTitle: industry.infrastructureTitle,
-				problems: [...industry.problems],
-				flowSteps: [...industry.flowSteps],
-				architectureTitle: industry.architectureTitle,
-				architectureImage: industry.architectureImage || "",
-				memoryTitle: industry.memoryTitle,
-				memoryDescription: industry.memoryDescription,
-				memorySteps: [...industry.memorySteps],
-				getStartedTitle: industry.getStartedTitle,
-				getStartedDescription: industry.getStartedDescription,
+				sessionHeading: industry.sessionHeading || "Every session adds useful context.",
+				sessionSub: industry.sessionSub || "PiyAPI remembers what matters across sessions...",
+				sessionSteps: industry.sessionSteps
+					? JSON.parse(JSON.stringify(industry.sessionSteps))
+					: undefined,
+				whyHeading: industry.whyHeading || `${industry.name} needs memory.`,
+				whyParagraphs: industry.whyParagraphs
+					? [...industry.whyParagraphs]
+					: [],
+				blocksHeading: industry.blocksHeading || "Four building blocks, one memory layer.",
+				blocks: industry.blocks
+					? JSON.parse(JSON.stringify(industry.blocks))
+					: undefined,
+				infraHeading: industry.infraHeading || `The infrastructure underneath ${industry.name.toLowerCase()}.`,
+				infraList: industry.infraList
+					? JSON.parse(JSON.stringify(industry.infraList))
+					: undefined,
+				architecture: industry.architecture
+					? JSON.parse(JSON.stringify(industry.architecture))
+					: undefined,
+				faqHeading: industry.faqHeading || "Frequently asked questions.",
 				faqs: industry.faqs.map((f) => ({ ...f })),
 				finalCtaTitle: industry.finalCtaTitle,
 				finalCtaDescription: industry.finalCtaDescription,
@@ -2656,7 +2700,6 @@ const IndustryPageEditor = ({
 
 	const persist = (updated: IndustryEditorData) => {
 		setData(updated)
-		// Store as a single hero block with JSON content
 		onUpdate({
 			blocks: [
 				{ id: "industry-data", type: "hero", content: JSON.stringify(updated) },
@@ -2688,37 +2731,178 @@ const IndustryPageEditor = ({
 		persist({ ...data, facts })
 	}
 
-	const updateCapability = (
+	// Unified Template Handlers
+
+	const ensureSessionSteps =
+		data.sessionSteps && data.sessionSteps.length > 0
+			? data.sessionSteps
+			: [
+					{
+						title: "First session",
+						note: "The first session creates context.",
+						adds: [
+							{ k: "Interest", v: "Primary focus" },
+							{ k: "Goal", v: "Core objective" },
+						],
+						reply: "Starting with foundational context...",
+					},
+					{
+						title: "Known strengths",
+						note: "Recognizing established capabilities.",
+						adds: [{ k: "Strength", v: "Key strengths" }],
+						reply: "Building upon prior strengths...",
+					},
+					{
+						title: "Learning gaps",
+						note: "Storing recurring difficulties.",
+						adds: [{ k: "Difficulty", v: "Identified edge case" }],
+						reply: "Adapting to bypass bottlenecks...",
+					},
+					{
+						title: "Interaction history",
+						note: "Timeline of prior events.",
+						adds: [
+							{ k: "Progress", v: "Milestone reached" },
+							{ k: "Behaviour", v: "Interaction habit" },
+						],
+						reply: "Continuing from milestone...",
+					},
+					{
+						title: "Personalised next session",
+						note: "Next interaction starts primed with context.",
+						adds: [{ k: "Preference", v: "Tailored output format" }],
+						reply: "Here is your personalised result with prior context.",
+					},
+				]
+
+	const updateSessionStep = (
+		stepIndex: number,
+		field: "title" | "note" | "reply",
+		value: string,
+	) => {
+		const steps = [...ensureSessionSteps]
+		steps[stepIndex] = { ...steps[stepIndex], [field]: value }
+		persist({ ...data, sessionSteps: steps })
+	}
+
+	const updateSessionSignal = (
+		stepIndex: number,
+		signalIndex: number,
+		field: "k" | "v",
+		value: string,
+	) => {
+		const steps = [...ensureSessionSteps]
+		const step = { ...steps[stepIndex] }
+		const adds = [...step.adds]
+		adds[signalIndex] = { ...adds[signalIndex], [field]: value }
+		step.adds = adds
+		steps[stepIndex] = step
+		persist({ ...data, sessionSteps: steps })
+	}
+
+	const addSessionSignal = (stepIndex: number) => {
+		const steps = [...ensureSessionSteps]
+		const step = { ...steps[stepIndex] }
+		step.adds = [...step.adds, { k: "Key", v: "Value" }]
+		steps[stepIndex] = step
+		persist({ ...data, sessionSteps: steps })
+	}
+
+	const removeSessionSignal = (stepIndex: number, signalIndex: number) => {
+		const steps = [...ensureSessionSteps]
+		const step = { ...steps[stepIndex] }
+		step.adds = step.adds.filter((_, i) => i !== signalIndex)
+		steps[stepIndex] = step
+		persist({ ...data, sessionSteps: steps })
+	}
+
+	const ensureBlocks =
+		data.blocks && data.blocks.length > 0
+			? data.blocks
+			: [
+					{
+						title: "Workflow copilots",
+						text: "Remember progress, patterns and preferences so each session starts with context.",
+						icon: "M12 4a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V8a4 4 0 0 1 4-4ZM5 20c1-3.5 3.7-5.5 7-5.5s6 2 7 5.5",
+					},
+					{
+						title: "Deep semantic search",
+						text: "Make recordings and documents searchable by meaning to jump straight to the right moment.",
+						icon: "M4 6.5h16v11H4zM10 9.5v5l4.5-2.5L10 9.5Z",
+					},
+					{
+						title: "Queryable knowledge libraries",
+						text: "Let users and agents ask questions across transcripts, notes and reference materials.",
+						icon: "M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 0 4 21.5ZM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 1 1.5 1.5Z",
+					},
+					{
+						title: "Adaptive platforms",
+						text: "Personalise at scale with persistent memory isolated to each user.",
+						icon: "M4 18 9 12l4 3 7-9M15 6h5v5",
+					},
+				]
+
+	const updateBlock = (
+		index: number,
+		field: "title" | "text" | "icon",
+		value: string,
+	) => {
+		const blocks = [...ensureBlocks]
+		blocks[index] = { ...blocks[index], [field]: value }
+		persist({ ...data, blocks })
+	}
+
+	const ensureInfraList =
+		data.infraList && data.infraList.length > 0
+			? data.infraList
+			: (data.problems || []).map((p) => ({
+					title: p.title,
+					description: p.description,
+				}))
+
+	const updateInfraItem = (
 		index: number,
 		field: "title" | "description",
 		value: string,
 	) => {
-		const caps = [...(data.capabilities || [])]
-		caps[index] = { ...caps[index], [field]: value }
-		persist({ ...data, capabilities: caps })
+		const list = [...ensureInfraList]
+		list[index] = { ...list[index], [field]: value }
+		persist({ ...data, infraList: list, problems: list })
 	}
 
-	const updateProblem = (
+	const ensureEngine =
+		data.architecture?.engine && data.architecture.engine.length > 0
+			? data.architecture.engine
+			: [
+					{
+						title: "Extract",
+						text: "Transform interaction into reusable knowledge",
+					},
+					{ title: "Search", text: "Retrieve relevant context" },
+					{
+						title: "Knowledge",
+						text: "Domain material and persistent signals",
+					},
+					{
+						title: "Retrieval system",
+						text: "Semantic retrieval and relevant results",
+					},
+				]
+
+	const updateEngineItem = (
 		index: number,
-		field: "title" | "description",
+		field: "title" | "text",
 		value: string,
 	) => {
-		const probs = [...(data.problems || [])]
-		probs[index] = { ...probs[index], [field]: value }
-		persist({ ...data, problems: probs })
+		const engine = [...ensureEngine]
+		engine[index] = { ...engine[index], [field]: value }
+		persist({
+			...data,
+			architecture: { ...(data.architecture || {}), engine },
+		})
 	}
 
-	const updateFlowStep = (index: number, value: string) => {
-		const steps = [...(data.flowSteps || [])]
-		steps[index] = value
-		persist({ ...data, flowSteps: steps })
-	}
 
-	const updateMemoryStep = (index: number, value: string) => {
-		const steps = [...(data.memorySteps || [])]
-		steps[index] = value
-		persist({ ...data, memorySteps: steps })
-	}
 
 	const updateFaq = (
 		index: number,
@@ -2747,40 +2931,27 @@ const IndustryPageEditor = ({
 		{ label: "", value: "" },
 		{ label: "", value: "" },
 	]
-	const ensureCaps = data.capabilities || [
-		{ title: "", description: "" },
-		{ title: "", description: "" },
-		{ title: "", description: "" },
-		{ title: "", description: "" },
-	]
-	const ensureProblems = data.problems || [
-		{ title: "", description: "" },
-		{ title: "", description: "" },
-		{ title: "", description: "" },
-		{ title: "", description: "" },
-	]
-	const ensureFlowSteps = data.flowSteps || ["", "", "", ""]
-	const ensureMemorySteps = data.memorySteps || ["", "", "", "", ""]
+
 	const ensureFaqs = data.faqs || []
 
 	return (
 		<div className="mt-8 border-t border-zinc-200 dark:border-zinc-800/80 pt-6">
-			<p className="text-[14px] font-bold uppercase tracking-widest text-violet-600 dark:text-violet-400 mb-4">
-				Industry Page Sections
-			</p>
 
 			<SectionDivider number="01" label="Hero Section" defaultOpen>
 				<FieldInput
 					label="Hero Title"
 					value={data.heroTitle || ""}
 					onChange={(v) => updateField("heroTitle", v)}
-					placeholder="AI infrastructure for healthcare."
+					placeholder="AI infrastructure for learning systems."
 				/>
 				<FieldTextarea
-					label="Hero Description"
-					value={data.heroDescription || ""}
-					onChange={(v) => updateField("heroDescription", v)}
-					placeholder="Build intelligent triage copilots..."
+					label="Hero Description / Lede"
+					value={data.heroLede || data.heroDescription || ""}
+					onChange={(v) => {
+						updateField("heroLede", v)
+						updateField("heroDescription", v)
+					}}
+					placeholder="Build tutoring copilots, course search and adaptive learning products..."
 				/>
 
 				<div className="mt-4">
@@ -2793,19 +2964,19 @@ const IndustryPageEditor = ({
 								key={i}
 								className="flex flex-col gap-2 rounded-md border border-[#e6e4eb] bg-zinc-100/50 dark:bg-zinc-900/50 p-3"
 							>
-								<span className="text-[14px] sm:text-[14px] font-bold text-[#8c8c99]">
+								<span className="text-[14px] font-bold text-[#8c8c99]">
 									Fact 0{i + 1}
 								</span>
 								<input
 									value={fact.label}
 									onChange={(e) => updateFactField(i, "label", e.target.value)}
-									placeholder="Label (e.g. Models)"
+									placeholder="Label (e.g. Base)"
 									className="h-9 rounded-md border border-zinc-300 dark:border-zinc-700 px-3 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
 								/>
 								<input
 									value={fact.value}
 									onChange={(e) => updateFactField(i, "value", e.target.value)}
-									placeholder="Value (e.g. 5+)"
+									placeholder="Value (e.g. Isolated per-student memory)"
 									className="h-9 rounded-md border border-zinc-300 dark:border-zinc-700 px-3 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
 								/>
 							</div>
@@ -2814,235 +2985,337 @@ const IndustryPageEditor = ({
 				</div>
 			</SectionDivider>
 
-			<SectionDivider number="02" label="Context Introduction">
-				<FieldInput
-					label="Section Title"
-					value={data.contextTitle || ""}
-					onChange={(v) => updateField("contextTitle", v)}
-					placeholder="Every visit adds context."
-				/>
-				<FieldTextarea
-					label="Description"
-					value={data.contextDescription || ""}
-					onChange={(v) => updateField("contextDescription", v)}
-				/>
-				<div className="pt-2">
-					<label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-						Context Image URL (optional)
-					</label>
-					<ImageUploadInput
-						placeholder="/assets/use-cases/..."
-						value={data.contextImage || ""}
-						onChange={(v) => updateField("contextImage", v)}
-					/>
-				</div>
-			</SectionDivider>
+			<SectionDivider
+				number="02"
+				label="Interactive Session Memory"
+				defaultOpen
+			>
+						<FieldInput
+							label="Section Heading"
+							value={
+								data.sessionHeading ||
+								data.contextTitle ||
+								"Every session adds useful context."
+							}
+							onChange={(v) => updateField("sessionHeading", v)}
+							placeholder="Every session adds useful context."
+						/>
+						<FieldTextarea
+							label="Section Subtitle"
+							value={
+								data.sessionSub ||
+								data.contextDescription ||
+								"PiyAPI remembers what matters across sessions..."
+							}
+							onChange={(v) => updateField("sessionSub", v)}
+						/>
 
-			<SectionDivider number="03" label="Why [Industry] Needs Memory">
-				<FieldInput
-					label="Section Title"
-					value={data.introTitle || ""}
-					onChange={(v) => updateField("introTitle", v)}
-					placeholder="Triage and care only work if the system remembers."
-				/>
-				<div className="grid gap-4 sm:grid-cols-2">
-					<FieldTextarea
-						label="Left Paragraph"
-						value={data.introParagraphLeft || ""}
-						onChange={(v) => updateField("introParagraphLeft", v)}
-						rows={5}
-					/>
-					<FieldTextarea
-						label="Right Paragraph"
-						value={data.introParagraphRight || ""}
-						onChange={(v) => updateField("introParagraphRight", v)}
-						rows={5}
-					/>
-				</div>
-			</SectionDivider>
+						<div className="mt-6 space-y-4">
+							<p className="text-[14px] font-bold text-zinc-800 dark:text-zinc-200">
+								Interactive Session Steps (5 steps)
+							</p>
+							{ensureSessionSteps.map((s, stepIdx) => (
+								<div
+									key={stepIdx}
+									className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 p-4 space-y-3"
+								>
+									<div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-2">
+										<span className="text-xs font-bold text-violet-600 dark:text-violet-400">
+											Step 0{stepIdx + 1}
+										</span>
+									</div>
+									<div className="grid gap-3 sm:grid-cols-2">
+										<div>
+											<label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1">
+												Step Title
+											</label>
+											<input
+												value={s.title}
+												onChange={(e) =>
+													updateSessionStep(stepIdx, "title", e.target.value)
+												}
+												className="w-full h-9 rounded-md border border-zinc-300 dark:border-zinc-700 px-3 text-xs outline-none focus:border-violet-600"
+												placeholder="e.g. First session"
+											/>
+										</div>
+										<div>
+											<label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1">
+												Note / Subtext
+											</label>
+											<input
+												value={s.note}
+												onChange={(e) =>
+													updateSessionStep(stepIdx, "note", e.target.value)
+												}
+												className="w-full h-9 rounded-md border border-zinc-300 dark:border-zinc-700 px-3 text-xs outline-none focus:border-violet-600"
+												placeholder="e.g. The first session creates context."
+											/>
+										</div>
+									</div>
 
-			<SectionDivider number="04" label="What You Can Build">
-				<FieldInput
-					label="Section Title"
-					value={data.capabilitiesTitle || ""}
-					onChange={(v) => updateField("capabilitiesTitle", v)}
-					placeholder="Four shapes, one infrastructure."
-				/>
-				<div className="mt-4">
-					<p className="text-[14px] font-medium text-zinc-700 dark:text-zinc-300 mb-3">
-						Capabilities (4 items)
-					</p>
-					<div className="grid gap-3 sm:grid-cols-2">
-						{ensureCaps.map((cap, i) => (
-							<div
-								key={i}
-								className="flex flex-col gap-2 rounded-md border border-[#e6e4eb] bg-zinc-100/50 dark:bg-zinc-900/50 p-3.5"
-							>
-								<span className="text-[14px] sm:text-[14px] font-bold text-violet-600 dark:text-violet-400">
-									Capability 0{i + 1}
-								</span>
-								<input
-									value={cap.title}
-									onChange={(e) => updateCapability(i, "title", e.target.value)}
-									placeholder="Title"
-									className="h-9 rounded-md border border-zinc-300 dark:border-zinc-700 px-3 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
-								/>
-								<textarea
-									value={cap.description}
-									onChange={(e) =>
-										updateCapability(i, "description", e.target.value)
-									}
-									placeholder="Description"
-									rows={3}
-									className="w-full resize-y rounded-md border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
-								/>
-							</div>
-						))}
-					</div>
-				</div>
-			</SectionDivider>
+									<div>
+										<label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1">
+											Copilot Next Reply
+										</label>
+										<textarea
+											value={s.reply}
+											onChange={(e) =>
+												updateSessionStep(stepIdx, "reply", e.target.value)
+											}
+											rows={2}
+											className="w-full rounded-md border border-zinc-300 dark:border-zinc-700 p-2.5 text-xs outline-none focus:border-violet-600"
+											placeholder="Copilot reply text..."
+										/>
+									</div>
 
-			<SectionDivider number="05" label="Product Architecture">
-				<FieldInput
-					label="Section Title"
-					value={data.infrastructureTitle || ""}
-					onChange={(v) => updateField("infrastructureTitle", v)}
-					placeholder="Healthcare problems, solved."
-				/>
+									<div>
+										<div className="flex items-center justify-between mb-2">
+											<span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+												Memory Signals Added ({s.adds.length})
+											</span>
+											<button
+												type="button"
+												onClick={() => addSessionSignal(stepIdx)}
+												className="text-xs text-violet-600 dark:text-violet-400 font-medium hover:underline"
+											>
+												+ Add Signal
+											</button>
+										</div>
+										<div className="space-y-2">
+											{s.adds.map((sig, sigIdx) => (
+												<div key={sigIdx} className="flex items-center gap-2">
+													<input
+														value={sig.k}
+														onChange={(e) =>
+															updateSessionSignal(
+																stepIdx,
+																sigIdx,
+																"k",
+																e.target.value,
+															)
+														}
+														placeholder="Key (e.g. Interest)"
+														className="w-1/3 h-8 rounded border border-zinc-300 dark:border-zinc-700 px-2.5 text-xs outline-none focus:border-violet-600"
+													/>
+													<input
+														value={sig.v}
+														onChange={(e) =>
+															updateSessionSignal(
+																stepIdx,
+																sigIdx,
+																"v",
+																e.target.value,
+															)
+														}
+														placeholder="Value (e.g. Physics)"
+														className="flex-1 h-8 rounded border border-zinc-300 dark:border-zinc-700 px-2.5 text-xs outline-none focus:border-violet-600"
+													/>
+													<button
+														type="button"
+														onClick={() =>
+															removeSessionSignal(stepIdx, sigIdx)
+														}
+														className="text-xs text-red-500 hover:text-red-700 px-2 py-1"
+													>
+														×
+													</button>
+												</div>
+											))}
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</SectionDivider>
 
-				<div className="mt-6 grid gap-8 sm:grid-cols-2">
-					<div>
-						<p className="text-[14px] font-medium text-zinc-700 dark:text-zinc-300 mb-3">
-							Problems (Left Panel - 4 items)
-						</p>
-						<div className="space-y-3">
-							{ensureProblems.map((prob, i) => (
+					<SectionDivider number="03" label="Why Needs Memory">
+						<FieldInput
+							label="Section Heading"
+							value={
+								data.whyHeading ||
+								data.introTitle ||
+								"Personalised learning needs memory."
+							}
+							onChange={(v) => updateField("whyHeading", v)}
+						/>
+						<div className="grid gap-4 sm:grid-cols-2">
+							<FieldTextarea
+								label="Paragraph 1"
+								value={
+									data.whyParagraphs?.[0] ||
+									data.introParagraphLeft ||
+									""
+								}
+								onChange={(v) => {
+									const p = [...(data.whyParagraphs || ["", ""])]
+									p[0] = v
+									persist({
+										...data,
+										whyParagraphs: p,
+										introParagraphLeft: v,
+									})
+								}}
+								rows={4}
+							/>
+							<FieldTextarea
+								label="Paragraph 2"
+								value={
+									data.whyParagraphs?.[1] ||
+									data.introParagraphRight ||
+									""
+								}
+								onChange={(v) => {
+									const p = [...(data.whyParagraphs || ["", ""])]
+									p[1] = v
+									persist({
+										...data,
+										whyParagraphs: p,
+										introParagraphRight: v,
+									})
+								}}
+								rows={4}
+							/>
+						</div>
+					</SectionDivider>
+
+					<SectionDivider number="04" label="Four Building Blocks">
+						<FieldInput
+							label="Section Heading"
+							value={
+								data.blocksHeading ||
+								"Four building blocks, one memory layer."
+							}
+							onChange={(v) => updateField("blocksHeading", v)}
+						/>
+						<div className="grid gap-3 sm:grid-cols-2 mt-4">
+							{ensureBlocks.map((b, i) => (
 								<div
 									key={i}
-									className="flex flex-col gap-2 rounded-md border border-[#e6e4eb] bg-zinc-100/50 dark:bg-zinc-900/50 p-3.5"
+									className="rounded-lg border border-zinc-200 dark:border-zinc-800 p-3.5 space-y-2 bg-zinc-50/50 dark:bg-zinc-900/50"
 								>
-									<span className="text-[14px] sm:text-[14px] font-bold text-violet-600 dark:text-violet-400">
-										Problem 0{i + 1}
+									<span className="text-xs font-bold text-violet-600">
+										Block 0{i + 1}
 									</span>
 									<input
-										value={prob.title}
-										onChange={(e) => updateProblem(i, "title", e.target.value)}
+										value={b.title}
+										onChange={(e) =>
+											updateBlock(i, "title", e.target.value)
+										}
 										placeholder="Title"
-										className="h-9 rounded-md border border-zinc-300 dark:border-zinc-700 px-3 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
+										className="w-full h-8 rounded border border-zinc-300 dark:border-zinc-700 px-3 text-xs"
 									/>
 									<textarea
-										value={prob.description}
-										onChange={(e) =>
-											updateProblem(i, "description", e.target.value)
-										}
+										value={b.text}
+										onChange={(e) => updateBlock(i, "text", e.target.value)}
 										placeholder="Description"
 										rows={2}
-										className="w-full resize-y rounded-md border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
+										className="w-full rounded border border-zinc-300 dark:border-zinc-700 p-2 text-xs"
 									/>
+									<div>
+										<label className="text-[10px] text-zinc-500 block mb-1">
+											Icon SVG Path (optional)
+										</label>
+										<input
+											value={b.icon || ""}
+											onChange={(e) =>
+												updateBlock(i, "icon", e.target.value)
+											}
+											placeholder="SVG Path (d='...')"
+											className="w-full h-7 rounded border border-zinc-200 dark:border-zinc-700 px-2 font-mono text-[11px]"
+										/>
+									</div>
 								</div>
 							))}
 						</div>
-					</div>
-					<div>
-						<p className="text-[14px] font-medium text-zinc-700 dark:text-zinc-300 mb-3">
-							Flow Steps (Right Panel - 4 items)
-						</p>
-						<div className="space-y-3">
-							{ensureFlowSteps.map((step, i) => (
-								<div
-									key={i}
-									className="flex flex-col gap-1.5 rounded-md border border-[#e6e4eb] bg-zinc-100/50 dark:bg-zinc-900/50 p-3.5"
-								>
-									<span className="text-[14px] sm:text-[14px] font-bold text-[#8c8c99]">
-										Step 0{i + 1}
-									</span>
-									<textarea
-										value={step}
-										onChange={(e) => updateFlowStep(i, e.target.value)}
-										placeholder={`Describe step ${i + 1}...`}
-										rows={3}
-										className="w-full rounded-md border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
-									/>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
-			</SectionDivider>
+					</SectionDivider>
 
-			<SectionDivider number="06" label="Architecture Diagram">
-				<FieldInput
-					label="Section Title"
-					value={data.architectureTitle || ""}
-					onChange={(v) => updateField("architectureTitle", v)}
-					placeholder="The infrastructure underneath."
-				/>
-				<div className="pt-2">
-					<label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-						Architecture Image URL (optional)
-					</label>
-					<ImageUploadInput
-						placeholder="/assets/use-cases/..."
-						value={data.architectureImage || ""}
-						onChange={(v) => updateField("architectureImage", v)}
-					/>
-				</div>
-			</SectionDivider>
-
-			<SectionDivider number="07" label="Persistent Memory">
-				<FieldInput
-					label="Section Title"
-					value={data.memoryTitle || ""}
-					onChange={(v) => updateField("memoryTitle", v)}
-					placeholder="Care that deepens per patient."
-				/>
-				<FieldTextarea
-					label="Description"
-					value={data.memoryDescription || ""}
-					onChange={(v) => updateField("memoryDescription", v)}
-					rows={4}
-				/>
-				<div className="mt-4">
-					<p className="text-[14px] font-medium text-zinc-700 dark:text-zinc-300 mb-3">
-						Memory Steps (5 items)
-					</p>
-					<div className="space-y-3">
-						{ensureMemorySteps.map((step, i) => (
-							<div
-								key={i}
-								className="flex items-center gap-3 rounded-md border border-[#e6e4eb] bg-zinc-100/50 dark:bg-zinc-900/50 px-3 py-2"
-							>
-								<span className="flex shrink-0 h-6 w-6 items-center justify-center rounded-full bg-violet-100 dark:bg-violet-500/20 text-[14px] sm:text-[14px] font-bold text-violet-700 dark:text-violet-400">
-									0{i + 1}
-								</span>
-								<input
-									value={step}
-									onChange={(e) => updateMemoryStep(i, e.target.value)}
-									placeholder={`Memory feature ${i + 1}`}
-									className="flex-1 h-9 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 text-[14px] outline-none focus:border-violet-600 dark:border-violet-500"
-								/>
+					<SectionDivider number="05" label="Infrastructure & Architecture">
+						<FieldInput
+							label="Section Heading"
+							value={
+								data.infraHeading ||
+								"The infrastructure underneath adaptive learning."
+							}
+							onChange={(v) => updateField("infraHeading", v)}
+						/>
+						<div className="mt-4">
+							<p className="text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-2">
+								Infrastructure Feature Cards (4 items)
+							</p>
+							<div className="grid gap-3 sm:grid-cols-2">
+								{ensureInfraList.map((item, i) => (
+									<div
+										key={i}
+										className="rounded-lg border border-zinc-200 dark:border-zinc-800 p-3 space-y-2 bg-zinc-50/50 dark:bg-zinc-900/50"
+									>
+										<span className="text-xs font-bold text-violet-600">
+											Feature 0{i + 1}
+										</span>
+										<input
+											value={item.title}
+											onChange={(e) =>
+												updateInfraItem(i, "title", e.target.value)
+											}
+											placeholder="Title"
+											className="w-full h-8 rounded border border-zinc-300 dark:border-zinc-700 px-3 text-xs"
+										/>
+										<textarea
+											value={item.description}
+											onChange={(e) =>
+												updateInfraItem(i, "description", e.target.value)
+											}
+											placeholder="Description"
+											rows={2}
+											className="w-full rounded border border-zinc-300 dark:border-zinc-700 p-2 text-xs"
+										/>
+									</div>
+								))}
 							</div>
-						))}
-					</div>
-				</div>
-			</SectionDivider>
+						</div>
 
-			<SectionDivider number="08" label="Get Started">
-				<FieldInput
-					label="Section Title"
-					value={data.getStartedTitle || ""}
-					onChange={(v) => updateField("getStartedTitle", v)}
-					placeholder="Start with the use case that fits."
-				/>
-				<FieldTextarea
-					label="Description"
-					value={data.getStartedDescription || ""}
-					onChange={(v) => updateField("getStartedDescription", v)}
-				/>
-			</SectionDivider>
+						<div className="mt-6">
+							<p className="text-xs font-bold text-zinc-700 dark:text-zinc-300 mb-2">
+								Architecture Engine Outputs (4 blocks)
+							</p>
+							<div className="grid gap-3 sm:grid-cols-2">
+								{ensureEngine.map((item, i) => (
+									<div
+										key={i}
+										className="rounded-lg border border-zinc-200 dark:border-zinc-800 p-3 space-y-1.5 bg-zinc-50/50 dark:bg-zinc-900/50"
+									>
+										<input
+											value={item.title}
+											onChange={(e) =>
+												updateEngineItem(i, "title", e.target.value)
+											}
+											placeholder="Output Title"
+											className="w-full h-8 rounded border border-zinc-300 dark:border-zinc-700 px-3 text-xs font-semibold"
+										/>
+										<input
+											value={item.text}
+											onChange={(e) =>
+												updateEngineItem(i, "text", e.target.value)
+											}
+											placeholder="Output Description"
+											className="w-full h-8 rounded border border-zinc-300 dark:border-zinc-700 px-3 text-xs"
+										/>
+									</div>
+								))}
+							</div>
+						</div>
+					</SectionDivider>
 
-			<SectionDivider number="09" label="FAQs">
+			<SectionDivider number="07" label="Frequently Asked Questions">
 				<div className="space-y-4">
+					<FieldInput
+						label="Section Heading"
+						value={
+							data.faqHeading ||
+							"Frequently asked questions."
+						}
+						onChange={(v) => updateField("faqHeading", v)}
+						placeholder="Frequently asked about memory."
+					/>
 					{ensureFaqs.map((faq, i) => (
 						<div
 							key={i}
@@ -3083,17 +3356,25 @@ const IndustryPageEditor = ({
 				</div>
 			</SectionDivider>
 
-			<SectionDivider number="10" label="Footer CTA">
+			<SectionDivider number="08" label="Footer Call to Action">
 				<FieldInput
 					label="CTA Title"
-					value={data.finalCtaTitle || ""}
-					onChange={(v) => updateField("finalCtaTitle", v)}
-					placeholder="Give every patient a memory..."
+					value={data.finalCtaTitle || data.getStartedTitle || ""}
+					onChange={(v) => {
+						updateField("finalCtaTitle", v)
+						updateField("getStartedTitle", v)
+					}}
+					placeholder="Give every user a memory..."
 				/>
 				<FieldTextarea
 					label="CTA Description"
-					value={data.finalCtaDescription || ""}
-					onChange={(v) => updateField("finalCtaDescription", v)}
+					value={
+						data.finalCtaDescription || data.getStartedDescription || ""
+					}
+					onChange={(v) => {
+						updateField("finalCtaDescription", v)
+						updateField("getStartedDescription", v)
+					}}
 				/>
 			</SectionDivider>
 		</div>

@@ -159,7 +159,7 @@ export const DifferentApproachSection: React.FC = () => {
 							<div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-10 group-hover:h-16 rounded-r-[4px] bg-neutral-300 group-hover:bg-[#4846AC] transition-all duration-300 origin-center" />
 
 							{/* Icon Container with scale and purple glow */}
-							<div className="relative z-10 w-9 h-9 rounded-md bg-[#4846AC] text-white flex items-center justify-center mb-3.5 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#6320EE] group-hover:shadow-[0_0_15px_rgba(118,93,251,0.4)]">
+							<div className="relative z-10 w-9 h-9 rounded-md bg-[#4846AC] text-white flex items-center justify-center mb-3.5 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#765DFB] group-hover:shadow-[0_0_15px_rgba(118,93,251,0.4)]">
 								<div className="w-5 h-5 flex items-center justify-center [&>svg]:w-5 [&>svg]:h-5 [&>svg]:stroke-[2.2]">
 									{feature.icon}
 								</div>

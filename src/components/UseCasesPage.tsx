@@ -40,7 +40,7 @@ export const UseCasesPage: React.FC = () => {
 
 
 	return (
-		<div className="w-full min-h-screen bg-white text-neutral-900 font-sans selection:bg-[#6320EE] selection:text-white pt-6">
+		<div className="w-full min-h-screen bg-white text-neutral-900 font-sans selection:bg-[#765DFB] selection:text-white pt-6">
 			<div className="container-universal mx-auto px-6 mb-16">
 				{/* Hero Section */}
 				<div className="relative w-full min-h-115 md:min-h-130 rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center p-8 sm:p-12">

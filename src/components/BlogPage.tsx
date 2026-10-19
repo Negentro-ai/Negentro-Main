@@ -298,16 +298,6 @@ export const BlogPage = ({
 							No insights match those filters.
 						</p>
 					)}
-					{visibleArticles.length > 0 && (
-						<div className="mt-12 flex justify-center">
-							<button
-								type="button"
-								className="rounded-[40px] border border-[#d1d0e4] px-6 py-2.5 text-[13px] font-medium text-[#7c7792] transition-colors hover:border-[#765dfb] hover:text-[#765dfb]"
-							>
-								Load more
-							</button>
-						</div>
-					)}
 				</div>
 			</section>
 
