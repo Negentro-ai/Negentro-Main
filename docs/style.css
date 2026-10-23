@@ -38,6 +38,23 @@ html.dark img.nav-logo[src*="negentroailogo.png"]:not([src*="negentroailogo-dark
   filter: brightness(0) invert(1);
 }
 
+/* Center-align top navigation tabs bar */
+div:has(> .nav-tabs),
+header div:has(> .nav-tabs),
+#header div:has(> .nav-tabs),
+nav:has(.nav-tabs),
+#navbar:has(.nav-tabs) {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.nav-tabs {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  justify-content: center !important;
+}
+
 /* Homepage only: retain native navigation, footer, and Card components. */
 html:has(.negentro-guides) {
   --content-width: 1280px;
