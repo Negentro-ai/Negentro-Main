@@ -2,12 +2,16 @@
 img.nav-logo,
 header img.nav-logo,
 #navbar img.nav-logo,
+nav img.nav-logo,
 a:has(> img.nav-logo) img,
+header a:first-child img,
+#navbar a:first-child img,
 img[alt="light logo"],
 img[alt="dark logo"],
+img[alt*="logo" i],
 img[src*="negentroailogo"] {
-  height: 2.25rem !important;
-  max-height: 38px !important;
+  height: 1.5rem !important;
+  max-height: 24px !important;
   width: auto !important;
   object-fit: contain !important;
 }
@@ -16,12 +20,16 @@ img[src*="negentroailogo"] {
   img.nav-logo,
   header img.nav-logo,
   #navbar img.nav-logo,
+  nav img.nav-logo,
   a:has(> img.nav-logo) img,
+  header a:first-child img,
+  #navbar a:first-child img,
   img[alt="light logo"],
   img[alt="dark logo"],
+  img[alt*="logo" i],
   img[src*="negentroailogo"] {
-    height: 1.75rem !important;
-    max-height: 30px !important;
+    height: 1.25rem !important;
+    max-height: 20px !important;
   }
 }
 
@@ -37,6 +45,15 @@ html:has(.negentro-guides) {
 html:has(.negentro-guides):not(.dark) #background-color,
 html:has(.negentro-guides):not(.dark) body {
   background: #ffffff;
+}
+
+html.dark:has(.negentro-guides) #background-color,
+html.dark:has(.negentro-guides) body,
+.dark:has(.negentro-guides) #background-color,
+.dark:has(.negentro-guides) body,
+html[data-theme="dark"]:has(.negentro-guides) #background-color,
+html[data-theme="dark"]:has(.negentro-guides) body {
+  background: #00050e !important;
 }
 
 /* Hide non-homepage and side-layout elements on the landing page */
@@ -128,6 +145,23 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) {
   width: 100% !important;
 }
 
+.negentro-hero-brand {
+  color: #765dfb !important;
+  margin-left: 0.28em !important;
+}
+
+html.dark .negentro-hero-title,
+.dark .negentro-hero-title,
+html[data-theme="dark"] .negentro-hero-title {
+  color: #ffffff !important;
+}
+
+html.dark .negentro-hero-brand,
+.dark .negentro-hero-brand,
+html[data-theme="dark"] .negentro-hero-brand {
+  color: #9d8dfd !important;
+}
+
 .negentro-hero-subtitle {
   max-width: 560px !important;
   margin-left: auto !important;
@@ -139,6 +173,12 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) {
   font-size: 16px !important;
   line-height: 1.6 !important;
   width: 100% !important;
+}
+
+html.dark .negentro-hero-subtitle,
+.dark .negentro-hero-subtitle,
+html[data-theme="dark"] .negentro-hero-subtitle {
+  color: #94a3b8 !important;
 }
 
 /* Fallback centering for any raw headings */
@@ -154,8 +194,27 @@ html:has(.negentro-guides) h1 {
 }
 html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 strong,
 html:has(.negentro-guides) h1 strong {
-  color: #000000 !important;
+  color: #765dfb !important;
 }
+
+html.dark:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1,
+html.dark:has(.negentro-guides) h1,
+.dark:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1,
+.dark:has(.negentro-guides) h1,
+html[data-theme="dark"]:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1,
+html[data-theme="dark"]:has(.negentro-guides) h1 {
+  color: #ffffff !important;
+}
+
+html.dark:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 strong,
+html.dark:has(.negentro-guides) h1 strong,
+.dark:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 strong,
+.dark:has(.negentro-guides) h1 strong,
+html[data-theme="dark"]:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 strong,
+html[data-theme="dark"]:has(.negentro-guides) h1 strong {
+  color: #9d8dfd !important;
+}
+
 html:has(.negentro-guides) h1 a[aria-label] {
   display: none !important;
 }
@@ -215,9 +274,28 @@ html:has(.negentro-guides) h1 a[aria-label] {
 .negentro-action-secondary {
   background: #ffffff !important;
   border: 1px solid #dddde3 !important;
+  transition: background-color 150ms ease, border-color 150ms ease;
 }
 .negentro-action-secondary [data-component-part="card-title"] {
   color: #1f2937 !important;
+}
+
+html.dark .negentro-action-secondary,
+.dark .negentro-action-secondary,
+html[data-theme="dark"] .negentro-action-secondary {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+html.dark .negentro-action-secondary:hover,
+.dark .negentro-action-secondary:hover,
+html[data-theme="dark"] .negentro-action-secondary:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+html.dark .negentro-action-secondary [data-component-part="card-title"],
+.dark .negentro-action-secondary [data-component-part="card-title"],
+html[data-theme="dark"] .negentro-action-secondary [data-component-part="card-title"] {
+  color: #ffffff !important;
 }
 
 /* Guide Cards Grid */
@@ -240,7 +318,7 @@ html:has(.negentro-guides) h1 a[aria-label] {
   border: 1px solid #e6e4eb !important;
   background: #ffffff !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
   text-decoration: none !important;
 }
 .negentro-guide:hover {
@@ -250,6 +328,20 @@ html:has(.negentro-guides) h1 a[aria-label] {
 .negentro-guide:focus-visible {
   outline: 2px solid #765dfb;
   outline-offset: 4px;
+}
+
+html.dark .negentro-guide,
+.dark .negentro-guide,
+html[data-theme="dark"] .negentro-guide {
+  background: #080d1a !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+html.dark .negentro-guide:hover,
+.dark .negentro-guide:hover,
+html[data-theme="dark"] .negentro-guide:hover {
+  border-color: rgba(118, 93, 251, 0.45) !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(118, 93, 251, 0.18) !important;
 }
 
 /* Visual illustration container */
@@ -264,9 +356,17 @@ html:has(.negentro-guides) h1 a[aria-label] {
   background-size: 100% 100%;
   border-bottom: 1px solid #f0edf9;
   background-color: #f8f7fd;
+  transition: background-color 150ms ease, border-color 150ms ease;
 }
 
-/* Figma reference illustrations */
+html.dark .negentro-guide::before,
+.dark .negentro-guide::before,
+html[data-theme="dark"] .negentro-guide::before {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background-color: #080d1a !important;
+}
+
+/* Figma reference illustrations - Light Mode */
 .negentro-memory::before {
   background-image: url('/images/card-memory.svg');
 }
@@ -284,6 +384,38 @@ html:has(.negentro-guides) h1 a[aria-label] {
 }
 .negentro-infrastructure::before {
   background-image: url('/images/card-infrastructure.svg');
+}
+
+/* Illustrations - Dark Mode */
+html.dark .negentro-memory::before,
+.dark .negentro-memory::before,
+html[data-theme="dark"] .negentro-memory::before {
+  background-image: url('/images/card-memory-dark.svg') !important;
+}
+html.dark .negentro-agent::before,
+.dark .negentro-agent::before,
+html[data-theme="dark"] .negentro-agent::before {
+  background-image: url('/images/card-agent-dark.svg') !important;
+}
+html.dark .negentro-workflow::before,
+.dark .negentro-workflow::before,
+html[data-theme="dark"] .negentro-workflow::before {
+  background-image: url('/images/card-workflow-dark.svg') !important;
+}
+html.dark .negentro-framework::before,
+.dark .negentro-framework::before,
+html[data-theme="dark"] .negentro-framework::before {
+  background-image: url('/images/card-framework-dark.svg') !important;
+}
+html.dark .negentro-example::before,
+.dark .negentro-example::before,
+html[data-theme="dark"] .negentro-example::before {
+  background-image: url('/images/card-example-dark.svg') !important;
+}
+html.dark .negentro-infrastructure::before,
+.dark .negentro-infrastructure::before,
+html[data-theme="dark"] .negentro-infrastructure::before {
+  background-image: url('/images/card-infrastructure-dark.svg') !important;
 }
 
 /* Card Content */
@@ -312,18 +444,110 @@ html:has(.negentro-guides) h1 a[aria-label] {
   color: inherit;
 }
 
+html.dark .negentro-guide [data-component-part="card-title"],
+.dark .negentro-guide [data-component-part="card-title"],
+html[data-theme="dark"] .negentro-guide [data-component-part="card-title"] {
+  color: #ffffff !important;
+}
+html.dark .negentro-guide [data-component-part="card-content"],
+.dark .negentro-guide [data-component-part="card-content"],
+html[data-theme="dark"] .negentro-guide [data-component-part="card-content"] {
+  color: #94a3b8 !important;
+}
+html.dark .negentro-guide [data-component-part="card-content"] p,
+.dark .negentro-guide [data-component-part="card-content"] p,
+html[data-theme="dark"] .negentro-guide [data-component-part="card-content"] p {
+  color: inherit !important;
+}
+
+/* Automatic System Dark Mode Fallback */
+@media (prefers-color-scheme: dark) {
+  html:not(.light):has(.negentro-guides) #background-color,
+  html:not(.light):has(.negentro-guides) body {
+    background: #00050e !important;
+  }
+  html:not(.light) .negentro-hero-title,
+  html:not(.light):has(.negentro-guides) h1,
+  html:not(.light):has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 {
+    color: #ffffff !important;
+  }
+  html:not(.light) .negentro-hero-brand,
+  html:not(.light):has(.negentro-guides) h1 strong {
+    color: #9d8dfd !important;
+  }
+  html:not(.light) .negentro-hero-subtitle {
+    color: #94a3b8 !important;
+  }
+  html:not(.light) .negentro-action-secondary {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  }
+  html:not(.light) .negentro-action-secondary [data-component-part="card-title"] {
+    color: #ffffff !important;
+  }
+  html:not(.light) .negentro-guide {
+    background: #080d1a !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  }
+  html:not(.light) .negentro-guide::before {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background-color: #080d1a !important;
+  }
+  html:not(.light) .negentro-memory::before {
+    background-image: url('/images/card-memory-dark.svg') !important;
+  }
+  html:not(.light) .negentro-agent::before {
+    background-image: url('/images/card-agent-dark.svg') !important;
+  }
+  html:not(.light) .negentro-workflow::before {
+    background-image: url('/images/card-workflow-dark.svg') !important;
+  }
+  html:not(.light) .negentro-framework::before {
+    background-image: url('/images/card-framework-dark.svg') !important;
+  }
+  html:not(.light) .negentro-example::before {
+    background-image: url('/images/card-example-dark.svg') !important;
+  }
+  html:not(.light) .negentro-infrastructure::before {
+    background-image: url('/images/card-infrastructure-dark.svg') !important;
+  }
+  html:not(.light) .negentro-guide [data-component-part="card-title"] {
+    color: #ffffff !important;
+  }
+  html:not(.light) .negentro-guide [data-component-part="card-content"] {
+    color: #94a3b8 !important;
+  }
+}
+
 /* Navbar and Footer */
 html:has(.negentro-guides):not(.dark) #navbar {
   background: #f9f8ff;
   border-bottom: 1px solid #eeecf5;
 }
+html.dark:has(.negentro-guides) #navbar,
+.dark:has(.negentro-guides) #navbar,
+html[data-theme="dark"]:has(.negentro-guides) #navbar {
+  background: #00050e !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
 html:has(.negentro-guides) #footer {
   border-top: 1px solid #eeecf5;
   padding-top: 28px;
 }
+html.dark:has(.negentro-guides) #footer,
+.dark:has(.negentro-guides) #footer,
+html[data-theme="dark"]:has(.negentro-guides) #footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
 html:has(.negentro-guides) #footer a {
   font-family: ui-monospace, monospace;
   font-size: 12px;
+}
+html.dark:has(.negentro-guides) #footer a,
+.dark:has(.negentro-guides) #footer a,
+html[data-theme="dark"]:has(.negentro-guides) #footer a {
+  color: #94a3b8 !important;
 }
 html:has(.negentro-guides) #topbar-cta-button {
   border-radius: 9px;

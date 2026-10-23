@@ -12,7 +12,8 @@
 				"tab": "Get Started",
 				"groups": [
 					{
-						"group": "Get Started",
+						"group": "Getting Started",
+						"icon": "rocket",
 						"pages": [
 							"index",
 							"quickstart"
@@ -25,6 +26,7 @@
 				"groups": [
 					{
 						"group": "Platform",
+						"icon": "layers",
 						"pages": [
 							"platform/overview",
 							"platform/quickstart",
@@ -45,6 +47,7 @@
 				"groups": [
 					{
 						"group": "Getting Started",
+						"icon": "rocket",
 						"pages": [
 							"open-source/overview",
 							"open-source/python-sdk",
@@ -56,6 +59,7 @@
 					},
 					{
 						"group": "Configuration & Architecture",
+						"icon": "sliders",
 						"pages": [
 							"open-source/configuration",
 							"open-source/llms",
@@ -74,12 +78,14 @@
 				"groups": [
 					{
 						"group": "Overview",
+						"icon": "compass",
 						"pages": [
 							"integrations/overview"
 						]
 					},
 					{
 						"group": "Agent Frameworks",
+						"icon": "bot",
 						"pages": [
 							"integrations/langchain",
 							"integrations/langgraph",
@@ -94,6 +100,7 @@
 					},
 					{
 						"group": "Voice & Real-Time",
+						"icon": "mic",
 						"pages": [
 							"integrations/livekit",
 							"integrations/pipecat",
@@ -102,6 +109,7 @@
 					},
 					{
 						"group": "Developer Tools",
+						"icon": "wrench",
 						"pages": [
 							"integrations/mcp",
 							"integrations/rest-api",
@@ -111,6 +119,7 @@
 					},
 					{
 						"group": "Infrastructure",
+						"icon": "server",
 						"pages": [
 							"integrations/postgresql",
 							"integrations/redis",
@@ -125,6 +134,7 @@
 				"groups": [
 					{
 						"group": "Coding Agents",
+						"icon": "bot",
 						"pages": [
 							"agent-plugins/claude-code",
 							"agent-plugins/cursor",
@@ -138,6 +148,7 @@
 					},
 					{
 						"group": "Agent Harnesses",
+						"icon": "cpu",
 						"pages": [
 							"agent-plugins/openclaw",
 							"agent-plugins/hermes-agent",
@@ -148,6 +159,7 @@
 					},
 					{
 						"group": "Plugin Resources",
+						"icon": "book-open",
 						"pages": [
 							"agent-plugins/plugin-overview",
 							"agent-plugins/installation",
@@ -164,12 +176,14 @@
 				"groups": [
 					{
 						"group": "Overview",
+						"icon": "compass",
 						"pages": [
 							"cookbooks/overview"
 						]
 					},
 					{
 						"group": "Getting Started",
+						"icon": "rocket",
 						"pages": [
 							"cookbooks/start-here",
 							"cookbooks/essentials"
@@ -177,6 +191,7 @@
 					},
 					{
 						"group": "Companion Playbooks",
+						"icon": "book",
 						"pages": [
 							"cookbooks/companion-negentro",
 							"cookbooks/ai-tutor",
@@ -189,6 +204,7 @@
 					},
 					{
 						"group": "Ops & Automations",
+						"icon": "zap",
 						"pages": [
 							"cookbooks/multi-session",
 							"cookbooks/support-agent",
@@ -199,6 +215,7 @@
 					},
 					{
 						"group": "Integrations & Platforms",
+						"icon": "plug",
 						"pages": [
 							"cookbooks/agent-sdk",
 							"cookbooks/api-tool",
@@ -210,6 +227,7 @@
 					},
 					{
 						"group": "Frameworks & Multimodal",
+						"icon": "sparkles",
 						"pages": [
 							"cookbooks/ai-agents",
 							"cookbooks/multi-agent",
@@ -224,12 +242,14 @@
 				"groups": [
 					{
 						"group": "Overview",
+						"icon": "book-open",
 						"pages": [
 							"api-reference/overview"
 						]
 					},
 					{
 						"group": "Core Memory Operations",
+						"icon": "database",
 						"pages": [
 							"api-reference/add-memories",
 							"api-reference/get-memories",
@@ -240,6 +260,7 @@
 					},
 					{
 						"group": "Memory Management",
+						"icon": "layers",
 						"pages": [
 							"api-reference/feedback",
 							"api-reference/get-memory",
@@ -253,6 +274,7 @@
 					},
 					{
 						"group": "Organizations & Projects",
+						"icon": "building",
 						"pages": [
 							"api-reference/organizations",
 							"api-reference/projects"
@@ -260,6 +282,7 @@
 					},
 					{
 						"group": "Events",
+						"icon": "activity",
 						"pages": [
 							"api-reference/get-events"
 						]
@@ -271,6 +294,7 @@
 				"groups": [
 					{
 						"group": "Release Notes",
+						"icon": "newspaper",
 						"pages": [
 							"release-notes",
 							"release-notes/sdk-tools",
