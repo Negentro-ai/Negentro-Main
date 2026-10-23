@@ -10,11 +10,6 @@ import { PartnerLogos } from "./components/PartnerLogos"
 const WaitPage = lazy(() =>
 	import("./components/WaitPage").then((m) => ({ default: m.WaitPage })),
 )
-const AdminCMSPage = lazy(() =>
-	import("./components/AdminCMSPage").then((m) => ({
-		default: m.AdminCMSPage,
-	})),
-)
 const TryPiyApiModal = lazy(() =>
 	import("./components/TryPiyApiModal").then((m) => ({
 		default: m.TryPiyApiModal,
@@ -141,7 +136,6 @@ export function App() {
 		}
 	}, [activeTab])
 	const [isConsoleOpen, setIsConsoleOpen] = useState<boolean>(false)
-	const isAdminRoute = window.location.pathname.replace(/\/+$/, "") === "/admin"
 	const isOverview = activeTab === "overview"
 	const isPricing = activeTab === "pricing"
 	const isResearch = activeTab === "research"
@@ -180,17 +174,7 @@ export function App() {
 
 	return (
 		<LanguageProvider>
-			{isAdminRoute ? (
-				<Suspense
-					fallback={
-						<div className="flex min-h-screen items-center justify-center bg-[#f6f6f8]">
-							<div className="h-8 w-8 animate-spin rounded-full border-2 border-[#765dfb] border-t-transparent" />
-						</div>
-					}
-				>
-					<AdminCMSPage />
-				</Suspense>
-			) : isOverview ? (
+			{isOverview ? (
 				<div className="w-full bg-[#04050c] font-sans antialiased selection:bg-[#765DFB] selection:text-white">
 					{/* Hero Section with Interactive Fluid Simulation */}
 					<section className="relative w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden">

@@ -4,18 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/logos/fevicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Negentro AI</title>
   <meta name="description"
     content="Negentro (negentro.tech) is an AI infrastructure company building cognitive memory architecture and intelligent agent systems. Home of PiyAPI — next-generation AI memory infrastructure." />
-  <meta name="theme-color" content="#04050c" />
+  <script>
+    const metaTheme = document.createElement("meta");
+    metaTheme.name = "theme-color";
+    metaTheme.content = "#04050c";
+    document.head.appendChild(metaTheme);
+  </script>
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="format-detection" content="telephone=no" />
 
   <!-- Preload Critical Above-The-Fold Assets -->
-  <link rel="preload" as="image" href="/logos/negentro.svg" type="image/svg+xml" fetchpriority="high" />
+  <link rel="preload" as="image" href="/logos/negentro.svg" type="image/svg+xml" />
 
   <!-- Google Fonts: DM Sans & DM Mono (Secondary Font) with optimized weight subsets -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

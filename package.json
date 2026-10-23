@@ -6,6 +6,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "dev:cms": "npm --prefix cms run dev",
+    "build:cms": "npm --prefix cms run build",
     "dev:turbo": "turbo run dev",
     "build:turbo": "turbo run build",
     "format-lint": "npx @biomejs/biome check --write",
@@ -13,6 +15,9 @@
     "lint": "npx @biomejs/biome check",
     "optimize:images": "node scripts/optimize-images.mjs"
   },
+  "workspaces": [
+    "cms"
+  ],
   "engines": {
     "node": ">=20"
   },

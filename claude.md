@@ -8,7 +8,8 @@ This document provides a comprehensive technical guide for any AI agent or softw
 
 **Negentro** is a foundational cognitive memory engine and AI agent infrastructure platform. **PiyAPI** is its developer-facing memory API service.
 
-### Core Technology Stack:
+### Core Technology Stack
+
 - **Framework**: React 19 (`react`, `react-dom`)
 - **Build Tool**: Vite 6 (`vite`, `@vitejs/plugin-react`)
 - **Language**: TypeScript 5.8+ (Strict mode, `tsc -b --noEmit`)
@@ -25,7 +26,7 @@ This document provides a comprehensive technical guide for any AI agent or softw
 
 ## 2. Repository Structure
 
-```
+```text
 ├── public/
 │   ├── assets/               # Production media (WebP, WebM, SVG)
 │   │   ├── AI Agents.webp
@@ -87,18 +88,21 @@ This document provides a comprehensive technical guide for any AI agent or softw
 
 ## 3. Design System & Aesthetic Standards
 
-### Typography:
+### Typography
+
 - **Primary (Body & Headlines)**: `"DM Sans"`, system-ui, sans-serif *(replaces Neue Machina as per brand spec)*
 - **Secondary (Code & Metrics)**: `"DM Mono"` / `"JetBrains Mono"`, monospace *(DM MONO SANS in brand guide)*
 
-### Official Brand Color Palette:
+### Official Brand Color Palette
+
 - **Aura White**: `#F9F8FF` (RGB: 249, 248, 255 | CMYK: 2, 3, 0, 0)
 - **Aura Lavender**: `#ECCDF5` (RGB: 236, 205, 245 | CMYK: 4, 16, 0, 4)
 - **Gayo Purple**: `#765DFB` (RGB: 118, 93, 251 | CMYK: 53, 63, 0, 2) — Core brand accent & primary button fill
 - **Deep Indigo**: `#4846AC` (RGB: 72, 70, 172 | CMYK: 58, 59, 0, 33) — Contrast accent & secondary deep purple
 - **Deep Black**: `#00050E` (RGB: 0, 5, 14 | CMYK: 100, 64, 0, 94) — Primary text & dark surfaces
 
-### Design Guidelines:
+### Design Guidelines
+
 - **Ultra-Premium Finish**: Use rich gradients, subtle glassmorphism (`backdrop-blur-xl`), smooth hover micro-interactions, and 60fps GPU-accelerated animations.
 - **Global Smooth Scroll**: Lenis is globally initialized in `App.tsx` with `autoRaf: true` to provide buttery-smooth inertia scrolling across the entire SPA.
 - **Strict Aspect Ratios**: All media containers must enforce explicit aspect ratios or `width`/`height` attributes to prevent Cumulative Layout Shift (CLS).
@@ -109,13 +113,16 @@ This document provides a comprehensive technical guide for any AI agent or softw
 ## 4. Key Subsystems & Implementation Details
 
 ### A. Internationalization (i18n) (`src/lib/i18n.tsx`)
+
 - **Languages Supported**:
   1. `en` (English — Default)
   2. `es` (Spanish)
   3. `fr` (French)
   4. `de` (German)
   5. `ru` (Russian)
+
 - **Usage**:
+
   ```tsx
   import { useLanguage } from "@/lib/i18n"
   
@@ -124,9 +131,11 @@ This document provides a comprehensive technical guide for any AI agent or softw
     return <h2>{t.hero.headlineMemory}</h2>
   }
   ```
-- **Language Switcher**: Located in [`src/components/Footer.tsx`](file:///src/components/Footer.tsx). Buttons (`En`, `Es`, `Fr`, `De`, `Ru`) invoke `setLanguage(code)`. Active selection is underlined in violet. State is persisted in `localStorage` under `negentro_lang` and synchronized to `<html lang="...">`.
+
+- **Language Switcher**: Located in [`src/components/Footer.tsx`](file:///src/components/Footer.tsx) and [`src/components/Navbar.tsx`](file:///src/components/Navbar.tsx). Buttons (`En`, `Es`, `Fr`, `De`, `Ru`) invoke `setLanguage(code)`. Active selection is underlined in violet. State is persisted in `localStorage` under `negentro_lang` and synchronized to `<html lang="...">`.
 
 ### B. Supabase Waitlist Integration (`src/lib/supabase.ts`)
+
 - **Table**: `public.waitlist`
 - **Columns**: `id UUID`, `email TEXT UNIQUE`, `created_at TIMESTAMPTZ`
 - **Environment Variables**:
@@ -136,13 +145,16 @@ This document provides a comprehensive technical guide for any AI agent or softw
 - **Duplicate Handling**: Catches Postgres error code `23505` to provide friendly duplicate feedback without throwing errors.
 
 ### C. WebGL Performance & Viewport Throttling
+
 All canvas and shader components (`FluidBackground.tsx`, `velaris.tsx`, `blue-meshy-background.tsx`, `MemoryVerificationDemo.tsx`) adhere to strict performance rules:
+
 1. **IntersectionObserver Pause**: Animation RAF loops pause when the component is scrolled off-screen (`isVisible === false`).
 2. **Tab Inactivity Pause**: RAF loops pause when `document.hidden === true`.
 3. **DPR Clamping**: Device Pixel Ratio is clamped via `Math.min(window.devicePixelRatio || 1, 2)` to eliminate mobile memory pressure.
 4. **Memory Clean-up**: All WebGL programs, buffers, framebuffers, textures, and observers are explicitly deleted/disconnected on component unmount.
 
 ### D. Code Splitting & Lazy Loading
+
 - Heavy modals (`TryPiyApiModal`, `CalendlyModal`) and non-initial subpages (`WaitPage`) are loaded on-demand via `React.lazy` and `Suspense`.
 - `vite.config.ts` splits vendor libraries into distinct cache chunks (`vendor-react`, `vendor-supabase`, `vendor-animations`, `vendor-icons`, `vendor-libs`), keeping the initial main JS bundle under 220 kB.
 
@@ -167,6 +179,7 @@ When working on this repository, all agents MUST follow these mandatory rules:
 
 4. **Verification Protocol**:
    After any code modification, always verify both codebases:
+
    ```bash
    # 1. Verify TypeScript types (must exit with 0 errors)
    npm run check-types

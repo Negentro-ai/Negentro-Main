@@ -19,10 +19,6 @@ const SCORES = [
   { name: "BEAM 10M", value: 48.6 },
 ];
 
-const TOKENS = [
-  { name: "Negentro", value: 6900, label: "~6,900" },
-  { name: "Full-context", value: 25000, label: "25,000+" },
-];
 
 // TODO: LongMemEval / BEAM breakdowns were not visible in the source capture — fill from the live page.
 const BENCHMARKS = [
@@ -511,13 +507,11 @@ function Nav() {
 
 function Hero() {
   const canvas = useThree(heroScene);
-  const [ledgerRef, seen] = useInView(0.35);
   return (
     <section className="rp-hero">
       <div className="rp-hero__canvas" ref={canvas} aria-hidden="true" />
       <div className="rp-wrap rp-hero__grid">
         <div className="rp-hero__copy">
-
           <h1 className="rp-display">Benchmarking token efficient memory algorithm</h1>
           <p className="rp-lede">
             Benchmarked across LoCoMo, LongMemEval, and BEAM. Powered by single-pass hierarchical
@@ -525,34 +519,6 @@ function Hero() {
           </p>
           <div className="rp-actions">
             <Btn>Get started</Btn>
-          </div>
-        </div>
-      </div>
-
-      <div className="rp-wrap">
-        <div className="rp-ledger" ref={ledgerRef}>
-          <div className="rp-ledger__scores">
-            {SCORES.map((s, i) => (
-              <div className="rp-ledger__row" key={s.name}>
-                <span className="rp-ledger__name">{s.name}</span>
-                <DashMeter value={s.value} run={seen} delay={i * 120} label={`${s.name}: ${s.value}`} />
-                <span className="rp-num rp-ledger__val">{s.value.toFixed(1)}</span>
-              </div>
-            ))}
-          </div>
-          <div className="rp-ledger__tokens">
-            <h2 className="rp-ledger__title">Mean tokens per retrieval call</h2>
-            {TOKENS.map((t, i) => (
-              <div className={`rp-tok ${i === 0 ? "is-ours" : ""}`} key={t.name}>
-                <div className="rp-tok__head">
-                  <span>{t.name}</span>
-                  <span className="rp-num">{t.label}</span>
-                </div>
-                <div className="rp-tok__track">
-                  <div className="rp-tok__line" style={{ width: seen ? `${(t.value / 25000) * 100}%` : 0 }} />
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

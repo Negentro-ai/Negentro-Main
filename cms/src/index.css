@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-aura: #F9F8FF;
+  --color-brand-lavender: #ECCDF5;
+  --color-brand-purple: #765DFB;
+  --color-brand-purple-hover: #634AE2;
+  --color-brand-indigo: #4846AC;
+  --color-brand-black: #00050E;
+  --color-brand-text-muted: #444759;
+  --color-brand-border: #E7E3F5;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  body {
+    font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #F9F8FF;
+    color: #00050E;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Glassmorphism primitives matching Negentro brand */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(231, 227, 245, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(118, 93, 251, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #E7E3F5;
+  box-shadow: 0 4px 20px -2px rgba(118, 93, 251, 0.035);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: #ECCDF5;
+  box-shadow: 0 8px 30px -4px rgba(118, 93, 251, 0.08);
+}
+
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-right: 1px solid #E7E3F5;
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid #E7E3F5;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #E7E3F5;
+  color: #00050E;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  border-color: #765DFB;
+  box-shadow: 0 0 0 3px rgba(118, 93, 251, 0.12);
+  outline: none;
+}

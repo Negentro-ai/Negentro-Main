@@ -1,4 +1,4 @@
-﻿import type React from "react"
+import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
 export type Language = "en" | "es" | "fr" | "de" | "ru"
@@ -412,6 +412,19 @@ export interface TranslationDictionary {
 		loading: string
 		sublinePre: string
 		sublineHighlight: string
+	}
+	industryTemplate: {
+		startBuilding: string
+		readDocs: string
+		talkToUs: string
+		faqTitle: string
+		exploreOther: string
+		allIndustries: string
+		blocksTitle: string
+		infraTitle: string
+		needsMemorySuffix: string
+		sessionsHeading: string
+		sessionsSub: string
 	}
 }
 
@@ -886,6 +899,19 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "Memory is loading...",
 			sublinePre: "Our team is putting the finishing touches on",
 			sublineHighlight: "Negentro.",
+		},
+		industryTemplate: {
+			startBuilding: "Start building",
+			readDocs: "Read the docs",
+			talkToUs: "Talk to us",
+			faqTitle: "Frequently asked questions.",
+			exploreOther: "Explore other industries.",
+			allIndustries: "All industries",
+			blocksTitle: "Four building blocks, one memory layer.",
+			infraTitle: "The infrastructure underneath.",
+			needsMemorySuffix: "needs memory.",
+			sessionsHeading: "Every session adds useful context.",
+			sessionsSub: "PiyAPI remembers what matters across sessions, so an AI copilot can respond with a deeper understanding of each user.",
 		},
 	},
 
@@ -1363,6 +1389,19 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "La memoria se está cargando...",
 			sublinePre: "Nuestro equipo está dando los toques finales a",
 			sublineHighlight: "Negentro.",
+		},
+		industryTemplate: {
+			startBuilding: "Comenzar a construir",
+			readDocs: "Leer la documentación",
+			talkToUs: "Habla con nosotros",
+			faqTitle: "Preguntas frecuentes.",
+			exploreOther: "Explorar otras industrias.",
+			allIndustries: "Todas las industrias",
+			blocksTitle: "Cuatro componentes, una capa de memoria.",
+			infraTitle: "La infraestructura subyacente.",
+			needsMemorySuffix: "necesita memoria.",
+			sessionsHeading: "Cada sesión aporta contexto valioso.",
+			sessionsSub: "PiyAPI recuerda lo importante entre sesiones para que el copiloto de IA responda con un conocimiento profundo de cada usuario.",
 		},
 	},
 
@@ -1848,6 +1887,19 @@ export const translations: Record<Language, TranslationDictionary> = {
 			sublinePre: "Notre équipe apporte les dernières touches à",
 			sublineHighlight: "Negentro.",
 		},
+		industryTemplate: {
+			startBuilding: "Commencer à construire",
+			readDocs: "Lire la documentation",
+			talkToUs: "Nous contacter",
+			faqTitle: "Foire aux questions.",
+			exploreOther: "Explorer d'autres secteurs.",
+			allIndustries: "Tous les secteurs",
+			blocksTitle: "Quatre piliers, une couche de mémoire.",
+			infraTitle: "L'infrastructure sous-jacente.",
+			needsMemorySuffix: "a besoin de mémoire.",
+			sessionsHeading: "Chaque session enrichit le contexte.",
+			sessionsSub: "PiyAPI retient l'essentiel d'une session à l'autre pour permettre au copilote IA de comprendre intimement chaque utilisateur.",
+		},
 	},
 
 	de: {
@@ -2330,6 +2382,19 @@ export const translations: Record<Language, TranslationDictionary> = {
 			sublinePre: "Unser Team legt letzte Hand an",
 			sublineHighlight: "Negentro.",
 		},
+		industryTemplate: {
+			startBuilding: "Jetzt entwickeln",
+			readDocs: "Dokumentation lesen",
+			talkToUs: "Kontakt aufnehmen",
+			faqTitle: "Häufig gestellte Fragen.",
+			exploreOther: "Weitere Branchen entdecken.",
+			allIndustries: "Alle Branchen",
+			blocksTitle: "Vier Bausteine, eine Speicherebene.",
+			infraTitle: "Die zugrundeliegende Infrastruktur.",
+			needsMemorySuffix: "braucht ein Gedächtnis.",
+			sessionsHeading: "Jede Sitzung liefert wertvollen Kontext.",
+			sessionsSub: "PiyAPI behält sitzungsübergreifend das Wesentliche, sodass KI-Copiloten jeden Nutzer fundiert verstehen.",
+		},
 	},
 
 	ru: {
@@ -2810,6 +2875,19 @@ export const translations: Record<Language, TranslationDictionary> = {
 			loading: "Память загружается...",
 			sublinePre: "Наша команда наносит последние штрихи на",
 			sublineHighlight: "Negentro.",
+		},
+		industryTemplate: {
+			startBuilding: "Начать разработку",
+			readDocs: "Документация",
+			talkToUs: "Связаться с нами",
+			faqTitle: "Часто задаваемые вопросы.",
+			exploreOther: "Другие отрасли.",
+			allIndustries: "Все отрасли",
+			blocksTitle: "Четыре базовых блока, единый уровень памяти.",
+			infraTitle: "Базовая инфраструктура.",
+			needsMemorySuffix: "нуждается в памяти.",
+			sessionsHeading: "Каждая сессия формирует полезный контекст.",
+			sessionsSub: "PiyAPI сохраняет ключевые детали между сессиями, позволяя ИИ-ассистенту глубже понимать каждого пользователя.",
 		},
 	},
 }

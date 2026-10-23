@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react"
 import type { IndustryPageData, SessionStep, BuildingBlockItem } from "@/data/industryPages"
 import { industryPages } from "@/data/industryPages"
+import { useLanguage } from "@/lib/i18n"
 
 export interface NewIndustryTemplateProps {
 	data?: Partial<IndustryPageData>
@@ -323,6 +324,8 @@ export default function NewIndustryTemplate({
 	onNavigate,
 	onTryPiyApi,
 }: NewIndustryTemplateProps) {
+	const { t } = useLanguage()
+
 	// Parse facts
 	const heroFacts: [string, string][] =
 		data.facts && data.facts.length > 0
@@ -426,9 +429,9 @@ export default function NewIndustryTemplate({
 									"Build intelligent copilots, deep search and adaptive workflow platforms on persistent, per-user memory."}
 							</p>
 							<div className="ed-actions">
-								<Btn onClick={onTryPiyApi}>Start building</Btn>
+								<Btn onClick={onTryPiyApi}>{t.industryTemplate.startBuilding}</Btn>
 								<Btn kind="quiet" href="https://docs.negentro.tech">
-									Read the docs
+									{t.industryTemplate.readDocs}
 								</Btn>
 							</div>
 						</div>
@@ -451,12 +454,12 @@ export default function NewIndustryTemplate({
 						<h2 id="ed-sessions" className="ed-h2">
 							{data.sessionHeading ||
 								data.contextTitle ||
-								"Every session adds useful context."}
+								t.industryTemplate.sessionsHeading}
 						</h2>
 						<p className="ed-sub">
 							{data.sessionSub ||
 								data.contextDescription ||
-								"PiyAPI remembers what matters across sessions, so an AI copilot can respond with a deeper understanding of each user."}
+								t.industryTemplate.sessionsSub}
 						</p>
 					</div>
 					<SessionMemoryInteractive
@@ -472,7 +475,7 @@ export default function NewIndustryTemplate({
 					<h2 id="ed-why" className="ed-h2">
 						{data.whyHeading ||
 							data.introTitle ||
-							`${data.name || "Industry"} needs memory.`}
+							`${data.name || "Industry"} ${t.industryTemplate.needsMemorySuffix}`}
 					</h2>
 					<div className="ed-why__text">
 						{whyParagraphs.map((p, i) => (
@@ -488,7 +491,7 @@ export default function NewIndustryTemplate({
 					<h2 id="ed-blocks" className="ed-h2 ed-head">
 						{data.blocksHeading ||
 							data.capabilitiesTitle ||
-							"Four building blocks, one memory layer."}
+							t.industryTemplate.blocksTitle}
 					</h2>
 					<div className="ed-blocks">
 						{blocks.map((b, i) => (
@@ -510,7 +513,7 @@ export default function NewIndustryTemplate({
 					<h2 id="ed-infra" className="ed-h2">
 						{data.infraHeading ||
 							data.infrastructureTitle ||
-							"The infrastructure underneath."}
+							t.industryTemplate.infraTitle}
 					</h2>
 					<div className="ed-infra__grid">
 						<ul className="ed-infra__list">
@@ -564,7 +567,7 @@ export default function NewIndustryTemplate({
 			<section className="ed-sec" aria-labelledby="ed-faq">
 				<div className="ed-wrap ed-faq__grid">
 					<h2 id="ed-faq" className="ed-h2">
-						{data.faqHeading || "Frequently asked questions."}
+						{data.faqHeading || t.industryTemplate.faqTitle}
 					</h2>
 					<FaqList faqs={faqs as any} />
 				</div>
@@ -575,14 +578,14 @@ export default function NewIndustryTemplate({
 				<div className="ed-wrap">
 					<div className="ed-other__head">
 						<h2 id="ed-other" className="ed-h2">
-							Explore other industries.
+							{t.industryTemplate.exploreOther}
 						</h2>
 						<button
 							type="button"
 							onClick={() => handleNavigate("education")}
 							className="ed-link"
 						>
-							All industries
+							{t.industryTemplate.allIndustries}
 							<Arrow />
 						</button>
 					</div>
@@ -619,13 +622,13 @@ export default function NewIndustryTemplate({
 						</p>
 						<div className="ed-actions">
 							<Btn kind="white" onClick={onTryPiyApi}>
-								Start building
+								{t.industryTemplate.startBuilding}
 							</Btn>
 							<Btn kind="ghost" href="https://docs.negentro.tech">
-								Read the docs
+								{t.industryTemplate.readDocs}
 							</Btn>
 							<Btn kind="ghost" href="/company#contact">
-								Talk to us
+								{t.industryTemplate.talkToUs}
 							</Btn>
 						</div>
 					</div>

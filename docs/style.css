@@ -39,40 +39,54 @@ html:has(.negentro-guides):not(.dark) body {
   background: #ffffff;
 }
 
-/* Hide non-homepage elements on the landing page */
+/* Hide non-homepage and side-layout elements on the landing page */
+html:has(.negentro-guides) #content-side-layout,
+html:has(.negentro-guides) #table-of-contents-layout,
+html:has(.negentro-guides) #table-of-contents,
 html:has(.negentro-guides) #header,
 html:has(.negentro-guides) #page-context-menu,
 html:has(.negentro-guides) #pagination,
 html:has(.negentro-guides) #sidebar,
 html:has(.negentro-guides) aside,
 html:has(.negentro-guides) [data-sidebar],
-html:has(.negentro-guides) #table-of-contents,
 html:has(.negentro-guides) [data-toc] {
   display: none !important;
+  width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-/* Center all containers and ensure full width without sidebar offsets */
+/* Ensure full width and equal margins across all ancestor layout containers */
 html:has(.negentro-guides) #content-container,
+html:has(.negentro-guides) #content-container > div,
+html:has(.negentro-guides) div:has(> #content-area),
 html:has(.negentro-guides) #content-area,
 html:has(.negentro-guides) #content,
 html:has(.negentro-guides) main,
 html:has(.negentro-guides) [data-page-mode],
-html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides) {
+html:has(.negentro-guides) :is(.mdx-content, mdx-content) {
   width: 100% !important;
   max-width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
 }
 
-/* Centered Homepage Container */
+/* Centered Homepage Container with perfectly equal horizontal padding */
 .negentro-container {
   width: 100% !important;
   max-width: 1260px !important;
-  margin: 0 auto !important;
-  padding: 48px clamp(16px, 2.5vw, 36px) 72px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 48px !important;
+  padding-bottom: 72px !important;
+  padding-left: clamp(16px, 3vw, 40px) !important;
+  padding-right: clamp(16px, 3vw, 40px) !important;
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
@@ -101,30 +115,42 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides) 
 }
 
 .negentro-hero-title {
-  margin: 0 0 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 auto 20px !important;
   text-align: center !important;
   font-size: clamp(34px, 4.2vw, 56px) !important;
   line-height: 1.15 !important;
   letter-spacing: -0.035em !important;
   font-weight: 700 !important;
   color: #000000 !important;
+  width: 100% !important;
 }
 
 .negentro-hero-subtitle {
   max-width: 560px !important;
-  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
   text-align: center !important;
   color: #70717b !important;
   font-size: 16px !important;
   line-height: 1.6 !important;
+  width: 100% !important;
 }
 
 /* Fallback centering for any raw headings */
 html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1,
 html:has(.negentro-guides) h1 {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   text-align: center !important;
   margin-inline: auto !important;
   color: #000000 !important;
+  width: 100% !important;
 }
 html:has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 strong,
 html:has(.negentro-guides) h1 strong {
@@ -136,11 +162,12 @@ html:has(.negentro-guides) h1 a[aria-label] {
 
 /* Top buttons */
 .negentro-actions {
-  display: grid !important;
-  grid-template-columns: repeat(2, max-content) !important;
+  display: flex !important;
   justify-content: center !important;
+  align-items: center !important;
   gap: 12px !important;
   margin: 0 auto 60px !important;
+  width: 100% !important;
 }
 .negentro-actions :is(.negentro-action-primary, .negentro-action-secondary) {
   margin: 0;
@@ -182,13 +209,13 @@ html:has(.negentro-guides) h1 a[aria-label] {
 
 /* Guide Cards Grid */
 .negentro-guides {
-  order: 4;
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   align-items: stretch;
   width: 100% !important;
   gap: 18px !important;
-  margin: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .negentro-guide {
   display: flex;
