@@ -160,37 +160,50 @@ html:has(.negentro-guides) h1 a[aria-label] {
   display: none !important;
 }
 
-/* Top buttons */
+/* Top buttons (compact width matching Option 2) */
 .negentro-actions {
   display: flex !important;
+  flex-direction: row !important;
   justify-content: center !important;
   align-items: center !important;
   gap: 12px !important;
   margin: 0 auto 60px !important;
-  width: 100% !important;
+  width: auto !important;
+  max-width: max-content !important;
 }
-.negentro-actions :is(.negentro-action-primary, .negentro-action-secondary) {
-  margin: 0;
-  padding: 0;
-  min-width: 124px;
-  border-radius: 9px;
-  text-align: center;
-  box-shadow: none;
+.negentro-actions :is(.negentro-action-primary, .negentro-action-secondary),
+.negentro-actions a {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  min-width: 120px !important;
+  max-width: max-content !important;
+  flex: 0 0 auto !important;
+  border-radius: 9px !important;
+  text-align: center !important;
+  box-shadow: none !important;
   text-decoration: none !important;
 }
 .negentro-actions [data-component-part="card-content-container"] {
-  padding: 10px 22px;
+  padding: 9px 20px !important;
+  width: auto !important;
+  max-width: max-content !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 .negentro-actions [data-component-part="card-title"] {
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
+  margin: 0 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  text-align: center !important;
 }
 .negentro-actions [data-component-part="card-icon"],
 .negentro-actions [data-component-part="card-content"],
 .negentro-guides [data-component-part="card-icon"] {
-  display: none;
+  display: none !important;
 }
 .negentro-action-primary {
   background: #765dfb !important;
