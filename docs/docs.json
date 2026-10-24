@@ -3,8 +3,14 @@
 	"theme": "mint",
 	"colors": {
 		"primary": "#765DFB",
-		"light": "#F9F8FF",
-		"dark": "#00050E"
+		"light": "#9D8DFD",
+		"dark": "#765DFB"
+	},
+	"background": {
+		"color": {
+			"light": "#F9F8FF",
+			"dark": "#00050E"
+		}
 	},
 	"navigation": {
 		"tabs": [

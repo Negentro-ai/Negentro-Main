@@ -8,6 +8,32 @@ icon: "rocket"
 ---
 
 <div className="negentro-container">
+  {/* Snake Vine — stretched horizontally above NEGENTRO / DOCS tag */}
+  <div className="vine-line-wrap">
+    <svg className="vine-line-svg" viewBox="0 0 1160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Clean, normal brand purple rope without shine */}
+      <path
+        d="M -150 48 C -113.3 47.1, -76.7 46.1, -40 44 C -13.3 42.5, 13.3 40.3, 40 40 C 66.0 39.7, 92.0 41.3, 118 44 C 140.3 46.3, 162.7 49.6, 185 52 C 206.7 54.3, 228.3 55.9, 250 56 C 293.3 56.2, 336.7 50.4, 380 46 C 424.7 41.5, 469.3 38.5, 514 42 C 536.0 43.7, 558.0 47.1, 580 50 C 602.0 52.9, 624.0 55.4, 646 56 C 690.7 57.2, 735.3 50.8, 780 46 C 823.3 41.3, 866.7 38.2, 910 42 C 931.7 43.9, 953.3 47.5, 975 50 C 997.3 52.6, 1019.7 54.1, 1042 54 C 1084.7 53.9, 1127.3 48.1, 1170 46 C 1216.7 43.7, 1263.3 45.9, 1310 48"
+        stroke="#765DFB"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+      {/* 6 Anchor Nodes on the rope where the strings connect (all 6 at mid of each box) */}
+      <path
+        d="M 118 44 L 118.01 44 M 250 56 L 250.01 56 M 514 42 L 514.01 42 M 646 56 L 646.01 56 M 910 42 L 910.01 42 M 1042 54 L 1042.01 54"
+        stroke="#765DFB"
+        strokeWidth="7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M 118 44 L 118.01 44 M 250 56 L 250.01 56 M 514 42 L 514.01 42 M 646 56 L 646.01 56 M 910 42 L 910.01 42 M 1042 54 L 1042.01 54"
+        stroke="#9D8DFD"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
+  </div>
+
   <div className="negentro-hero">
     <span className="negentro-tag">NEGENTRO / DOCS</span>
     <h1 className="negentro-hero-title">Build with <span className="negentro-hero-brand">Negentro</span></h1>
@@ -19,33 +45,56 @@ icon: "rocket"
 
   <CardGroup cols={2} className="negentro-actions">
     <Card title="Get Started" icon="rocket" href="/quickstart" className="negentro-action-primary" />
-
     <Card title="API Reference" icon="code" href="/api-reference/overview" className="negentro-action-secondary" />
   </CardGroup>
 
-  <CardGroup cols={3} className="negentro-guides">
-    <Card title="Store your first memory" icon="database" href="/quickstart" className="negentro-guide negentro-memory">
-      Learn how to create, store, and retrieve persistent memory with Negentro.
-    </Card>
+  <div className="negentro-guides vine-cards">
+    <div className="vine-card-hanger vine-card-hanger-1">
+      <div className="vine-card-frame">
+        <Card title="Store your first memory" icon="database" href="/quickstart" className="negentro-guide negentro-memory vine-card">
+          Learn how to create, store, and retrieve persistent memory with Negentro.
+        </Card>
+      </div>
+    </div>
 
-    <Card title="Add memory to your AI agent" icon="robot" href="/platform/overview" className="negentro-guide negentro-agent">
-      Give your agents persistent context across conversations, sessions, and workflows.
-    </Card>
+    <div className="vine-card-hanger vine-card-hanger-2">
+      <div className="vine-card-frame">
+        <Card title="Add memory to your AI agent" icon="robot" href="/platform/overview" className="negentro-guide negentro-agent vine-card">
+          Give your agents persistent context across conversations, sessions, and workflows.
+        </Card>
+      </div>
+    </div>
 
-    <Card title="Build your first context workflow" icon="diagram-project" href="/platform/overview#store-and-retrieve-context" className="negentro-guide negentro-workflow">
-      Connect memory and context into a workflow your application can use immediately.
-    </Card>
+    <div className="vine-card-hanger vine-card-hanger-3">
+      <div className="vine-card-frame">
+        <Card title="Build your first context workflow" icon="diagram-project" href="/platform/overview#store-and-retrieve-context" className="negentro-guide negentro-workflow vine-card">
+          Connect memory and context into a workflow your application can use immediately.
+        </Card>
+      </div>
+    </div>
 
-    <Card title="Use Negentro with your framework" icon="puzzle-piece" href="/integrations/overview" className="negentro-guide negentro-framework">
-      Connect Negentro to the tools and frameworks you already use.
-    </Card>
+    <div className="vine-card-hanger vine-card-hanger-4">
+      <div className="vine-card-frame">
+        <Card title="Use Negentro with your framework" icon="puzzle-piece" href="/integrations/overview" className="negentro-guide negentro-framework vine-card">
+          Connect Negentro to the tools and frameworks you already use.
+        </Card>
+      </div>
+    </div>
 
-    <Card title="Copy a working example" icon="code" href="/cookbooks/overview" className="negentro-guide negentro-example">
-      Start from practical examples and adapt them to your own application.
-    </Card>
+    <div className="vine-card-hanger vine-card-hanger-5">
+      <div className="vine-card-frame">
+        <Card title="Copy a working example" icon="code" href="/cookbooks/overview" className="negentro-guide negentro-example vine-card">
+          Start from practical examples and adapt them to your own application.
+        </Card>
+      </div>
+    </div>
 
-    <Card title="Run Negentro on your own infrastructure" icon="server" href="/open-source/overview" className="negentro-guide negentro-infrastructure">
-      Understand deployment options and build Negentro into your infrastructure.
-    </Card>
-  </CardGroup>
+    <div className="vine-card-hanger vine-card-hanger-6">
+      <div className="vine-card-frame">
+        <Card title="Run Negentro on your own infrastructure" icon="server" href="/open-source/overview" className="negentro-guide negentro-infrastructure vine-card">
+          Understand deployment options and build Negentro into your infrastructure.
+        </Card>
+      </div>
+    </div>
+  </div>
 </div>

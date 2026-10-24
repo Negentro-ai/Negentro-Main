@@ -45,21 +45,35 @@ html.dark img.nav-logo[src*="negentroailogo.png"]:not([src*="negentroailogo-dark
   justify-content: center !important;
 }
 
-/* Homepage only: retain native navigation, footer, and Card components. */
+/* Global Smooth Theme Switching across all pages */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Homepage only content width */
 html:has(.negentro-guides) {
   --content-width: 1280px;
 }
-html:has(.negentro-guides):not(.dark) #background-color,
-html:has(.negentro-guides):not(.dark) body {
-  background: #ffffff;
+
+/* Light mode background across all pages */
+html:not(.dark) #background-color,
+html:not(.dark) body,
+html.light #background-color,
+html.light body {
+  background: #f9f8ff !important;
 }
 
-html.dark:has(.negentro-guides) #background-color,
-html.dark:has(.negentro-guides) body,
-.dark:has(.negentro-guides) #background-color,
-.dark:has(.negentro-guides) body,
-html[data-theme="dark"]:has(.negentro-guides) #background-color,
-html[data-theme="dark"]:has(.negentro-guides) body {
+/* Dark mode background across all pages */
+html.dark #background-color,
+html.dark body,
+.dark #background-color,
+.dark body,
+html[data-theme="dark"] #background-color,
+html[data-theme="dark"] body {
   background: #00050e !important;
 }
 
@@ -96,6 +110,8 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) {
   margin-right: auto !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -107,7 +123,7 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) {
   max-width: 1260px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 48px !important;
+  padding-top: 0 !important;
   padding-bottom: 72px !important;
   padding-left: clamp(16px, 3vw, 40px) !important;
   padding-right: clamp(16px, 3vw, 40px) !important;
@@ -120,18 +136,20 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) {
 /* Hero Section */
 .negentro-hero {
   text-align: center !important;
-  margin: 0 auto 32px !important;
+  margin: 0 auto 24px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
   width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .negentro-tag {
   color: #765dfb !important;
   font: 12px/1.5 ui-monospace, monospace !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 16px !important;
   letter-spacing: 0.06em !important;
   font-weight: 600 !important;
   display: inline-block !important;
@@ -142,7 +160,7 @@ html:has(.negentro-guides) :is(.mdx-content, mdx-content) {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  margin: 0 auto 20px !important;
+  margin: 0 auto 16px !important;
   text-align: center !important;
   font-size: clamp(34px, 4.2vw, 56px) !important;
   line-height: 1.15 !important;
@@ -233,9 +251,11 @@ html:has(.negentro-guides) h1 a[aria-label] {
   justify-content: center !important;
   align-items: center !important;
   gap: 12px !important;
-  margin: 0 auto 60px !important;
+  margin: 0 auto 48px !important;
   width: auto !important;
   max-width: max-content !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 .negentro-actions :is(.negentro-action-primary, .negentro-action-secondary),
 .negentro-actions a {
@@ -335,6 +355,372 @@ html[data-theme="dark"] .negentro-action-secondary [data-component-part="card-ti
 .negentro-guide:focus-visible {
   outline: 2px solid #765dfb;
   outline-offset: 4px;
+}
+
+/* ========================================================
+   Vine String Suspension UI
+   The SVG = only the snake curve
+   The strings = CSS ::after on each card (always aligned)
+   ======================================================== */
+
+/* Snake vine line wrapper */
+.vine-line-wrap {
+  width: 100% !important;
+  max-width: 1160px !important;
+  margin: 0 auto 16px !important;
+  height: 80px !important;
+  display: block !important;
+  pointer-events: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 12 !important;
+}
+.vine-line-svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  overflow: visible !important;
+  filter: none !important;
+}
+
+/* Cards grid — staggered heights, overflow visible so strings show */
+.negentro-guides.vine-cards {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  column-gap: 28px !important;
+  row-gap: 0 !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: 1160px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ------------------------------------------------------------------
+   Vine Card Hanger Container:
+   - Holds physical pendulum sway animation with pivot at the rope node
+   - Renders the hanging string (::after) from the rope to the card
+   - Renders the mounting hardware dot (::before) on top of the card
+   - Top displacement at the rope is strictly 0.0px (100% intact)
+   ------------------------------------------------------------------ */
+.vine-card-hanger {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 236px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* ------------------------------------------------------------------
+   The HANGING STRING — clean brand wire matching light / dark mode
+   ------------------------------------------------------------------ */
+.vine-card-hanger::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 1.5px !important;
+  background: rgba(118, 93, 251, 0.75) !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  filter: none !important;
+  transition: background-color 0.25s ease !important;
+}
+
+.vine-card-hanger:hover::after {
+  background: #765dfb !important;
+}
+
+/* Mounting hardware dot — Light Mode */
+.vine-card-hanger::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -3.5px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #765DFB !important;
+  border: 1.5px solid #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+}
+
+/* Hanging string & mounting dot — Dark Mode */
+html.dark .vine-card-hanger::after,
+.dark .vine-card-hanger::after,
+html[data-theme="dark"] .vine-card-hanger::after,
+html[class*="dark"] .vine-card-hanger::after {
+  background: rgba(157, 141, 253, 0.7) !important;
+}
+
+html.dark .vine-card-hanger:hover::after,
+.dark .vine-card-hanger:hover::after,
+html[data-theme="dark"] .vine-card-hanger:hover::after,
+html[class*="dark"] .vine-card-hanger:hover::after {
+  background: #9D8DFD !important;
+}
+
+html.dark .vine-card-hanger::before,
+.dark .vine-card-hanger::before,
+html[data-theme="dark"] .vine-card-hanger::before,
+html[class*="dark"] .vine-card-hanger::before {
+  background: #9D8DFD !important;
+  border: 1.5px solid #765DFB !important;
+  box-shadow: none !important;
+}
+
+/* ------------------------------------------------------------------
+   Vine Card Frame:
+   - Wraps ONLY the card (NOT the string)
+   - Applies clean drop shadow matching light / dark mode
+   ------------------------------------------------------------------ */
+.vine-card-frame {
+  position: relative !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05))
+          drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05)) !important;
+  transition: filter 0.35s ease !important;
+}
+
+.vine-card-frame:hover,
+.vine-card-hanger:hover .vine-card-frame {
+  filter: drop-shadow(0 0 1px rgba(118, 93, 251, 0.6))
+          drop-shadow(0 4px 16px rgba(118, 93, 251, 0.18)) !important;
+}
+
+/* Dark Mode Frame Shadow & Glow */
+html.dark .vine-card-frame,
+.dark .vine-card-frame,
+html[data-theme="dark"] .vine-card-frame,
+html[class*="dark"] .vine-card-frame {
+  filter: drop-shadow(0 0 1px rgba(157, 141, 253, 0.45))
+          drop-shadow(0 4px 18px rgba(0, 0, 0, 0.5)) !important;
+}
+
+html.dark .vine-card-frame:hover,
+.dark .vine-card-frame:hover,
+html[data-theme="dark"] .vine-card-frame:hover,
+html[class*="dark"] .vine-card-frame:hover,
+html.dark .vine-card-hanger:hover .vine-card-frame,
+.dark .vine-card-hanger:hover .vine-card-frame,
+html[data-theme="dark"] .vine-card-hanger:hover .vine-card-frame,
+html[class*="dark"] .vine-card-hanger:hover .vine-card-frame {
+  filter: drop-shadow(0 0 1.5px rgba(157, 141, 253, 0.9))
+          drop-shadow(0 0 12px rgba(118, 93, 251, 0.35))
+          drop-shadow(0 8px 26px rgba(0, 0, 0, 0.75)) !important;
+}
+
+/* ------------------------------------------------------------------
+   Truncated Rectangular (Chamfered Tech Card) Shape
+   - 16px chamfered cuts on all 4 corners (octagonal tech card look)
+   - Full seamless support for both Light Mode and Dark Mode
+   ------------------------------------------------------------------ */
+.vine-card {
+  position: relative !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 236px !important;
+  min-height: 260px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  clip-path: polygon(
+    16px 0%,
+    calc(100% - 16px) 0%,
+    100% 16px,
+    100% calc(100% - 16px),
+    calc(100% - 16px) 100%,
+    16px 100%,
+    0% calc(100% - 16px),
+    0% 16px
+  ) !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  transition: border-color 0.25s ease, background-color 0.25s ease !important;
+}
+
+.vine-card:hover {
+  border-color: #765dfb !important;
+  box-shadow: none !important;
+}
+
+/* Ensure inner container padding matches truncated rectangle */
+.vine-card [data-component-part="card-content-container"] {
+  position: relative !important;
+  padding: 12px 14px 16px !important;
+  background: #ffffff !important;
+}
+
+/* Hide legacy inner pseudo-elements since hanger handles them cleanly */
+.vine-card::after,
+.vine-card [data-component-part="card-content-container"]::before {
+  display: none !important;
+}
+
+.vine-card [data-component-part="card-title"] {
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+  margin: 0 0 6px !important;
+  font-weight: 650 !important;
+  color: #0f172a !important;
+}
+
+.vine-card [data-component-part="card-content"] {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  color: #64748b !important;
+}
+
+/* Square preview illustration clipped by card chamfer — Light Mode */
+.vine-card::before {
+  aspect-ratio: 400 / 195 !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  background-color: #f8fafc !important;
+}
+
+/* Dark Mode Card Styling */
+html.dark .vine-card,
+.dark .vine-card,
+html[data-theme="dark"] .vine-card,
+html[class*="dark"] .vine-card {
+  background: #080d1a !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .vine-card:hover,
+.dark .vine-card:hover,
+html[data-theme="dark"] .vine-card:hover,
+html[class*="dark"] .vine-card:hover {
+  border-color: rgba(118, 93, 251, 0.5) !important;
+  box-shadow: none !important;
+}
+
+html.dark .vine-card [data-component-part="card-content-container"],
+.dark .vine-card [data-component-part="card-content-container"],
+html[data-theme="dark"] .vine-card [data-component-part="card-content-container"],
+html[class*="dark"] .vine-card [data-component-part="card-content-container"] {
+  background: transparent !important;
+}
+
+html.dark .vine-card [data-component-part="card-title"],
+.dark .vine-card [data-component-part="card-title"],
+html[data-theme="dark"] .vine-card [data-component-part="card-title"],
+html[class*="dark"] .vine-card [data-component-part="card-title"] {
+  color: #ffffff !important;
+}
+
+html.dark .vine-card [data-component-part="card-content"],
+.dark .vine-card [data-component-part="card-content"],
+html[data-theme="dark"] .vine-card [data-component-part="card-content"],
+html[class*="dark"] .vine-card [data-component-part="card-content"] {
+  color: #94a3b8 !important;
+}
+
+html.dark .vine-card::before,
+.dark .vine-card::before,
+html[data-theme="dark"] .vine-card::before,
+html[class*="dark"] .vine-card::before {
+  background-color: #080d1a !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Row 1 cards (1, 2, 3) aligned LEFT in each column */
+.vine-card-hanger-1,
+.vine-card-hanger-2,
+.vine-card-hanger-3 {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Row 2 cards (4, 5, 6) aligned RIGHT in each column */
+.vine-card-hanger-4,
+.vine-card-hanger-5,
+.vine-card-hanger-6 {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   Card Positions & String Heights (Still / Static Suspension)
+   Cards hang stably from their strings without motion.
+   ------------------------------------------------------------------ */
+
+/* Card 1 — Row 1, left column */
+.vine-card-hanger-1 {
+  margin-top: 20px !important;
+  z-index: 2 !important;
+  animation: none !important;
+  transform: none !important;
+}
+.vine-card-hanger-1::after {
+  height: 348px !important;
+}
+
+/* Card 2 — Row 1, center column */
+.vine-card-hanger-2 {
+  margin-top: 45px !important;
+  z-index: 2 !important;
+  animation: none !important;
+  transform: none !important;
+}
+.vine-card-hanger-2::after {
+  height: 375px !important;
+}
+
+/* Card 3 — Row 1, right column */
+.vine-card-hanger-3 {
+  margin-top: 10px !important;
+  z-index: 2 !important;
+  animation: none !important;
+  transform: none !important;
+}
+.vine-card-hanger-3::after {
+  height: 340px !important;
+}
+
+/* Card 4 — Row 2, left column */
+.vine-card-hanger-4 {
+  margin-top: 45px !important;
+  z-index: 3 !important;
+  animation: none !important;
+  transform: none !important;
+}
+.vine-card-hanger-4::after {
+  height: 667px !important;
+}
+
+/* Card 5 — Row 2, center column */
+.vine-card-hanger-5 {
+  margin-top: 65px !important;
+  z-index: 3 !important;
+  animation: none !important;
+  transform: none !important;
+}
+.vine-card-hanger-5::after {
+  height: 687px !important;
+}
+
+/* Card 6 — Row 2, right column */
+.vine-card-hanger-6 {
+  margin-top: 35px !important;
+  z-index: 3 !important;
+  animation: none !important;
+  transform: none !important;
+}
+.vine-card-hanger-6::after {
+  height: 658px !important;
 }
 
 html.dark .negentro-guide,
@@ -467,114 +853,239 @@ html[data-theme="dark"] .negentro-guide [data-component-part="card-content"] p {
   color: inherit !important;
 }
 
-/* Automatic System Dark Mode Fallback */
-@media (prefers-color-scheme: dark) {
-  html:not(.light):has(.negentro-guides) #background-color,
-  html:not(.light):has(.negentro-guides) body {
-    background: #00050e !important;
-  }
-  html:not(.light) .negentro-hero-title,
-  html:not(.light):has(.negentro-guides) h1,
-  html:not(.light):has(.negentro-guides) :is(.mdx-content, mdx-content) > h1 {
-    color: #ffffff !important;
-  }
-  html:not(.light) .negentro-hero-brand,
-  html:not(.light):has(.negentro-guides) h1 strong {
-    color: #9d8dfd !important;
-  }
-  html:not(.light) .negentro-hero-subtitle {
-    color: #94a3b8 !important;
-  }
-  html:not(.light) .negentro-action-secondary {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  }
-  html:not(.light) .negentro-action-secondary [data-component-part="card-title"] {
-    color: #ffffff !important;
-  }
-  html:not(.light) .negentro-guide {
-    background: #080d1a !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-  }
-  html:not(.light) .negentro-guide::before {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    background-color: #080d1a !important;
-  }
-  html:not(.light) .negentro-memory::before {
-    background-image: url('/images/card-memory-dark.svg') !important;
-  }
-  html:not(.light) .negentro-agent::before {
-    background-image: url('/images/card-agent-dark.svg') !important;
-  }
-  html:not(.light) .negentro-workflow::before {
-    background-image: url('/images/card-workflow-dark.svg') !important;
-  }
-  html:not(.light) .negentro-framework::before {
-    background-image: url('/images/card-framework-dark.svg') !important;
-  }
-  html:not(.light) .negentro-example::before {
-    background-image: url('/images/card-example-dark.svg') !important;
-  }
-  html:not(.light) .negentro-infrastructure::before {
-    background-image: url('/images/card-infrastructure-dark.svg') !important;
-  }
-  html:not(.light) .negentro-guide [data-component-part="card-title"] {
-    color: #ffffff !important;
-  }
-  html:not(.light) .negentro-guide [data-component-part="card-content"] {
-    color: #94a3b8 !important;
-  }
+/* Navbar and Footer */
+html:has(.negentro-guides):not(.dark) #navbar,
+html:has(.negentro-guides).light #navbar {
+  background: #f9f8ff !important;
+  border-bottom: 1px solid #eeecf5 !important;
 }
 
-/* Navbar and Footer */
-html:has(.negentro-guides):not(.dark) #navbar {
-  background: #f9f8ff;
-  border-bottom: 1px solid #eeecf5;
-}
 html.dark:has(.negentro-guides) #navbar,
 .dark:has(.negentro-guides) #navbar,
 html[data-theme="dark"]:has(.negentro-guides) #navbar {
   background: #00050e !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
-html:has(.negentro-guides) #footer {
-  border-top: 1px solid #eeecf5;
-  padding-top: 28px;
+
+html:has(.negentro-guides):not(.dark) #footer,
+html:has(.negentro-guides).light #footer {
+  border-top: 1px solid #eeecf5 !important;
 }
+
 html.dark:has(.negentro-guides) #footer,
 .dark:has(.negentro-guides) #footer,
 html[data-theme="dark"]:has(.negentro-guides) #footer {
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
+
 html:has(.negentro-guides) #footer a {
   font-family: ui-monospace, monospace;
   font-size: 12px;
 }
+
 html.dark:has(.negentro-guides) #footer a,
 .dark:has(.negentro-guides) #footer a,
 html[data-theme="dark"]:has(.negentro-guides) #footer a {
   color: #94a3b8 !important;
 }
+
 html:has(.negentro-guides) #topbar-cta-button {
   border-radius: 9px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-  .negentro-guides {
+  .negentro-guides:not(.vine-cards) {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
+
+@media (max-width: 900px) {
+  .vine-line-wrap {
+    height: 50px !important;
+  }
+  .negentro-guides.vine-cards {
+    grid-template-columns: minmax(0, 1fr) !important;
+    row-gap: 24px !important;
+  }
+  .vine-card-hanger {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .vine-card-hanger::after {
+    left: 50% !important;
+    bottom: 100% !important;
+    height: 24px !important;
+  }
+  .vine-card {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .vine-card-frame:hover {
+    transform: translateY(-4px) !important;
+  }
+}
+
 @media (max-width: 640px) {
   html:has(.negentro-guides) :is(.mdx-content, mdx-content):has(.negentro-guides) {
     padding: 32px 16px 48px !important;
   }
-  .negentro-guides {
+  .negentro-guides:not(.vine-cards) {
     grid-template-columns: minmax(0, 1fr) !important;
     gap: 16px !important;
   }
   .negentro-actions {
     margin-bottom: 40px !important;
   }
+}
+
+/* ========================================================
+   Brand Color Prominence in Dark Mode (All Pages)
+   Ensures brand purple (#9D8DFD) is vibrant & visible across
+   links, sidebar items, tabs, and interactive elements.
+   ======================================================== */
+
+/* Content Markdown Links in Dark Mode */
+html.dark :is(article, main, .prose) a.link,
+.dark :is(article, main, .prose) a.link,
+html[data-theme="dark"] :is(article, main, .prose) a.link,
+html.dark :is(article, main, .prose) a:not([class*="btn"]):not([class*="card"]):not([class*="pagination"]):not([data-toc] a) {
+  color: #9d8dfd !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(157, 141, 253, 0.45) !important;
+  text-underline-offset: 3px !important;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease !important;
+}
+
+html.dark :is(article, main, .prose) a.link:hover,
+.dark :is(article, main, .prose) a.link:hover,
+html[data-theme="dark"] :is(article, main, .prose) a.link:hover,
+html.dark :is(article, main, .prose) a:not([class*="btn"]):not([class*="card"]):not([class*="pagination"]):not([data-toc] a):hover {
+  color: #c4b5fd !important;
+  text-decoration-color: #9d8dfd !important;
+}
+
+/* Active Navigation Tab Underline in Dark Mode */
+html.dark .nav-tabs div[class*="bg-primary"],
+.dark .nav-tabs div[class*="bg-primary"] {
+  background-color: #9d8dfd !important;
+}
+
+/* Sidebar Active Item & Hover Tint in Dark Mode */
+html.dark aside a[class*="bg-primary"],
+.dark aside a[class*="bg-primary"],
+html.dark [data-sidebar] a[class*="bg-primary"],
+.dark [data-sidebar] a[class*="bg-primary"],
+html.dark aside a[data-active="true"],
+.dark aside a[data-active="true"] {
+  color: #9d8dfd !important;
+  background-color: rgba(157, 141, 253, 0.12) !important;
+}
+
+/* Table of Contents Active Item in Dark Mode */
+html.dark [data-toc] a[data-active="true"],
+.dark [data-toc] a[data-active="true"],
+html.dark [data-toc] [data-active="true"] > a,
+.dark [data-toc] [data-active="true"] > a {
+  color: #9d8dfd !important;
+  border-left-color: #9d8dfd !important;
+}
+
+/* Code Block Active Tabs in Dark Mode */
+html.dark [role="tab"][aria-selected="true"],
+.dark [role="tab"][aria-selected="true"],
+html.dark [data-state="active"][role="tab"],
+.dark [data-state="active"][role="tab"] {
+  color: #9d8dfd !important;
+  border-bottom-color: #9d8dfd !important;
+}
+
+/* Primary Action Buttons in Dark Mode */
+html.dark button[class*="bg-primary"],
+.dark button[class*="bg-primary"],
+html.dark a[class*="bg-primary"],
+.dark a[class*="bg-primary"] {
+  background-color: #765dfb !important;
+  color: #ffffff !important;
+}
+
+html.dark button[class*="bg-primary"]:hover,
+.dark button[class*="bg-primary"]:hover,
+html.dark a[class*="bg-primary"]:hover,
+.dark a[class*="bg-primary"]:hover {
+  background-color: #8b75ff !important;
+}
+
+/* Pagination Buttons Hover in Dark Mode */
+html.dark .pagination-prev:hover,
+.dark .pagination-prev:hover,
+html.dark .pagination-next:hover,
+.dark .pagination-next:hover {
+  border-color: #9d8dfd !important;
+  color: #9d8dfd !important;
+}
+html.dark .pagination-prev:hover svg,
+.dark .pagination-prev:hover svg,
+html.dark .pagination-next:hover svg,
+.dark .pagination-next:hover svg {
+  stroke: #9d8dfd !important;
+  color: #9d8dfd !important;
+}
+
+/* ========================================================
+   Branded Table Rows (2nd, 4th, 6th rows)
+   Brand purple text color with default theme background
+   ======================================================== */
+
+/* Light Mode: Brand purple text on 2nd, 4th, 6th table rows */
+table tbody tr:nth-child(2) td,
+table tbody tr:nth-child(4) td,
+table tbody tr:nth-child(6) td,
+table tbody tr:nth-child(even) td {
+  color: #765dfb !important;
+  transition: color 0.2s ease !important;
+}
+
+table tbody tr:nth-child(2) td:first-child,
+table tbody tr:nth-child(4) td:first-child,
+table tbody tr:nth-child(6) td:first-child,
+table tbody tr:nth-child(even) td:first-child,
+table tbody tr:nth-child(2) td:nth-child(2),
+table tbody tr:nth-child(4) td:nth-child(2),
+table tbody tr:nth-child(6) td:nth-child(2),
+table tbody tr:nth-child(even) td:nth-child(2) {
+  font-weight: 600 !important;
+}
+
+/* Dark Mode: Brand purple text on 2nd, 4th, 6th table rows */
+html.dark table tbody tr:nth-child(2) td,
+.dark table tbody tr:nth-child(2) td,
+html[data-theme="dark"] table tbody tr:nth-child(2) td,
+html.dark table tbody tr:nth-child(4) td,
+.dark table tbody tr:nth-child(4) td,
+html[data-theme="dark"] table tbody tr:nth-child(4) td,
+html.dark table tbody tr:nth-child(6) td,
+.dark table tbody tr:nth-child(6) td,
+html[data-theme="dark"] table tbody tr:nth-child(6) td,
+html.dark table tbody tr:nth-child(even) td,
+.dark table tbody tr:nth-child(even) td,
+html[data-theme="dark"] table tbody tr:nth-child(even) td {
+  color: #9d8dfd !important;
+}
+
+html.dark table tbody tr:nth-child(2) td:first-child,
+.dark table tbody tr:nth-child(2) td:first-child,
+html.dark table tbody tr:nth-child(4) td:first-child,
+.dark table tbody tr:nth-child(4) td:first-child,
+html.dark table tbody tr:nth-child(6) td:first-child,
+.dark table tbody tr:nth-child(6) td:first-child,
+html.dark table tbody tr:nth-child(2) td:nth-child(2),
+.dark table tbody tr:nth-child(2) td:nth-child(2),
+html.dark table tbody tr:nth-child(4) td:nth-child(2),
+.dark table tbody tr:nth-child(4) td:nth-child(2),
+html.dark table tbody tr:nth-child(6) td:nth-child(2),
+.dark table tbody tr:nth-child(6) td:nth-child(2) {
+  font-weight: 600 !important;
 }
