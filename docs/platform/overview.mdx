@@ -30,31 +30,91 @@ icon: "cloud"
 
 PiyAPI decouples cognitive and storage workloads to deliver sub-millisecond retrieval alongside durable state management across millions of concurrent users.
 
-```bash system-architecture.txt
-┌────────────────────────────────────────────────────────────┐
-│                      CLIENT LAYER                           │
-│  TypeScript SDK  │  Python SDK  │  MCP Server  │  cURL     │
-└──────────────────────────────┬─────────────────────────────┘
-                                │
-                                ▼
-┌────────────────────────────────────────────────────────────┐
-│          PIYAPI REST GATEWAY (api.piyapi.cloud)             │
-│     Namespace Scoping  │  Rate Limiter  │  Auth & BYOK Guard│
-└──────────────────────────────┬─────────────────────────────┘
-                                │
-              ┌─────────────────┼─────────────────┐
-              ▼                 ▼                  ▼
-    ┌─────────────────┐ ┌───────────────┐ ┌───────────────┐
-    │  MEMORY ENGINE  │ │ COGNITIVE ENG.│ │ INTEGRATIONS  │
-    │ • 8-Operators   │ │ • Hybrid RAG  │ │ • BYOK Mgr    │
-    │ • Bitemporal    │ │ • PiyGraph KG │ │ • 12 CDC Conn │
-    │ • Branching     │ │ • UnifiedScrr │ │ • 30 MCP Tools│
-    └─────────────────┘ └───────────────┘ └───────────────┘
-                                │
-┌────────────────────────────────────────────────────────────┐
-│               DATA & VECTOR SUBSTRATE                       │
-│    PostgreSQL + pgvector  │  Bitemporal KG  │  Redis Cache  │
-└────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+
+    subgraph CLIENT["CLIENT LAYER"]
+        direction LR
+        TS["TypeScript SDK"]
+        PY["Python SDK"]
+        MCP["MCP Server"]
+        CU["cURL"]
+    end
+
+    subgraph GATEWAY["PIYAPI REST GATEWAY"]
+        direction LR
+        NS["Namespace Scoping"]
+        RL["Rate Limiter"]
+        AG["Auth & BYOK Guard"]
+    end
+
+    subgraph ME["MEMORY ENGINE"]
+        ME1["8-Operators"]
+        ME2["Bitemporal"]
+        ME3["Branching"]
+    end
+
+    subgraph CE["COGNITIVE ENG."]
+        CE1["Hybrid RAG"]
+        CE2["PiyGraph KG"]
+        CE3["UnifiedScrr"]
+    end
+
+    subgraph IN["INTEGRATIONS"]
+        IN1["BYOK Mgr"]
+        IN2["12 CDC Conn"]
+        IN3["30 MCP Tools"]
+    end
+
+    subgraph SUBSTRATE["DATA & VECTOR SUBSTRATE"]
+        direction LR
+        DB["PostgreSQL + pgvector"]
+        KG["Bitemporal KG"]
+        RC["Redis Cache"]
+    end
+
+    CLIENT   --> GATEWAY
+    GATEWAY  --> ME
+    GATEWAY  --> CE
+    GATEWAY  --> IN
+    ME       --> SUBSTRATE
+    CE       --> SUBSTRATE
+    IN       --> SUBSTRATE
+
+    linkStyle default stroke:#9370DB,stroke-width:2px
+
+    %% Subgraph containers — lavender background
+    style CLIENT    fill:#EDE7FF,stroke:#9370DB,stroke-width:2px,color:#3B1F6B
+    style GATEWAY   fill:#EDE7FF,stroke:#7C3AED,stroke-width:2px,color:#3B1F6B
+    style ME        fill:#EDE7FF,stroke:#9370DB,stroke-width:1.5px,color:#3B1F6B
+    style CE        fill:#EDE7FF,stroke:#9370DB,stroke-width:1.5px,color:#3B1F6B
+    style IN        fill:#EDE7FF,stroke:#9370DB,stroke-width:1.5px,color:#3B1F6B
+    style SUBSTRATE fill:#EDE7FF,stroke:#6D28D9,stroke-width:2px,color:#3B1F6B
+
+    %% All individual nodes — white fill, purple border
+    style TS   fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style PY   fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style MCP  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style CU   fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+
+    style NS   fill:#FFFFFF,stroke:#7C3AED,color:#3B1F6B
+    style RL   fill:#FFFFFF,stroke:#7C3AED,color:#3B1F6B
+    style AG   fill:#FFFFFF,stroke:#7C3AED,color:#3B1F6B
+
+    style ME1  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style ME2  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style ME3  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style CE1  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style CE2  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style CE3  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style IN1  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style IN2  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+    style IN3  fill:#FFFFFF,stroke:#9370DB,color:#3B1F6B
+
+    %% Substrate nodes — white fill, deeper purple border
+    style DB   fill:#FFFFFF,stroke:#6D28D9,color:#3B1F6B
+    style KG   fill:#FFFFFF,stroke:#6D28D9,color:#3B1F6B
+    style RC   fill:#FFFFFF,stroke:#6D28D9,color:#3B1F6B
 ```
 
 ## Initialize the Client
