@@ -15,7 +15,9 @@ Separate memory into distinct layers using metadata scoping: user_id (personaliz
 
 Manage memory datasets efficiently at scale using bulk tagging and bulk deprecation endpoints.
 
-```bash POST /api/v1/bulk/memories/tag
+### Tag Memories in Bulk
+
+```bash
 curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \
   -H "Authorization: Bearer sk_live_prod_key_here" \
   -H "Content-Type: application/json" \
@@ -29,7 +31,9 @@ curl -X POST https://api.piyapi.cloud/api/v1/bulk/memories/tag \
 
 Export entire tenant or user datasets atomically for audit compliance or data migration:
 
-```bash GET /api/v1/compliance/export
+### Export Tenant Dataset
+
+```bash
 curl -s https://api.piyapi.cloud/api/v1/compliance/export?user_id=usr_9918 \
   -H "Authorization: Bearer sk_live_prod_key_here"
 ```

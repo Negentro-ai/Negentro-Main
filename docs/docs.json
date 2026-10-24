@@ -172,7 +172,8 @@
 							"agent-plugins/configuration",
 							"agent-plugins/commands",
 							"agent-plugins/memory",
-							"agent-plugins/troubleshooting"
+							"agent-plugins/troubleshooting",
+							"skill"
 						]
 					}
 				]
@@ -342,12 +343,6 @@
 				]
 			}
 		]
-	},
-	"background": {
-		"color": {
-			"light": "#F9F8FF",
-			"dark": "#00050E"
-		}
 	},
 	"appearance": {
 		"strict": false

@@ -7,8 +7,9 @@ icon: "message-square"
 ## System Architecture
 
 A persistent AI companion requires three synchronized subsystems: (1) Fact Extraction from user conversations, (2) Hybrid Vector + BM25 Storage with bitemporal timestamps, and (3) Context Window Injection during generation.
+### End-to-End Companion Loop
 
-```python Python — End-to-End Companion Loop
+```python
 from piyapi_memory import PiyAPIClient
 
 client = PiyAPIClient(api_key="sk_live_your_api_key_here")

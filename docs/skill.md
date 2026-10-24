@@ -1,18 +1,19 @@
 ---
+title: "Negentro Agent Skill"
+sidebarTitle: "Agent Skill"
 name: negentro
-description: Use when building AI agents and applications that need persistent memory, context retrieval, and bitemporal reasoning across sessions. Reach for this skill when implementing memory-powered workflows, configuring hybrid search, integrating with agent frameworks, or deploying memory infrastructure.
+description: "Use when building AI agents and applications that need persistent memory, context retrieval, and bitemporal reasoning across sessions."
 metadata:
   mintlify-proj: negentro
   version: "1.0"
 ---
-
-# Negentro (PiyAPI) Skill
 
 ## Product Summary
 
 Negentro (PiyAPI) is a persistent memory and context platform for AI applications. It separates memory management from application logic, enabling agents to store facts, preferences, and context as tagged records and retrieve them via hybrid search (dense vector HNSW + BM25 trigrams) when needed. Agents use PiyAPI to build stateful AI systems that maintain context across conversations, sessions, and workflows.
 
 **Key files & commands:**
+
 - TypeScript SDK: `@piyapi/sdk`
 - Python SDK: `piyapi-memory`
 - MCP Server: `npx -y @piyapi/mcp-server`
@@ -40,6 +41,7 @@ Negentro (PiyAPI) is a persistent memory and context platform for AI application
 ## SDK Initialization
 
 ### TypeScript (`@piyapi/sdk`)
+
 ```typescript
 import { PiyApi } from '@piyapi/sdk';
 
@@ -63,6 +65,7 @@ const context = await client.context.retrieve({
 ```
 
 ### Python (`piyapi-memory`)
+
 ```python
 import os
 from piyapi import PiyApi
